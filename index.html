@@ -185,6 +185,49 @@
                 padding: 24px !important;
             }
         }
+
+        /* ── FOOTER: Layanan & Area Layanan 2 kolom sejajar ── */
+
+        /* List item spacing rapat (berlaku semua ukuran layar) */
+        .footer-list li {
+            margin-bottom: 12px;
+        }
+        .footer-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile (< 768px): wrapper jadi grid 2 kolom */
+        @media (max-width: 767px) {
+            .footer-services-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                min-width: 0; /* cegah overflow horizontal */
+            }
+
+            /* Tiap kolom tidak boleh overflow */
+            .footer-col-services,
+            .footer-col-area {
+                min-width: 0;
+                overflow: hidden;
+            }
+
+            /* Teks link tidak boleh wrap keluar container */
+            .footer-col-services a,
+            .footer-col-area a {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        /* Desktop (≥ 768px): wrapper transparan, anak langsung masuk grid induk */
+        @media (min-width: 768px) {
+            .footer-services-wrapper {
+                display: contents; /* keduanya seolah langsung child dari .footer-grid */
+            }
+        }
     </style>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
@@ -632,8 +675,8 @@
 
     <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
+                <div class="footer-col-brand">
                     <!-- LOGO FOOTER: ganti src="logo-sainspiq-white.png" dengan path logo putih kamu -->
                     <a href="#" class="flex items-center mb-6">
                         <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain"
@@ -651,35 +694,38 @@
                     </p>
                 </div>
 
-                <div>
-                    <h4 class="text-white font-semibold mb-6">Layanan</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
-                    </ul>
+                <!-- Layanan + Area Layanan: 2 kolom sejajar di mobile -->
+                <div class="footer-services-wrapper md:contents">
+                    <div class="footer-col-services">
+                        <h4 class="text-white font-semibold mb-4">Layanan</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col-area">
+                        <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div>
-                    <h4 class="text-white font-semibold mb-6">Area Layanan</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
-                    </ul>
-                </div>
-
-                <div>
+                <div class="footer-col-contact">
                     <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-start gap-3">
