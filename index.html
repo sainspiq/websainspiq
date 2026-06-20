@@ -639,10 +639,27 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
                     <!-- Card 1: PAUD & TK -->
-                    <a href="#" class="reveal stagger-1 group block p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50/50 border border-blue-200 rounded-2xl shadow-soft card-transition relative overflow-hidden hover:border-blue-400">
-                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-colors"></div>
-                        <div class="absolute bottom-0 right-0 w-24 h-24 bg-blue-500/5 rounded-tl-full"></div>
+                    <a href="#" class="reveal stagger-1 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 55%, #dbeafe 100%); border: 1px solid #bfdbfe; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.06), 0 10px 30px -8px rgba(37,99,235,0.10), 0 1px 3px 0 rgba(37,99,235,0.04);">
+                        <!-- Hover border overlay -->
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #3b82f6;"></div>
+                        <!-- Subtle depth top highlight -->
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
                         
+                        <!-- SVG Watermark: puzzle + bintang + balok huruf -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
+                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Puzzle piece -->
+                                <path d="M55 30 L55 48 Q50 44 44 48 Q38 52 44 58 Q50 62 55 58 L55 80 L37 80 Q41 75 37 69 Q33 63 27 69 Q21 75 27 81 L27 100 L80 100 L80 82 Q75 86 69 82 Q63 78 69 72 Q75 66 80 72 L80 30 Z" fill="#2563EB" stroke="#2563EB" stroke-width="0.5"/>
+                                <!-- Balok huruf A -->
+                                <rect x="90" y="60" width="32" height="32" rx="4" fill="#2563EB" opacity="0.7"/>
+                                <text x="106" y="82" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">A</text>
+                                <!-- Bintang -->
+                                <polygon points="25,20 27.4,27.3 35,27.3 29,32 31.4,39.3 25,35 18.6,39.3 21,32 15,27.3 22.6,27.3" fill="#2563EB" opacity="0.5"/>
+                                <!-- Bintang kecil -->
+                                <polygon points="105,20 106.5,24.6 111.4,24.6 107.5,27.4 109,32 105,29.2 101,32 102.5,27.4 98.6,24.6 103.5,24.6" fill="#2563EB" opacity="0.4"/>
+                            </svg>
+                        </div>
+
                         <div class="relative z-10">
                             <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                                 <i data-lucide="puzzle" class="w-6 h-6"></i>
@@ -654,9 +671,26 @@
                     </a>
 
                     <!-- Card 2: SD -->
-                    <a href="#" class="reveal stagger-2 group block p-6 bg-gradient-to-bl from-cyan-50 via-white to-cyan-50/50 border border-cyan-200 rounded-2xl shadow-soft card-transition relative overflow-hidden hover:border-cyan-400">
-                        <div class="absolute -left-8 -bottom-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-colors"></div>
-                        <div class="absolute top-0 right-0 w-20 h-20 bg-cyan-500/5 rounded-bl-full"></div>
+                    <a href="#" class="reveal stagger-2 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #ecfeff 55%, #cffafe 100%); border: 1px solid #a5f3fc; box-shadow: 0 4px 6px -1px rgba(8,145,178,0.06), 0 10px 30px -8px rgba(8,145,178,0.10), 0 1px 3px 0 rgba(8,145,178,0.04);">
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #06b6d4;"></div>
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+
+                        <!-- SVG Watermark: buku terbuka + pensil -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
+                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Buku terbuka -->
+                                <path d="M20 35 L20 105 Q50 95 70 105 Q90 95 120 105 L120 35 Q90 25 70 35 Q50 25 20 35 Z" fill="#0891b2" opacity="0.5"/>
+                                <line x1="70" y1="35" x2="70" y2="105" stroke="white" stroke-width="2"/>
+                                <path d="M25 45 Q47 38 65 45" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                <path d="M25 55 Q47 48 65 55" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                <path d="M25 65 Q47 58 65 65" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                <path d="M75 45 Q97 38 115 45" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                <path d="M75 55 Q97 48 115 55" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                <!-- Pensil -->
+                                <rect x="92" y="18" width="8" height="36" rx="2" transform="rotate(35 96 36)" fill="#0891b2" opacity="0.7"/>
+                                <polygon points="88,58 96,54 92,66" fill="#0891b2" opacity="0.9"/>
+                            </svg>
+                        </div>
 
                         <div class="relative z-10">
                             <div class="w-12 h-12 rounded-xl bg-cyan-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
@@ -668,24 +702,99 @@
                         </div>
                     </a>
 
-                    <!-- Card 3: SMP & SMA -->
-                    <a href="#" class="reveal stagger-3 group block p-6 bg-gradient-to-tr from-indigo-50 via-white to-indigo-50/50 border border-indigo-200 rounded-2xl shadow-soft card-transition relative overflow-hidden hover:border-indigo-400">
-                        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-colors"></div>
+                    <!-- Card 3: SMP -->
+                    <a href="#" class="reveal stagger-3 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 55%, #ede9fe 100%); border: 1px solid #c4b5fd; box-shadow: 0 4px 6px -1px rgba(109,40,217,0.06), 0 10px 30px -8px rgba(109,40,217,0.10), 0 1px 3px 0 rgba(109,40,217,0.04);">
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #7c3aed;"></div>
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+
+                        <!-- SVG Watermark: atom + molekul -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
+                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Atom nucleus -->
+                                <circle cx="70" cy="72" r="8" fill="#7c3aed"/>
+                                <!-- Orbit 1 -->
+                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8"/>
+                                <!-- Orbit 2 rotated 60deg -->
+                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8" transform="rotate(60 70 72)"/>
+                                <!-- Orbit 3 rotated 120deg -->
+                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8" transform="rotate(120 70 72)"/>
+                                <!-- Electrons -->
+                                <circle cx="108" cy="72" r="4" fill="#7c3aed"/>
+                                <circle cx="45" cy="57" r="4" fill="#7c3aed" opacity="0.7"/>
+                                <circle cx="45" cy="87" r="4" fill="#7c3aed" opacity="0.7"/>
+                                <!-- Molekul kecil atas -->
+                                <circle cx="30" cy="25" r="7" fill="#7c3aed" opacity="0.4"/>
+                                <circle cx="50" cy="20" r="5" fill="#7c3aed" opacity="0.35"/>
+                                <line x1="37" y1="23" x2="45" y2="21" stroke="#7c3aed" stroke-width="2" opacity="0.4"/>
+                            </svg>
+                        </div>
 
                         <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="microscope" class="w-6 h-6"></i>
+                            <div class="w-12 h-12 rounded-xl bg-violet-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                                <i data-lucide="atom" class="w-6 h-6"></i>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">SMP & SMA</h4>
-                            <p class="text-sm text-slate-600 mb-4">Fokus peningkatan nilai raport, peminatan jurusan, dan penguasaan konsep materi yang lebih dalam.</p>
-                            <span class="text-sm font-semibold text-indigo-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+                            <h4 class="text-xl font-bold text-primary mb-2">SMP</h4>
+                            <p class="text-sm text-slate-600 mb-4">Fokus peningkatan nilai raport, peminatan jurusan, dan penguasaan konsep ilmu sains & matematika lebih dalam.</p>
+                            <span class="text-sm font-semibold text-violet-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Card 3b: SMA -->
+                    <a href="#" class="reveal stagger-4 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #eff6ff 55%, #dbeafe 100%); border: 1px solid #93c5fd; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.07), 0 10px 30px -8px rgba(37,99,235,0.12), 0 1px 3px 0 rgba(37,99,235,0.04);">
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #2563eb;"></div>
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+
+                        <!-- SVG Watermark: grafik akademik + rumus -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:140px;height:140px;">
+                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Grafik naik -->
+                                <polyline points="18,110 40,85 62,95 84,55 106,65 128,30" stroke="#1d4ed8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Titik data -->
+                                <circle cx="18" cy="110" r="4" fill="#1d4ed8"/>
+                                <circle cx="40" cy="85" r="4" fill="#1d4ed8"/>
+                                <circle cx="62" cy="95" r="4" fill="#1d4ed8"/>
+                                <circle cx="84" cy="55" r="4" fill="#1d4ed8"/>
+                                <circle cx="106" cy="65" r="4" fill="#1d4ed8"/>
+                                <circle cx="128" cy="30" r="4" fill="#1d4ed8"/>
+                                <!-- Sumbu -->
+                                <line x1="15" y1="115" x2="132" y2="115" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="15" y1="20" x2="15" y2="115" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+                                <!-- Rumus: E=mc² kecil -->
+                                <text x="30" y="18" fill="#1d4ed8" font-size="13" font-family="serif" font-style="italic" opacity="0.8">E=mc²</text>
+                            </svg>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 rounded-xl bg-blue-700 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                                <i data-lucide="line-chart" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-2">SMA</h4>
+                            <p class="text-sm text-slate-600 mb-4">Penguasaan materi peminatan IPA/IPS, persiapan ujian nasional, dan fondasi akademik menuju PTN impian.</p>
+                            <span class="text-sm font-semibold text-blue-700 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
                         </div>
                     </a>
 
                     <!-- Card 4: Persiapan UTBK -->
-                    <a href="#" class="reveal stagger-4 group block p-6 bg-gradient-to-br from-purple-50 via-white to-purple-50/50 border border-purple-200 rounded-2xl shadow-soft card-transition relative overflow-hidden hover:border-purple-400">
-                        <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors"></div>
-                        <div class="absolute top-0 left-0 w-20 h-20 bg-purple-500/5 rounded-br-full"></div>
+                    <a href="#" class="reveal stagger-5 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #faf5ff 55%, #f3e8ff 100%); border: 1px solid #d8b4fe; box-shadow: 0 4px 6px -1px rgba(147,51,234,0.07), 0 10px 30px -8px rgba(147,51,234,0.12), 0 1px 3px 0 rgba(147,51,234,0.04);">
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #9333ea;"></div>
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+
+                        <!-- SVG Watermark: target bullseye + grafik skor -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
+                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Target bullseye -->
+                                <circle cx="75" cy="82" r="52" stroke="#9333ea" stroke-width="2.5" opacity="0.6"/>
+                                <circle cx="75" cy="82" r="38" stroke="#9333ea" stroke-width="2.5" opacity="0.7"/>
+                                <circle cx="75" cy="82" r="24" stroke="#9333ea" stroke-width="2.5" opacity="0.8"/>
+                                <circle cx="75" cy="82" r="10" fill="#9333ea" opacity="0.9"/>
+                                <!-- Panah vertikal -->
+                                <line x1="75" y1="22" x2="75" y2="72" stroke="#9333ea" stroke-width="3" stroke-linecap="round"/>
+                                <polygon points="75,30 70,45 80,45" fill="#9333ea"/>
+                                <!-- Grafik mini atas kiri -->
+                                <polyline points="15,38 25,28 35,32 45,20" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <circle cx="45" cy="20" r="3" fill="#9333ea" opacity="0.7"/>
+                            </svg>
+                        </div>
 
                         <div class="relative z-10">
                             <div class="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-20 uppercase tracking-wider">Intensif</div>
@@ -699,9 +808,33 @@
                     </a>
 
                     <!-- Card 5: Olimpiade Sains -->
-                    <a href="#" class="reveal stagger-5 group block p-6 bg-gradient-to-tl from-sky-50 via-white to-sky-50/50 border border-sky-200 rounded-2xl shadow-soft card-transition relative overflow-hidden hover:border-sky-400">
-                        <div class="absolute -left-4 -top-4 w-20 h-20 bg-sky-500/10 rounded-full blur-xl group-hover:bg-sky-500/20 transition-colors"></div>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 border-[16px] border-sky-100 rounded-tl-full opacity-50"></div>
+                    <a href="#" class="reveal stagger-6 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #ecfeff 55%, #cffafe 100%); border: 1px solid #67e8f9; box-shadow: 0 4px 6px -1px rgba(8,145,178,0.07), 0 10px 30px -8px rgba(8,145,178,0.14), 0 1px 3px 0 rgba(8,145,178,0.04);">
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #0891b2;"></div>
+                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+
+                        <!-- SVG Watermark: atom + medali + piala -->
+                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
+                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <!-- Piala -->
+                                <path d="M52 20 L98 20 L94 55 Q90 72 75 78 Q60 72 56 55 Z" fill="#0891b2" opacity="0.6"/>
+                                <rect x="68" y="78" width="14" height="20" fill="#0891b2" opacity="0.5"/>
+                                <rect x="55" y="98" width="40" height="6" rx="3" fill="#0891b2" opacity="0.5"/>
+                                <!-- Pegangan kiri -->
+                                <path d="M52 28 Q35 28 35 48 Q35 62 52 58" stroke="#0891b2" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+                                <!-- Pegangan kanan -->
+                                <path d="M98 28 Q115 28 115 48 Q115 62 98 58" stroke="#0891b2" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+                                <!-- Medali kecil -->
+                                <circle cx="28" cy="115" r="14" stroke="#0891b2" stroke-width="2.5" opacity="0.6"/>
+                                <text x="28" y="119" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold" font-family="sans-serif" opacity="0.8">1</text>
+                                <line x1="28" y1="97" x2="28" y2="101" stroke="#0891b2" stroke-width="2" opacity="0.5"/>
+                                <!-- Molekul kecil kanan bawah -->
+                                <circle cx="125" cy="120" r="6" fill="#0891b2" opacity="0.4"/>
+                                <circle cx="138" cy="108" r="4" fill="#0891b2" opacity="0.35"/>
+                                <circle cx="115" cy="108" r="4" fill="#0891b2" opacity="0.35"/>
+                                <line x1="131" y1="116" x2="134" y2="112" stroke="#0891b2" stroke-width="1.5" opacity="0.4"/>
+                                <line x1="119" y1="116" x2="116" y2="112" stroke="#0891b2" stroke-width="1.5" opacity="0.4"/>
+                            </svg>
+                        </div>
 
                         <div class="relative z-10">
                             <div class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
