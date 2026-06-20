@@ -43,6 +43,64 @@
     }
     </script>
 
+    <!-- Schema Markup: FAQPage (Structured Data) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Berapa biaya les privat di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Biaya les privat di Sainspiq disesuaikan dengan jenjang pendidikan, mata pelajaran, lokasi, dan frekuensi pertemuan per minggu. Untuk informasi paket harga terbaru, silakan konsultasi gratis via WhatsApp dan tim kami akan membantu menyusun paket sesuai kebutuhan dan budget Anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah saya bisa memilih atau mengganti tutor sendiri?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa. Tim akademik Sainspiq akan merekomendasikan tutor yang paling sesuai dengan kebutuhan dan karakter anak Anda. Jika setelah beberapa pertemuan dirasa kurang cocok, Anda dapat meminta penggantian tutor tanpa biaya tambahan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah les privat dilakukan secara offline atau online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keduanya tersedia. Tutor dapat datang langsung ke rumah untuk wilayah yang terjangkau, atau Anda bisa memilih sesi belajar online interaktif melalui Zoom sesuai preferensi dan domisili."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana sistem pembayaran les di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pembayaran dilakukan per paket sesi yang disepakati di awal, melalui transfer bank atau e-wallet. Rincian lengkap metode dan jadwal pembayaran akan dijelaskan oleh tim admin saat proses konsultasi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah ada garansi jika tidak cocok dengan tutor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya, Sainspiq memberikan garansi kecocokan tutor. Jika dalam pertemuan awal anak Anda merasa kurang nyaman dengan gaya mengajar tutor, kami akan mencarikan pengganti yang lebih sesuai tanpa biaya tambahan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mendaftar les privat di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cukup isi form konsultasi gratis di website atau hubungi admin melalui WhatsApp. Tim kami akan menghubungi Anda untuk menentukan jenjang, mata pelajaran, jadwal, dan tutor yang paling sesuai."
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -265,6 +323,21 @@
                 display: contents; /* keduanya seolah langsung child dari .footer-grid */
             }
         }
+        /* ── FAQ ACCORDION ── */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .faq-icon {
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .faq-item.faq-open .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-item.faq-open .faq-toggle {
+            color: #2563EB;
+        }
     </style>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
@@ -291,6 +364,7 @@
                     <a href="#tutor" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tutor</a>
                     <a href="#tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
                     <a href="#blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">FAQ</a>
                     <a href="#kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
                 </nav>
 
@@ -316,6 +390,7 @@
                 <a href="#tutor" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tutor</a>
                 <a href="#tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
                 <a href="#blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
+                <a href="#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">FAQ</a>
                 <a href="#kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Kontak</a>
                 
                 <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
@@ -642,6 +717,107 @@
             </div>
         </section>
 
+        <!-- FAQ Section -->
+        <section id="faq" class="py-10 md:py-24 bg-slate-50 border-y border-slate-200">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Pertanyaan Umum</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4 section-title">Masih Ada yang Ingin Ditanyakan?</h3>
+                    <p class="text-slate-600">Berikut jawaban atas pertanyaan yang paling sering diajukan orang tua dan siswa seputar les privat Sainspiq.</p>
+                </div>
+
+                <div class="space-y-4">
+
+                    <!-- FAQ 1 -->
+                    <div class="faq-item reveal stagger-1 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Berapa biaya les privat di Sainspiq?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Biaya disesuaikan dengan jenjang pendidikan, mata pelajaran, lokasi, dan frekuensi pertemuan per minggu. Konsultasikan kebutuhan Anda secara gratis via WhatsApp dan tim kami akan membantu menyusun paket sesuai budget.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item reveal stagger-2 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Apakah saya bisa memilih atau mengganti tutor sendiri?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Bisa. Tim akademik akan merekomendasikan tutor yang paling sesuai dengan kebutuhan dan karakter anak Anda. Jika dirasa kurang cocok, Anda bisa meminta penggantian tutor tanpa biaya tambahan.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item reveal stagger-3 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Apakah les privat dilakukan secara offline atau online?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Keduanya tersedia. Tutor dapat datang langsung ke rumah untuk wilayah yang terjangkau, atau Anda bisa memilih sesi belajar online interaktif melalui Zoom sesuai preferensi dan domisili.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item reveal stagger-4 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Bagaimana sistem pembayaran les di Sainspiq?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Pembayaran dilakukan per paket sesi yang disepakati di awal, melalui transfer bank atau e-wallet. Rincian metode dan jadwal pembayaran akan dijelaskan oleh tim admin saat proses konsultasi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item reveal stagger-5 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Apakah ada garansi jika tidak cocok dengan tutor?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Ya, kami memberikan garansi kecocokan tutor. Jika di pertemuan awal anak Anda kurang nyaman dengan gaya mengajar tutor, kami akan mencarikan pengganti yang lebih sesuai tanpa biaya tambahan.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item reveal stagger-6 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                        <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
+                            <span class="font-semibold text-primary text-base md:text-lg">Bagaimana cara mendaftar les privat di Sainspiq?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
+                        </button>
+                        <div class="faq-content">
+                            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">
+                                Cukup isi form konsultasi gratis di bawah ini atau hubungi admin melalui WhatsApp. Tim kami akan menghubungi Anda untuk menentukan jenjang, mata pelajaran, jadwal, dan tutor yang paling sesuai.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 text-center">
+                    <p class="text-slate-600 mb-4">Masih punya pertanyaan lain?</p>
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+                        Tanya Langsung via Konsultasi Gratis
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Konsultasi Section -->
         <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden">
             <div class="absolute inset-0 bg-primary"></div>
@@ -950,6 +1126,24 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.slide-left, .slide-right').forEach(el => slideObserver.observe(el));
+        // ══════════════════════════════════════════
+        // FAQ ACCORDION
+        // ══════════════════════════════════════════
+        document.querySelectorAll('.faq-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const content = item.querySelector('.faq-content');
+                const isOpen = item.classList.contains('faq-open');
+
+                if (isOpen) {
+                    content.style.maxHeight = null;
+                    item.classList.remove('faq-open');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    item.classList.add('faq-open');
+                }
+            });
+        });
     </script>
 </body>
 </html>
