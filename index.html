@@ -215,6 +215,230 @@
 
             /* Reduce all section padding to 40px */
             section {
+                padding-top: 40pxMohon maaf atas kesalahpahamannya! Saya mengira "biru visual penuh" berarti warna biru solid/polos. 
+
+Sekarang saya telah menambahkan elemen visual abstrak ke bagian background **Konsultasi ("Nilai Naik & Anak Lebih Paham Pelajaran")**. Saya memasukkan efek pendaran cahaya (glowing orbs) gradasi biru muda dan cyan yang di-blur secara ekstrem, beserta tekstur pola titik (*dot pattern*) tipis agar background birunya terlihat sangat kaya, modern, dan abstrak, tanpa mengubah struktur teks atau form yang ada.
+
+Berikut adalah kode HTML yang sudah diperbarui (semua fungsi, tampilan lain, dan rumus tetap aman tidak tersentuh):
+
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sainspiq | Les Privat Terbaik & Persiapan UTBK Terbaik di Indonesia</title>
+    <meta name="description" content="Sainspiq adalah layanan les privat terbaik PRASCHOOL, PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade. Belajar dengan tutor top 1% dari Universitas Indonesia, ITB, dan UGM.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="apple-touch-icon" href="logo.webp">
+
+    <!-- Schema Markup: EducationalOrganization (Structured Data) -->
+    <script type="application/ld+json">
+    {
+      "@context": "[https://schema.org](https://schema.org)",
+      "@type": "EducationalOrganization",
+      "name": "Sainspiq",
+      "url": "[https://sainspiq.com](https://sainspiq.com)",
+      "logo": "[https://sainspiq.com/logo.webp](https://sainspiq.com/logo.webp)",
+      "description": "Layanan les privat terbaik untuk PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade Sains. Tutor top 1% dari UI, ITB, dan UGM.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Ir. H. Juanda No.10, Dago",
+        "addressLocality": "Bandung",
+        "addressRegion": "Jawa Barat",
+        "addressCountry": "ID"
+      },
+      "telephone": "0812-XXXX-XXXX",
+      "email": "halo@sainspiq.com",
+      "areaServed": ["Bandung", "Jakarta", "Depok", "Bekasi", "Bogor", "Surabaya", "Semarang", "Purwokerto"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Program Les Privat",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat PAUD & TK" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat SD" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat SMP & SMA" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Persiapan UTBK / SNBT" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Olimpiade Sains" } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Schema Markup: FAQPage (Structured Data) -->
+    <script type="application/ld+json">
+    {
+      "@context": "[https://schema.org](https://schema.org)",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Berapa biaya les privat di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Biaya les privat di Sainspiq disesuaikan dengan jenjang pendidikan, mata pelajaran, lokasi, dan frekuensi pertemuan per minggu. Untuk informasi paket harga terbaru, silakan konsultasi gratis via WhatsApp dan tim kami akan membantu menyusun paket sesuai kebutuhan dan budget Anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah saya bisa memilih atau mengganti tutor sendiri?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa. Tim akademik Sainspiq akan merekomendasikan tutor yang paling sesuai dengan kebutuhan dan karakter anak Anda. Jika setelah beberapa pertemuan dirasa kurang cocok, Anda dapat meminta penggantian tutor tanpa biaya tambahan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah les privat dilakukan secara offline atau online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keduanya tersedia. Tutor dapat datang langsung ke rumah untuk wilayah yang terjangkau, atau Anda bisa memilih sesi belajar online interaktif melalui Zoom sesuai preferensi dan domisili."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana sistem pembayaran les di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pembayaran dilakukan per paket sesi yang disepakati di awal, melalui transfer bank atau e-wallet. Rincian lengkap metode dan jadwal pembayaran akan dijelaskan oleh tim admin saat proses konsultasi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah ada garansi jika tidak cocok dengan tutor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya, Sainspiq memberikan garansi kecocokan tutor. Jika dalam pertemuan awal anak Anda merasa kurang nyaman dengan gaya mengajar tutor, kami akan mencarikan pengganti yang lebih sesuai tanpa biaya tambahan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mendaftar les privat di Sainspiq?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cukup isi form konsultasi gratis di website atau hubungi admin melalui WhatsApp. Tim kami akan menghubungi Anda untuk menentukan jenjang, mata pelajaran, jadwal, dan tutor yang paling sesuai."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap)" rel="stylesheet">
+    
+    <!-- Script untuk Ikon Lucide -->
+    <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
+
+    <!-- Script untuk Tailwind CSS -->
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#F97316',
+                        support: '#06B6D4',
+                        neutral: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(15,23,42,0.08)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #2563EB, #06B6D4);
+        }
+        .card-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-transition:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ── ANIMASI 1: Hero fade + slide up ── */
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .hero-animate.visible { opacity: 1; transform: translateY(0); }
+
+        .hero-animate-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
+        }
+        .hero-animate-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ── ANIMASI 2: Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Stagger delay */
+        .stagger-1 { transition-delay: 0.05s; }
+        .stagger-2 { transition-delay: 0.12s; }
+        .stagger-3 { transition-delay: 0.19s; }
+        .stagger-4 { transition-delay: 0.26s; }
+        .stagger-5 { transition-delay: 0.33s; }
+        .stagger-6 { transition-delay: 0.40s; }
+        .stagger-7 { transition-delay: 0.47s; }
+        .stagger-8 { transition-delay: 0.54s; }
+
+        /* ── ANIMASI 3: Slide kiri & kanan (Konsultasi) ── */
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1) 0.15s, transform 0.7s cubic-bezier(0.4,0,0.2,1) 0.15s;
+        }
+        .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ── MOBILE SPACING OPTIMIZATION (< 768px) ── */
+        @media (max-width: 767px) {
+
+            /* Reduce all section padding to 40px */
+            section {
                 padding-top: 40px !important;
                 padding-bottom: 40px !important;
             }
@@ -537,7 +761,7 @@
 
                     <!-- UI -->
                     <div class="reveal stagger-1 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png" alt="Universitas Indonesia" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png](https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png)" alt="Universitas Indonesia" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
                             <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
@@ -546,7 +770,7 @@
 
                     <!-- ITB -->
                     <div class="reveal stagger-2 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png" alt="ITB" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png](https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png)" alt="ITB" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
                             <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -555,7 +779,7 @@
 
                     <!-- UGM -->
                     <div class="reveal stagger-3 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png" alt="UGM" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png](https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png)" alt="UGM" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
                             <p class="text-[10px] text-slate-400">Yogyakarta</p>
@@ -564,7 +788,7 @@
 
                     <!-- UNPAD -->
                     <div class="reveal stagger-4 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png" alt="UNPAD" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png)" alt="UNPAD" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
                             <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -573,7 +797,7 @@
 
                     <!-- ITS -->
                     <div class="reveal stagger-5 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png" alt="ITS" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png)" alt="ITS" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
                             <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
@@ -582,7 +806,7 @@
 
                     <!-- UNAIR -->
                     <div class="reveal stagger-6 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png" alt="UNAIR" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png](https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png)" alt="UNAIR" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
                             <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
@@ -591,7 +815,7 @@
 
                     <!-- UNDIP -->
                     <div class="reveal stagger-7 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png" alt="UNDIP" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png](https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png)" alt="UNDIP" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
                             <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
@@ -600,7 +824,7 @@
 
                     <!-- UB -->
                     <div class="reveal stagger-8 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png" alt="UB" class="h-14 object-contain">
+                        <img src="[https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png](https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png)" alt="UB" class="h-14 object-contain">
                         <div class="text-center">
                             <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
                             <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
@@ -647,7 +871,7 @@
                         
                         <!-- SVG Watermark: puzzle + bintang + balok huruf -->
                         <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 140 140" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Puzzle piece -->
                                 <path d="M55 30 L55 48 Q50 44 44 48 Q38 52 44 58 Q50 62 55 58 L55 80 L37 80 Q41 75 37 69 Q33 63 27 69 Q21 75 27 81 L27 100 L80 100 L80 82 Q75 86 69 82 Q63 78 69 72 Q75 66 80 72 L80 30 Z" fill="#2563EB" stroke="#2563EB" stroke-width="0.5"/>
                                 <!-- Balok huruf A -->
@@ -677,7 +901,7 @@
 
                         <!-- SVG Watermark: buku terbuka + pensil -->
                         <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 140 140" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Buku terbuka -->
                                 <path d="M20 35 L20 105 Q50 95 70 105 Q90 95 120 105 L120 35 Q90 25 70 35 Q50 25 20 35 Z" fill="#0891b2" opacity="0.5"/>
                                 <line x1="70" y1="35" x2="70" y2="105" stroke="white" stroke-width="2"/>
@@ -709,7 +933,7 @@
 
                         <!-- SVG Watermark: atom + molekul -->
                         <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 140 140" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Atom nucleus -->
                                 <circle cx="70" cy="72" r="8" fill="#7c3aed"/>
                                 <!-- Orbit 1 -->
@@ -746,7 +970,7 @@
 
                         <!-- SVG Watermark: grafik akademik + rumus -->
                         <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 140 140" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Grafik naik -->
                                 <polyline points="18,110 40,85 62,95 84,55 106,65 128,30" stroke="#1d4ed8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <!-- Titik data -->
@@ -781,7 +1005,7 @@
 
                         <!-- SVG Watermark: target bullseye + grafik skor -->
                         <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
-                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 150 150" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Target bullseye -->
                                 <circle cx="75" cy="82" r="52" stroke="#9333ea" stroke-width="2.5" opacity="0.6"/>
                                 <circle cx="75" cy="82" r="38" stroke="#9333ea" stroke-width="2.5" opacity="0.7"/>
@@ -814,7 +1038,7 @@
 
                         <!-- SVG Watermark: atom + medali + piala -->
                         <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
-                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <svg viewBox="0 0 150 150" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" fill="none">
                                 <!-- Piala -->
                                 <path d="M52 20 L98 20 L94 55 Q90 72 75 78 Q60 72 56 55 Z" fill="#0891b2" opacity="0.6"/>
                                 <rect x="68" y="78" width="14" height="20" fill="#0891b2" opacity="0.5"/>
@@ -951,38 +1175,48 @@
             </div>
         </section>
 
-        <!-- Konsultasi Section -->
-        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden">
-            <div class="absolute inset-0 bg-primary"></div>
-            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/50 to-transparent"></div>
+        <!-- Konsultasi Section with Blue Abstract Visuals -->
+        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden bg-secondary">
+            
+            <!-- Abstract Blue Visuals Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+                <!-- Glow 1 (Top Right) -->
+                <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/40 rounded-full blur-[100px]"></div>
+                <!-- Glow 2 (Bottom Left) -->
+                <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyan-400/30 rounded-full blur-[80px]"></div>
+                <!-- Glow 3 (Center subtle) -->
+                <div class="absolute top-[40%] left-[30%] w-[300px] h-[300px] bg-blue-600/50 rounded-full blur-[80px]"></div>
+                <!-- Dot Pattern Overlay for extra texture -->
+                <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px;"></div>
+            </div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="slide-left">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Nilai Naik & Anak Lebih Paham Pelajaran</h2>
-                        <p class="text-slate-300 text-lg mb-8">Konsultasikan kebutuhan belajar anak Anda secara gratis. Tim kami akan membantu memilih tutor terbaik dan menyusun program belajar yang sesuai agar proses belajar lebih efektif, menyenangkan, dan hasilnya lebih maksimal.</p>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-md">Nilai Naik & Anak Lebih Paham Pelajaran</h2>
+                        <p class="text-slate-100 text-lg mb-8 drop-shadow-sm">Konsultasikan kebutuhan belajar anak Anda secara gratis. Tim kami akan membantu memilih tutor terbaik dan menyusun program belajar yang sesuai agar proses belajar lebih efektif, menyenangkan, dan hasilnya lebih maksimal.</p>
                         
                         <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-slate-200">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-support"></i>
+                            <div class="flex items-center gap-3 text-white drop-shadow-sm">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-300"></i>
                                 <span>Tutor berpengalaman dan terseleksi.</span>
                             </div>
-                            <div class="flex items-center gap-3 text-slate-200">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-support"></i>
+                            <div class="flex items-center gap-3 text-white drop-shadow-sm">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-300"></i>
                                 <span>Datang ke rumah atau belajar online via Zoom.</span>
                             </div>
-                            <div class="flex items-center gap-3 text-slate-200">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-support"></i>
+                            <div class="flex items-center gap-3 text-white drop-shadow-sm">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-300"></i>
                                 <span>Laporan perkembangan belajar setiap bulan.</span>
                             </div>
-                            <div class="flex items-center gap-3 text-slate-200">
-                                <i data-lucide="check-circle" class="w-5 h-5 text-support"></i>
+                            <div class="flex items-center gap-3 text-white drop-shadow-sm">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-300"></i>
                                 <span>Garansi ganti tutor jika belum cocok.</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="slide-right bg-white rounded-2xl p-8 shadow-2xl relative">
+                    <div class="slide-right bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl relative border border-white/20">
                         <div class="absolute -top-4 -right-4 bg-accent text-white font-bold text-sm px-4 py-2 rounded-full shadow-lg transform rotate-3">
                             Balas &lt; 5 Menit
                         </div>
@@ -1002,12 +1236,12 @@
                                 
                                 <div>
                                     <label for="nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
-                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
+                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
                                 </div>
                                 
                                 <div>
                                     <label for="wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
+                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
                                 </div>
                                 
                                 <button type="submit" id="submit-btn" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-4">
@@ -1106,7 +1340,7 @@
 
     <a href="#" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 group flex items-center justify-center">
         <!-- Ikon WhatsApp Inlined agar tidak hilang -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         <span class="absolute right-16 bg-white text-primary text-sm font-bold px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">
             Chat Admin
         </span>
@@ -1183,13 +1417,13 @@
             }
 
             const pesan = `Halo Sainspiq! 👋\n\nSaya ingin konsultasi les privat.\n\n*Nama:* ${nama}\n*Jenjang:* ${selectedJenjang}\n*No. WA:* ${wa}\n\nMohon informasi lebih lanjut. Terima kasih!`;
-            const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+            const url = `[https://wa.me/$](https://wa.me/$){ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
 
             window.open(url, '_blank');
         });
 
         // Set wa link for fixed bottom button
-        document.querySelector('a[href="#"].fixed').href = `https://wa.me/${ADMIN_WA}`;
+        document.querySelector('a[href="#"].fixed').href = `[https://wa.me/$](https://wa.me/$){ADMIN_WA}`;
 
         // ══════════════════════════════════════════
         // ANIMASI 1: Hero — langsung visible saat load
