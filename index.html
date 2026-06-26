@@ -281,6 +281,16 @@
             }
         }
 
+        /* ── MARQUEE UNIVERSITAS ── */
+        @keyframes marquee-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+        @keyframes marquee-left {
+            0%   { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* ── FOOTER: Layanan & Area Layanan 2 kolom sejajar ── */
 
         /* List item spacing rapat (berlaku semua ukuran layar) */
@@ -533,77 +543,130 @@
                     <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">Semua tutor kami adalah mahasiswa aktif atau alumni terbaik yang telah melalui seleksi ketat dan terverifikasi oleh tim akademik Sainspiq.</p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+                <!-- Marquee wrapper -->
+                <div class="mt-10 overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
 
-                    <!-- UI -->
-                    <div class="reveal stagger-1 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png" alt="Universitas Indonesia" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
-                            <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
+                    <!-- Baris 1: bergerak ke kanan -->
+                    <div class="flex gap-4 mb-4" style="animation: marquee-right 28s linear infinite; width: max-content;">
+                        <!-- set 1 -->
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png" alt="Universitas Indonesia" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
+                                <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png" alt="ITB" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
+                                <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png" alt="UGM" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
+                                <p class="text-[10px] text-slate-400">Yogyakarta</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png" alt="UNPAD" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
+                                <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <!-- set 2 (duplikat untuk seamless loop) -->
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3e/Universitas_Indonesia_logo.svg/240px-Universitas_Indonesia_logo.svg.png" alt="Universitas Indonesia" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
+                                <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png" alt="ITB" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
+                                <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png" alt="UGM" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
+                                <p class="text-[10px] text-slate-400">Yogyakarta</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png" alt="UNPAD" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
+                                <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ITB -->
-                    <div class="reveal stagger-2 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/ITB_Logo.svg/200px-ITB_Logo.svg.png" alt="ITB" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
-                            <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                    <!-- Baris 2: bergerak ke kiri -->
+                    <div class="flex gap-4" style="animation: marquee-left 28s linear infinite; width: max-content;">
+                        <!-- set 1 -->
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png" alt="ITS" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
+                                <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- UGM -->
-                    <div class="reveal stagger-3 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/8/8e/UGM_logo.svg/200px-UGM_logo.svg.png" alt="UGM" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
-                            <p class="text-[10px] text-slate-400">Yogyakarta</p>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png" alt="UNAIR" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
+                                <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- UNPAD -->
-                    <div class="reveal stagger-4 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/UNPAD_Logo.svg/200px-UNPAD_Logo.svg.png" alt="UNPAD" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
-                            <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png" alt="UNDIP" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
+                                <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- ITS -->
-                    <div class="reveal stagger-5 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png" alt="ITS" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
-                            <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png" alt="UB" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
+                                <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- UNAIR -->
-                    <div class="reveal stagger-6 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png" alt="UNAIR" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
-                            <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                        <!-- set 2 (duplikat untuk seamless loop) -->
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png/200px-Logo_ITS_-_Institut_Teknologi_Sepuluh_Nopember.png" alt="ITS" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
+                                <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- UNDIP -->
-                    <div class="reveal stagger-7 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png" alt="UNDIP" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
-                            <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/d/d1/Logo_Universitas_Airlangga.svg/200px-Logo_Universitas_Airlangga.svg.png" alt="UNAIR" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
+                                <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- UB -->
-                    <div class="reveal stagger-8 bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png" alt="UB" class="h-14 object-contain">
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
-                            <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/4/4d/Undip.png/200px-Undip.png" alt="UNDIP" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
+                                <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/9/98/Logo_Universitas_Brawijaya.png/200px-Logo_Universitas_Brawijaya.png" alt="UB" class="h-14 object-contain">
+                            <div class="text-center">
+                                <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
+                                <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
+                            </div>
                         </div>
                     </div>
 
