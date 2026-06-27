@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <script>
+        // Terapkan dark mode sebelum render untuk mencegah "flash" warna salah
+        (function() {
+            const saved = localStorage.getItem('sainspiq-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sainspiq | Les Privat Terbaik & Persiapan UTBK Terbaik di Indonesia</title>
@@ -21,14 +31,14 @@
       "description": "Layanan les privat terbaik untuk PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade Sains. Tutor top 1% dari UI, ITB, dan UGM.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Jl. Ir. H. Juanda No.10, Dago",
-        "addressLocality": "Bandung",
-        "addressRegion": "Jawa Barat",
+        "streetAddress": "Jl. Munjul, Gg. Subur",
+        "addressLocality": "Kec. Cipayung",
+        "addressRegion": "Jakarta Timur, DKI Jakarta",
         "addressCountry": "ID"
       },
       "telephone": "0812-XXXX-XXXX",
       "email": "halo@sainspiq.com",
-      "areaServed": ["Bandung", "Jakarta", "Depok", "Bekasi", "Bogor", "Surabaya", "Semarang", "Purwokerto"],
+      "areaServed": ["Jakarta", "Bandung", "Depok", "Bekasi", "Bogor", "Surabaya", "Semarang", "Purwokerto"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Program Les Privat",
@@ -113,6 +123,7 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -359,9 +370,72 @@
         .faq-item.faq-open .faq-toggle {
             color: #2563EB;
         }
+
+        /* ══════════════════════════════════════════
+           DARK MODE — override global
+           Menarget kelas Tailwind yang dipakai berulang
+           di seluruh halaman supaya tidak perlu edit
+           satu-satu di setiap elemen.
+        ══════════════════════════════════════════ */
+        .dark body { background-color: #0F172A; }
+
+        /* Background terang → gelap */
+        .dark .bg-white { background-color: #1E293B !important; }
+        .dark .bg-slate-50 { background-color: #0F172A !important; }
+        .dark .bg-blue-50 { background-color: rgba(37, 99, 235, 0.12) !important; }
+
+        /* Teks gelap (di atas background terang) → terang */
+        .dark .text-primary { color: #F1F5F9 !important; }
+        .dark .text-slate-600 { color: #CBD5E1 !important; }
+        .dark .text-slate-500 { color: #94A3B8 !important; }
+        .dark .text-slate-700 { color: #E2E8F0 !important; }
+
+        /* text-slate-400 dipakai di footer (sudah gelap) dan beberapa card terang;
+           biarkan cukup terang agar tetap terbaca di kedua kondisi */
+        .dark .text-slate-400 { color: #94A3B8 !important; }
+
+        /* Border */
+        .dark .border-slate-100 { border-color: #334155 !important; }
+        .dark .border-slate-200 { border-color: #334155 !important; }
+        .dark .bg-slate-200 { background-color: #334155 !important; }
+
+        /* Navbar glass effect */
+        .dark .glass-nav {
+            background-color: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
+        /* Shadow card jadi lebih halus di background gelap */
+        .dark .shadow-card,
+        .dark .shadow-soft {
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Hover blue-50 di kartu/menu jangan kebablasan terang di dark mode */
+        .dark .hover\:bg-blue-50:hover { background-color: rgba(37, 99, 235, 0.18) !important; }
+
+        /* Input & form fields */
+        .dark input,
+        .dark textarea,
+        .dark select {
+            background-color: #1E293B !important;
+            color: #F1F5F9 !important;
+            border-color: #334155 !important;
+        }
+        .dark input::placeholder,
+        .dark textarea::placeholder {
+            color: #64748B !important;
+        }
+
+        /* Transisi halus saat ganti tema */
+        body, header, section, .bg-white, .bg-slate-50, .bg-blue-50,
+        .text-primary, .text-slate-600, .text-slate-500, .text-slate-400,
+        .border-slate-100, .border-slate-200 {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
     </style>
 </head>
-<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
+<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
 
     <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
@@ -390,14 +464,22 @@
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
+                    <button id="theme-toggle" aria-label="Ganti mode gelap/terang" class="p-2 rounded-lg text-slate-600 hover:bg-blue-50 hover:text-secondary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-all">
+                        <i id="theme-icon-sun" data-lucide="sun" class="w-5 h-5 hidden dark:inline-block"></i>
+                        <i id="theme-icon-moon" data-lucide="moon" class="w-5 h-5 inline-block dark:hidden"></i>
+                    </button>
+                    <a href="#" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-all">Masuk</a>
                     <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
                         Konsultasi Gratis
                     </a>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="theme-toggle-mobile" aria-label="Ganti mode gelap/terang" class="p-2 rounded-lg text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors">
+                        <i id="theme-icon-sun-mobile" data-lucide="sun" class="w-5 h-5 hidden dark:inline-block"></i>
+                        <i id="theme-icon-moon-mobile" data-lucide="moon" class="w-5 h-5 inline-block dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" aria-label="Buka menu">
                         <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -1106,8 +1188,8 @@
                     <div class="footer-col-area">
                         <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
                             <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
                             <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
                             <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
                             <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
@@ -1123,7 +1205,7 @@
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-start gap-3">
                             <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">Jl. Ir. H. Juanda No.10, Dago, Bandung, Jawa Barat</span>
+                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
@@ -1160,6 +1242,20 @@
         window.onload = function() {
             lucide.createIcons();
         };
+
+        // ── DARK MODE TOGGLE ───────────────────────
+        const THEME_KEY = 'sainspiq-theme';
+        const htmlEl = document.documentElement;
+
+        const setTheme = (isDark) => {
+            htmlEl.classList.toggle('dark', isDark);
+            localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+        };
+
+        const toggleTheme = () => setTheme(!htmlEl.classList.contains('dark'));
+
+        document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+        document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 
         const ADMIN_WA = '6281234567890';
 
