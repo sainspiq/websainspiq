@@ -103,7 +103,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" rel="stylesheet">
     
     <!-- Script untuk Ikon Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -176,6 +176,17 @@
             transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
         }
         .hero-animate-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ── ANIMASI TYPING: Bersama Sainspiq ── */
+        .type-caret {
+            display: inline-block;
+            animation: caretBlink 0.8s step-end infinite;
+            font-weight: 400;
+        }
+        @keyframes caretBlink {
+            0%, 50% { opacity: 1; }
+            50.01%, 100% { opacity: 0; }
+        }
 
         /* ── ANIMASI 2: Scroll reveal ── */
         .reveal {
@@ -432,7 +443,7 @@
                         </div>
                         
                         <h1 class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="transition-delay:0.22s">
-                            Raih Target Akademik dengan Pendampingan yang Tepat <span class="text-gradient font-extrabold">Bersama Sainspiq</span>
+                            Raih Target Akademik dengan Pendampingan yang Tepat <span class="text-gradient font-extrabold" style="font-family: 'Allura', cursive; font-size:1.35em;"><span id="typeBersama"></span><span class="type-caret" id="caretBersama">|</span></span> <span class="text-gradient font-extrabold" id="typeSainspiq"></span><span class="type-caret" id="caretSainspiq" style="display:none;">|</span>
                         </h1>
                         
                         <p class="hero-desc hero-animate text-base sm:text-lg text-slate-600 mb-6 leading-relaxed max-w-xl mx-auto" style="transition-delay:0.34s">
@@ -1213,6 +1224,40 @@
             document.querySelectorAll('.hero-animate, .hero-animate-right').forEach(el => {
                 el.classList.add('visible');
             });
+        });
+
+        // ══════════════════════════════════════════
+        // ANIMASI TYPING: "Bersama Sainspiq"
+        // ══════════════════════════════════════════
+        function typeText(el, text, speed, onDone) {
+            let i = 0;
+            (function step() {
+                if (i <= text.length) {
+                    el.textContent = text.slice(0, i);
+                    i++;
+                    setTimeout(step, speed);
+                } else if (onDone) {
+                    onDone();
+                }
+            })();
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const elBersama = document.getElementById('typeBersama');
+                const caretBersama = document.getElementById('caretBersama');
+                const elSainspiq = document.getElementById('typeSainspiq');
+                const caretSainspiq = document.getElementById('caretSainspiq');
+                if (!elBersama || !elSainspiq) return;
+
+                typeText(elBersama, 'Bersama', 80, () => {
+                    caretBersama.style.display = 'none';
+                    caretSainspiq.style.display = 'inline-block';
+                    typeText(elSainspiq, 'Sainspiq', 80, () => {
+                        caretSainspiq.style.display = 'none';
+                    });
+                });
+            }, 950);
         });
 
         // ══════════════════════════════════════════
