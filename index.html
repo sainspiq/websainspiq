@@ -283,20 +283,27 @@
                 gap: 24px !important;
             }
 
+            /* Prevent horizontal scroll caused by full-bleed illustration breaking out of its container */
+            html, body {
+                overflow-x: hidden !important;
+            }
+
             /* Hero illustration: full-width edge-to-edge, pinned to bottom of hero section */
             .hero-illustration-wrap {
                 width: 100vw !important;
                 max-width: 100vw !important;
-                margin-left: calc(50% - 50vw) !important;
-                margin-right: calc(50% - 50vw) !important;
-                margin-bottom: 0 !important;
                 position: relative !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+                margin-bottom: 0 !important;
             }
 
             .hero-illustration-img {
                 max-width: 100% !important;
                 width: 100% !important;
                 border-radius: 0 !important;
+                display: block !important;
             }
 
             /* Pull CTA row up so it overlaps the bottom of the illustration */
@@ -316,6 +323,13 @@
 
             section.hero-section {
                 padding-bottom: 0 !important;
+                overflow: visible !important;
+            }
+
+            /* Hero grid items must not clip the full-bleed illustration */
+            .hero-grid,
+            .hero-grid > div {
+                overflow: visible !important;
             }
 
             /* Stats section */
