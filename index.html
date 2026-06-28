@@ -2,11 +2,10 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <script>
-        // Terapkan dark mode sebelum render untuk mencegah "flash" warna salah
+        // Mode terang adalah default. Mode gelap hanya aktif jika user pernah memilihnya secara eksplisit.
         (function() {
             const saved = localStorage.getItem('sainspiq-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (saved === 'dark' || (!saved && prefersDark)) {
+            if (saved === 'dark') {
                 document.documentElement.classList.add('dark');
             }
         })();
@@ -284,6 +283,41 @@
                 gap: 24px !important;
             }
 
+            /* Hero illustration: full-width edge-to-edge, pinned to bottom of hero section */
+            .hero-illustration-wrap {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                margin-left: calc(50% - 50vw) !important;
+                margin-right: calc(50% - 50vw) !important;
+                margin-bottom: 0 !important;
+                position: relative !important;
+            }
+
+            .hero-illustration-img {
+                max-width: 100% !important;
+                width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            /* Pull CTA row up so it overlaps the bottom of the illustration */
+            .hero-cta-row {
+                position: relative !important;
+                margin-top: -56px !important;
+                margin-bottom: 0 !important;
+                z-index: 10 !important;
+                padding-bottom: 24px !important;
+            }
+
+            /* Give buttons a clear shadow so they read well against the illustration */
+            .hero-cta-primary,
+            .hero-cta-secondary {
+                box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
+            }
+
+            section.hero-section {
+                padding-bottom: 0 !important;
+            }
+
             /* Stats section */
             .stats-section {
                 padding-top: 32px !important;
@@ -454,7 +488,7 @@
                     </div>
                 </a>
 
-                <nav class="hidden lg:flex space-x-1">
+                <nav class="hidden md:flex space-x-1">
                     <a href="#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program Les</a>
                     <a href="#tutor" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tutor</a>
                     <a href="#tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
@@ -463,7 +497,7 @@
                     <a href="#kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
                 </nav>
 
-                <div class="hidden lg:flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
                     <button id="theme-toggle" aria-label="Ganti mode gelap/terang" class="p-2 rounded-lg text-slate-600 hover:bg-blue-50 hover:text-secondary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-all">
                         <i id="theme-icon-sun" data-lucide="sun" class="w-5 h-5 hidden dark:inline-block"></i>
                         <i id="theme-icon-moon" data-lucide="moon" class="w-5 h-5 inline-block dark:hidden"></i>
@@ -474,7 +508,7 @@
                     </a>
                 </div>
 
-                <div class="lg:hidden flex items-center gap-2">
+                <div class="md:hidden flex items-center gap-2">
                     <button id="theme-toggle-mobile" aria-label="Ganti mode gelap/terang" class="p-2 rounded-lg text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors">
                         <i id="theme-icon-sun-mobile" data-lucide="sun" class="w-5 h-5 hidden dark:inline-block"></i>
                         <i id="theme-icon-moon-mobile" data-lucide="moon" class="w-5 h-5 inline-block dark:hidden"></i>
@@ -487,7 +521,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
+        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
                 <a href="#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program Les</a>
                 <a href="#tutor" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tutor</a>
@@ -532,16 +566,16 @@
                             Les privat guru datang ke rumah untuk PAUD, TK, SD, SMP, SMA, hingga persiapan UTBK & Olimpiade Sains.
                         </p>
 
-                        <div class="hero-animate mb-8" style="transition-delay:0.4s">
-                            <img src="hero_illustration.png" alt="Ilustrasi les privat Sainspiq" class="mx-auto w-full max-w-md rounded-2xl">
+                        <div class="hero-animate hero-illustration-wrap mb-8" style="transition-delay:0.4s">
+                            <img src="hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl">
                         </div>
                         
-                        <div class="hero-animate flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
-                            <a href="#konsultasi" class="inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                        <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
+                            <a href="#konsultasi" class="hero-cta-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                                 <span>Konsultasi Gratis</span>
                                 <i data-lucide="arrow-right" class="ml-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                             </a>
-                            <a href="#program" class="inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                            <a href="#program" class="hero-cta-secondary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
                                 <span>Pilih Program</span>
                             </a>
                         </div>
