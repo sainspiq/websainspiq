@@ -406,6 +406,16 @@
                 display: contents; /* keduanya seolah langsung child dari .footer-grid */
             }
         }
+        /* ── HERO BADGE MOBILE: 2 baris ── */
+        @media (max-width: 767px) {
+            .hero-badge {
+                flex-direction: column !important;
+                gap: 2px !important;
+                text-align: center !important;
+                line-height: 1.4 !important;
+            }
+        }
+
         /* ── FAQ ACCORDION ── */
         .faq-content {
             max-height: 0;
@@ -504,7 +514,10 @@
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
                             </span>
-                            Les Privat & Mengaji Terbaik di Indonesia
+                            <span class="flex flex-col items-center leading-tight sm:flex-row sm:gap-1">
+                                <span>Les Privat &amp; Mengaji</span>
+                                <span>Terbaik No 1 di Seluruh Indonesia</span>
+                            </span>
                         </div>
                         
                         <h1 class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="transition-delay:0.22s">
@@ -984,8 +997,8 @@
                 </div>
 
                 <!-- Foto Dokumentasi Full Width -->
-                <div class="reveal rounded-2xl overflow-hidden shadow-card w-full">
-                    <img src="assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" loading="lazy" onerror="this.onerror=null; this.closest('.rounded-2xl').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
+                <div class="reveal w-full">
+                    <img src="assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
                     <!-- Placeholder kalau foto belum ada -->
                     <div class="doc-placeholder hidden w-full bg-gradient-to-br from-blue-50 to-blue-100 items-center justify-center flex-col gap-3" style="min-height:320px;">
                         <i data-lucide="image" class="w-12 h-12 text-blue-300"></i>
@@ -1002,6 +1015,96 @@
                     </a>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Konsultasi Section with Blue Abstract Visuals -->
+        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
+            
+            <!-- Abstract Blue Visuals Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+                <!-- Glow 1 (Top Right) -->
+                <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/40 rounded-full blur-[100px]"></div>
+                <!-- Glow 2 (Bottom Left) -->
+                <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyan-400/30 rounded-full blur-[80px]"></div>
+                <!-- Glow 3 (Center subtle) -->
+                <div class="absolute top-[40%] left-[30%] w-[300px] h-[300px] bg-blue-600/50 rounded-full blur-[80px]"></div>
+                <!-- Dot Pattern Overlay for extra texture -->
+                <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="slide-left">
+                        <div class="inline-block bg-white/15 text-cyan-200 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/20 mb-5">Kenapa Sainspiq?</div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 drop-shadow-md">Nilai Naik & Anak Lebih Paham Pelajaran</h2>
+                        <p class="text-blue-100 text-base md:text-lg mb-8 drop-shadow-sm leading-relaxed">Setiap anak punya cara belajar yang berbeda. Karena itu, kami akan membantu memilih tutor dan program yang paling pas agar anak lebih semangat belajar, lebih paham materi, dan nilainya ikut meningkat. Konsultasinya gratis, ya.</p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
+                                </div>
+                                <span class="text-white font-medium">Tutor berpengalaman dan terseleksi.</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
+                                </div>
+                                <span class="text-white font-medium">Datang ke rumah atau belajar online via Zoom.</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
+                                </div>
+                                <span class="text-white font-medium">Laporan perkembangan belajar setiap bulan.</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
+                                </div>
+                                <span class="text-white font-medium">Garansi ganti tutor jika belum cocok.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-right bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl relative border border-white/20">
+                        <div class="absolute -top-4 -right-4 bg-accent text-white font-bold text-sm px-4 py-2 rounded-full shadow-lg transform rotate-3">
+                            Balas &lt; 5 Menit
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-6">Mulai Konsultasi</h3>
+                        <form id="konsultasi-form">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Pendidikan</label>
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="jenjang-group">
+                                        <button type="button" data-jenjang="PAUD/TK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD/TK</button>
+                                        <button type="button" data-jenjang="SD" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD</button>
+                                        <button type="button" data-jenjang="SMP" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMP</button>
+                                        <button type="button" data-jenjang="SMA/UTBK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMA/UTBK</button>
+                                    </div>
+                                    <p id="jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
+                                </div>
+                                
+                                <div>
+                                    <label for="nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
+                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
+                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
+                                </div>
+                                
+                                <button type="submit" id="submit-btn" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-4">
+                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                    Hubungi via WhatsApp
+                                </button>
+                                <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1102,96 +1205,6 @@
                         Tanya Langsung via Konsultasi Gratis
                         <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Konsultasi Section with Blue Abstract Visuals -->
-        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
-            
-            <!-- Abstract Blue Visuals Background Elements -->
-            <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-                <!-- Glow 1 (Top Right) -->
-                <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/40 rounded-full blur-[100px]"></div>
-                <!-- Glow 2 (Bottom Left) -->
-                <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyan-400/30 rounded-full blur-[80px]"></div>
-                <!-- Glow 3 (Center subtle) -->
-                <div class="absolute top-[40%] left-[30%] w-[300px] h-[300px] bg-blue-600/50 rounded-full blur-[80px]"></div>
-                <!-- Dot Pattern Overlay for extra texture -->
-                <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px;"></div>
-            </div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="slide-left">
-                        <div class="inline-block bg-white/15 text-cyan-200 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/20 mb-5">Kenapa Sainspiq?</div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 drop-shadow-md">Nilai Naik & Anak Lebih Paham Pelajaran</h2>
-                        <p class="text-blue-100 text-base md:text-lg mb-8 drop-shadow-sm leading-relaxed">Setiap anak punya cara belajar yang berbeda. Karena itu, kami akan membantu memilih tutor dan program yang paling pas agar anak lebih semangat belajar, lebih paham materi, dan nilainya ikut meningkat. Konsultasinya gratis, ya.</p>
-                        
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
-                                </div>
-                                <span class="text-white font-medium">Tutor berpengalaman dan terseleksi.</span>
-                            </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
-                                </div>
-                                <span class="text-white font-medium">Datang ke rumah atau belajar online via Zoom.</span>
-                            </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
-                                </div>
-                                <span class="text-white font-medium">Laporan perkembangan belajar setiap bulan.</span>
-                            </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="check" class="w-4 h-4 text-slate-900"></i>
-                                </div>
-                                <span class="text-white font-medium">Garansi ganti tutor jika belum cocok.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slide-right bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl relative border border-white/20">
-                        <div class="absolute -top-4 -right-4 bg-accent text-white font-bold text-sm px-4 py-2 rounded-full shadow-lg transform rotate-3">
-                            Balas &lt; 5 Menit
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary mb-6">Mulai Konsultasi</h3>
-                        <form id="konsultasi-form">
-                            <div class="space-y-5">
-                                <div>
-                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Pendidikan</label>
-                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="jenjang-group">
-                                        <button type="button" data-jenjang="PAUD/TK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD/TK</button>
-                                        <button type="button" data-jenjang="SD" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD</button>
-                                        <button type="button" data-jenjang="SMP" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMP</button>
-                                        <button type="button" data-jenjang="SMA/UTBK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMA/UTBK</button>
-                                    </div>
-                                    <p id="jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
-                                </div>
-                                
-                                <div>
-                                    <label for="nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
-                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
-                                </div>
-                                
-                                <div>
-                                    <label for="wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required>
-                                </div>
-                                
-                                <button type="submit" id="submit-btn" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-4">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                    Hubungi via WhatsApp
-                                </button>
-                                <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
