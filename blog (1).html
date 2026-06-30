@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Sainspiq 2026 | Tips Belajar, UTBK, dan Pembelajaran Efektif</title>
+    <meta name="description" content="Baca artikel terbaru Sainspiq 2026 tentang tips belajar efektif, persiapan UTBK, strategi pembelajaran, dan kesuksesan akademik.">
+    <link rel="canonical" href="https://sainspiq.com/blog">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog Sainspiq 2026 | Tips Belajar, UTBK, dan Pembelajaran Efektif">
+    <meta property="og:description" content="Tips belajar efektif, persiapan UTBK/SNBT, dan strategi pembelajaran terbaru dari tim Sainspiq.">
+    <meta property="og:url" content="https://sainspiq.com/blog">
+    <meta property="og:image" content="https://sainspiq.com/logo.webp">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog Sainspiq 2026 | Tips Belajar, UTBK, dan Pembelajaran Efektif">
+    <meta name="twitter:description" content="Tips belajar efektif, persiapan UTBK/SNBT, dan strategi pembelajaran terbaru dari tim Sainspiq.">
+    <meta name="twitter:image" content="https://sainspiq.com/logo.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="apple-touch-icon" href="logo.webp">
+
+    <!-- Preload aset LCP -->
+    <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
+
+    <!-- Schema Markup: Blog + Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Sainspiq",
+      "url": "https://sainspiq.com/blog",
+      "description": "Blog edukatif Sainspiq - tips belajar, persiapan UTBK, dan strategi pembelajaran",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Sainspiq",
+        "url": "https://sainspiq.com"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://sainspiq.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sainspiq.com/blog" }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.469.0" defer></script>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* ─── NAVBAR ─── */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #059669;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav {
+            display: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #059669;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+            }
+        }
+
+        .mobile-nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #1e293b;
+            transition: 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav-toggle {
+                display: none;
+            }
+        }
+
+        /* ─── HERO SECTION ─── */
+        .hero {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #059669, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 8px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #059669;
+        }
+
+        .search-btn {
+            padding: 12px 24px;
+            background: #059669;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #047857;
+        }
+
+        /* ─── CATEGORY FILTER ─── */
+        .category-filter {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #059669;
+            color: white;
+            border-color: #059669;
+        }
+
+        /* ─── FEATURED ARTICLE ─── */
+        .featured {
+            max-width: 1280px;
+            margin: 0 auto 64px;
+            padding: 0 20px;
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
+            border-radius: 16px;
+            padding: 32px;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .featured-card {
+                grid-template-columns: 1fr 1fr;
+                padding: 40px;
+            }
+        }
+
+        .featured-content h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .featured-content p {
+            font-size: 16px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .featured-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: white;
+            color: #059669;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s;
+            width: fit-content;
+        }
+
+        .featured-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .featured-image {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        /* ─── BLOG GRID ─── */
+        .blog-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #0f172a;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .blog-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #059669;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .blog-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #94a3b8;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-author-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #0284c7;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 48px 20px 24px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-section a:hover {
+            color: #059669;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid #334155;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .scale-in {
+            transform: scale(0.95);
+            animation: scaleIn 0.5s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 767px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .featured-content h2 {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ════════════════════════════════════════ -->
+    <!-- HEADER / NAVBAR                         -->
+    <!-- ════════════════════════════════════════ -->
+    <header>
+        <nav class="navbar">
+            <a href="/" class="logo">📚 Sainspiq Blog</a>
+            <nav>
+                <a href="/">Beranda</a>
+                <a href="/blog">Blog</a>
+                <a href="/#program">Program</a>
+                <a href="#contact">Kontak</a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- HERO SECTION                            -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="hero">
+        <h1>Tips & Trik Belajar Efektif</h1>
+        <p>Temukan strategi pembelajaran terbaru, tips persiapan UTBK, dan inspirasi kesuksesan akademik dari tim Sainspiq</p>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari artikel..." />
+            <button class="search-btn" onclick="searchArticles()">Cari</button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterCategory('semua')">Semua Kategori</button>
+            <button class="category-btn" onclick="filterCategory('UTBK')">UTBK & SNBT</button>
+            <button class="category-btn" onclick="filterCategory('Tips Belajar')">Tips Belajar</button>
+            <button class="category-btn" onclick="filterCategory('Motivasi')">Motivasi</button>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FEATURED ARTICLE                        -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="featured">
+        <div class="featured-card">
+            <div class="featured-content">
+                <h2>Strategi Ampuh Lolos UTBK 2026: Persiapan Matang dari Awal</h2>
+                <p>Pelajari strategi komprehensif untuk mempersiapkan diri menghadapi UTBK 2026. Dari manajemen waktu belajar hingga teknik menjawab soal, semua tersedia di sini.</p>
+                <div class="featured-meta">
+                    <span>📅 28 Juni 2026</span>
+                    <span>👤 Admin Sainspiq</span>
+                </div>
+                <a href="#" class="featured-btn">Baca Selengkapnya →</a>
+            </div>
+            <div class="featured-image">🎓</div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- BLOG POSTS GRID                         -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="blog-section">
+        <h2 class="section-title">Artikel Terbaru</h2>
+        <div class="blog-grid" id="blogGrid">
+            <!-- Blog Cards akan dimuat dari JavaScript -->
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FOOTER                                  -->
+    <!-- ════════════════════════════════════════ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Tentang Sainspiq</h4>
+                <p style="margin-bottom: 16px; font-size: 14px;">Sainspiq adalah layanan les privat terbaik dengan tutor profesional dari universitas ternama di Indonesia.</p>
+                <p style="font-size: 14px;">📞 <strong>+62-899-4788-444</strong></p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigasi</h4>
+                <a href="/">Beranda</a>
+                <a href="/blog">Blog</a>
+                <a href="#">Program Belajar</a>
+                <a href="#">Hubungi Kami</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ikuti Kami</h4>
+                <a href="#">📘 Facebook</a>
+                <a href="#">📸 Instagram</a>
+                <a href="#">🐦 Twitter</a>
+                <a href="#">▶️ YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sainspiq. Semua hak dilindungi. | <a href="#" style="color: #cbd5e1; text-decoration: none;">Kebijakan Privasi</a> | <a href="#" style="color: #cbd5e1; text-decoration: none;">Syarat & Ketentuan</a></p>
+        </div>
+    </footer>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- JAVASCRIPT                              -->
+    <!-- ════════════════════════════════════════ -->
+    <script>
+        // Data Blog Articles
+        const articles = [
+            {
+                id: 1,
+                title: "5 Teknik Membaca Cepat yang Efektif untuk Pelajar",
+                excerpt: "Tingkatkan kecepatan membaca Anda dengan teknik skimming, scanning, dan chunking. Ideal untuk menghadapi soal dengan teks panjang.",
+                category: "Tips Belajar",
+                author: "Admin Sainspiq",
+                date: "28 Juni 2026",
+                readTime: "5 min",
+                emoji: "📖"
+            },
+            {
+                id: 2,
+                title: "Cara Mengatur Jadwal Belajar UTBK yang Optimal",
+                excerpt: "Pelajari metode time management terbaik untuk memaksimalkan waktu belajar dan menjaga kesehatan mental selama persiapan UTBK.",
+                category: "UTBK & SNBT",
+                author: "Tim Akademik",
+                date: "25 Juni 2026",
+                readTime: "6 min",
+                emoji: "⏰"
+            },
+            {
+                id: 3,
+                title: "Mengalahkan Kecemasan Ujian: Tips Psikologi Belajar",
+                excerpt: "Strategi mengatasi anxiety, membangun kepercayaan diri, dan tetap fokus saat ujian. Kesehatan mental sama pentingnya dengan persiapan akademik.",
+                category: "Motivasi",
+                author: "Psikolog Sainspiq",
+                date: "22 Juni 2026",
+                readTime: "7 min",
+                emoji: "🧠"
+            },
+            {
+                id: 4,
+                title: "Pembahasan Soal UTBK 2026: Kesalahan Umum Calon PTN",
+                excerpt: "Analisis mendalam tentang tipe soal yang sering dijawab salah di UTBK. Pelajari cara hindari jebakan soal ala tutor Sainspiq.",
+                category: "UTBK & SNBT",
+                author: "Tutor Senior",
+                date: "20 Juni 2026",
+                readTime: "8 min",
+                emoji: "✏️"
+            },
+            {
+                id: 5,
+                title: "Metode Pomodoro: Teknik Belajar yang Telah Terbukti",
+                excerpt: "Bagaimana teknik Pomodoro 25 menit dapat meningkatkan fokus dan produktivitas? Praktik langsung dan hasil nyata menanti Anda.",
+                category: "Tips Belajar",
+                author: "Admin Sainspiq",
+                date: "18 Juni 2026",
+                readTime: "5 min",
+                emoji: "🍅"
+            },
+            {
+                id: 6,
+                title: "Berhasil Raih Nilai 700+ di UTBK: Testimoni Sukses Santri",
+                excerpt: "Kisah inspiratif bagaimana santri kami mencapai skor impian dengan persiapan terstruktur bersama Sainspiq.",
+                category: "Motivasi",
+                author: "Admin Sainspiq",
+                date: "16 Juni 2026",
+                readTime: "6 min",
+                emoji: "🏆"
+            },
+            {
+                id: 7,
+                title: "Panduan Memilih Les Privat yang Tepat untuk Anda",
+                excerpt: "Tips memilih tutor profesional dan program belajar yang sesuai dengan gaya belajar dan target nilai Anda.",
+                category: "Tips Belajar",
+                author: "Tim Konsultasi",
+                date: "14 Juni 2026",
+                readTime: "6 min",
+                emoji: "🎯"
+            },
+            {
+                id: 8,
+                title: "Persiapan SNBT 2026: Jadwal, Tips, dan Strategi Jitu",
+                excerpt: "Informasi lengkap tentang SNBT 2025 termasuk timeline, tipe soal, dan strategi per-bidang studi yang efektif.",
+                category: "UTBK & SNBT",
+                author: "Tim Akademik",
+                date: "12 Juni 2026",
+                readTime: "7 min",
+                emoji: "📋"
+            },
+            {
+                id: 9,
+                title: "10 Makanan Sehat untuk Meningkatkan Fokus Belajar",
+                excerpt: "Nutrisi yang tepat membantu konsentrasi. Ketahui daftar makanan terbaik untuk mendukung performa akademik Anda.",
+                category: "Tips Belajar",
+                author: "Ahli Gizi",
+                date: "10 Juni 2026",
+                readTime: "5 min",
+                emoji: "🥗"
+            },
+            {
+                id: 10,
+                title: "Olimpiade Sains: Mempersiapkan Diri dari Sekarang",
+                excerpt: "Langkah demi langkah mempersiapkan kompetisi olimpiade sains. Mulai dari pemahaman materi hingga strategi mengerjakan soal kompetisi.",
+                category: "Motivasi",
+                author: "Pelatih Olimpiade",
+                date: "8 Juni 2026",
+                readTime: "8 min",
+                emoji: "🔬"
+            }
+        ];
+
+        let filteredArticles = [...articles];
+
+        // Render Blog Cards
+        function renderBlogCards(articlesToRender) {
+            const blogGrid = document.getElementById('blogGrid');
+            blogGrid.innerHTML = '';
+
+            articlesToRender.forEach((article, index) => {
+                const card = document.createElement('div');
+                card.className = 'blog-card fade-in';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.innerHTML = `
+                    <div class="blog-image">${article.emoji}</div>
+                    <div class="blog-content">
+                        <span class="blog-category">${article.category}</span>
+                        <h3>${article.title}</h3>
+                        <p>${article.excerpt}</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <div class="blog-author-avatar">${article.author.charAt(0)}</div>
+                                <div>
+                                    <div style="font-size: 12px;">${article.author}</div>
+                                    <div style="font-size: 11px; color: #cbd5e1;">${article.date}</div>
+                                </div>
+                            </div>
+                            <span class="read-time">⏱️ ${article.readTime}</span>
+                        </div>
+                    </div>
+                `;
+                blogGrid.appendChild(card);
+            });
+        }
+
+        // Filter by Category
+        function filterCategory(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            if (category === 'semua') {
+                filteredArticles = [...articles];
+            } else {
+                filteredArticles = articles.filter(article => article.category === category);
+            }
+            renderBlogCards(filteredArticles);
+        }
+
+        // Search Articles
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm === '') {
+                filteredArticles = [...articles];
+            } else {
+                filteredArticles = articles.filter(article =>
+                    article.title.toLowerCase().includes(searchTerm) ||
+                    article.excerpt.toLowerCase().includes(searchTerm)
+                );
+            }
+            renderBlogCards(filteredArticles);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBlogCards(articles);
+
+            // Search on Enter
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchArticles();
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            this.style.transform = this.style.transform === 'rotate(90deg)' ? 'rotate(0)' : 'rotate(90deg)';
+        });
+    </script>
+</body>
+</html>
