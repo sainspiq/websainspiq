@@ -117,10 +117,7 @@
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
     <!-- Stylesheet Tailwind (compiled, production-ready) -->
-    <!-- CSS dimuat async supaya tidak memblokir render pertama -->
-    <link rel="preload" as="style" href="styles.css">
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* Geser logo header sedikit ke kiri (custom, tidak bergantung pada utility Tailwind yang belum ter-compile) */
         .logo-link{ margin-left:-14px; }
