@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami | Sainspiq - Les Privat Terbaik di Indonesia</title>
+    <meta name="description" content="Hubungi Sainspiq untuk konsultasi gratis les privat PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade Sains. Tim kami siap membantu via WhatsApp, telepon, atau email.">
+    <link rel="canonical" href="https://sainspiq.com/kontak.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="apple-touch-icon" href="logo.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
+
+    <!-- Script untuk Ikon Lucide -->
+    <script src="https://unpkg.com/lucide@0.469.0" defer></script>
+
+    <!-- Stylesheet Tailwind (compiled, sama dengan index.html) -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Geser logo header sedikit ke kiri */
+        .logo-link{ margin-left:-14px; }
+        @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
+
+        /* Menu desktop: huruf lebih besar (tanpa dipertebal) */
+        @media (min-width:768px){
+            header nav.hidden.md\:flex > a{ font-size:1rem; }
+        }
+
+        /* Mobile: navbar jangan terlalu transparan + geser logo lebih kiri */
+        @media (max-width:767px){
+            header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
+            .logo-link{ margin-left:-34px; }
+        }
+
+        body.wa-modal-open{ overflow:hidden; }
+        .contact-card{ transition: transform .25s ease, box-shadow .25s ease; }
+        .contact-card:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(15,23,42,0.12); }
+    </style>
+</head>
+<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center logo-link">
+                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="items-center gap-2" style="display:none;">
+                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex space-x-1">
+                    <a href="index.html#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="index.html#biaya-les" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
+                    <a href="index.html#area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
+                    <a href="index.html#blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
+                    <a href="index.html#tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
+                    <a href="kontak.html" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Kontak</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
+                    <a href="#form-kontak" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
+            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+                <a href="index.html#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
+                <a href="index.html#biaya-les" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
+                <a href="index.html#area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
+                <a href="index.html#blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
+                <a href="index.html#tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
+                <a href="kontak.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/20">Kontak</a>
+
+                <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
+                    <a href="#" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
+                    <a href="#form-kontak" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Kontak -->
+        <section class="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden bg-slate-50">
+            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[500px] h-[500px] bg-support/10 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[350px] h-[350px] bg-secondary/10 rounded-full blur-3xl opacity-60"></div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+                <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-3">Hubungi Kami</h2>
+                <h1 class="text-3xl md:text-5xl font-bold text-primary mb-5 leading-tight">Kami Siap Bantu Anda Menentukan<br class="hidden md:block"> Program Belajar yang Tepat</h1>
+                <p class="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Punya pertanyaan seputar program, biaya, atau jadwal les privat? Tim Sainspiq siap merespons dengan cepat melalui WhatsApp, telepon, atau email.</p>
+            </div>
+        </section>
+
+        <!-- Info Kontak Cards -->
+        <section class="py-10 md:py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+                    <a href="https://wa.me/628994788444?text=Halo%20Sainspiq%2C%20saya%20ingin%20bertanya%20tentang%20les%20privat." target="_blank" rel="noopener" class="contact-card bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                            <i data-lucide="message-circle" class="w-7 h-7 text-green-600"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary mb-1">WhatsApp</h3>
+                        <p class="text-slate-500 text-sm">0899-4788-444</p>
+                    </a>
+
+                    <a href="tel:+628994788444" class="contact-card bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                            <i data-lucide="phone" class="w-7 h-7 text-secondary"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary mb-1">Telepon</h3>
+                        <p class="text-slate-500 text-sm">0899-4788-444</p>
+                    </a>
+
+                    <a href="mailto:halo@sainspiq.com" class="contact-card bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-4">
+                            <i data-lucide="mail" class="w-7 h-7 text-amber-600"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary mb-1">Email</h3>
+                        <p class="text-slate-500 text-sm">halo@sainspiq.com</p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Kontak + Peta -->
+        <section id="form-kontak" class="py-10 md:py-20 bg-slate-50 border-y border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+                    <!-- Form -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                        <h2 class="text-xl md:text-2xl font-bold text-primary mb-1">Kirim Pesan ke Kami</h2>
+                        <p class="text-slate-500 text-sm mb-6">Isi form di bawah ini, pesan Anda akan langsung kami terima via WhatsApp.</p>
+
+                        <form id="kontak-form" class="space-y-4">
+                            <div>
+                                <label for="kontak-nama" class="block text-sm font-medium text-slate-700 mb-1.5">Nama Lengkap</label>
+                                <input type="text" id="kontak-nama" required placeholder="Masukkan nama Anda" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all">
+                            </div>
+
+                            <div>
+                                <label for="kontak-wa" class="block text-sm font-medium text-slate-700 mb-1.5">Nomor WhatsApp</label>
+                                <input type="tel" id="kontak-wa" required placeholder="Contoh: 08123456789" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all">
+                            </div>
+
+                            <div>
+                                <label for="kontak-topik" class="block text-sm font-medium text-slate-700 mb-1.5">Topik Pertanyaan</label>
+                                <select id="kontak-topik" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all bg-white">
+                                    <option value="Informasi Program & Biaya">Informasi Program & Biaya</option>
+                                    <option value="Jadwal & Ketersediaan Tutor">Jadwal & Ketersediaan Tutor</option>
+                                    <option value="Kerja Sama / Jadi Tutor">Kerja Sama / Jadi Tutor</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="kontak-pesan" class="block text-sm font-medium text-slate-700 mb-1.5">Pesan</label>
+                                <textarea id="kontak-pesan" rows="4" required placeholder="Tuliskan pertanyaan atau kebutuhan Anda di sini..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Kirim via WhatsApp
+                            </button>
+                            <p class="text-xs text-slate-400 text-center">Dengan mengirim form ini, Anda akan diarahkan ke WhatsApp untuk melanjutkan percakapan dengan tim kami.</p>
+                        </form>
+                    </div>
+
+                    <!-- Info lokasi + jam operasional + peta -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                            <h3 class="font-semibold text-primary mb-4 flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
+                                Alamat Kantor
+                            </h3>
+                            <p class="text-slate-500 text-sm leading-relaxed mb-1">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</p>
+                            <p class="text-slate-400 text-xs">Kunjungan ke kantor disarankan dengan janji temu terlebih dahulu.</p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                            <h3 class="font-semibold text-primary mb-4 flex items-center gap-2">
+                                <i data-lucide="clock" class="w-5 h-5 text-secondary"></i>
+                                Jam Operasional
+                            </h3>
+                            <ul class="text-sm text-slate-500 space-y-2">
+                                <li class="flex justify-between"><span>Senin – Jumat</span><span class="font-medium text-slate-700">08.00 – 20.00 WIB</span></li>
+                                <li class="flex justify-between"><span>Sabtu</span><span class="font-medium text-slate-700">09.00 – 17.00 WIB</span></li>
+                                <li class="flex justify-between"><span>Minggu & Libur</span><span class="font-medium text-slate-700">Respon WhatsApp terbatas</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                            <iframe
+                                title="Lokasi Sainspiq di Google Maps"
+                                src="https://maps.google.com/maps?q=Jl.%20Munjul%2C%20Gg.%20Subur%2C%20Kec.%20Cipayung%2C%20Jakarta%20Timur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                width="100%" height="280" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ singkat seputar kontak -->
+        <section class="py-10 md:py-20 bg-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Pertanyaan Umum</h2>
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary">Sebelum Menghubungi Kami</h3>
+                </div>
+                <div class="space-y-3">
+                    <details class="bg-slate-50 border border-slate-200 rounded-xl p-5 group">
+                        <summary class="font-medium text-primary cursor-pointer list-none flex justify-between items-center">
+                            Berapa lama waktu respon tim Sainspiq?
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-slate-500 text-sm mt-3 leading-relaxed">Tim kami biasanya merespon pesan WhatsApp dalam waktu kurang dari 1 jam pada jam operasional.</p>
+                    </details>
+                    <details class="bg-slate-50 border border-slate-200 rounded-xl p-5 group">
+                        <summary class="font-medium text-primary cursor-pointer list-none flex justify-between items-center">
+                            Apakah konsultasi awal dikenakan biaya?
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-slate-500 text-sm mt-3 leading-relaxed">Tidak. Konsultasi untuk menentukan program dan tutor yang sesuai sepenuhnya gratis tanpa biaya tersembunyi.</p>
+                    </details>
+                    <details class="bg-slate-50 border border-slate-200 rounded-xl p-5 group">
+                        <summary class="font-medium text-primary cursor-pointer list-none flex justify-between items-center">
+                            Bisakah saya menghubungi di luar jam operasional?
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-slate-500 text-sm mt-3 leading-relaxed">Bisa, pesan Anda akan tersimpan dan kami akan membalasnya secepatnya di jam operasional berikutnya.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
+                <div class="footer-col-brand">
+                    <a href="index.html" class="flex items-center mb-6">
+                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="items-center gap-2" style="display:none;">
+                            <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
+                        </div>
+                    </a>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.
+                    </p>
+                </div>
+
+                <div class="footer-services-wrapper md:contents">
+                    <div class="footer-col-services">
+                        <h4 class="text-white font-semibold mb-4">Program</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
+                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col-area">
+                        <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
+                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-col-contact">
+                    <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">0899-4788-444</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">halo@sainspiq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tombol WA mengambang -->
+    <a href="https://wa.me/628994788444?text=Halo%20Sainspiq%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener"
+       class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg flex items-center justify-center transition-colors" aria-label="Hubungi via WhatsApp">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        if (window.lucide) { lucide.createIcons(); }
+        document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+
+        const ADMIN_WA = '628994788444';
+
+        // ── MOBILE MENU TOGGLE ─────────────────────────
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let menuOpen = false;
+
+        const toggleMenu = (open) => {
+            menuOpen = open;
+            if (menuOpen) {
+                mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+                mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+            }
+            if (menuIcon) {
+                menuIcon.setAttribute('data-lucide', menuOpen ? 'x' : 'menu');
+                if (window.lucide) lucide.createIcons({ nameAttr: 'data-lucide' });
+            }
+        };
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => toggleMenu(!menuOpen));
+        }
+        document.querySelectorAll('.mobile-menu-link, #mobile-cta').forEach(link => {
+            link.addEventListener('click', () => { if (menuOpen) toggleMenu(false); });
+        });
+
+        // ── FORM KONTAK → WHATSAPP ─────────────────────
+        const kontakForm = document.getElementById('kontak-form');
+        if (kontakForm) {
+            kontakForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nama  = document.getElementById('kontak-nama').value.trim();
+                const wa    = document.getElementById('kontak-wa').value.trim();
+                const topik = document.getElementById('kontak-topik').value;
+                const pesanUser = document.getElementById('kontak-pesan').value.trim();
+
+                const pesan = `Halo Sainspiq! 👋\n\nSaya ingin bertanya melalui form kontak website.\n\n*Nama:* ${nama}\n*No. WA:* ${wa}\n*Topik:* ${topik}\n*Pesan:* ${pesanUser}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+                const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+                window.open(url, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
