@@ -108,13 +108,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" rel="stylesheet">
-    
+    <!-- Font dimuat async (preload + swap) supaya tidak memblokir render pertama -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
+
     <!-- Script untuk Ikon Lucide (defer agar tidak blocking render) -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
-    <!-- Stylesheet Tailwind (compiled, production-ready) -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Stylesheet Tailwind (compiled, production-ready) — dimuat async, fallback noscript -->
+    <link rel="preload" as="style" href="styles.css">
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
