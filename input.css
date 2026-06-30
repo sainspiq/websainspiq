@@ -1,0 +1,317 @@
+@import "tailwindcss";
+
+/* Compatibility: outline-none (nama v3) digantikan outline-hidden di v4 secara default,
+   utility kecil ini menjaga perilaku identik tanpa mengubah HTML */
+@utility outline-none {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+@theme {
+    --font-sans: "Poppins", sans-serif;
+
+    --color-primary: #0F172A;
+    --color-secondary: #2563EB;
+    --color-accent: #F97316;
+    --color-support: #06B6D4;
+
+    --color-neutral-50: #F8FAFC;
+    --color-neutral-100: #F1F5F9;
+    --color-neutral-200: #E2E8F0;
+    --color-neutral-800: #1E293B;
+    --color-neutral-900: #0F172A;
+
+    --shadow-soft: 0 10px 40px -10px rgba(15,23,42,0.08);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom Utilities (disalin persis dari versi CDN) */
+.glass-nav {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #2563EB, #06B6D4);
+}
+.card-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-transition:hover {
+    transform: translateY(-4px);
+}
+
+/* ── ANIMASI 1: Hero fade + slide up ── */
+.hero-animate {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.hero-animate.visible { opacity: 1; transform: translateY(0); }
+
+.hero-animate-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
+}
+.hero-animate-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── ANIMASI TYPING: Bersama Sainspiq ── */
+.type-caret {
+    display: inline-block;
+    animation: caretBlink 0.8s step-end infinite;
+    font-weight: 400;
+}
+@keyframes caretBlink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+}
+
+/* ── ANIMASI 2: Scroll reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Stagger delay */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.19s; }
+.stagger-4 { transition-delay: 0.26s; }
+.stagger-5 { transition-delay: 0.33s; }
+.stagger-6 { transition-delay: 0.40s; }
+.stagger-7 { transition-delay: 0.47s; }
+.stagger-8 { transition-delay: 0.54s; }
+
+/* ── ANIMASI 3: Slide kiri & kanan (Konsultasi) ── */
+.slide-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.slide-left.visible { opacity: 1; transform: translateX(0); }
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1) 0.15s, transform 0.7s cubic-bezier(0.4,0,0.2,1) 0.15s;
+}
+.slide-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── MOBILE SPACING OPTIMIZATION (< 768px) ── */
+@media (max-width: 767px) {
+
+    /* Reduce all section padding to 40px */
+    section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    /* Hero section: JANGAN diubah, pt-32 diperlukan agar tidak tertutup navbar */
+    section.hero-section {
+        padding-top: 128px !important;
+        padding-bottom: 40px !important;
+    }
+
+    /* Hero badge bottom margin: 16px */
+    .hero-badge {
+        margin-bottom: 16px !important;
+    }
+
+    /* Hero description top: 12px, bottom dikecilkan, sedikit margin kiri-kanan */
+    .hero-desc {
+        margin-top: 12px !important;
+        margin-bottom: 8px !important;
+        margin-left: 16px !important;
+        margin-right: 16px !important;
+    }
+
+    /* Section title margin-bottom: 16px */
+    .section-title {
+        margin-bottom: 16px !important;
+    }
+
+    /* Service & area list item spacing: 10px */
+    .service-list li,
+    .area-list li {
+        margin-bottom: 10px !important;
+    }
+
+    /* Footer list spacing */
+    footer ul li {
+        margin-bottom: 10px !important;
+    }
+
+    /* Hero content gap */
+    .hero-content {
+        gap: 16px !important;
+    }
+
+    /* Reduce hero grid gap on mobile */
+    .hero-grid {
+        gap: 24px !important;
+    }
+
+    /* Hero illustration: full-width edge-to-edge, mentok ke deskripsi & ke batas bawah hero section */
+    .hero-illustration-wrap {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        margin-top: -24px !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+    }
+
+    .hero-illustration-img {
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        display: block !important;
+    }
+
+    /* Wrapper foto + CTA: foto jadi elemen terakhir hero section, mentok ke bawah */
+    .hero-illustration-cta-wrap {
+        margin-bottom: 0 !important;
+    }
+
+    /* CTA overlay di atas foto, bukan elemen terpisah di bawahnya */
+    .hero-cta-row {
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 16px !important;
+        margin: 0 !important;
+        z-index: 10 !important;
+        padding: 0 16px !important;
+    }
+
+    /* Give buttons a clear shadow so they read well against the illustration */
+    .hero-cta-primary,
+    .hero-cta-secondary {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
+    }
+
+    section.hero-section {
+        padding-bottom: 0 !important;
+        overflow: hidden !important;
+    }
+
+    section.hero-section > div {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .hero-grid {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .hero-grid > div {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Stats section */
+    .stats-section {
+        padding-top: 32px !important;
+        padding-bottom: 32px !important;
+        gap: 20px !important;
+    }
+
+    /* Footer grid */
+    footer .grid {
+        gap: 32px !important;
+        margin-bottom: 32px !important;
+    }
+
+    /* Konsultasi form padding */
+    .konsultasi-form-card {
+        padding: 24px !important;
+    }
+}
+
+/* ── MARQUEE UNIVERSITAS ── */
+@keyframes marquee-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+}
+@keyframes marquee-left {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── FOOTER: Layanan & Area Layanan 2 kolom sejajar ── */
+
+/* List item spacing rapat (berlaku semua ukuran layar) */
+.footer-list li {
+    margin-bottom: 12px;
+}
+.footer-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobile (< 768px): wrapper jadi grid 2 kolom */
+@media (max-width: 767px) {
+    .footer-services-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        min-width: 0; /* cegah overflow horizontal */
+    }
+
+    /* Tiap kolom tidak boleh overflow */
+    .footer-col-services,
+    .footer-col-area {
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    /* Teks link tidak boleh wrap keluar container */
+    .footer-col-services a,
+    .footer-col-area a {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+/* Desktop (≥ 768px): wrapper transparan, anak langsung masuk grid induk */
+@media (min-width: 768px) {
+    .footer-services-wrapper {
+        display: contents; /* keduanya seolah langsung child dari .footer-grid */
+    }
+}
+/* ── HERO BADGE MOBILE: 2 baris ── */
+@media (max-width: 767px) {
+    .hero-badge {
+        flex-direction: column !important;
+        gap: 2px !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* ── FAQ ACCORDION ── */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.faq-icon {
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.faq-item.faq-open .faq-icon {
+    transform: rotate(180deg);
+}
+.faq-item.faq-open .faq-toggle {
+    color: #2563EB;
+}
