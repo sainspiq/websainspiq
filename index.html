@@ -986,9 +986,14 @@
 
     <script>
         // Memastikan seluruh halaman diload sebelum merender ikon agar ikon tidak hilang
-        window.onload = function() {
-            lucide.createIcons();
-        };
+        function initIcons() {
+            if (window.lucide) lucide.createIcons();
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initIcons);
+        } else {
+            initIcons();
+        }
 
         const ADMIN_WA = '628994788444';
 
@@ -1066,11 +1071,16 @@
         // ══════════════════════════════════════════
         // ANIMASI 1: Hero — langsung visible saat load
         // ══════════════════════════════════════════
-        window.addEventListener('load', () => {
+        function revealHero() {
             document.querySelectorAll('.hero-animate, .hero-animate-right').forEach(el => {
                 el.classList.add('visible');
             });
-        });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', revealHero);
+        } else {
+            revealHero();
+        }
 
         // ══════════════════════════════════════════
         // ANIMASI TYPING: "Bersama Sainspiq"
@@ -1088,7 +1098,7 @@
             })();
         }
 
-        window.addEventListener('load', () => {
+        function startTypewriter() {
             setTimeout(() => {
                 const elBersama = document.getElementById('typeBersama');
                 const caretBersama = document.getElementById('caretBersama');
@@ -1104,7 +1114,12 @@
                     });
                 });
             }, 950);
-        });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startTypewriter);
+        } else {
+            startTypewriter();
+        }
 
         // ══════════════════════════════════════════
         // ANIMASI 2 & 4: Scroll reveal (reveal class)
