@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sainspiq | Les Privat Terbaik & Persiapan UTBK Terbaik di Indonesia</title>
     <meta name="description" content="Sainspiq adalah layanan les privat terbaik PRASCHOOL, PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade. Belajar dengan tutor terbaik dari Universitas Indonesia, ITB, dan UGM.">
+    <link rel="canonical" href="https://sainspiq.com/">
     
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="logo.webp">
     <link rel="apple-touch-icon" href="logo.webp">
+
+    <!-- Preload aset LCP (logo & hero illustration) -->
+    <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="hero_illustration.webp" fetchpriority="high">
 
     <!-- Schema Markup: EducationalOrganization (Structured Data) -->
     <script type="application/ld+json">
@@ -105,8 +110,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" rel="stylesheet">
     
-    <!-- Script untuk Ikon Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Script untuk Ikon Lucide (defer agar tidak blocking render) -->
+    <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
     <!-- Script untuk Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -442,7 +447,7 @@
             <div class="flex justify-between items-center h-16">
                 <!-- LOGO HEADER: ganti src="logo-sainspiq.png" dengan path logo kamu -->
                 <a href="#" class="flex items-center">
-                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain"
+                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <!-- Fallback teks jika file logo belum ada -->
                     <div class="items-center gap-2" style="display:none;">
@@ -530,7 +535,7 @@
 
                         <div class="hero-illustration-cta-wrap relative">
                             <div class="hero-animate hero-illustration-wrap mb-8" style="transition-delay:0.4s">
-                                <img src="hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl">
+                                <img src="hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="448" height="448" fetchpriority="high">
                             </div>
 
                             <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
@@ -622,28 +627,28 @@
                     <div class="flex gap-4 mb-4" style="animation: marquee-right 28s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
                                 <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
                                 <p class="text-[10px] text-slate-400">Yogyakarta</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -651,28 +656,28 @@
                         </div>
                         <!-- set 2 (duplikat untuk seamless loop) -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
                                 <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
                                 <p class="text-[10px] text-slate-400">Yogyakarta</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -684,28 +689,28 @@
                     <div class="flex gap-4" style="animation: marquee-left 28s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
                                 <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
                                 <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
@@ -713,28 +718,28 @@
                         </div>
                         <!-- set 2 (duplikat untuk seamless loop) -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
                                 <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
                                 <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
@@ -998,7 +1003,7 @@
 
                 <!-- Foto Dokumentasi Full Width -->
                 <div class="reveal w-full rounded-2xl overflow-hidden">
-                    <img src="assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
+                    <img src="assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" width="800" height="600" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
                     <!-- Placeholder kalau foto belum ada -->
                     <div class="doc-placeholder hidden w-full bg-gradient-to-br from-blue-50 to-blue-100 items-center justify-center flex-col gap-3" style="min-height:320px;">
                         <i data-lucide="image" class="w-12 h-12 text-blue-300"></i>
@@ -1216,7 +1221,7 @@
                 <div class="footer-col-brand">
                     <!-- LOGO FOOTER: ganti src="logo-sainspiq-white.png" dengan path logo putih kamu -->
                     <a href="#" class="flex items-center mb-6">
-                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain"
+                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <!-- Fallback teks jika file logo belum ada -->
                         <div class="items-center gap-2" style="display:none;">
