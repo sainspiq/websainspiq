@@ -3,596 +3,654 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area Layanan | Sainspiq - Les Privat & Mengaji di Kotamu</title>
-    <meta name="description" content="Sainspiq melayani les privat & mengaji kunjungan rumah maupun online di Jakarta, Bandung, Depok, Bekasi, Bogor, Surabaya, Semarang, dan Purwokerto. Cek jangkauan layanan di kotamu.">
+    
+    <!-- SEO Meta Tags -->
+    <title>Les Privat Seluruh Kota di Indonesia & Online Seluruh Pelosok Daerah | Sainspiq</title>
+    <meta name="description" content="Sainspiq melayani les privat dan mengaji kunjungan rumah (guru datang ke rumah) di SELURUH kota di Indonesia, serta les online hingga ke pelosok daerah. Hubungi kami untuk tutor terbaik di kota Anda.">
+    <meta name="keywords" content="les privat, guru datang ke rumah, les privat jakarta, les privat seluruh indonesia, les online seluruh pelosok, guru les privat, bimbingan belajar, les mengaji, persiapan UTBK">
+    <meta name="author" content="Sainspiq Education">
     <link rel="canonical" href="https://sainspiq.com/area-layanan.html">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="logo.webp">
-    <link rel="apple-touch-icon" href="logo.webp">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Les Privat Seluruh Kota di Indonesia & Online Seluruh Pelosok Daerah | Sainspiq">
+    <meta property="og:description" content="Tutor profesional datang langsung ke rumah Anda di seluruh kota Indonesia, atau belajar online hingga ke pelosok daerah.">
+    <meta property="og:type" content="website">
 
-    <!-- Preload aset LCP -->
-    <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
-
-    <!-- Schema Markup: CollectionPage Area Layanan -->
+    <!-- Schema Markup: EducationalOrganization & LocalBusiness -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Area Layanan - Sainspiq",
-      "url": "https://sainspiq.com/area-layanan.html",
-      "isPartOf": {
-        "@type": "EducationalOrganization",
-        "name": "Sainspiq",
-        "url": "https://sainspiq.com",
-        "areaServed": ["Jakarta", "Bandung", "Depok", "Bekasi", "Bogor", "Surabaya", "Semarang", "Purwokerto"]
+      "@type": "EducationalOrganization",
+      "name": "Sainspiq Education",
+      "url": "https://sainspiq.com",
+      "logo": "https://sainspiq.com/logo.webp",
+      "description": "Layanan les privat dan mengaji dengan sistem guru datang ke rumah untuk seluruh wilayah Indonesia.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Indonesia"
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "Private Tutoring"
       }
     }
     </script>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Ikon Lucide -->
+    <!-- Tailwind CSS (Standalone setup for single-file deployment) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0f172a',    // slate-900
+                        secondary: '#2563eb',  // blue-600
+                        support: '#38bdf8',    // sky-400
+                        surface: '#f8fafc',    // slate-50
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0,0,0,0.05)',
+                        'glow': '0 0 20px rgba(37, 99, 235, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
-    <!-- Stylesheet Tailwind (compiled, pakai file styles.css yang sama dengan index.html) -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Custom Styles -->
     <style>
-        .logo-link{ margin-left:-14px; }
-        @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
-        @media (min-width:768px){
-            header nav.hidden.md\:flex > a{ font-size:1rem; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
-        @media (max-width:767px){
-            header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
-            .logo-link{ margin-left:-34px; }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .wa-modal-overlay{
-            position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px);
-            -webkit-backdrop-filter:blur(4px); z-index:9999; display:none;
-            align-items:center; justify-content:center; padding:16px;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .wa-modal-overlay.is-open{ display:flex; }
-        .wa-modal-box{
-            background:#fff; border-radius:18px; box-shadow:0 25px 60px -12px rgba(0,0,0,0.45);
-            width:100%; max-width:460px; padding:28px 24px; position:relative;
-            max-height:90vh; overflow-y:auto;
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* Floating Blobs */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            border-radius: 50%;
+            animation: float 10s infinite alternate ease-in-out;
         }
-        @media (min-width:768px){ .wa-modal-box{ padding:32px; } }
-        .wa-modal-close{
-            position:absolute; top:14px; right:14px; width:34px; height:34px;
-            display:flex; align-items:center; justify-content:center; border-radius:9999px;
-            background:#f1f5f9; color:#475569; border:none; cursor:pointer; transition:background .2s,color .2s;
-            z-index:2;
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
         }
-        .wa-modal-close:hover{ background:#e2e8f0; color:#1e293b; }
-        .wa-modal-header{ display:flex; align-items:center; gap:12px; margin-bottom:4px; padding-right:40px; }
-        .wa-modal-icon{
-            width:40px; height:40px; border-radius:9999px; background:rgba(37,211,102,0.12);
-            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+
+        /* Modal Custom Styling */
+        .wa-modal-overlay {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(6px); z-index: 9999; display: none;
+            align-items: center; justify-content: center; padding: 16px;
+            opacity: 0; transition: opacity 0.3s ease;
         }
-        .wa-jenjang-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
-        @media (min-width:640px){ .wa-jenjang-grid{ grid-template-columns:repeat(4,1fr); } }
-        body.wa-modal-open{ overflow:hidden; }
+        .wa-modal-overlay.is-open { display: flex; opacity: 1; }
+        .wa-modal-box {
+            background: #fff; border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%; max-width: 480px; padding: 32px;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .wa-modal-overlay.is-open .wa-modal-box {
+            transform: scale(1) translateY(0);
+        }
+        body.modal-open { overflow: hidden; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
+<body class="text-primary bg-white antialiased selection:bg-secondary selection:text-white relative">
 
     <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center logo-link">
-                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="items-center gap-2" style="display:none;">
-                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
-                        </div>
-                        <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-blue-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                        <i data-lucide="graduation-cap" class="text-white w-6 h-6"></i>
                     </div>
+                    <span class="font-extrabold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
                 </a>
 
-                <nav class="hidden md:flex space-x-1">
-                    <a href="index.html#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
-                    <a href="index.html#biaya-les" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
-                    <a href="area-layanan.html" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Area Layanan</a>
-                    <a href="index.html#blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
-                    <a href="tentang-kami.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
-                    <a href="index.html#kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex space-x-2">
+                    <a href="#program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
+                    <a href="#biaya" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
+                    <a href="#area-layanan" class="px-4 py-2 rounded-full text-sm font-bold text-secondary bg-blue-50/80 transition-all">Area Layanan</a>
+                    <a href="#tentang" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Tentang Kami</a>
                 </nav>
 
-                <div class="hidden md:flex items-center gap-4">
-                    <a href="index.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
-                    <a href="index.html#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                <!-- Desktop CTA -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="#" class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">Masuk</a>
+                    <button onclick="openWaModal('Konsultasi Umum')" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 hover:shadow-glow transition-all">
                         Konsultasi Gratis
-                    </a>
+                    </button>
                 </div>
 
-                <div class="md:hidden flex items-center gap-2">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors" aria-label="Buka menu">
                         <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
-            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-                <a href="index.html#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
-                <a href="index.html#biaya-les" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
-                <a href="area-layanan.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/10">Area Layanan</a>
-                <a href="index.html#blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
-                <a href="tentang-kami.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
-                <a href="index.html#kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Kontak</a>
-
-                <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
-                    <a href="index.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
-                    <a href="index.html#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
-                        Konsultasi Gratis
-                    </a>
-                </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
+            <nav class="flex flex-col p-4 gap-2">
+                <a href="#program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
+                <a href="#area-layanan" class="p-4 rounded-xl text-base font-bold text-secondary bg-blue-50 transition-all">Area Layanan</a>
+                <a href="#tentang" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Tentang Kami</a>
+                <div class="h-px bg-slate-100 my-2"></div>
+                <button onclick="openWaModal('Konsultasi via Mobile')" class="w-full inline-flex items-center justify-center px-5 py-4 text-base font-bold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-md">
+                    Konsultasi Sekarang
+                </button>
             </nav>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-slate-50">
-            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-support/10 rounded-full blur-3xl opacity-60"></div>
-            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-3xl opacity-60"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                <div class="max-w-3xl mx-auto text-center">
-                    <div class="hero-badge hero-animate flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-secondary text-sm font-semibold mb-6 mx-auto" style="transition-delay:0.1s">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i>
-                        <span>Area Layanan</span>
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-surface">
+            <!-- Background Ornaments -->
+            <div class="blob bg-blue-200/50 w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="blob bg-support/20 w-[500px] h-[500px] bottom-0 right-0 translate-x-1/3 translate-y-1/3" style="animation-delay: 2s;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 border border-blue-200 text-secondary text-sm font-bold mb-8">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                        </span>
+                        Melayani Seluruh Indonesia
                     </div>
-                    <h1 class="hero-animate text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-5" style="transition-delay:0.2s">
-                        Sainspiq Hadir di <span class="text-secondary">Kotamu</span>
+                    
+                    <h1 class="reveal stagger-1 text-4xl sm:text-5xl lg:text-7xl font-extrabold text-primary leading-[1.1] mb-6">
+                        Les Privat Seluruh Kota di Indonesia & <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-support">Online Seluruh Pelosok Daerah</span>
                     </h1>
-                    <p class="hero-animate text-base sm:text-lg text-slate-500 leading-relaxed" style="transition-delay:0.3s">
-                        Tutor kunjungan rumah di kota-kota besar Indonesia, dan sesi belajar online interaktif untuk yang berada di luar jangkauan kunjungan langsung.
+                    
+                    <p class="reveal stagger-2 text-lg sm:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto font-medium">
+                        Dari ujung Sumatera hingga Papua, Sainspiq menyediakan layanan les privat kunjungan rumah dan online interaktif untuk semua jenjang (TK, SD, SMP, SMA & UTBK).
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Daftar Kota -->
-        <section id="daftar-area" class="py-16 lg:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                    <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Jangkauan Kami</span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3">Pilih Kota Domisili Anda</h2>
-                    <p class="text-slate-500 mt-3">Klik kota di bawah untuk konsultasi langsung sesuai lokasi Anda.</p>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                    <!-- Jakarta -->
-                    <button type="button" data-kota="Jakarta" class="area-card reveal stagger-1 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Jakarta</h3>
-                        <p class="text-xs text-slate-500 mb-3">DKI Jakarta</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Bandung -->
-                    <button type="button" data-kota="Bandung" class="area-card reveal stagger-2 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Bandung</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Barat</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Depok -->
-                    <button type="button" data-kota="Depok" class="area-card reveal stagger-3 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Depok</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Barat</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Bekasi -->
-                    <button type="button" data-kota="Bekasi" class="area-card reveal stagger-4 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Bekasi</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Barat</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Bogor -->
-                    <button type="button" data-kota="Bogor" class="area-card reveal stagger-1 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Bogor</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Barat</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Surabaya -->
-                    <button type="button" data-kota="Surabaya" class="area-card reveal stagger-2 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Surabaya</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Timur</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Semarang -->
-                    <button type="button" data-kota="Semarang" class="area-card reveal stagger-3 group text-left p-5 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-blue-50 hover:border-secondary/30 transition-all">
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Semarang</h3>
-                        <p class="text-xs text-slate-500 mb-3">Jawa Tengah</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-
-                    <!-- Purwokerto -->
-                    <button type="button" data-kota="Purwokerto" class="area-card reveal stagger-4 group text-left p-5 rounded-2xl border border-2 border-secondary bg-blue-50 hover:bg-blue-100 transition-all relative">
-                        <span class="absolute -top-2 right-3 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Basis Kami</span>
-                        <div class="w-11 h-11 rounded-xl bg-white shadow-card flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary"></i>
-                        </div>
-                        <h3 class="font-bold text-primary mb-1">Purwokerto</h3>
-                        <p class="text-xs text-slate-500 mb-3">Banyumas, Jawa Tengah</p>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary">Kunjungan Rumah & Online <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
-                    </button>
-                </div>
-
-                <p class="text-center text-sm text-slate-500 mt-10 reveal">
-                    Belum menemukan kotamu? Tenang, sesi belajar <span class="font-semibold text-primary">online interaktif</span> kami tetap bisa menjangkau seluruh Indonesia.
-                </p>
-            </div>
-        </section>
-
-        <!-- Mode Layanan -->
-        <section id="mode-layanan" class="py-16 lg:py-24 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                    <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Dua Pilihan Belajar</span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3">Kunjungan Rumah atau Online, Anda yang Pilih</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="reveal slide-left bg-white rounded-2xl p-8 shadow-card border border-slate-100">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                            <i data-lucide="home" class="w-6 h-6 text-secondary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">Kunjungan ke Rumah</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">Tutor datang langsung ke rumah pada jam yang Anda sepakati, tersedia di kota-kota dengan jangkauan tutor Sainspiq.</p>
-                        <ul class="text-sm text-slate-600 space-y-2">
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Cocok untuk anak usia dini & SD</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Suasana belajar familiar di rumah</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Orang tua bisa memantau langsung</li>
-                        </ul>
+                    
+                    <div class="reveal stagger-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button onclick="document.getElementById('daftar-area').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-full font-bold text-lg hover:bg-slate-800 transition-all shadow-xl hover:-translate-y-1">
+                            Cek Kotamu
+                        </button>
+                        <button onclick="openWaModal('Cari Tutor Terdekat')" class="w-full sm:w-auto px-8 py-4 bg-white text-primary border-2 border-slate-200 rounded-full font-bold text-lg hover:border-secondary hover:text-secondary transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                            Cari Guru Cepat
+                        </button>
                     </div>
-                    <div class="reveal slide-right bg-white rounded-2xl p-8 shadow-card border border-slate-100">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                            <i data-lucide="monitor" class="w-6 h-6 text-secondary"></i>
+
+                    <!-- Trust Stats -->
+                    <div class="reveal stagger-4 mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-slate-200/60 pt-10">
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-primary">34+</h4>
+                            <p class="text-sm font-semibold text-slate-500 mt-1">Provinsi Terjangkau</p>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">Belajar Online</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">Sesi interaktif via Zoom untuk Anda yang berada di luar jangkauan kunjungan rumah, tetap dengan tutor pilihan terbaik.</p>
-                        <ul class="text-sm text-slate-600 space-y-2">
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Bisa diakses dari kota mana pun</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Fleksibel mengatur jadwal</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>Cocok untuk SMP, SMA, & persiapan UTBK</li>
-                        </ul>
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-primary">500+</h4>
+                            <p class="text-sm font-semibold text-slate-500 mt-1">Kota & Kabupaten</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-primary">2,500+</h4>
+                            <p class="text-sm font-semibold text-slate-500 mt-1">Tutor Profesional</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-primary">100%</h4>
+                            <p class="text-sm font-semibold text-slate-500 mt-1">Garansi Kecocokan</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA -->
-        <section id="cta-area" class="py-16 lg:py-20 bg-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="reveal bg-gradient-to-br from-secondary to-blue-800 rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 relative">Cek Ketersediaan Tutor di Kotamu</h2>
-                    <p class="text-blue-100 max-w-xl mx-auto mb-8 relative">Konsultasikan lokasi dan kebutuhan belajar Anda, tim kami akan bantu carikan tutor terdekat atau opsi online terbaik.</p>
-                    <a href="index.html#konsultasi" class="relative inline-flex items-center gap-2 bg-white text-secondary font-semibold text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-md hover:bg-blue-50 transition-colors">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
-                        Konsultasi Gratis Sekarang
-                    </a>
+        <!-- Daftar Area Utama (SEO Friendly Grid) -->
+        <section id="daftar-area" class="py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-primary mb-4">Area Layanan Prioritas Kunjungan</h2>
+                    <p class="text-lg text-slate-600 font-medium">Temukan tutor berkualitas yang siap datang ke rumah di kota-kota besar berikut. Belum ada di daftar? Jangan khawatir, kami melayani seluruh pelosok negeri.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Jabodetabek -->
+                    <div class="reveal stagger-1 bg-surface rounded-3xl p-8 border border-slate-100 hover:border-secondary/30 hover:shadow-soft transition-all group cursor-pointer" onclick="openWaModal('Jabodetabek')">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                                <i data-lucide="map-pinned" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary">Jabodetabek</h3>
+                                <p class="text-sm font-medium text-slate-500">Pusat Layanan</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 line-clamp-2">Meliputi Jakarta (Selatan, Timur, Barat, Utara, Pusat), Bogor, Depok, Tangerang, dan Bekasi.</p>
+                        <span class="text-secondary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Pesan Tutor <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+
+                    <!-- Jawa Barat -->
+                    <div class="reveal stagger-2 bg-surface rounded-3xl p-8 border border-slate-100 hover:border-secondary/30 hover:shadow-soft transition-all group cursor-pointer" onclick="openWaModal('Jawa Barat')">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                                <i data-lucide="map-pinned" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary">Jawa Barat</h3>
+                                <p class="text-sm font-medium text-slate-500">Kunjungan Rumah</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 line-clamp-2">Bandung, Cimahi, Sukabumi, Cirebon, Purwakarta, Garut, Tasikmalaya, dll.</p>
+                        <span class="text-secondary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Pesan Tutor <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+
+                    <!-- Jawa Tengah & DIY -->
+                    <div class="reveal stagger-3 bg-surface rounded-3xl p-8 border border-slate-100 hover:border-secondary/30 hover:shadow-soft transition-all group cursor-pointer" onclick="openWaModal('Jawa Tengah & DIY')">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                                <i data-lucide="map-pinned" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary">Jawa Tengah & DIY</h3>
+                                <p class="text-sm font-medium text-slate-500">Basis Operasional</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 line-clamp-2">Semarang, Yogyakarta, Purwokerto (Basis Utama), Solo, Magelang, Tegal, Pekalongan.</p>
+                        <span class="text-secondary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Pesan Tutor <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+
+                    <!-- Jawa Timur -->
+                    <div class="reveal stagger-1 bg-surface rounded-3xl p-8 border border-slate-100 hover:border-secondary/30 hover:shadow-soft transition-all group cursor-pointer" onclick="openWaModal('Jawa Timur')">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                                <i data-lucide="map-pinned" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary">Jawa Timur</h3>
+                                <p class="text-sm font-medium text-slate-500">Kunjungan Rumah</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 line-clamp-2">Surabaya, Malang, Sidoarjo, Gresik, Kediri, Jember, Madiun.</p>
+                        <span class="text-secondary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Pesan Tutor <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                    
+                    <!-- Luar Jawa Highlight -->
+                    <div class="reveal stagger-2 bg-surface rounded-3xl p-8 border border-slate-100 hover:border-secondary/30 hover:shadow-soft transition-all group cursor-pointer" onclick="openWaModal('Luar Jawa')">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                                <i data-lucide="plane" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary">Luar Pulau Jawa</h3>
+                                <p class="text-sm font-medium text-slate-500">Kota Besar Luar Jawa</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 line-clamp-2">Medan, Palembang, Makassar, Denpasar (Bali), Balikpapan, Banjarmasin, dll.</p>
+                        <span class="text-secondary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Pesan Tutor <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+
+                    <!-- All Indonesia Banner -->
+                    <div class="reveal stagger-3 bg-gradient-to-br from-secondary to-primary rounded-3xl p-8 text-white relative overflow-hidden flex flex-col justify-between shadow-xl cursor-pointer hover:shadow-glow transition-all" onclick="openWaModal('Seluruh Indonesia')">
+                        <!-- BG pattern -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4 backdrop-blur-sm">
+                                <i data-lucide="globe" class="w-3 h-3"></i> Berlaku Nasional
+                            </div>
+                            <h3 class="text-2xl font-extrabold mb-2">Kota Lainnya?</h3>
+                            <p class="text-blue-100 font-medium opacity-90 mb-6">Kami melayani <strong>seluruh wilayah Indonesia</strong>, baik kunjungan ke rumah maupun kelas interaktif online.</p>
+                        </div>
+                        <button class="relative z-10 w-full bg-white text-primary font-bold py-3 rounded-xl hover:bg-slate-50 transition-colors flex justify-center items-center gap-2">
+                            Cek Ketersediaan
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Mode Belajar (Offline vs Online) -->
+        <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/20 to-transparent pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <span class="text-support font-bold tracking-widest text-sm uppercase mb-3 block">Sistem Pembelajaran</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight">Fleksibilitas Belajar Tanpa Batas Wilayah</h2>
+                        <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                            Tidak peduli di mana Anda berada, kami memastikan anak Anda mendapatkan pengalaman belajar privat terbaik sesuai kebutuhannya.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                                    <i data-lucide="home" class="text-support w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Tutor Datang ke Rumah (Offline)</h4>
+                                    <p class="text-slate-400">Guru datang langsung ke lokasi. Tersedia di lebih dari 500+ kota/kabupaten di seluruh Indonesia. Pengawasan langsung oleh orang tua.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                                    <i data-lucide="laptop" class="text-support w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Live Interactive (Online)</h4>
+                                    <p class="text-slate-400">Solusi bagi area yang belum terjangkau kunjungan rumah, menggunakan Zoom/Meet premium dengan pen tablet interaktif.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal stagger-2 relative">
+                        <div class="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-slate-800">
+                            <!-- Placeholder Image (Can be replaced with actual image) -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex flex-col items-center justify-center text-slate-500">
+                                <i data-lucide="map" class="w-24 h-24 mb-4 opacity-50"></i>
+                                <span class="font-bold text-xl opacity-50">Jangkauan Nasional</span>
+                            </div>
+                            
+                            <!-- Floating badges -->
+                            <div class="absolute top-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+                                    <span class="font-bold text-white">Tutor Ready!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+    <footer class="bg-primary pt-20 pb-10 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
-                <div class="footer-col-brand">
-                    <a href="index.html" class="flex items-center mb-6">
-                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="items-center gap-2" style="display:none;">
-                            <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                                <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
-                            </div>
-                            <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
                         </div>
+                        <span class="font-bold text-2xl text-white">Sainspiq<span class="text-secondary">.</span></span>
                     </a>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6 font-medium">
+                        Platform penyedia guru les privat datang ke rumah dan online terbesar, melayani seluruh kota di Indonesia untuk SD, SMP, SMA, dan Persiapan UTBK.
                     </p>
                 </div>
 
-                <div class="footer-services-wrapper md:contents">
-                    <div class="footer-col-services">
-                        <h4 class="text-white font-semibold mb-4">Program</h4>
-                        <ul class="text-sm footer-list">
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col-area">
-                        <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
-                        <ul class="text-sm footer-list">
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
-                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
-                        </ul>
-                    </div>
+                <!-- LInks -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Program</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Calistung & TK</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SD (Semua Mapel)</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMP (Fisika, MTK, dll)</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMA (IPA/IPS)</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Persiapan UTBK SNBT</a></li>
+                    </ul>
                 </div>
 
-                <div class="footer-col-contact">
-                    <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
-                    <ul class="space-y-4 text-sm">
+                <!-- Areas -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Top Area</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Jakarta</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Bandung</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Surabaya</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Purwokerto</a></li>
+                        <li><a href="#" class="text-support hover:text-white transition-colors font-bold mt-2 inline-block">Lihat Seluruh Kota &rarr;</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Kontak Hubung</h4>
+                    <ul class="space-y-4 text-sm font-medium">
                         <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
+                            <i data-lucide="map-pin" class="w-5 h-5 text-secondary shrink-0"></i>
+                            <span class="text-slate-400">Head Office: Banyumas, Jawa Tengah (Melayani Nasional)</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">0899-4788-444</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">halo@sainspiq.com</span>
+                            <i data-lucide="phone" class="w-5 h-5 text-secondary shrink-0"></i>
+                            <span class="text-slate-400 font-bold text-white">0899-4788-444</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
-                <div class="flex space-x-6 text-sm">
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
-                </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium">
+                <p class="text-slate-500">© 2026 Sainspiq Education. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <button type="button" id="wa-float-btn" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 group flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span class="absolute right-16 bg-white text-primary text-sm font-bold px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">
-            Chat Admin
-        </span>
+    <!-- Floating WhatsApp Button -->
+    <button type="button" onclick="openWaModal('Tombol Melayang')" class="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:shadow-glow transition-all z-50 group flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </button>
 
-    <!-- WhatsApp Konsultasi Popup Modal -->
-    <div id="wa-modal-overlay" class="wa-modal-overlay">
-        <div id="wa-modal-box" class="wa-modal-box">
-            <button type="button" id="wa-modal-close" class="wa-modal-close" aria-label="Tutup">
+    <!-- Modern WhatsApp Modal -->
+    <div id="wa-modal" class="wa-modal-overlay">
+        <div class="wa-modal-box">
+            <button onclick="closeWaModal()" class="absolute top-5 right-5 w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-200 hover:text-primary transition-colors">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            <div class="wa-modal-header">
-                <div class="wa-modal-icon">
-                    <i data-lucide="message-circle" class="w-5 h-5 text-[#25D366]"></i>
+            
+            <div class="flex items-center gap-4 mb-2">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-6 h-6 text-[#25D366]"></i>
                 </div>
-                <h3 class="text-xl font-bold text-primary">Konsultasi via WhatsApp</h3>
+                <h3 class="text-2xl font-extrabold text-primary">Cek Tutor di Kotamu</h3>
             </div>
-            <p id="wa-modal-subtitle" class="text-sm text-slate-500 mb-6">Isi data singkat berikut, lalu kami lanjutkan obrolan di WhatsApp.</p>
-            <form id="wa-modal-form">
-                <div class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Pendidikan</label>
-                        <div class="wa-jenjang-grid" id="wa-modal-jenjang-group">
-                            <button type="button" data-jenjang="PAUD/TK" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD/TK</button>
-                            <button type="button" data-jenjang="SD" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD</button>
-                            <button type="button" data-jenjang="SMP" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMP</button>
-                            <button type="button" data-jenjang="SMA/UTBK" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMA/UTBK</button>
-                        </div>
-                        <p id="wa-modal-jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
-                    </div>
+            
+            <p class="text-slate-500 text-sm font-medium mb-8">Pilih jenjang dan sebutkan kota domisili, admin kami akan merespon via WhatsApp kurang dari 5 menit.</p>
+            
+            <form id="wa-form" class="space-y-5">
+                <!-- Data Kota Hidden State -->
+                <input type="hidden" id="wa-konteks-kota" value="">
 
-                    <div>
-                        <label for="wa-modal-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
-                        <input type="text" id="wa-modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
+                <div>
+                    <label class="block text-sm font-bold text-primary mb-3">Pilih Jenjang / Kebutuhan</label>
+                    <div class="grid grid-cols-2 gap-3" id="jenjang-grid">
+                        <button type="button" class="jenjang-btn py-3 border-2 border-slate-100 rounded-xl text-sm font-bold text-slate-500 hover:border-secondary hover:text-secondary transition-all" data-val="TK/PAUD/Mengaji">TK / Mengaji</button>
+                        <button type="button" class="jenjang-btn py-3 border-2 border-slate-100 rounded-xl text-sm font-bold text-slate-500 hover:border-secondary hover:text-secondary transition-all" data-val="SD">SD</button>
+                        <button type="button" class="jenjang-btn py-3 border-2 border-slate-100 rounded-xl text-sm font-bold text-slate-500 hover:border-secondary hover:text-secondary transition-all" data-val="SMP">SMP</button>
+                        <button type="button" class="jenjang-btn py-3 border-2 border-slate-100 rounded-xl text-sm font-bold text-slate-500 hover:border-secondary hover:text-secondary transition-all" data-val="SMA/UTBK">SMA / UTBK</button>
                     </div>
-
-                    <div>
-                        <label for="wa-modal-wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                        <input type="tel" id="wa-modal-wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                    </div>
-
-                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-2">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
-                        Lanjutkan ke WhatsApp
-                    </button>
-                    <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
                 </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-primary mb-2">Nama Anda</label>
+                    <input type="text" id="wa-nama" placeholder="Cth: Bunda Sarah" required class="w-full bg-slate-50 border border-slate-200 px-4 py-3.5 rounded-xl text-primary font-medium focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-primary mb-2">Kota Domisili</label>
+                    <input type="text" id="wa-kota-input" placeholder="Cth: Surabaya, Makassar, Bekasi..." required class="w-full bg-slate-50 border border-slate-200 px-4 py-3.5 rounded-xl text-primary font-medium focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all">
+                </div>
+
+                <button type="submit" class="w-full bg-[#25D366] text-white font-extrabold text-lg py-4 rounded-xl hover:bg-[#20bd5a] hover:shadow-glow transition-all flex justify-center items-center gap-2 mt-4">
+                    Mulai Chat WhatsApp <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
             </form>
         </div>
     </div>
 
+    <!-- Script Utama -->
     <script>
-        function initIcons() {
-            if (window.lucide) lucide.createIcons();
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initIcons);
-        } else {
-            initIcons();
-        }
-
+        // Konstanta
         const ADMIN_WA = '628994788444';
 
-        // ── MOBILE MENU ───
-        const menuBtn = document.getElementById('mobile-menu-btn');
+        // Inisialisasi Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            initAnimations();
+        });
+
+        // 1. Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-        let menuOpen = false;
+        let isMenuOpen = false;
 
-        const toggleMenu = (open) => {
-            menuOpen = open;
-            if (menuOpen) {
-                mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none', 'invisible');
                 mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+                menuIcon.setAttribute('data-lucide', 'x');
             } else {
+                mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none', 'invisible');
                 mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
-                mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                menuIcon.setAttribute('data-lucide', 'menu');
             }
-            if (menuIcon) {
-                menuIcon.setAttribute('data-lucide', menuOpen ? 'x' : 'menu');
-                lucide.createIcons({ nameAttr: 'data-lucide' });
-            }
-        };
-
-        menuBtn.addEventListener('click', () => {
-            toggleMenu(!menuOpen);
+            lucide.createIcons();
         });
 
-        document.querySelectorAll('.mobile-menu-link, #mobile-cta').forEach(link => {
-            link.addEventListener('click', () => {
-                if (menuOpen) toggleMenu(false);
-            });
-        });
-
-        // ── WA FLOAT BUTTON → MODAL ───
-        const waFloatBtn = document.getElementById('wa-float-btn');
-        const waModalOverlay = document.getElementById('wa-modal-overlay');
-        const waModalClose = document.getElementById('wa-modal-close');
-        const waModalSubtitle = document.getElementById('wa-modal-subtitle');
-        let selectedKota = '';
-
-        function openWaModal() {
-            waModalOverlay.classList.add('is-open');
-            document.body.classList.add('wa-modal-open');
-        }
-        function closeWaModal() {
-            waModalOverlay.classList.remove('is-open');
-            document.body.classList.remove('wa-modal-open');
-        }
-
-        waFloatBtn.addEventListener('click', () => { selectedKota=''; waModalSubtitle.textContent='Isi data singkat berikut, lalu kami lanjutkan obrolan di WhatsApp.'; openWaModal(); });
-        waModalClose.addEventListener('click', closeWaModal);
-        waModalOverlay.addEventListener('click', (e) => {
-            if (e.target === waModalOverlay) closeWaModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && waModalOverlay.classList.contains('is-open')) closeWaModal();
-        });
-
-        // ── KARTU KOTA → BUKA MODAL DENGAN KONTEKS KOTA ───
-        document.querySelectorAll('.area-card').forEach(card => {
-            card.addEventListener('click', () => {
-                selectedKota = card.dataset.kota;
-                waModalSubtitle.textContent = `Konsultasi les privat untuk area ${selectedKota}. Isi data singkat berikut ya.`;
-                openWaModal();
-            });
-        });
-
-        // ── WA MODAL: JENJANG SELECTION ──────────────
-        let waModalSelectedJenjang = '';
-        const waModalJenjangBtns = document.querySelectorAll('.wa-modal-jenjang-btn');
-
-        waModalJenjangBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                waModalSelectedJenjang = btn.dataset.jenjang;
-                waModalJenjangBtns.forEach(b => {
-                    b.classList.remove('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                    b.classList.add('text-slate-600', 'border-slate-200');
+        // 2. Scroll Animations (Intersection Observer)
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
                 });
-                btn.classList.add('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                btn.classList.remove('text-slate-600', 'border-slate-200');
-                document.getElementById('wa-modal-jenjang-error').classList.add('hidden');
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // 3. WhatsApp Modal Logic
+        const waModal = document.getElementById('wa-modal');
+        const kotaInput = document.getElementById('wa-kota-input');
+        const hiddenKonteks = document.getElementById('wa-konteks-kota');
+        let selectedJenjang = '';
+
+        function openWaModal(konteksKota = '') {
+            hiddenKonteks.value = konteksKota;
+            // Jika konteks nya adalah area spesifik, isi otomatis input kota (kecuali jika global)
+            if(konteksKota && konteksKota !== 'Konsultasi Umum' && konteksKota !== 'Konsultasi via Mobile' && konteksKota !== 'Tombol Melayang' && konteksKota !== 'Cari Tutor Terdekat') {
+                kotaInput.value = konteksKota === 'Seluruh Indonesia' ? '' : konteksKota;
+            } else {
+                kotaInput.value = '';
+            }
+            
+            waModal.classList.add('is-open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeWaModal() {
+            waModal.classList.remove('is-open');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Handle jenjang selection
+        const jenjangBtns = document.querySelectorAll('.jenjang-btn');
+        jenjangBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset all
+                jenjangBtns.forEach(b => {
+                    b.classList.remove('border-secondary', 'text-secondary', 'bg-blue-50');
+                    b.classList.add('border-slate-100', 'text-slate-500');
+                });
+                // Activate clicked
+                btn.classList.add('border-secondary', 'text-secondary', 'bg-blue-50');
+                btn.classList.remove('border-slate-100', 'text-slate-500');
+                selectedJenjang = btn.getAttribute('data-val');
             });
         });
 
-        document.getElementById('wa-modal-form').addEventListener('submit', (e) => {
+        // Handle Form Submit (Redirect ke WA)
+        document.getElementById('wa-form').addEventListener('submit', (e) => {
             e.preventDefault();
-
-            const nama = document.getElementById('wa-modal-nama').value.trim();
-            const wa   = document.getElementById('wa-modal-wa-input').value.trim();
-
-            if (!waModalSelectedJenjang) {
-                document.getElementById('wa-modal-jenjang-error').classList.remove('hidden');
+            
+            if(!selectedJenjang) {
+                alert('Mohon pilih jenjang/kebutuhan belajar terlebih dahulu.');
                 return;
             }
 
-            const baris_kota = selectedKota ? `\n*Domisili:* ${selectedKota}` : '';
-            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin konsultasi les privat.\n\n*Nama:* ${nama}\n*Jenjang:* ${waModalSelectedJenjang}${baris_kota}\n*No. WA:* ${wa}\n\nMohon informasi lebih lanjut. Terima kasih!`;
-            const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+            const nama = document.getElementById('wa-nama').value.trim();
+            const kota = document.getElementById('wa-kota-input').value.trim();
+            const jalur = hiddenKonteks.value || 'Website';
 
-            window.open(url, '_blank');
+            const pesan = `Halo Admin Sainspiq! 👋\n\nSaya ingin konsultasi pencarian guru Les Privat.\n\n*Nama:* ${nama}\n*Domisili Kota:* ${kota}\n*Kebutuhan:* ${selectedJenjang}\n\nMohon info ketersediaan tutor dan biayanya. Terima kasih!`;
+            
+            const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+            
+            window.open(waUrl, '_blank');
             closeWaModal();
+            
+            // Reset form
+            document.getElementById('wa-form').reset();
+            jenjangBtns.forEach(b => {
+                b.classList.remove('border-secondary', 'text-secondary', 'bg-blue-50');
+                b.classList.add('border-slate-100', 'text-slate-500');
+            });
+            selectedJenjang = '';
         });
 
-        // ── ANIMASI: Hero langsung visible saat load ───
-        function revealHero() {
-            document.querySelectorAll('.hero-animate, .hero-animate-right').forEach(el => {
-                el.classList.add('visible');
-            });
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', revealHero);
-        } else {
-            revealHero();
-        }
-
-        // ── ANIMASI: Scroll reveal ───
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // ── ANIMASI: Slide kiri & kanan ───
-        const slideObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    slideObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('.slide-left, .slide-right').forEach(el => slideObserver.observe(el));
+        // Close modal on outside click
+        waModal.addEventListener('click', (e) => {
+            if (e.target === waModal) closeWaModal();
+        });
     </script>
 </body>
 </html>
