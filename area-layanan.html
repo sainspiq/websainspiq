@@ -9,7 +9,7 @@
     <meta name="description" content="Sainspiq melayani les privat dan mengaji kunjungan rumah (guru datang ke rumah) di SELURUH kota di Indonesia, serta les online hingga ke pelosok daerah. Hubungi kami untuk tutor terbaik di kota Anda.">
     <meta name="keywords" content="les privat, guru datang ke rumah, les privat jakarta, les privat seluruh indonesia, les online seluruh pelosok, guru les privat, bimbingan belajar, les mengaji, persiapan UTBK">
     <meta name="author" content="Sainspiq Education">
-    <link rel="canonical" href="https://sainspiq.com/area-layanan.html">
+    <link rel="canonical" href="https://sainspiq.com/area-layanan">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Les Privat Seluruh Kota di Indonesia & Online Seluruh Pelosok Daerah | Sainspiq">
@@ -142,24 +142,31 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-blue-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                        <i data-lucide="graduation-cap" class="text-white w-6 h-6"></i>
+                <a href="/" class="flex items-center gap-3 group">
+                    <img src="logo.webp" alt="Sainspiq" class="h-10 object-contain" width="125" height="40" fetchpriority="high"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Fallback jika file logo belum ada -->
+                    <div class="items-center gap-2" style="display:none;">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-blue-800 flex items-center justify-center shadow-lg">
+                            <i data-lucide="graduation-cap" class="text-white w-6 h-6"></i>
+                        </div>
+                        <span class="font-extrabold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
                     </div>
-                    <span class="font-extrabold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
                 </a>
 
                 <!-- Desktop Nav -->
                 <nav class="hidden lg:flex space-x-2">
-                    <a href="#program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
-                    <a href="#biaya" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
-                    <a href="#area-layanan" class="px-4 py-2 rounded-full text-sm font-bold text-secondary bg-blue-50/80 transition-all">Area Layanan</a>
-                    <a href="#tentang" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Tentang Kami</a>
+                    <a href="/#program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
+                    <a href="/#faq" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
+                    <a href="#daftar-area" class="px-4 py-2 rounded-full text-sm font-bold text-secondary bg-blue-50/80 transition-all">Area Layanan</a>
+                    <a href="/blog" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Blog</a>
+                    <a href="/tentang-kami" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Tentang Kami</a>
+                    <a href="/kontak" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Kontak</a>
                 </nav>
 
                 <!-- Desktop CTA -->
                 <div class="hidden lg:flex items-center gap-4">
-                    <a href="#" class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">Masuk</a>
+                    <a href="/masuk" class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">Masuk</a>
                     <button onclick="openWaModal('Konsultasi Umum')" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 hover:shadow-glow transition-all">
                         Konsultasi Gratis
                     </button>
@@ -177,10 +184,14 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
             <nav class="flex flex-col p-4 gap-2">
-                <a href="#program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
-                <a href="#area-layanan" class="p-4 rounded-xl text-base font-bold text-secondary bg-blue-50 transition-all">Area Layanan</a>
-                <a href="#tentang" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Tentang Kami</a>
+                <a href="/#program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
+                <a href="/#faq" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Biaya Les</a>
+                <a href="#daftar-area" class="p-4 rounded-xl text-base font-bold text-secondary bg-blue-50 transition-all">Area Layanan</a>
+                <a href="/blog" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Blog</a>
+                <a href="/tentang-kami" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Tentang Kami</a>
+                <a href="/kontak" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Kontak</a>
                 <div class="h-px bg-slate-100 my-2"></div>
+                <a href="/masuk" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all text-center border border-slate-200">Masuk</a>
                 <button onclick="openWaModal('Konsultasi via Mobile')" class="w-full inline-flex items-center justify-center px-5 py-4 text-base font-bold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-md">
                     Konsultasi Sekarang
                 </button>
@@ -424,11 +435,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Brand Info -->
                 <div class="lg:col-span-1">
-                    <a href="#" class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                    <a href="/" class="flex items-center gap-2 mb-6">
+                        <img src="logo.webp" alt="Sainspiq" class="h-10 object-contain" width="125" height="40" loading="lazy"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="items-center gap-2" style="display:none;">
+                            <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-2xl text-white">Sainspiq<span class="text-secondary">.</span></span>
                         </div>
-                        <span class="font-bold text-2xl text-white">Sainspiq<span class="text-secondary">.</span></span>
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6 font-medium">
                         Platform penyedia guru les privat datang ke rumah dan online terbesar, melayani seluruh kota di Indonesia untuk SD, SMP, SMA, dan Persiapan UTBK.
@@ -439,11 +454,11 @@
                 <div>
                     <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Program</h4>
                     <ul class="space-y-4 text-sm font-medium">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Calistung & TK</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SD (Semua Mapel)</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMP (Fisika, MTK, dll)</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMA (IPA/IPS)</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Persiapan UTBK SNBT</a></li>
+                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Calistung & TK</a></li>
+                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SD (Semua Mapel)</a></li>
+                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMP (Fisika, MTK, dll)</a></li>
+                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> SMA (IPA/IPS)</a></li>
+                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Persiapan UTBK SNBT</a></li>
                     </ul>
                 </div>
 
@@ -451,11 +466,11 @@
                 <div>
                     <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Top Area</h4>
                     <ul class="space-y-4 text-sm font-medium">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Jakarta</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Bandung</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Surabaya</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Purwokerto</a></li>
-                        <li><a href="#" class="text-support hover:text-white transition-colors font-bold mt-2 inline-block">Lihat Seluruh Kota &rarr;</a></li>
+                        <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Jakarta</a></li>
+                        <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Bandung</a></li>
+                        <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Surabaya</a></li>
+                        <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Les Privat Purwokerto</a></li>
+                        <li><a href="#daftar-area" class="text-support hover:text-white transition-colors font-bold mt-2 inline-block">Lihat Seluruh Kota &rarr;</a></li>
                     </ul>
                 </div>
 
@@ -465,11 +480,15 @@
                     <ul class="space-y-4 text-sm font-medium">
                         <li class="flex items-start gap-3">
                             <i data-lucide="map-pin" class="w-5 h-5 text-secondary shrink-0"></i>
-                            <span class="text-slate-400">Head Office: Banyumas, Jawa Tengah (Melayani Nasional)</span>
+                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i data-lucide="phone" class="w-5 h-5 text-secondary shrink-0"></i>
                             <span class="text-slate-400 font-bold text-white">0899-4788-444</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-secondary shrink-0"></i>
+                            <span class="text-slate-400">halo@sainspiq.com</span>
                         </li>
                     </ul>
                 </div>
@@ -477,6 +496,10 @@
 
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium">
                 <p class="text-slate-500">© 2026 Sainspiq Education. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                </div>
             </div>
         </div>
     </footer>
