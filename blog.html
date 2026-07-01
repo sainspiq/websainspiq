@@ -56,592 +56,325 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Geser logo header sedikit ke kiri (custom) */
+        .logo-link{ margin-left:-14px; }
+        @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
+
+        /* Menu desktop: huruf lebih besar */
+        @media (min-width:768px){
+            header nav.hidden.md\:flex > a{ font-size:1rem; }
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
+        /* Mobile: navbar lebih solid */
+        @media (max-width:767px){
+            header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
+            .logo-link{ margin-left:-34px; }
         }
 
-        /* ─── NAVBAR ─── */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 16px 0;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-            gap: 40px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #059669;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        nav {
-            display: none;
-            gap: 32px;
-            align-items: center;
-        }
-
-        nav a {
-            color: #475569;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #059669;
-        }
-
-        @media (min-width: 768px) {
-            nav {
-                display: flex;
-            }
-        }
-
-        .mobile-nav-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-nav-toggle span {
-            width: 24px;
-            height: 2px;
-            background: #1e293b;
-            transition: 0.3s;
-        }
-
-        @media (min-width: 768px) {
-            .mobile-nav-toggle {
-                display: none;
-            }
-        }
-
-        /* ─── HERO SECTION ─── */
-        .hero {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #059669, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #64748b;
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 8px;
-            max-width: 500px;
-            margin: 0 auto 40px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #059669;
-        }
-
-        .search-btn {
-            padding: 12px 24px;
-            background: #059669;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .search-btn:hover {
-            background: #047857;
-        }
-
-        /* ─── CATEGORY FILTER ─── */
-        .category-filter {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 48px;
-        }
-
-        .category-btn {
-            padding: 8px 16px;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #475569;
-            transition: all 0.3s;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: #059669;
-            color: white;
-            border-color: #059669;
-        }
-
-        /* ─── FEATURED ARTICLE ─── */
-        .featured {
-            max-width: 1280px;
-            margin: 0 auto 64px;
-            padding: 0 20px;
-        }
-
-        .featured-card {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
-            border-radius: 16px;
-            padding: 32px;
-            color: white;
-            overflow: hidden;
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .featured-card {
-                grid-template-columns: 1fr 1fr;
-                padding: 40px;
-            }
-        }
-
-        .featured-content h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-
-        .featured-content p {
-            font-size: 16px;
-            margin-bottom: 24px;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-
-        .featured-meta {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 24px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        .featured-btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: white;
-            color: #059669;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.3s;
-            width: fit-content;
-        }
-
-        .featured-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .featured-image {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 64px;
-        }
-
-        /* ─── BLOG GRID ─── */
-        .blog-section {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px 80px;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: #0f172a;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .blog-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
+        /* Blog Card Hover */
         .blog-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.15);
         }
 
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
+        /* Category Filter Button */
+        .category-btn {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .category-btn.active {
+            background-color: #2563eb;
             color: white;
+            border-color: #2563eb;
+        }
+        .category-btn:not(.active):hover {
+            background-color: #eff6ff;
+            border-color: #93c5fd;
         }
 
-        .blog-content {
-            padding: 24px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        /* Search Box */
+        .search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        .blog-category {
-            display: inline-block;
-            background: #ecfdf5;
-            color: #059669;
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            width: fit-content;
+        /* Featured Card */
+        .featured-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%);
         }
 
-        .blog-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #0f172a;
-            line-height: 1.4;
+        /* Blog Image placeholder */
+        .blog-image-placeholder {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
         }
 
-        .blog-card p {
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 16px;
-            flex: 1;
-            line-height: 1.6;
+        /* Mobile menu hidden state */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
         }
-
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #94a3b8;
-            padding-top: 16px;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .blog-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .blog-author-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #dbeafe;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #0284c7;
-        }
-
-        .read-time {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            background: #1e293b;
-            color: #cbd5e1;
-            padding: 48px 20px 24px;
-            margin-top: 80px;
-        }
-
-        .footer-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-
-        .footer-section h4 {
-            color: white;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .footer-section a {
-            display: block;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: #cbd5e1;
-            transition: color 0.3s;
-            font-size: 14px;
-        }
-
-        .footer-section a:hover {
-            color: #059669;
-        }
-
-        .footer-bottom {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding-top: 24px;
-            border-top: 1px solid #334155;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* ─── ANIMATIONS ─── */
-        .fade-in {
+        #mobile-menu.opacity-0 {
             opacity: 0;
-            animation: fadeIn 0.6s ease forwards;
+            transform: translateY(-8px);
+            pointer-events: none;
+            visibility: hidden;
         }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .scale-in {
-            transform: scale(0.95);
-            animation: scaleIn 0.5s ease forwards;
-        }
-
-        @keyframes scaleIn {
-            to {
-                transform: scale(1);
-            }
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 767px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .featured-content h2 {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
+        #mobile-menu.opacity-100 {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            visibility: visible;
         }
     </style>
 </head>
-<body>
+<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
+
     <!-- ════════════════════════════════════════ -->
-    <!-- HEADER / NAVBAR                         -->
+    <!-- HEADER / NAVBAR (sama dengan index)     -->
     <!-- ════════════════════════════════════════ -->
-    <header>
-        <nav class="navbar">
-            <a href="/" class="logo">📚 Sainspiq Blog</a>
-            <nav>
-                <a href="/">Beranda</a>
-                <a href="/blog">Blog</a>
-                <a href="/#program">Program</a>
-                <a href="#contact">Kontak</a>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- LOGO -->
+                <a href="/" class="flex items-center logo-link">
+                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="items-center gap-2" style="display:none;">
+                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-1">
+                    <a href="/#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="/#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
+                    <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
+                    <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Blog</a>
+                    <a href="/tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
+                    <a href="/kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="/masuk" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
+                    <a href="/#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl opacity-0 -translate-y-2 pointer-events-none invisible z-40 transition-all duration-300 ease-in-out">
+            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+                <a href="/#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
+                <a href="/#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
+                <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
+                <a href="/blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/20">Blog</a>
+                <a href="/tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
+                <a href="/kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Kontak</a>
+
+                <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
+                    <a href="/masuk" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
+                    <a href="/#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+                        Konsultasi Gratis
+                    </a>
+                </div>
             </nav>
-            <button class="mobile-nav-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
+        </div>
     </header>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- HERO SECTION                            -->
+    <!-- MAIN CONTENT                           -->
     <!-- ════════════════════════════════════════ -->
-    <section class="hero">
-        <h1>Tips & Trik Belajar Efektif</h1>
-        <p>Temukan strategi pembelajaran terbaru, tips persiapan UTBK, dan inspirasi kesuksesan akademik dari tim Sainspiq</p>
+    <main>
 
-        <!-- Search Box -->
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Cari artikel..." />
-            <button class="search-btn" onclick="searchArticles()">Cari</button>
-        </div>
+        <!-- HERO BLOG -->
+        <section class="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden bg-slate-50">
+            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[500px] h-[500px] bg-support/10 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[350px] h-[350px] bg-secondary/10 rounded-full blur-3xl opacity-60"></div>
 
-        <!-- Category Filter -->
-        <div class="category-filter">
-            <button class="category-btn active" onclick="filterCategory('semua')">Semua Kategori</button>
-            <button class="category-btn" onclick="filterCategory('UTBK')">UTBK & SNBT</button>
-            <button class="category-btn" onclick="filterCategory('Tips Belajar')">Tips Belajar</button>
-            <button class="category-btn" onclick="filterCategory('Motivasi')">Motivasi</button>
-        </div>
-    </section>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+                <span class="text-sm font-bold text-secondary tracking-widest uppercase mb-3 block">Blog Edukasi</span>
+                <h1 class="text-3xl md:text-5xl font-bold text-primary mb-5 leading-tight">Tips & Trik Belajar Efektif</h1>
+                <p class="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Temukan strategi pembelajaran terbaru, tips persiapan UTBK, dan inspirasi kesuksesan akademik dari tim Sainspiq.</p>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- FEATURED ARTICLE                        -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="featured">
-        <div class="featured-card">
-            <div class="featured-content">
-                <h2>Strategi Ampuh Lolos UTBK 2026: Persiapan Matang dari Awal</h2>
-                <p>Pelajari strategi komprehensif untuk mempersiapkan diri menghadapi UTBK 2026. Dari manajemen waktu belajar hingga teknik menjawab soal, semua tersedia di sini.</p>
-                <div class="featured-meta">
-                    <span>📅 28 Juni 2026</span>
-                    <span>👤 Admin Sainspiq</span>
+                <!-- Search Box -->
+                <div class="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                    <input type="text" id="searchInput" placeholder="Cari artikel..." class="search-input flex-1 px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm transition-all shadow-sm" />
+                    <button onclick="searchArticles()" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                        Cari
+                    </button>
                 </div>
-                <a href="#" class="featured-btn">Baca Selengkapnya →</a>
             </div>
-            <div class="featured-image">🎓</div>
-        </div>
-    </section>
+        </section>
+
+        <!-- CATEGORY FILTER -->
+        <section class="py-6 bg-white border-b border-slate-200 sticky top-16 z-30 bg-white/90 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button class="category-btn active px-4 py-2 rounded-full text-sm font-medium border border-slate-200 bg-white text-slate-600 hover:border-secondary hover:text-secondary transition-all" data-category="semua">Semua Kategori</button>
+                    <button class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-200 bg-white text-slate-600 hover:border-secondary hover:text-secondary transition-all" data-category="UTBK">UTBK &amp; SNBT</button>
+                    <button class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-200 bg-white text-slate-600 hover:border-secondary hover:text-secondary transition-all" data-category="Tips Belajar">Tips Belajar</button>
+                    <button class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-200 bg-white text-slate-600 hover:border-secondary hover:text-secondary transition-all" data-category="Motivasi">Motivasi</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED ARTICLE -->
+        <section class="py-10 md:py-16 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="featured-card rounded-2xl overflow-hidden shadow-xl">
+                    <div class="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+                        <div class="text-white flex flex-col justify-center">
+                            <span class="inline-block bg-white/20 text-white text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-white/20 w-fit mb-4">Artikel Unggulan</span>
+                            <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Strategi Ampuh Lolos UTBK 2026: Persiapan Matang dari Awal</h2>
+                            <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-6">Pelajari strategi komprehensif untuk mempersiapkan diri menghadapi UTBK 2026. Dari manajemen waktu belajar hingga teknik menjawab soal, semua tersedia di sini.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-blue-200 mb-6">
+                                <span>📅 28 Juni 2026</span>
+                                <span>👤 Admin Sainspiq</span>
+                                <span>⏱️ 8 min baca</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-secondary bg-white rounded-xl hover:bg-blue-50 transition-colors w-fit shadow-lg">
+                                Baca Selengkapnya
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-full h-56 md:h-64 rounded-xl bg-white/10 flex items-center justify-center text-7xl backdrop-blur-sm border border-white/20">
+                                🎓
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG GRID -->
+        <section class="py-10 md:py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-primary">Artikel Terbaru</h2>
+                    <span class="text-sm text-slate-400" id="articleCount">10 artikel</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="blogGrid">
+                    <!-- Cards will be rendered by JavaScript -->
+                </div>
+
+                <!-- Empty state -->
+                <div id="emptyState" class="hidden text-center py-16">
+                    <div class="text-5xl mb-4">🔍</div>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Tidak ada artikel ditemukan</h3>
+                    <p class="text-slate-500 text-sm">Coba gunakan kata kunci lain atau reset filter.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- BLOG POSTS GRID                         -->
+    <!-- FOOTER (sama dengan index)              -->
     <!-- ════════════════════════════════════════ -->
-    <section class="blog-section">
-        <h2 class="section-title">Artikel Terbaru</h2>
-        <div class="blog-grid" id="blogGrid">
-            <!-- Blog Cards akan dimuat dari JavaScript -->
-        </div>
-    </section>
+    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
+                <div class="footer-col-brand">
+                    <a href="/" class="flex items-center mb-6 logo-link">
+                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="items-center gap-2" style="display:none;">
+                            <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
+                        </div>
+                    </a>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.
+                    </p>
+                </div>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- FOOTER                                  -->
-    <!-- ════════════════════════════════════════ -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Tentang Sainspiq</h4>
-                <p style="margin-bottom: 16px; font-size: 14px;">Sainspiq adalah layanan les privat terbaik dengan tutor profesional dari universitas ternama di Indonesia.</p>
-                <p style="font-size: 14px;">📞 <strong>+62-899-4788-444</strong></p>
+                <div class="footer-services-wrapper md:contents">
+                    <div class="footer-col-services">
+                        <h4 class="text-white font-semibold mb-4">Program</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col-area">
+                        <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
+                        <ul class="text-sm footer-list">
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-col-contact">
+                    <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">0899-4788-444</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <span class="text-slate-400">halo@sainspiq.com</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Navigasi</h4>
-                <a href="/">Beranda</a>
-                <a href="/blog">Blog</a>
-                <a href="#">Program Belajar</a>
-                <a href="#">Hubungi Kami</a>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat &amp; Ketentuan</a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Ikuti Kami</h4>
-                <a href="#">📘 Facebook</a>
-                <a href="#">📸 Instagram</a>
-                <a href="#">🐦 Twitter</a>
-                <a href="#">▶️ YouTube</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Sainspiq. Semua hak dilindungi. | <a href="#" style="color: #cbd5e1; text-decoration: none;">Kebijakan Privasi</a> | <a href="#" style="color: #cbd5e1; text-decoration: none;">Syarat & Ketentuan</a></p>
         </div>
     </footer>
 
@@ -649,7 +382,45 @@
     <!-- JAVASCRIPT                              -->
     <!-- ════════════════════════════════════════ -->
     <script>
-        // Data Blog Articles
+        // ── INIT LUCIDE ICONS ─────────────────────────
+        function initIcons() {
+            if (window.lucide) lucide.createIcons();
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initIcons);
+        } else {
+            initIcons();
+        }
+
+        // ── MOBILE MENU TOGGLE ─────────────────────────
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let menuOpen = false;
+
+        const toggleMenu = (open) => {
+            menuOpen = open;
+            if (menuOpen) {
+                mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+                mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+            }
+            if (menuIcon) {
+                menuIcon.setAttribute('data-lucide', menuOpen ? 'x' : 'menu');
+                if (window.lucide) lucide.createIcons({ nameAttr: 'data-lucide' });
+            }
+        };
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => toggleMenu(!menuOpen));
+        }
+        document.querySelectorAll('.mobile-menu-link, #mobile-cta').forEach(link => {
+            link.addEventListener('click', () => { if (menuOpen) toggleMenu(false); });
+        });
+
+        // ── BLOG DATA ──────────────────────────────────
         const articles = [
             {
                 id: 1,
@@ -665,7 +436,7 @@
                 id: 2,
                 title: "Cara Mengatur Jadwal Belajar UTBK yang Optimal",
                 excerpt: "Pelajari metode time management terbaik untuk memaksimalkan waktu belajar dan menjaga kesehatan mental selama persiapan UTBK.",
-                category: "UTBK & SNBT",
+                category: "UTBK",
                 author: "Tim Akademik",
                 date: "25 Juni 2026",
                 readTime: "6 min",
@@ -685,7 +456,7 @@
                 id: 4,
                 title: "Pembahasan Soal UTBK 2026: Kesalahan Umum Calon PTN",
                 excerpt: "Analisis mendalam tentang tipe soal yang sering dijawab salah di UTBK. Pelajari cara hindari jebakan soal ala tutor Sainspiq.",
-                category: "UTBK & SNBT",
+                category: "UTBK",
                 author: "Tutor Senior",
                 date: "20 Juni 2026",
                 readTime: "8 min",
@@ -724,8 +495,8 @@
             {
                 id: 8,
                 title: "Persiapan SNBT 2026: Jadwal, Tips, dan Strategi Jitu",
-                excerpt: "Informasi lengkap tentang SNBT 2025 termasuk timeline, tipe soal, dan strategi per-bidang studi yang efektif.",
-                category: "UTBK & SNBT",
+                excerpt: "Informasi lengkap tentang SNBT 2026 termasuk timeline, tipe soal, dan strategi per-bidang studi yang efektif.",
+                category: "UTBK",
                 author: "Tim Akademik",
                 date: "12 Juni 2026",
                 readTime: "7 min",
@@ -754,83 +525,108 @@
         ];
 
         let filteredArticles = [...articles];
+        let currentCategory = 'semua';
 
-        // Render Blog Cards
+        // ── RENDER BLOG CARDS ──────────────────────────
         function renderBlogCards(articlesToRender) {
-            const blogGrid = document.getElementById('blogGrid');
-            blogGrid.innerHTML = '';
+            const grid = document.getElementById('blogGrid');
+            const empty = document.getElementById('emptyState');
+            const count = document.getElementById('articleCount');
 
-            articlesToRender.forEach((article, index) => {
+            grid.innerHTML = '';
+
+            if (articlesToRender.length === 0) {
+                empty.classList.remove('hidden');
+                count.textContent = '0 artikel';
+                return;
+            }
+            empty.classList.add('hidden');
+            count.textContent = articlesToRender.length + ' artikel';
+
+            articlesToRender.forEach((article) => {
                 const card = document.createElement('div');
-                card.className = 'blog-card fade-in';
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.className = 'blog-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col';
+
+                // Warna latar placeholder berbeda tiap kategori
+                let bgGrad = 'from-blue-50 to-blue-100';
+                if (article.category === 'UTBK') bgGrad = 'from-purple-50 to-purple-100';
+                else if (article.category === 'Tips Belajar') bgGrad = 'from-cyan-50 to-cyan-100';
+                else if (article.category === 'Motivasi') bgGrad = 'from-amber-50 to-amber-100';
+
                 card.innerHTML = `
-                    <div class="blog-image">${article.emoji}</div>
-                    <div class="blog-content">
-                        <span class="blog-category">${article.category}</span>
-                        <h3>${article.title}</h3>
-                        <p>${article.excerpt}</p>
-                        <div class="blog-meta">
-                            <div class="blog-author">
-                                <div class="blog-author-avatar">${article.author.charAt(0)}</div>
-                                <div>
-                                    <div style="font-size: 12px;">${article.author}</div>
-                                    <div style="font-size: 11px; color: #cbd5e1;">${article.date}</div>
-                                </div>
+                    <div class="blog-image-placeholder w-full h-48 flex items-center justify-center text-5xl bg-gradient-to-br ${bgGrad} border-b border-slate-100">
+                        ${article.emoji}
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <span class="inline-block text-xs font-semibold text-secondary bg-blue-50 px-3 py-1 rounded-full w-fit mb-3">${article.category}</span>
+                        <h3 class="text-lg font-bold text-primary mb-2 leading-snug line-clamp-2">${article.title}</h3>
+                        <p class="text-sm text-slate-500 mb-4 flex-1 line-clamp-3">${article.excerpt}</p>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-semibold text-[10px]">${article.author.charAt(0)}</span>
+                                <span>${article.author}</span>
                             </div>
-                            <span class="read-time">⏱️ ${article.readTime}</span>
+                            <span>⏱️ ${article.readTime}</span>
                         </div>
+                        <div class="mt-2 text-[10px] text-slate-400">${article.date}</div>
                     </div>
                 `;
-                blogGrid.appendChild(card);
+                grid.appendChild(card);
             });
         }
 
-        // Filter by Category
+        // ── FILTER CATEGORY ────────────────────────────
         function filterCategory(category) {
+            currentCategory = category;
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
 
             if (category === 'semua') {
                 filteredArticles = [...articles];
             } else {
-                filteredArticles = articles.filter(article => article.category === category);
+                filteredArticles = articles.filter(a => a.category === category);
             }
             renderBlogCards(filteredArticles);
         }
 
-        // Search Articles
+        // ── SEARCH ──────────────────────────────────────
         function searchArticles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            if (searchTerm === '') {
-                filteredArticles = [...articles];
-            } else {
-                filteredArticles = articles.filter(article =>
-                    article.title.toLowerCase().includes(searchTerm) ||
-                    article.excerpt.toLowerCase().includes(searchTerm)
-                );
+            const term = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (term === '') {
+                // Reset ke filter kategori saat ini
+                filterCategory(currentCategory);
+                return;
             }
+
+            const base = currentCategory === 'semua' ? articles : articles.filter(a => a.category === currentCategory);
+            filteredArticles = base.filter(a =>
+                a.title.toLowerCase().includes(term) ||
+                a.excerpt.toLowerCase().includes(term)
+            );
             renderBlogCards(filteredArticles);
         }
 
-        // Initialize
+        // ── EVENT LISTENERS ────────────────────────────
         document.addEventListener('DOMContentLoaded', () => {
             renderBlogCards(articles);
 
+            // Category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterCategory(this.dataset.category);
+                });
+            });
+
             // Search on Enter
             document.getElementById('searchInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    searchArticles();
-                }
+                if (e.key === 'Enter') searchArticles();
             });
         });
-
-        // Mobile Menu Toggle
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            this.style.transform = this.style.transform === 'rotate(90deg)' ? 'rotate(0)' : 'rotate(90deg)';
-        });
     </script>
+
 </body>
 </html>
