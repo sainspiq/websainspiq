@@ -20,24 +20,18 @@
     <!-- Script untuk Ikon Lucide -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
-    <!-- Stylesheet Tailwind (compiled, sama dengan index.html) -->
+    <!-- Stylesheet Tailwind -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Geser logo header sedikit ke kiri */
         .logo-link{ margin-left:-14px; }
         @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
-
-        /* Menu desktop: huruf lebih besar (tanpa dipertebal) */
         @media (min-width:768px){
             header nav.hidden.md\:flex > a{ font-size:1rem; }
         }
-
-        /* Mobile: navbar jangan terlalu transparan + geser logo lebih kiri */
         @media (max-width:767px){
             header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
             .logo-link{ margin-left:-34px; }
         }
-
         body.wa-modal-open{ overflow:hidden; }
         .contact-card{ transition: transform .25s ease, box-shadow .25s ease; }
         .contact-card:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(15,23,42,0.12); }
@@ -49,7 +43,7 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center logo-link">
+                <a href="/" class="flex items-center logo-link">
                     <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="items-center gap-2" style="display:none;">
@@ -61,17 +55,17 @@
                 </a>
 
                 <nav class="hidden md:flex space-x-1">
-                    <a href="index.html#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
-                    <a href="index.html#biaya-les" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
-                    <a href="index.html#area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
-                    <a href="index.html#blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
-                    <a href="index.html#tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
-                    <a href="kontak.html" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Kontak</a>
+                    <a href="/#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="/#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
+                    <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
+                    <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
+                    <a href="/tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
+                    <a href="/kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Kontak</a>
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
-                    <a href="#form-kontak" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                    <a href="/masuk" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
+                    <a href="/#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -87,16 +81,16 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-                <a href="index.html#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
-                <a href="index.html#biaya-les" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
-                <a href="index.html#area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
-                <a href="index.html#blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
-                <a href="index.html#tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
-                <a href="kontak.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/20">Kontak</a>
+                <a href="/#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
+                <a href="/#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
+                <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
+                <a href="/blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
+                <a href="/tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Tentang Kami</a>
+                <a href="/kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/20">Kontak</a>
 
                 <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
-                    <a href="#" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
-                    <a href="#form-kontak" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+                    <a href="/masuk" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
+                    <a href="/#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -269,7 +263,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
                 <div class="footer-col-brand">
-                    <a href="index.html" class="flex items-center mb-6">
+                    <a href="/" class="flex items-center mb-6 logo-link">
                         <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="items-center gap-2" style="display:none;">
@@ -288,28 +282,28 @@
                     <div class="footer-col-services">
                         <h4 class="text-white font-semibold mb-4">Program</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
+                            <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-col-area">
                         <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
+                            <li><a href="/area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
                         </ul>
                     </div>
                 </div>
@@ -336,8 +330,8 @@
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
                 <div class="flex space-x-6 text-sm">
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
                 </div>
             </div>
         </div>
