@@ -28,7 +28,7 @@
     <!-- Preload aset LCP -->
     <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
 
-    <!-- Schema Markup: Blog + Breadcrumb -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,29 +60,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
-
-    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        /* Geser logo header sedikit ke kiri (custom) */
         .logo-link{ margin-left:-14px; }
         @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
-
-        /* Menu desktop: huruf lebih besar */
         @media (min-width:768px){
             header nav.hidden.md\:flex > a{ font-size:1rem; }
         }
-
-        /* Mobile: navbar lebih solid */
         @media (max-width:767px){
             header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
             .logo-link{ margin-left:-34px; }
         }
 
-        /* Blog Card Hover */
         .blog-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -91,7 +82,6 @@
             box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.15);
         }
 
-        /* Category Filter Button */
         .category-btn {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -106,24 +96,21 @@
             border-color: #93c5fd;
         }
 
-        /* Search Box */
         .search-input:focus {
             outline: none;
             border-color: #2563eb;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* Featured Card */
         .featured-card {
             background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%);
         }
 
-        /* Blog Image placeholder */
         .blog-image-placeholder {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            min-height: 180px;
         }
 
-        /* Mobile menu hidden state */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
         }
@@ -143,13 +130,10 @@
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- HEADER / NAVBAR (sama dengan index)     -->
-    <!-- ════════════════════════════════════════ -->
+    <!-- HEADER (sama dengan index) -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- LOGO -->
                 <a href="/" class="flex items-center logo-link">
                     <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -161,7 +145,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-1">
                     <a href="/#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
                     <a href="/#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
@@ -178,7 +161,6 @@
                     </a>
                 </div>
 
-                <!-- Mobile Menu Toggle -->
                 <div class="md:hidden flex items-center gap-2">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
                         <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
@@ -207,9 +189,6 @@
         </div>
     </header>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- MAIN CONTENT                           -->
-    <!-- ════════════════════════════════════════ -->
     <main>
 
         <!-- HERO BLOG -->
@@ -222,7 +201,6 @@
                 <h1 class="text-3xl md:text-5xl font-bold text-primary mb-5 leading-tight">Tips & Trik Belajar Efektif</h1>
                 <p class="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Temukan strategi pembelajaran terbaru, tips persiapan UTBK, dan inspirasi kesuksesan akademik dari tim Sainspiq.</p>
 
-                <!-- Search Box -->
                 <div class="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
                     <input type="text" id="searchInput" placeholder="Cari artikel..." class="search-input flex-1 px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm transition-all shadow-sm" />
                     <button onclick="searchArticles()" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
@@ -265,9 +243,8 @@
                             </a>
                         </div>
                         <div class="flex items-center justify-center">
-                            <div class="w-full h-56 md:h-64 rounded-xl bg-white/10 flex items-center justify-center text-7xl backdrop-blur-sm border border-white/20">
-                                🎓
-                            </div>
+                            <!-- Placeholder tanpa icon, hanya background -->
+                            <div class="w-full h-56 md:h-64 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20"></div>
                         </div>
                     </div>
                 </div>
@@ -286,9 +263,7 @@
                     <!-- Cards will be rendered by JavaScript -->
                 </div>
 
-                <!-- Empty state -->
                 <div id="emptyState" class="hidden text-center py-16">
-                    <div class="text-5xl mb-4">🔍</div>
                     <h3 class="text-xl font-semibold text-primary mb-2">Tidak ada artikel ditemukan</h3>
                     <p class="text-slate-500 text-sm">Coba gunakan kata kunci lain atau reset filter.</p>
                 </div>
@@ -297,9 +272,7 @@
 
     </main>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- FOOTER (sama dengan index)              -->
-    <!-- ════════════════════════════════════════ -->
+    <!-- FOOTER (sama dengan index) -->
     <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
@@ -378,11 +351,7 @@
         </div>
     </footer>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- JAVASCRIPT                              -->
-    <!-- ════════════════════════════════════════ -->
     <script>
-        // ── INIT LUCIDE ICONS ─────────────────────────
         function initIcons() {
             if (window.lucide) lucide.createIcons();
         }
@@ -392,7 +361,7 @@
             initIcons();
         }
 
-        // ── MOBILE MENU TOGGLE ─────────────────────────
+        // ── MOBILE MENU ─────────────────────────
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -429,8 +398,7 @@
                 category: "Tips Belajar",
                 author: "Admin Sainspiq",
                 date: "28 Juni 2026",
-                readTime: "5 min",
-                emoji: "📖"
+                readTime: "5 min"
             },
             {
                 id: 2,
@@ -439,8 +407,7 @@
                 category: "UTBK",
                 author: "Tim Akademik",
                 date: "25 Juni 2026",
-                readTime: "6 min",
-                emoji: "⏰"
+                readTime: "6 min"
             },
             {
                 id: 3,
@@ -449,8 +416,7 @@
                 category: "Motivasi",
                 author: "Psikolog Sainspiq",
                 date: "22 Juni 2026",
-                readTime: "7 min",
-                emoji: "🧠"
+                readTime: "7 min"
             },
             {
                 id: 4,
@@ -459,8 +425,7 @@
                 category: "UTBK",
                 author: "Tutor Senior",
                 date: "20 Juni 2026",
-                readTime: "8 min",
-                emoji: "✏️"
+                readTime: "8 min"
             },
             {
                 id: 5,
@@ -469,8 +434,7 @@
                 category: "Tips Belajar",
                 author: "Admin Sainspiq",
                 date: "18 Juni 2026",
-                readTime: "5 min",
-                emoji: "🍅"
+                readTime: "5 min"
             },
             {
                 id: 6,
@@ -479,8 +443,7 @@
                 category: "Motivasi",
                 author: "Admin Sainspiq",
                 date: "16 Juni 2026",
-                readTime: "6 min",
-                emoji: "🏆"
+                readTime: "6 min"
             },
             {
                 id: 7,
@@ -489,8 +452,7 @@
                 category: "Tips Belajar",
                 author: "Tim Konsultasi",
                 date: "14 Juni 2026",
-                readTime: "6 min",
-                emoji: "🎯"
+                readTime: "6 min"
             },
             {
                 id: 8,
@@ -499,8 +461,7 @@
                 category: "UTBK",
                 author: "Tim Akademik",
                 date: "12 Juni 2026",
-                readTime: "7 min",
-                emoji: "📋"
+                readTime: "7 min"
             },
             {
                 id: 9,
@@ -509,8 +470,7 @@
                 category: "Tips Belajar",
                 author: "Ahli Gizi",
                 date: "10 Juni 2026",
-                readTime: "5 min",
-                emoji: "🥗"
+                readTime: "5 min"
             },
             {
                 id: 10,
@@ -519,15 +479,13 @@
                 category: "Motivasi",
                 author: "Pelatih Olimpiade",
                 date: "8 Juni 2026",
-                readTime: "8 min",
-                emoji: "🔬"
+                readTime: "8 min"
             }
         ];
 
         let filteredArticles = [...articles];
         let currentCategory = 'semua';
 
-        // ── RENDER BLOG CARDS ──────────────────────────
         function renderBlogCards(articlesToRender) {
             const grid = document.getElementById('blogGrid');
             const empty = document.getElementById('emptyState');
@@ -547,16 +505,14 @@
                 const card = document.createElement('div');
                 card.className = 'blog-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col';
 
-                // Warna latar placeholder berbeda tiap kategori
+                // Warna latar placeholder berdasarkan kategori (tanpa icon)
                 let bgGrad = 'from-blue-50 to-blue-100';
                 if (article.category === 'UTBK') bgGrad = 'from-purple-50 to-purple-100';
                 else if (article.category === 'Tips Belajar') bgGrad = 'from-cyan-50 to-cyan-100';
                 else if (article.category === 'Motivasi') bgGrad = 'from-amber-50 to-amber-100';
 
                 card.innerHTML = `
-                    <div class="blog-image-placeholder w-full h-48 flex items-center justify-center text-5xl bg-gradient-to-br ${bgGrad} border-b border-slate-100">
-                        ${article.emoji}
-                    </div>
+                    <div class="blog-image-placeholder w-full h-48 bg-gradient-to-br ${bgGrad} border-b border-slate-100"></div>
                     <div class="p-5 flex flex-col flex-1">
                         <span class="inline-block text-xs font-semibold text-secondary bg-blue-50 px-3 py-1 rounded-full w-fit mb-3">${article.category}</span>
                         <h3 class="text-lg font-bold text-primary mb-2 leading-snug line-clamp-2">${article.title}</h3>
@@ -575,7 +531,6 @@
             });
         }
 
-        // ── FILTER CATEGORY ────────────────────────────
         function filterCategory(category) {
             currentCategory = category;
             document.querySelectorAll('.category-btn').forEach(btn => {
@@ -593,11 +548,9 @@
             renderBlogCards(filteredArticles);
         }
 
-        // ── SEARCH ──────────────────────────────────────
         function searchArticles() {
             const term = document.getElementById('searchInput').value.trim().toLowerCase();
             if (term === '') {
-                // Reset ke filter kategori saat ini
                 filterCategory(currentCategory);
                 return;
             }
@@ -610,23 +563,19 @@
             renderBlogCards(filteredArticles);
         }
 
-        // ── EVENT LISTENERS ────────────────────────────
         document.addEventListener('DOMContentLoaded', () => {
             renderBlogCards(articles);
 
-            // Category buttons
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     filterCategory(this.dataset.category);
                 });
             });
 
-            // Search on Enter
             document.getElementById('searchInput').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') searchArticles();
             });
         });
     </script>
-
 </body>
 </html>
