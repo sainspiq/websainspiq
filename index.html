@@ -495,228 +495,174 @@
             </div>
         </section>
 
-        <!-- Program Section -->
-        <section id="program" class="py-10 md:py-24 bg-white relative">
+        <!-- ============================================================
+             PROGRAM SECTION – Desain Ulang Premium ala Ruangguru
+             ============================================================ -->
+        <section id="program" class="program-section py-10 md:py-24 bg-white relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                <!-- HEADER -->
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Program Kami</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">Pilih Jenjang & Fokus Belajar</h3>
-                    <p class="text-slate-600">Materi yang disesuaikan dengan kurikulum nasional terbaru (K-13 & Merdeka) serta standar seleksi nasional.</p>
+                    <span class="inline-block text-xs font-bold text-secondary tracking-widest uppercase bg-blue-50 px-4 py-1.5 rounded-full mb-3">Program Kami</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Pilih Jenjang &amp; Fokus Belajar</h2>
+                    <p class="text-slate-600 text-sm md:text-base">Materi yang disesuaikan dengan kurikulum nasional terbaru (K-13 &amp; Merdeka) serta standar seleksi nasional.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Card 1: PAUD & TK -->
-                    <a href="#konsultasi" class="reveal stagger-1 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 55%, #dbeafe 100%); border: 1px solid #bfdbfe; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.06), 0 10px 30px -8px rgba(37,99,235,0.10), 0 1px 3px 0 rgba(37,99,235,0.04);">
-                        <!-- Hover border overlay -->
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #3b82f6;"></div>
-                        <!-- Subtle depth top highlight -->
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
-                        
-                        <!-- SVG Watermark: puzzle + bintang + balok huruf -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Puzzle piece -->
-                                <path d="M55 30 L55 48 Q50 44 44 48 Q38 52 44 58 Q50 62 55 58 L55 80 L37 80 Q41 75 37 69 Q33 63 27 69 Q21 75 27 81 L27 100 L80 100 L80 82 Q75 86 69 82 Q63 78 69 72 Q75 66 80 72 L80 30 Z" fill="#2563EB" stroke="#2563EB" stroke-width="0.5"/>
-                                <!-- Balok huruf A -->
-                                <rect x="90" y="60" width="32" height="32" rx="4" fill="#2563EB" opacity="0.7"/>
-                                <text x="106" y="82" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">A</text>
-                                <!-- Bintang -->
-                                <polygon points="25,20 27.4,27.3 35,27.3 29,32 31.4,39.3 25,35 18.6,39.3 21,32 15,27.3 22.6,27.3" fill="#2563EB" opacity="0.5"/>
-                                <!-- Bintang kecil -->
-                                <polygon points="105,20 106.5,24.6 111.4,24.6 107.5,27.4 109,32 105,29.2 101,32 102.5,27.4 98.6,24.6 103.5,24.6" fill="#2563EB" opacity="0.4"/>
-                            </svg>
-                        </div>
+                <!-- GRID CARD -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 
-                        <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="puzzle" class="w-6 h-6"></i>
+                    <!-- ======== CARD 1 – PAUD & TK ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="puzzle" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Mulai Dini</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">PAUD & TK</h4>
-                            <p class="text-sm text-slate-600 mb-4">Pengenalan huruf, angka, dan motorik dasar dengan pendekatan bermain yang menyenangkan dan interaktif.</p>
-                            <span class="text-sm font-semibold text-secondary flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-blue-700 transition-colors">PAUD &amp; TK</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Pengenalan huruf, angka, dan motorik dasar dengan pendekatan bermain yang menyenangkan &amp; interaktif.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-blue-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Card 2: SD -->
-                    <a href="#konsultasi" class="reveal stagger-2 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #ecfeff 55%, #cffafe 100%); border: 1px solid #a5f3fc; box-shadow: 0 4px 6px -1px rgba(8,145,178,0.06), 0 10px 30px -8px rgba(8,145,178,0.10), 0 1px 3px 0 rgba(8,145,178,0.04);">
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #06b6d4;"></div>
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+                    <!-- ======== CARD 2 – SD ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-cyan-600"></div>
 
-                        <!-- SVG Watermark: buku terbuka + pensil -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Buku terbuka -->
-                                <path d="M20 35 L20 105 Q50 95 70 105 Q90 95 120 105 L120 35 Q90 25 70 35 Q50 25 20 35 Z" fill="#0891b2" opacity="0.5"/>
-                                <line x1="70" y1="35" x2="70" y2="105" stroke="white" stroke-width="2"/>
-                                <path d="M25 45 Q47 38 65 45" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                                <path d="M25 55 Q47 48 65 55" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                                <path d="M25 65 Q47 58 65 65" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                                <path d="M75 45 Q97 38 115 45" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                                <path d="M75 55 Q97 48 115 55" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                                <!-- Pensil -->
-                                <rect x="92" y="18" width="8" height="36" rx="2" transform="rotate(35 96 36)" fill="#0891b2" opacity="0.7"/>
-                                <polygon points="88,58 96,54 92,66" fill="#0891b2" opacity="0.9"/>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="book-open" class="w-6 h-6"></i>
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="book-open" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full">Fondasi</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">Sekolah Dasar (SD)</h4>
-                            <p class="text-sm text-slate-600 mb-4">Penguatan fondasi calistung, logika matematika dasar, dan pengenalan ilmu sains sejak dini.</p>
-                            <span class="text-sm font-semibold text-cyan-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-cyan-700 transition-colors">Sekolah Dasar (SD)</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Penguatan fondasi calistung, logika matematika dasar, dan pengenalan ilmu sains sejak dini.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-cyan-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Card 3: SMP -->
-                    <a href="#konsultasi" class="reveal stagger-3 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 55%, #ede9fe 100%); border: 1px solid #c4b5fd; box-shadow: 0 4px 6px -1px rgba(109,40,217,0.06), 0 10px 30px -8px rgba(109,40,217,0.10), 0 1px 3px 0 rgba(109,40,217,0.04);">
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #7c3aed;"></div>
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+                    <!-- ======== CARD 3 – SMP ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-violet-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 to-violet-600"></div>
 
-                        <!-- SVG Watermark: atom + molekul -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.16] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Atom nucleus -->
-                                <circle cx="70" cy="72" r="8" fill="#7c3aed"/>
-                                <!-- Orbit 1 -->
-                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8"/>
-                                <!-- Orbit 2 rotated 60deg -->
-                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8" transform="rotate(60 70 72)"/>
-                                <!-- Orbit 3 rotated 120deg -->
-                                <ellipse cx="70" cy="72" rx="38" ry="16" stroke="#7c3aed" stroke-width="2" opacity="0.8" transform="rotate(120 70 72)"/>
-                                <!-- Electrons -->
-                                <circle cx="108" cy="72" r="4" fill="#7c3aed"/>
-                                <circle cx="45" cy="57" r="4" fill="#7c3aed" opacity="0.7"/>
-                                <circle cx="45" cy="87" r="4" fill="#7c3aed" opacity="0.7"/>
-                                <!-- Molekul kecil atas -->
-                                <circle cx="30" cy="25" r="7" fill="#7c3aed" opacity="0.4"/>
-                                <circle cx="50" cy="20" r="5" fill="#7c3aed" opacity="0.35"/>
-                                <line x1="37" y1="23" x2="45" y2="21" stroke="#7c3aed" stroke-width="2" opacity="0.4"/>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-violet-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="atom" class="w-6 h-6"></i>
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="atom" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-violet-100 text-violet-700 px-3 py-1 rounded-full">Peminatan</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">SMP</h4>
-                            <p class="text-sm text-slate-600 mb-4">Fokus peningkatan nilai raport, peminatan jurusan, dan penguasaan konsep ilmu sains & matematika lebih dalam.</p>
-                            <span class="text-sm font-semibold text-violet-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-violet-700 transition-colors">SMP</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Fokus peningkatan nilai raport, peminatan jurusan, dan penguasaan konsep sains &amp; matematika lebih dalam.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-violet-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Card 3b: SMA -->
-                    <a href="#konsultasi" class="reveal stagger-4 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #eff6ff 55%, #dbeafe 100%); border: 1px solid #93c5fd; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.07), 0 10px 30px -8px rgba(37,99,235,0.12), 0 1px 3px 0 rgba(37,99,235,0.04);">
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #2563eb;"></div>
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+                    <!-- ======== CARD 4 – SMA ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-400 to-indigo-600"></div>
 
-                        <!-- SVG Watermark: grafik akademik + rumus -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:140px;height:140px;">
-                            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Grafik naik -->
-                                <polyline points="18,110 40,85 62,95 84,55 106,65 128,30" stroke="#1d4ed8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <!-- Titik data -->
-                                <circle cx="18" cy="110" r="4" fill="#1d4ed8"/>
-                                <circle cx="40" cy="85" r="4" fill="#1d4ed8"/>
-                                <circle cx="62" cy="95" r="4" fill="#1d4ed8"/>
-                                <circle cx="84" cy="55" r="4" fill="#1d4ed8"/>
-                                <circle cx="106" cy="65" r="4" fill="#1d4ed8"/>
-                                <circle cx="128" cy="30" r="4" fill="#1d4ed8"/>
-                                <!-- Sumbu -->
-                                <line x1="15" y1="115" x2="132" y2="115" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
-                                <line x1="15" y1="20" x2="15" y2="115" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
-                                <!-- Rumus: E=mc² kecil -->
-                                <text x="30" y="18" fill="#1d4ed8" font-size="13" font-family="serif" font-style="italic" opacity="0.8">E=mc²</text>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-blue-700 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="line-chart" class="w-6 h-6"></i>
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="line-chart" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">Akademik</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">SMA</h4>
-                            <p class="text-sm text-slate-600 mb-4">Penguasaan materi peminatan IPA/IPS, persiapan ujian nasional, dan fondasi akademik menuju PTN impian.</p>
-                            <span class="text-sm font-semibold text-blue-700 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-indigo-700 transition-colors">SMA</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Penguasaan materi peminatan IPA/IPS, persiapan ujian nasional, dan fondasi akademik menuju PTN impian.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-indigo-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Card 4: Persiapan UTBK -->
-                    <a href="#konsultasi" class="reveal stagger-5 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #faf5ff 55%, #f3e8ff 100%); border: 1px solid #d8b4fe; box-shadow: 0 4px 6px -1px rgba(147,51,234,0.07), 0 10px 30px -8px rgba(147,51,234,0.12), 0 1px 3px 0 rgba(147,51,234,0.04);">
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #9333ea;"></div>
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+                    <!-- ======== CARD 5 – UTBK ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600"></div>
 
-                        <!-- SVG Watermark: target bullseye + grafik skor -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
-                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Target bullseye -->
-                                <circle cx="75" cy="82" r="52" stroke="#9333ea" stroke-width="2.5" opacity="0.6"/>
-                                <circle cx="75" cy="82" r="38" stroke="#9333ea" stroke-width="2.5" opacity="0.7"/>
-                                <circle cx="75" cy="82" r="24" stroke="#9333ea" stroke-width="2.5" opacity="0.8"/>
-                                <circle cx="75" cy="82" r="10" fill="#9333ea" opacity="0.9"/>
-                                <!-- Panah vertikal -->
-                                <line x1="75" y1="22" x2="75" y2="72" stroke="#9333ea" stroke-width="3" stroke-linecap="round"/>
-                                <polygon points="75,30 70,45 80,45" fill="#9333ea"/>
-                                <!-- Grafik mini atas kiri -->
-                                <polyline points="15,38 25,28 35,32 45,20" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-                                <circle cx="45" cy="20" r="3" fill="#9333ea" opacity="0.7"/>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10">
-                            <div class="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-20 uppercase tracking-wider">Intensif</div>
-                            <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="target" class="w-6 h-6"></i>
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="target" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-3 py-1 rounded-full">⭐ Intensif</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">Persiapan UTBK</h4>
-                            <p class="text-sm text-slate-600 mb-4">Drill soal TPS & Literasi. Simulasi tryout menggunakan sistem IRT, analisis kelemahan, dan evaluasi program studi.</p>
-                            <span class="text-sm font-semibold text-purple-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-purple-700 transition-colors">Persiapan UTBK</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Drill soal TPS &amp; Literasi. Simulasi tryout dengan sistem IRT, analisis kelemahan, dan evaluasi prodi.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-purple-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Card 5: Olimpiade Sains -->
-                    <a href="#konsultasi" class="reveal stagger-6 group block p-6 rounded-2xl card-transition relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #ecfeff 55%, #cffafe 100%); border: 1px solid #67e8f9; box-shadow: 0 4px 6px -1px rgba(8,145,178,0.07), 0 10px 30px -8px rgba(8,145,178,0.14), 0 1px 3px 0 rgba(8,145,178,0.04);">
-                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: inset 0 0 0 1.5px #0891b2;"></div>
-                        <div class="absolute top-0 left-0 right-0 h-px rounded-t-2xl" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);"></div>
+                    <!-- ======== CARD 6 – Olimpiade ======== -->
+                    <a href="#konsultasi" class="program-card group block relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-sky-50/60 via-white to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-sky-600"></div>
 
-                        <!-- SVG Watermark: atom + medali + piala -->
-                        <div class="absolute right-0 bottom-0 opacity-[0.15] pointer-events-none select-none" style="width:150px;height:150px;">
-                            <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                <!-- Piala -->
-                                <path d="M52 20 L98 20 L94 55 Q90 72 75 78 Q60 72 56 55 Z" fill="#0891b2" opacity="0.6"/>
-                                <rect x="68" y="78" width="14" height="20" fill="#0891b2" opacity="0.5"/>
-                                <rect x="55" y="98" width="40" height="6" rx="3" fill="#0891b2" opacity="0.5"/>
-                                <!-- Pegangan kiri -->
-                                <path d="M52 28 Q35 28 35 48 Q35 62 52 58" stroke="#0891b2" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
-                                <!-- Pegangan kanan -->
-                                <path d="M98 28 Q115 28 115 48 Q115 62 98 58" stroke="#0891b2" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
-                                <!-- Medali kecil -->
-                                <circle cx="28" cy="115" r="14" stroke="#0891b2" stroke-width="2.5" opacity="0.6"/>
-                                <text x="28" y="119" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold" font-family="sans-serif" opacity="0.8">1</text>
-                                <line x1="28" y1="97" x2="28" y2="101" stroke="#0891b2" stroke-width="2" opacity="0.5"/>
-                                <!-- Molekul kecil kanan bawah -->
-                                <circle cx="125" cy="120" r="6" fill="#0891b2" opacity="0.4"/>
-                                <circle cx="138" cy="108" r="4" fill="#0891b2" opacity="0.35"/>
-                                <circle cx="115" cy="108" r="4" fill="#0891b2" opacity="0.35"/>
-                                <line x1="131" y1="116" x2="134" y2="112" stroke="#0891b2" stroke-width="1.5" opacity="0.4"/>
-                                <line x1="119" y1="116" x2="116" y2="112" stroke="#0891b2" stroke-width="1.5" opacity="0.4"/>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                <i data-lucide="medal" class="w-6 h-6"></i>
+                        <div class="relative p-6 md:p-7">
+                            <div class="flex items-start justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-sky-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300">
+                                    <i data-lucide="medal" class="w-7 h-7"></i>
+                                </div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-700 px-3 py-1 rounded-full">Prestasi</span>
                             </div>
-                            <h4 class="text-xl font-bold text-primary mb-2">Olimpiade Sains</h4>
-                            <p class="text-sm text-slate-600 mb-4">Persiapan OSK, OSP, OSN dengan tutor spesialis peraih medali nasional maupun internasional.</p>
-                            <span class="text-sm font-semibold text-sky-600 flex items-center">Lihat Detail <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i></span>
+
+                            <h3 class="text-xl font-bold text-primary mb-1.5 group-hover:text-sky-700 transition-colors">Olimpiade Sains</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-4">Persiapan OSK, OSP, OSN dengan tutor spesialis peraih medali nasional maupun internasional.</p>
+
+                            <div class="flex items-center text-sm font-semibold text-sky-600 group-hover:gap-2 transition-all">
+                                <span>Lihat Detail</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
+                </div><!-- /grid -->
+
+                <!-- CTA bawah (opsional) -->
+                <div class="text-center mt-14">
+                    <p class="text-slate-500 text-sm mb-3">Butuh rekomendasi program yang paling sesuai?</p>
+                    <a href="#konsultasi" class="inline-flex items-center gap-2 bg-secondary text-white font-semibold text-sm px-7 py-3.5 rounded-full shadow-md hover:shadow-lg hover:bg-blue-700 transition-all hover:-translate-y-0.5">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Konsultasi Gratis Sekarang
+                    </a>
                 </div>
+
             </div>
         </section>
+        <!-- ============ AKHIR SECTION PROGRAM ============ -->
 
         <!-- Section Dokumentasi -->
         <section id="dokumentasi" class="py-10 md:py-24 bg-slate-50 border-b border-slate-200">
