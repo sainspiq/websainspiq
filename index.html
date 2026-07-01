@@ -948,7 +948,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
                 <div class="footer-col-brand">
                     <!-- LOGO FOOTER: ganti src="logo-sainspiq-white.png" dengan path logo putih kamu -->
-                    <a href="#" class="flex items-center mb-6">
+                    <a href="/" class="flex items-center mb-6 logo-link">
                         <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <!-- Fallback teks jika file logo belum ada -->
@@ -1119,8 +1119,17 @@
         });
 
         document.querySelectorAll('.mobile-menu-link, #mobile-cta').forEach(link => {
-            link.addEventListener('click', () => {
-                if (menuOpen) toggleMenu(false);
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#')) {
+                    // Halaman terpisah: prevent default, tutup menu, navigate
+                    e.preventDefault();
+                    toggleMenu(false);
+                    window.location.href = href;
+                } else {
+                    // Anchor in-page: tutup menu, biarkan scroll berjalan
+                    if (menuOpen) toggleMenu(false);
+                }
             });
         });
 
