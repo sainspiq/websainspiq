@@ -38,7 +38,7 @@
     <!-- Ikon Lucide -->
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
-    <!-- Stylesheet Tailwind (compiled, pakai file styles.css yang sama dengan index.html) -->
+    <!-- Stylesheet Tailwind -->
     <link rel="stylesheet" href="styles.css">
     <style>
         .logo-link{ margin-left:-14px; }
@@ -79,12 +79,12 @@
         body.wa-modal-open{ overflow:hidden; }
     </style>
 </head>
-<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
+<body class="font-sans text-primary bg-slate-50 antialiased selection:bg-secondary selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="flex items-center logo-link">
                     <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -96,24 +96,24 @@
                     </div>
                 </a>
 
-                <nav class="hidden md:flex space-x-1">
-                    <a href="index.html#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
-                    <a href="index.html#biaya-les" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
-                    <a href="index.html#area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
-                    <a href="index.html#blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
-                    <a href="tentang-kami.html" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Tentang Kami</a>
-                    <a href="index.html#kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
+                <nav class="hidden md:flex space-x-2">
+                    <a href="program.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
+                    <a href="biaya-les.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
+                    <a href="area-layanan.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Area Layanan</a>
+                    <a href="blog.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Blog</a>
+                    <a href="tentang-kami.html" class="px-4 py-2 rounded-full text-sm font-medium text-secondary bg-blue-50 transition-all">Tentang Kami</a>
+                    <a href="kontak.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Kontak</a>
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="index.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
-                    <a href="index.html#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                    <a href="login.html" class="px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Masuk</a>
+                    <a href="kontak.html" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-secondary to-blue-600 rounded-full hover:shadow-[0_8px_20px_rgb(59,130,246,0.3)] hover:-translate-y-0.5 transition-all duration-300">
                         Konsultasi Gratis
                     </a>
                 </div>
 
                 <div class="md:hidden flex items-center gap-2">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                    <button id="mobile-menu-btn" class="p-2 rounded-full text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Buka menu">
                         <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -121,18 +121,18 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
-            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-                <a href="index.html#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
-                <a href="index.html#biaya-les" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
-                <a href="index.html#area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
-                <a href="index.html#blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
-                <a href="tentang-kami.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white bg-white/10 transition-all border border-white/10">Tentang Kami</a>
-                <a href="index.html#kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Kontak</a>
+        <div id="mobile-menu" class="md:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 shadow-xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
+            <nav class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-2">
+                <a href="program.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-all">Program</a>
+                <a href="biaya-les.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-all">Biaya Les</a>
+                <a href="area-layanan.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-all">Area Layanan</a>
+                <a href="blog.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-all">Blog</a>
+                <a href="tentang-kami.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-semibold text-secondary bg-blue-50 transition-all">Tentang Kami</a>
+                <a href="kontak.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-all">Kontak</a>
 
-                <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
-                    <a href="index.html" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
-                    <a href="index.html#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+                <div class="border-t border-slate-100 mt-4 pt-4 flex flex-col gap-3">
+                    <a href="login.html" class="mobile-menu-link px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors text-center">Masuk</a>
+                    <a href="kontak.html" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-secondary to-blue-600 rounded-xl hover:shadow-lg transition-all">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -142,20 +142,21 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-slate-50">
-            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-support/10 rounded-full blur-3xl opacity-60"></div>
-            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-3xl opacity-60"></div>
+        <section class="hero-section relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden bg-white">
+            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-50 rounded-full blur-3xl opacity-60"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                <div class="max-w-3xl mx-auto text-center">
-                    <div class="hero-badge hero-animate flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-secondary text-sm font-semibold mb-6 mx-auto" style="transition-delay:0.1s">
-                        <i data-lucide="users" class="w-4 h-4"></i>
-                        <span>Tentang Sainspiq</span>
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="hero-badge hero-animate inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 shadow-sm text-secondary text-sm font-semibold mb-8" style="transition-delay:0.1s">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <span>Lebih Dekat dengan Sainspiq</span>
                     </div>
-                    <h1 class="hero-animate text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-5" style="transition-delay:0.2s">
-                        Mendampingi Setiap Anak Tumbuh Cerdas, <span class="text-secondary">Mandiri, dan Berakhlak</span>
+                    <h1 class="hero-animate text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.15] mb-6 tracking-tight" style="transition-delay:0.2s">
+                        Mendampingi Setiap Anak Tumbuh Cerdas, <br class="hidden lg:block" />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-600">Mandiri, dan Berakhlak</span>
                     </h1>
-                    <p class="hero-animate text-base sm:text-lg text-slate-500 leading-relaxed" style="transition-delay:0.3s">
+                    <p class="hero-animate text-lg sm:text-xl text-slate-500 leading-relaxed max-w-3xl mx-auto" style="transition-delay:0.3s">
                         Sainspiq hadir sebagai layanan les privat dan mengaji yang datang langsung ke rumah, membantu keluarga di seluruh Indonesia membangun fondasi literasi, numerasi, dan akhlak yang kuat sejak dini.
                     </p>
                 </div>
@@ -163,15 +164,17 @@
         </section>
 
         <!-- Cerita Kami -->
-        <section id="cerita-kami" class="py-16 lg:py-24 bg-white">
+        <section class="py-20 lg:py-32 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <div class="reveal slide-left">
-                        <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Cerita Kami</span>
-                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3 mb-5 leading-snug">
-                            Berawal dari Purwokerto, Tumbuh untuk Seluruh Indonesia
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-100/50 text-secondary text-sm font-bold uppercase tracking-wider mb-4">
+                            Cerita Kami
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-6 leading-tight tracking-tight">
+                            Berawal dari Purwokerto, Tumbuh untuk <span class="text-secondary">Seluruh Indonesia</span>
                         </h2>
-                        <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
                             <p>
                                 Sainspiq lahir dari kepedulian sederhana: banyak anak butuh pendampingan belajar yang personal, bukan sekadar les massal yang menyamaratakan semua murid. Berawal dari layanan les privat kunjungan rumah di kawasan Purwokerto dan Banyumas, kami fokus membangun fondasi literasi, numerasi, dan kemampuan mengaji secara bertahap dan menyenangkan.
                             </p>
@@ -180,34 +183,42 @@
                             </p>
                         </div>
                     </div>
+                    
                     <div class="reveal slide-right relative">
-                        <div class="bg-blue-50 rounded-3xl p-6 sm:p-10">
-                            <div class="bg-white rounded-2xl shadow-card p-6 sm:p-8 space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="map-pin" class="w-6 h-6 text-secondary"></i>
+                        <div class="space-y-6 relative z-10">
+                            <!-- Card 1 -->
+                            <div class="group bg-white rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-xl hover:border-blue-100 hover:-translate-y-1 transition-all duration-300">
+                                <div class="flex items-start gap-5">
+                                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-secondary flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="map-pin" class="w-7 h-7"></i>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-primary">Berakar dari Purwokerto & Banyumas</p>
-                                        <p class="text-sm text-slate-500 mt-1">Memulai dengan layanan kunjungan rumah yang dekat dengan keluarga.</p>
+                                        <h3 class="text-xl font-bold text-primary mb-2">Berakar dari Purwokerto</h3>
+                                        <p class="text-slate-500 leading-relaxed">Memulai dengan layanan kunjungan rumah yang dekat dengan keluarga dan mengedepankan kualitas lokal terbaik.</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="book-open" class="w-6 h-6 text-secondary"></i>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="group bg-white rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-xl hover:border-blue-100 hover:-translate-y-1 transition-all duration-300 md:ml-8">
+                                <div class="flex items-start gap-5">
+                                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-secondary flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="book-open" class="w-7 h-7"></i>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-primary">Fokus pada Fondasi</p>
-                                        <p class="text-sm text-slate-500 mt-1">Literasi, numerasi, dan mengaji sebagai dasar tumbuh kembang anak.</p>
+                                        <h3 class="text-xl font-bold text-primary mb-2">Fokus pada Fondasi</h3>
+                                        <p class="text-slate-500 leading-relaxed">Literasi, numerasi, dan mengaji sebagai dasar fundamental tumbuh kembang anak untuk masa depan yang cerah.</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="trending-up" class="w-6 h-6 text-secondary"></i>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="group bg-white rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-xl hover:border-blue-100 hover:-translate-y-1 transition-all duration-300 md:ml-16">
+                                <div class="flex items-start gap-5">
+                                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-secondary flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="trending-up" class="w-7 h-7"></i>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-primary">Berkembang Bersama Kepercayaan</p>
-                                        <p class="text-sm text-slate-500 mt-1">Kini melayani lebih banyak jenjang dan area di Indonesia.</p>
+                                        <h3 class="text-xl font-bold text-primary mb-2">Berkembang Bersama</h3>
+                                        <p class="text-slate-500 leading-relaxed">Berkat kepercayaan orang tua, kini kami melayani lebih banyak jenjang akademik di berbagai area di Indonesia.</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,31 +229,54 @@
         </section>
 
         <!-- Visi & Misi -->
-        <section id="visi-misi" class="py-16 lg:py-24 bg-slate-50">
+        <section class="py-20 lg:py-32 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                    <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Arah Kami</span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3">Visi & Misi Sainspiq</h2>
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 text-secondary text-sm font-bold uppercase tracking-wider mb-4">
+                        Arah & Tujuan
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight">Visi & Misi <span class="text-secondary">Sainspiq</span></h2>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="reveal stagger-1 bg-white rounded-2xl p-8 shadow-card border border-slate-100">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                            <i data-lucide="telescope" class="w-6 h-6 text-secondary"></i>
+                
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Visi Card -->
+                    <div class="reveal stagger-1 bg-white rounded-3xl p-10 lg:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center mb-8">
+                            <i data-lucide="telescope" class="w-8 h-8 text-secondary"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">Visi</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Menjadi mitra belajar terpercaya bagi keluarga Indonesia dalam membentuk generasi yang cerdas secara akademik, kuat secara karakter, dan dekat dengan nilai-nilai keagamaan.
+                        <h3 class="text-3xl font-extrabold text-primary mb-6">Visi Kami</h3>
+                        <p class="text-slate-600 text-lg leading-relaxed">
+                            Menjadi mitra belajar terpercaya bagi keluarga Indonesia dalam membentuk generasi yang cerdas secara akademik, kuat secara karakter, dan dekat dengan nilai-nilai keagamaan melalui pendekatan yang personal dan modern.
                         </p>
                     </div>
-                    <div class="reveal stagger-2 bg-white rounded-2xl p-8 shadow-card border border-slate-100">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                            <i data-lucide="target" class="w-6 h-6 text-secondary"></i>
+
+                    <!-- Misi Card -->
+                    <div class="reveal stagger-2 bg-white rounded-3xl p-10 lg:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+                        <div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center mb-8">
+                            <i data-lucide="target" class="w-8 h-8 text-secondary"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">Misi</h3>
-                        <ul class="text-slate-600 leading-relaxed space-y-2">
-                            <li class="flex gap-2"><i data-lucide="check" class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5"></i>Menghadirkan tutor terbaik dan terkurasi sesuai kebutuhan setiap anak.</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5"></i>Membangun metode belajar yang personal, fleksibel, dan menyenangkan.</li>
-                            <li class="flex gap-2"><i data-lucide="check" class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5"></i>Menumbuhkan kebiasaan belajar dan mengaji yang berkelanjutan di rumah.</li>
+                        <h3 class="text-3xl font-extrabold text-primary mb-6">Misi Kami</h3>
+                        <ul class="text-slate-600 text-lg leading-relaxed space-y-4">
+                            <li class="flex items-start gap-4">
+                                <div class="w-7 h-7 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-secondary"></i>
+                                </div>
+                                <span>Menghadirkan tutor terbaik dan terkurasi sesuai kebutuhan dan karakter setiap anak.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-7 h-7 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-secondary"></i>
+                                </div>
+                                <span>Membangun metode belajar yang personal, fleksibel, interaktif dan menyenangkan.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-7 h-7 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-secondary"></i>
+                                </div>
+                                <span>Menumbuhkan kebiasaan belajar, eksplorasi, dan mengaji yang berkelanjutan di rumah.</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -250,81 +284,95 @@
         </section>
 
         <!-- Nilai-Nilai -->
-        <section id="nilai-nilai" class="py-16 lg:py-24 bg-white">
+        <section class="py-20 lg:py-32 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                    <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Nilai Kami</span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3">Apa yang Kami Pegang Teguh</h2>
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-100/50 text-secondary text-sm font-bold uppercase tracking-wider mb-4">
+                        Nilai-Nilai Kami
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight">Apa yang Kami <span class="text-secondary">Pegang Teguh</span></h2>
                 </div>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="reveal stagger-1 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                            <i data-lucide="heart-handshake" class="w-6 h-6 text-secondary"></i>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <!-- Nilai 1 -->
+                    <div class="reveal stagger-1 group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 text-center">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-50 text-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                            <i data-lucide="heart-handshake" class="w-10 h-10"></i>
                         </div>
-                        <h3 class="font-bold text-primary mb-2">Personal & Peduli</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Setiap anak unik, sehingga pendekatan belajarnya pun kami sesuaikan satu per satu.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">Personal & Peduli</h3>
+                        <p class="text-slate-500 leading-relaxed">Setiap anak unik, sehingga pendekatan belajarnya pun kami sesuaikan secara mendetail satu per satu.</p>
                     </div>
-                    <div class="reveal stagger-2 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                            <i data-lucide="shield-check" class="w-6 h-6 text-secondary"></i>
+                    <!-- Nilai 2 -->
+                    <div class="reveal stagger-2 group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 text-center">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-50 text-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                            <i data-lucide="shield-check" class="w-10 h-10"></i>
                         </div>
-                        <h3 class="font-bold text-primary mb-2">Terpercaya</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Tutor melalui proses seleksi dan kurasi sebelum mendampingi putra-putri Anda.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">Terpercaya</h3>
+                        <p class="text-slate-500 leading-relaxed">Tutor melalui proses seleksi dan kurasi ketat sebelum mendampingi proses belajar putra-putri Anda.</p>
                     </div>
-                    <div class="reveal stagger-3 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                            <i data-lucide="sparkles" class="w-6 h-6 text-secondary"></i>
+                    <!-- Nilai 3 -->
+                    <div class="reveal stagger-3 group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 text-center">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-50 text-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                            <i data-lucide="sparkles" class="w-10 h-10"></i>
                         </div>
-                        <h3 class="font-bold text-primary mb-2">Konsisten</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Kemajuan belajar dipantau bertahap agar hasil terasa nyata, bukan instan.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">Konsisten</h3>
+                        <p class="text-slate-500 leading-relaxed">Kemajuan belajar dipantau dan dievaluasi bertahap agar memberikan hasil nyata, bukan sekadar instan.</p>
                     </div>
-                    <div class="reveal stagger-4 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                            <i data-lucide="book-heart" class="w-6 h-6 text-secondary"></i>
+                    <!-- Nilai 4 -->
+                    <div class="reveal stagger-4 group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 text-center">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-50 text-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                            <i data-lucide="book-heart" class="w-10 h-10"></i>
                         </div>
-                        <h3 class="font-bold text-primary mb-2">Akhlak Mulia</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Selain prestasi akademik, kami turut menumbuhkan adab dan kedekatan dengan Al-Qur'an.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">Akhlak Mulia</h3>
+                        <p class="text-slate-500 leading-relaxed">Selain memacu prestasi akademik, kami turut menumbuhkan adab baik dan kedekatan dengan Al-Qur'an.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Kenapa Memilih Kami -->
-        <section id="kenapa-kami" class="py-16 lg:py-24 bg-slate-50">
+        <section class="py-20 lg:py-32 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                    <span class="text-secondary font-semibold text-sm uppercase tracking-wide">Kenapa Sainspiq</span>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mt-3">Alasan Keluarga Memilih Kami</h2>
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 text-secondary text-sm font-bold uppercase tracking-wider mb-4">
+                        Keunggulan
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight">Alasan Keluarga <span class="text-secondary">Memilih Kami</span></h2>
                 </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="reveal stagger-1 bg-white rounded-2xl p-6 shadow-card border border-slate-100">
-                        <i data-lucide="home" class="w-7 h-7 text-secondary mb-3"></i>
-                        <h3 class="font-bold text-primary mb-2">Belajar Nyaman di Rumah</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Tutor datang langsung sehingga anak belajar di lingkungan yang familiar dan tanpa tekanan.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+                    <div class="reveal stagger-1 bg-white rounded-2xl p-8 border-t-4 border-t-secondary border-l border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
+                        <i data-lucide="home" class="w-10 h-10 text-secondary mb-5"></i>
+                        <h3 class="text-xl font-bold text-primary mb-3">Belajar Nyaman di Rumah</h3>
+                        <p class="text-slate-500 leading-relaxed">Tutor datang langsung sehingga anak belajar di lingkungan yang familiar, aman, dan sepenuhnya tanpa tekanan ruang kelas.</p>
                     </div>
-                    <div class="reveal stagger-2 bg-white rounded-2xl p-6 shadow-card border border-slate-100">
-                        <i data-lucide="user-check" class="w-7 h-7 text-secondary mb-3"></i>
-                        <h3 class="font-bold text-primary mb-2">Tutor Terkurasi</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Dipilih dari kandidat terbaik, dengan kemampuan komunikasi yang ramah anak.</p>
+                    <div class="reveal stagger-2 bg-white rounded-2xl p-8 border-t-4 border-t-blue-500 border-l border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
+                        <i data-lucide="user-check" class="w-10 h-10 text-blue-500 mb-5"></i>
+                        <h3 class="text-xl font-bold text-primary mb-3">Tutor Terkurasi Ketat</h3>
+                        <p class="text-slate-500 leading-relaxed">Dipilih khusus dari kandidat dan universitas terbaik, dengan kemampuan komunikasi yang ramah, sabar, serta mengerti psikologi anak.</p>
                     </div>
-                    <div class="reveal stagger-3 bg-white rounded-2xl p-6 shadow-card border border-slate-100">
-                        <i data-lucide="refresh-ccw" class="w-7 h-7 text-secondary mb-3"></i>
-                        <h3 class="font-bold text-primary mb-2">Garansi Kecocokan</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed">Jika tutor dirasa kurang cocok, kami carikan pengganti tanpa biaya tambahan.</p>
+                    <div class="reveal stagger-3 bg-white rounded-2xl p-8 border-t-4 border-t-indigo-500 border-l border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
+                        <i data-lucide="refresh-ccw" class="w-10 h-10 text-indigo-500 mb-5"></i>
+                        <h3 class="text-xl font-bold text-primary mb-3">Garansi Kecocokan 100%</h3>
+                        <p class="text-slate-500 leading-relaxed">Apabila metode mengajar tutor dirasa kurang cocok dengan gaya belajar anak, kami carikan pengganti tanpa dikenakan biaya tambahan.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA -->
-        <section id="cta-tentang" class="py-16 lg:py-20 bg-white">
+        <section class="py-20 lg:py-32 bg-slate-50">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="reveal bg-gradient-to-br from-secondary to-blue-800 rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 relative">Yuk, Kenalan Lebih Dekat dengan Sainspiq</h2>
-                    <p class="text-blue-100 max-w-xl mx-auto mb-8 relative">Ceritakan kebutuhan belajar putra-putri Anda, dan kami akan bantu carikan tutor yang paling sesuai.</p>
-                    <a href="index.html#konsultasi" class="relative inline-flex items-center gap-2 bg-white text-secondary font-semibold text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-md hover:bg-blue-50 transition-colors">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                <div class="reveal bg-gradient-to-br from-secondary via-blue-700 to-indigo-900 rounded-[2.5rem] px-8 py-16 sm:px-16 sm:py-20 text-center relative overflow-hidden shadow-2xl">
+                    <!-- Ornamen Dekoratif -->
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
+                    <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+                    
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 relative tracking-tight">Yuk, Kenalan Lebih Dekat dengan Sainspiq</h2>
+                    <p class="text-blue-100 text-lg sm:text-xl max-w-2xl mx-auto mb-10 relative leading-relaxed">Ceritakan secara detail kebutuhan belajar putra-putri Anda. Tim konsultan kami akan membantu merancang program & mencarikan tutor yang paling sesuai.</p>
+                    
+                    <a href="kontak.html" class="relative inline-flex items-center gap-3 bg-white text-secondary font-bold text-base sm:text-lg px-8 py-4 sm:px-10 sm:py-5 rounded-full shadow-[0_10px_25px_rgb(0,0,0,0.2)] hover:shadow-[0_15px_35px_rgb(255,255,255,0.3)] hover:scale-105 transition-all duration-300">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
                         Konsultasi Gratis Sekarang
                     </a>
                 </div>
@@ -333,11 +381,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+    <footer class="bg-slate-900 border-t border-slate-800 pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-16 footer-grid">
                 <div class="footer-col-brand">
-                    <a href="index.html" class="flex items-center mb-6">
+                    <a href="index.html" class="flex items-center mb-8">
                         <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="items-center gap-2" style="display:none;">
@@ -347,65 +395,67 @@
                             <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
                         </div>
                     </a>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data dan berkarakter.
                     </p>
                 </div>
 
                 <div class="footer-services-wrapper md:contents">
                     <div class="footer-col-services">
-                        <h4 class="text-white font-semibold mb-4">Program</h4>
-                        <ul class="text-sm footer-list">
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
-                            <li><a href="index.html#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                        <h4 class="text-white font-bold text-lg mb-6">Program</h4>
+                        <ul class="text-base space-y-4">
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat PraSchool</a></li>
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat PAUD & TK</a></li>
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat SD</a></li>
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat SMP</a></li>
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat SMA</a></li>
+                            <li><a href="program.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Persiapan UTBK / SNBT</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-col-area">
-                        <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
-                        <ul class="text-sm footer-list">
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Jakarta</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bandung</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Depok</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bekasi</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Bogor</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Surabaya</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Semarang</a></li>
-                            <li><a href="index.html#area-layanan" class="text-slate-400 hover:text-white transition-colors">Les Privat Purwokerto</a></li>
+                        <h4 class="text-white font-bold text-lg mb-6">Area Layanan</h4>
+                        <ul class="text-base space-y-4">
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Jakarta</a></li>
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Bandung</a></li>
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Depok & Bekasi</a></li>
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Bogor</a></li>
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Surabaya</a></li>
+                            <li><a href="area-layanan.html" class="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-transform">Les Privat Semarang</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="footer-col-contact">
-                    <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
-                    <ul class="space-y-4 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
+                    <h4 class="text-white font-bold text-lg mb-6">Kontak Kami</h4>
+                    <ul class="space-y-5 text-base">
+                        <li class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <span class="text-slate-400 leading-relaxed mt-1">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-slate-400"></i>
+                            </div>
                             <span class="text-slate-400">0899-4788-444</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-5 h-5 text-slate-400"></i>
+                            </div>
                             <span class="text-slate-400">halo@sainspiq.com</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
-                <div class="flex space-x-6 text-sm">
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
-                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                <div class="flex space-x-8 text-sm">
+                    <a href="kebijakan-privasi.html" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="syarat-ketentuan.html" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
                 </div>
             </div>
         </div>
@@ -413,7 +463,7 @@
 
     <button type="button" id="wa-float-btn" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 group flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span class="absolute right-16 bg-white text-primary text-sm font-bold px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">
+        <span class="absolute right-16 bg-white text-primary text-sm font-bold px-4 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">
             Chat Admin
         </span>
     </button>
@@ -454,7 +504,7 @@
                         <input type="tel" id="wa-modal-wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
                     </div>
 
-                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-2">
+                    <button type="submit" class="w-full bg-gradient-to-r from-secondary to-blue-600 text-white font-bold py-3.5 rounded-xl hover:shadow-[0_8px_20px_rgb(59,130,246,0.3)] hover:-translate-y-0.5 transition-all flex justify-center items-center gap-2 mt-2">
                         <i data-lucide="message-circle" class="w-5 h-5"></i>
                         Lanjutkan ke WhatsApp
                     </button>
@@ -485,11 +535,11 @@
         const toggleMenu = (open) => {
             menuOpen = open;
             if (menuOpen) {
-                mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                mobileMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none', 'invisible');
                 mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
             } else {
                 mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
-                mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none', 'invisible');
             }
             if (menuIcon) {
                 menuIcon.setAttribute('data-lucide', menuOpen ? 'x' : 'menu');
@@ -603,3 +653,4 @@
     </script>
 </body>
 </html>
+```eof
