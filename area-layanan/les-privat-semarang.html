@@ -121,7 +121,25 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" /></noscript>
 
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
-    <link rel="stylesheet" href="/styles.css" />
+    
+    <!-- Tailwind CSS via CDN untuk menggantikan file styles.css yang terpisah -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',    // Mengakomodasi class text-primary, bg-primary
+                        secondary: '#2563eb',  // Mengakomodasi class text-secondary, bg-secondary
+                        accent: '#f59e0b'      // Mengakomodasi class text-accent, bg-accent
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         /* ── Reset / Base ── */
