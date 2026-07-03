@@ -33,10 +33,25 @@
             },
             "telephone": "+62-899-4788-444",
             "email": "halo@sainspiq.com",
-            "areaServed": {
-                "@type": "City",
-                "name": "Semarang"
-            },
+            "areaServed": [
+                { "@type": "City", "name": "Semarang" },
+                { "@type": "AdministrativeArea", "name": "Semarang Tengah" },
+                { "@type": "AdministrativeArea", "name": "Semarang Utara" },
+                { "@type": "AdministrativeArea", "name": "Semarang Timur" },
+                { "@type": "AdministrativeArea", "name": "Semarang Selatan" },
+                { "@type": "AdministrativeArea", "name": "Semarang Barat" },
+                { "@type": "AdministrativeArea", "name": "Gayamsari" },
+                { "@type": "AdministrativeArea", "name": "Genuk" },
+                { "@type": "AdministrativeArea", "name": "Pedurungan" },
+                { "@type": "AdministrativeArea", "name": "Candisari" },
+                { "@type": "AdministrativeArea", "name": "Gajahmungkur" },
+                { "@type": "AdministrativeArea", "name": "Tembalang" },
+                { "@type": "AdministrativeArea", "name": "Banyumanik" },
+                { "@type": "AdministrativeArea", "name": "Gunungpati" },
+                { "@type": "AdministrativeArea", "name": "Mijen" },
+                { "@type": "AdministrativeArea", "name": "Ngaliyan" },
+                { "@type": "AdministrativeArea", "name": "Tugu" }
+            ],
             "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": "Program Les Privat Semarang",
@@ -108,6 +123,13 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Tentu. Sainspiq memberikan garansi kecocokan tutor. Jika dalam pertemuan awal dirasa kurang sesuai, kami akan carikan pengganti tanpa biaya tambahan."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Kecamatan mana saja di Semarang yang dilayani Sainspiq?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sainspiq melayani les privat di seluruh kecamatan Kota Semarang, meliputi Semarang Tengah, Semarang Utara, Semarang Timur, Semarang Selatan, Semarang Barat, Gayamsari, Genuk, Pedurungan, Candisari, Gajahmungkur, Tembalang, Banyumanik, Gunungpati, Mijen, Ngaliyan, dan Tugu."
                 }
             }]
         }
@@ -820,12 +842,8 @@
         .footer-list li+li {
             margin-top: 0.5rem;
         }
-        .footer-list a {
+        .footer-list span {
             color: #94a3b8;
-            transition: color 0.2s ease;
-        }
-        .footer-list a:hover {
-            color: #fff;
         }
 
         /* ── Responsive fixes ── */
@@ -1316,6 +1334,76 @@
             </div>
         </section>
 
+        <!-- ─── CAKUPAN WILAYAH ─── -->
+        <section id="cakupan-wilayah" class="py-12 md:py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                    <span class="text-xs font-bold text-secondary tracking-widest uppercase">Jangkauan Layanan</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mt-2">Les Privat di Semua Kecamatan Semarang</h2>
+                    <p class="text-slate-500 mt-3 text-sm md:text-base leading-relaxed">
+                        Tutor Sainspiq siap datang ke rumah atau mengajar online di seluruh wilayah Kota Semarang, mulai dari pusat kota hingga area pinggiran.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 reveal">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Semarang Tengah</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Semarang Utara</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Semarang Timur</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Semarang Selatan</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Semarang Barat</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Gayamsari</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Genuk</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Pedurungan</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Candisari</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Gajahmungkur</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Tembalang</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Banyumanik</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Gunungpati</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Mijen</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Ngaliyan</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-3 py-3 text-center hover:border-secondary/40 transition-colors">
+                        <span class="text-sm font-semibold text-primary">Tugu</span>
+                    </div>
+                </div>
+
+                <p class="text-center text-slate-400 text-xs mt-8 max-w-3xl mx-auto leading-relaxed">
+                    Les privat Semarang Tengah, les privat Semarang Selatan, les privat Tembalang, les privat Banyumanik, les privat Pedurungan, les privat Ngaliyan, dan seluruh kecamatan lainnya di Semarang — tutor datang ke rumah atau belajar online via Zoom.
+                </p>
+
+            </div>
+        </section>
+
         <!-- ─── KONSULTASI ─── -->
         <section id="konsultasi" class="py-12 md:py-24 relative overflow-hidden" style="background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 55%,#0ea5e9 100%)">
             <div class="absolute inset-0 pointer-events-none z-0">
@@ -1485,7 +1573,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
 
                 <div>
-                    <a href="/" class="flex items-center logo-link mb-4">
+                    <div class="flex items-center logo-link mb-4">
                         <img src="/logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="items-center gap-2" style="display:none;">
@@ -1494,7 +1582,7 @@
                             </div>
                             <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
                         </div>
-                    </a>
+                    </div>
                     <p class="text-slate-400 text-sm leading-relaxed">Les privat terbaik untuk PAUD, TK, SD, SMP, SMA, UTBK, dan Olimpiade. Tutor top 1% dari UI, ITB, UGM.</p>
                 </div>
 
@@ -1502,27 +1590,27 @@
                     <div>
                         <h4 class="text-white font-semibold mb-4">Program</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="#program">Les Privat PAUD</a></li>
-                            <li><a href="#program">Les Privat TK</a></li>
-                            <li><a href="#program">Les Privat SD</a></li>
-                            <li><a href="#program">Les Privat SMP</a></li>
-                            <li><a href="#program">Les Privat SMA</a></li>
-                            <li><a href="#program">Persiapan UTBK</a></li>
-                            <li><a href="#program">Olimpiade Sains</a></li>
+                            <li><span>Les Privat PAUD</span></li>
+                            <li><span>Les Privat TK</span></li>
+                            <li><span>Les Privat SD</span></li>
+                            <li><span>Les Privat SMP</span></li>
+                            <li><span>Les Privat SMA</span></li>
+                            <li><span>Persiapan UTBK</span></li>
+                            <li><span>Olimpiade Sains</span></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="/area-layanan/les-privat-jakarta">Jakarta</a></li>
-                            <li><a href="/area-layanan/les-privat-bandung">Bandung</a></li>
-                            <li><a href="/area-layanan/les-privat-depok">Depok</a></li>
-                            <li><a href="/area-layanan/les-privat-bekasi">Bekasi</a></li>
-                            <li><a href="/area-layanan/les-privat-bogor">Bogor</a></li>
-                            <li><a href="/area-layanan/les-privat-surabaya">Surabaya</a></li>
-                            <li><a href="/area-layanan/les-privat-semarang" class="text-secondary font-medium">Semarang</a></li>
-                            <li><a href="/area-layanan/les-privat-purwokerto">Purwokerto</a></li>
+                            <li><span>Jakarta</span></li>
+                            <li><span>Bandung</span></li>
+                            <li><span>Depok</span></li>
+                            <li><span>Bekasi</span></li>
+                            <li><span>Bogor</span></li>
+                            <li><span>Surabaya</span></li>
+                            <li><span class="text-secondary font-medium">Semarang</span></li>
+                            <li><span>Purwokerto</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1550,8 +1638,8 @@
             <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
                 <p class="text-slate-500 text-xs">© 2026 Sainspiq Education. All rights reserved.</p>
                 <div class="flex space-x-5 text-xs">
-                    <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
-                    <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat &amp; Ketentuan</a>
+                    <span class="text-slate-500">Kebijakan Privasi</span>
+                    <span class="text-slate-500">Syarat &amp; Ketentuan</span>
                 </div>
             </div>
         </div>
