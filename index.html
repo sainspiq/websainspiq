@@ -353,6 +353,7 @@
 
                 <nav class="hidden md:flex space-x-1">
                     <a href="#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="#testimoni" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Testimoni</a>
                     <a href="#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
                     <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
                     <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
@@ -378,6 +379,7 @@
         <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
                 <a href="#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
+                <a href="#testimoni" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Testimoni</a>
                 <a href="#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
                 <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
                 <a href="/blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Blog</a>
@@ -906,6 +908,170 @@
 
             </div>
         </section>
+
+        <!-- ============ SECTION TESTIMONI (CAROUSEL) ============ -->
+        <!--
+            FOTO TESTIMONI — upload file webp berikut ke folder assets/testimoni/ di repo:
+            assets/testimoni/testi-1.webp
+            assets/testimoni/testi-2.webp
+            assets/testimoni/testi-3.webp
+            assets/testimoni/testi-4.webp
+            assets/testimoni/testi-5.webp
+            Disarankan foto rasio 1:1 (persegi), min. 200x200px.
+            Kalau file belum ada / 404, otomatis fallback ke avatar inisial (tidak akan tampil ikon rusak).
+            Ganti juga nama, sekolah asal, dan tujuan kampus/jurusan sesuai data siswa asli.
+        -->
+        <section id="testimoni" class="py-10 md:py-24 bg-white border-b border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Header Section -->
+                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Kata Mereka</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">Cerita Nyata dari Siswa & Orang Tua</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Bukan sekadar klaim — ini pengalaman langsung keluarga yang sudah belajar bersama tutor Sainspiq.</p>
+                </div>
+
+                <!-- Carousel -->
+                <div class="testimoni-carousel relative reveal" id="testimoniCarousel">
+
+                    <div class="overflow-hidden rounded-2xl">
+                        <div class="testimoni-track flex" id="testimoniTrack" style="transition: transform 0.5s ease-in-out;">
+
+                            <!-- Slide 1 -->
+                            <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
+                                <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/testimoni/testi-1.webp" alt="Foto Alya Rahmawati, siswa bimbingan Sainspiq" class="w-20 h-20 rounded-full object-cover border-2 border-blue-50" width="80" height="80" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="hidden w-20 h-20 rounded-full items-center justify-center text-white font-bold text-xl" style="background: linear-gradient(135deg, #1d4ed8, #0ea5e9);">AR</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-center sm:justify-start gap-0.5 mb-3">
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                        </div>
+                                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed italic mb-4">"Tutor UTBK Sainspiq sabar banget jelasin sampai saya paham konsepnya, bukan cuma hafal rumus. Alhamdulillah bisa lolos jurusan impian."</p>
+                                        <p class="font-bold text-primary text-sm">Alya Rahmawati</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">SMAN 6 Jakarta Selatan — Lolos Kedokteran, Universitas Indonesia</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
+                                <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/testimoni/testi-2.webp" alt="Foto Bagas Pratama, siswa bimbingan Sainspiq" class="w-20 h-20 rounded-full object-cover border-2 border-blue-50" width="80" height="80" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="hidden w-20 h-20 rounded-full items-center justify-center text-white font-bold text-xl" style="background: linear-gradient(135deg, #1d4ed8, #0ea5e9);">BP</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-center sm:justify-start gap-0.5 mb-3">
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                        </div>
+                                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed italic mb-4">"Awalnya nilai Matematika saya pas-pasan. Setelah 4 bulan les sama Sainspiq, nilai rapor naik dan lebih percaya diri ikut olimpiade sekolah."</p>
+                                        <p class="font-bold text-primary text-sm">Bagas Pratama</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">SMA di Purwokerto — Lolos Teknik Industri, ITB</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
+                                <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/testimoni/testi-3.webp" alt="Foto Ibu Sari Wulandari, orang tua siswa Sainspiq" class="w-20 h-20 rounded-full object-cover border-2 border-blue-50" width="80" height="80" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="hidden w-20 h-20 rounded-full items-center justify-center text-white font-bold text-xl" style="background: linear-gradient(135deg, #1d4ed8, #0ea5e9);">SW</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-center sm:justify-start gap-0.5 mb-3">
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                        </div>
+                                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed italic mb-4">"Sebagai orang tua yang sibuk kerja, saya terbantu banget karena tutornya datang langsung ke rumah dan komunikasi progress belajar anak rutin dilaporkan."</p>
+                                        <p class="font-bold text-primary text-sm">Ibu Sari Wulandari</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Orang tua siswa SD — Program Les Privat SD, Jakarta Timur</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
+                                <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/testimoni/testi-4.webp" alt="Foto Nadira Putri, siswa bimbingan Sainspiq" class="w-20 h-20 rounded-full object-cover border-2 border-blue-50" width="80" height="80" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="hidden w-20 h-20 rounded-full items-center justify-center text-white font-bold text-xl" style="background: linear-gradient(135deg, #1d4ed8, #0ea5e9);">NP</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-center sm:justify-start gap-0.5 mb-3">
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                        </div>
+                                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed italic mb-4">"Modul dan try out UTBK dari Sainspiq bikin saya terbiasa sama pola soal aslinya, jadi pas hari-H nggak kaget lagi."</p>
+                                        <p class="font-bold text-primary text-sm">Nadira Putri</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">SMA di Jakarta Timur — Lolos Ilmu Komunikasi, UGM</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
+                                <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/testimoni/testi-5.webp" alt="Foto Kirana Ayu, siswa bimbingan Sainspiq" class="w-20 h-20 rounded-full object-cover border-2 border-blue-50" width="80" height="80" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="hidden w-20 h-20 rounded-full items-center justify-center text-white font-bold text-xl" style="background: linear-gradient(135deg, #1d4ed8, #0ea5e9);">KA</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-center sm:justify-start gap-0.5 mb-3">
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                            <i data-lucide="star" class="w-4 h-4 text-yellow-400" style="fill:currentColor"></i>
+                                        </div>
+                                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed italic mb-4">"Suka cara tutornya kasih latihan soal bertahap, dari yang gampang ke yang mirip soal SBMPTN/UTBK. Progresnya kerasa tiap minggu."</p>
+                                        <p class="font-bold text-primary text-sm">Kirana Ayu</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">SMA di Bandung — Lolos Farmasi, Universitas Padjadjaran</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- /testimoni-track -->
+                    </div><!-- /overflow-hidden -->
+
+                    <!-- Tombol Panah -->
+                    <button type="button" id="testimoniPrev" aria-label="Testimoni sebelumnya" class="hidden sm:flex absolute top-1/2 -left-4 md:-left-6 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-card border border-slate-100 items-center justify-center text-slate-500 hover:text-secondary hover:border-secondary transition-colors z-10">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <button type="button" id="testimoniNext" aria-label="Testimoni berikutnya" class="hidden sm:flex absolute top-1/2 -right-4 md:-right-6 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-card border border-slate-100 items-center justify-center text-slate-500 hover:text-secondary hover:border-secondary transition-colors z-10">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+
+                    <!-- Dots -->
+                    <div class="flex justify-center gap-2 mt-6" id="testimoniDots">
+                        <button type="button" class="testimoni-dot w-2.5 h-2.5 rounded-full bg-secondary transition-all" data-index="0" aria-label="Ke testimoni 1"></button>
+                        <button type="button" class="testimoni-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all" data-index="1" aria-label="Ke testimoni 2"></button>
+                        <button type="button" class="testimoni-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all" data-index="2" aria-label="Ke testimoni 3"></button>
+                        <button type="button" class="testimoni-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all" data-index="3" aria-label="Ke testimoni 4"></button>
+                        <button type="button" class="testimoni-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all" data-index="4" aria-label="Ke testimoni 5"></button>
+                    </div>
+
+                </div><!-- /testimoni-carousel -->
+
+            </div>
+        </section>
+        <!-- ============ AKHIR SECTION TESTIMONI ============ -->
 
         <!-- Konsultasi Section with Blue Abstract Visuals -->
         <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
@@ -1500,6 +1666,75 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.slide-left, .slide-right').forEach(el => slideObserver.observe(el));
+        // ══════════════════════════════════════════
+        // TESTIMONI CAROUSEL
+        // ══════════════════════════════════════════
+        (function () {
+            const track = document.getElementById('testimoniTrack');
+            if (!track) return;
+
+            const slides = track.querySelectorAll('.testimoni-slide');
+            const dots = document.querySelectorAll('.testimoni-dot');
+            const prevBtn = document.getElementById('testimoniPrev');
+            const nextBtn = document.getElementById('testimoniNext');
+            const carousel = document.getElementById('testimoniCarousel');
+            const total = slides.length;
+            let current = 0;
+            let autoplayTimer = null;
+
+            function goTo(index) {
+                current = (index + total) % total;
+                track.style.transform = `translateX(-${current * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('bg-secondary', i === current);
+                    dot.classList.toggle('bg-slate-300', i !== current);
+                });
+            }
+
+            function next() { goTo(current + 1); }
+            function prev() { goTo(current - 1); }
+
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayTimer = setInterval(next, 6000);
+            }
+            function stopAutoplay() {
+                if (autoplayTimer) clearInterval(autoplayTimer);
+            }
+
+            nextBtn && nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+            prevBtn && prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    goTo(parseInt(dot.dataset.index, 10));
+                    startAutoplay();
+                });
+            });
+
+            // Swipe support (mobile)
+            let touchStartX = 0;
+            let touchEndX = 0;
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoplay();
+            }, { passive: true });
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    diff > 0 ? next() : prev();
+                }
+                startAutoplay();
+            }, { passive: true });
+
+            // Pause autoplay when tab hidden / resume when visible
+            carousel.addEventListener('mouseenter', stopAutoplay);
+            carousel.addEventListener('mouseleave', startAutoplay);
+
+            goTo(0);
+            startAutoplay();
+        })();
+
         // ══════════════════════════════════════════
         // FAQ ACCORDION
         // ══════════════════════════════════════════
