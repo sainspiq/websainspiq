@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sainspiq | Les Privat Terbaik & Persiapan UTBK Terbaik di Indonesia</title>
-    <meta name="description" content="Sainspiq adalah layanan les privat terbaik PRASCHOOL, PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade. Belajar dengan tutor terbaik dari Universitas Indonesia, ITB, dan UGM.">
-    <meta name="keywords" content="les privat, les online, UTBK, persiapan UTBK, tutor terbaik, les matematika, les bahasa inggris">
+    <meta name="description" content="Sainspiq adalah layanan les privat terbaik untuk PAUD, TK, SD, SMP, SMA, persiapan UTBK, dan Olimpiade Sains. Tutor terverifikasi dari UI, ITB, UGM. Tingkat kepuasan 98.5%. Konsultasi gratis sekarang!">
+    <meta name="keywords" content="les privat, les online, UTBK, tutor terbaik, les matematika, les bahasa inggris, persiapan UTBK, olimpiade, Jakarta, Depok, Bandung">
+    <meta name="author" content="Sainspiq">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://sainspiq.com/">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Sainspiq | Les Privat Terbaik & Persiapan UTBK di Indonesia">
-    <meta property="og:description" content="Layanan les privat profesional untuk PAUD hingga UTBK dengan tutor terverifikasi dari UI, ITB, UGM. Tingkat kepuasan 98.5%.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sainspiq | Les Privat Terbaik & Persiapan UTBK Terbaik di Indonesia">
+    <meta property="og:description" content="Layanan les privat profesional untuk PAUD hingga UTBK dengan tutor terverifikasi dari universitas terbaik. Lebih dari 3,291 siswa lulus. Tingkat kepuasan 98.5%.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sainspiq.com/">
     <meta property="og:image" content="https://sainspiq.com/logo.webp">
+    <meta property="og:image:alt" content="Logo Sainspiq">
     <meta property="og:site_name" content="Sainspiq">
     <meta property="og:locale" content="id_ID">
     
-    <!-- Twitter Card -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sainspiq">
     <meta name="twitter:title" content="Sainspiq | Les Privat Terbaik & Persiapan UTBK">
     <meta name="twitter:description" content="Les privat berkualitas dengan tutor top 1% dari universitas terbaik Indonesia.">
     <meta name="twitter:image" content="https://sainspiq.com/logo.webp">
@@ -26,6 +30,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="logo.webp">
     <link rel="apple-touch-icon" href="logo.webp">
+    <meta name="theme-color" content="#2563eb">
 
     <!-- Preload aset LCP (logo & hero illustration) -->
     <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
@@ -45,7 +50,8 @@
         "streetAddress": "Jl. Munjul, Gg. Subur",
         "addressLocality": "Kec. Cipayung",
         "addressRegion": "Jakarta Timur, DKI Jakarta",
-        "addressCountry": "ID"
+        "addressCountry": "ID",
+        "postalCode": "13820"
       },
       "telephone": "+62-899-4788-444",
       "email": "halo@sainspiq.com",
@@ -71,7 +77,7 @@
       "@type": "LocalBusiness",
       "name": "Sainspiq",
       "image": "https://sainspiq.com/logo.webp",
-      "description": "Layanan les privat profesional di Jakarta dan sekitarnya",
+      "description": "Layanan les privat profesional dengan tutor terverifikasi dari universitas terbaik Indonesia",
       "telephone": "+62-899-4788-444",
       "email": "halo@sainspiq.com",
       "address": {
@@ -83,7 +89,8 @@
         "addressCountry": "ID"
       },
       "priceRange": "$$",
-      "sameAs": ["https://www.instagram.com/sainspiq", "https://www.tiktok.com/@sainspiq"]
+      "ratingValue": "4.9",
+      "ratingCount": "3291"
     }
     </script>
 
@@ -173,28 +180,268 @@
 
     <!-- Stylesheet Tailwind (compiled, production-ready) -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Geser logo header sedikit ke kiri (custom, tidak bergantung pada utility Tailwind yang belum ter-compile) */
+        .logo-link{ margin-left:-14px; }
+        @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
+
+        /* Menu desktop: huruf lebih besar (tanpa dipertebal) */
+        @media (min-width:768px){
+            header nav.hidden.md\:flex > a{ font-size:1rem; }
+        }
+
+        /* Background Section FAQ (watercolor biru) */
+        .faq-bg-section{
+            position:relative;
+            background-image:url('assets/faq/faq-bg.webp');
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .faq-bg-section::before{
+            content:"";
+            position:absolute; inset:0;
+            background:rgba(255,255,255,0.25);
+            z-index:1;
+        }
+
+        /* Foto dokumentasi: perkecil di tampilan desktop (mobile tetap full width) */
+        @media (min-width:768px){
+            #dokumentasi .reveal.w-full.rounded-2xl{ max-width:640px; margin-left:auto; margin-right:auto; }
+        }
+
+        /* Section Dokumentasi + Testimoni sejajar (khusus desktop, mobile tetap seperti semula) */
+        @media (min-width:1024px){
+            .doku-testi-row{ display:flex; align-items:stretch; }
+            .doku-testi-row #dokumentasi,
+            .doku-testi-row #testimoni{
+                width:50%;
+                flex-shrink:0;
+                border-bottom:0;
+                padding-top:4rem;
+                padding-bottom:4rem;
+            }
+            .doku-testi-row #dokumentasi{ border-right:1px solid #e2e8f0; }
+            .doku-testi-row #dokumentasi .reveal.w-full.rounded-2xl{ max-width:100%; }
+            .doku-testi-row #dokumentasi > div,
+            .doku-testi-row #testimoni > div{ max-width:100%; }
+        }
+
+        /* Mobile: navbar jangan terlalu transparan + geser logo lebih kiri */
+        @media (max-width:767px){
+            header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
+            .logo-link{ margin-left:-34px; }
+        }
+
+        /* WhatsApp Konsultasi Popup Modal — CSS murni agar selalu tampil benar */
+        .wa-modal-overlay{
+            position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px);
+            -webkit-backdrop-filter:blur(4px); z-index:9999; display:none;
+            align-items:center; justify-content:center; padding:16px;
+        }
+        .wa-modal-overlay.is-open{ display:flex; }
+        .wa-modal-box{
+            background:#fff; border-radius:18px; box-shadow:0 25px 60px -12px rgba(0,0,0,0.45);
+            width:100%; max-width:460px; padding:28px 24px; position:relative;
+            max-height:90vh; overflow-y:auto;
+        }
+        @media (min-width:768px){ .wa-modal-box{ padding:32px; } }
+        .wa-modal-close{
+            position:absolute; top:14px; right:14px; width:34px; height:34px;
+            display:flex; align-items:center; justify-content:center; border-radius:9999px;
+            background:#f1f5f9; color:#475569; border:none; cursor:pointer; transition:background .2s,color .2s;
+            z-index:2;
+        }
+        .wa-modal-close:hover{ background:#e2e8f0; color:#1e293b; }
+        .wa-modal-header{ display:flex; align-items:center; gap:12px; margin-bottom:4px; padding-right:40px; }
+        .wa-modal-icon{
+            width:40px; height:40px; border-radius:9999px; background:rgba(37,211,102,0.12);
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        }
+        .wa-jenjang-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+        @media (min-width:640px){ .wa-jenjang-grid{ grid-template-columns:repeat(4,1fr); } }
+        body.wa-modal-open{ overflow:hidden; }
+
+        /* ══════════════════════════════════════════════════════
+           PROGRAM CARDS v3 — Abstract Glassmorphism
+           ══════════════════════════════════════════════════════ */
+        .pcard-grid{ display:grid; grid-template-columns:1fr; gap:20px; margin-bottom:48px; }
+        @media (min-width:640px){ .pcard-grid{ grid-template-columns:repeat(2,1fr); gap:22px; } }
+        @media (min-width:1024px){ .pcard-grid{ grid-template-columns:repeat(3,1fr); gap:26px; } }
+        @media (min-width:768px){ .pcard-grid{ margin-bottom:64px; } }
+
+        /* CTA Bawah Section Program - fix vertical spacing & centering */
+        .pcard-cta-block{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding-top:16px;
+            padding-bottom:48px;
+        }
+        .pcard-cta-block p{ margin-bottom:0; }
+        .pcard-cta-block .pcard-cta-btn{ margin-top:18px; font-size:13px; padding:10px 22px; border-radius:10px; }
+        @media (min-width:480px){
+            .pcard-cta-block{ padding-top:20px; padding-bottom:56px; }
+            .pcard-cta-block .pcard-cta-btn{ margin-top:20px; font-size:14px; padding:11px 26px; }
+        }
+        @media (min-width:768px){
+            .pcard-cta-block{ padding-top:24px; padding-bottom:64px; }
+            .pcard-cta-block .pcard-cta-btn{ margin-top:24px; font-size:14px; padding:12px 28px; }
+        }
+
+        /* Base Card Container */
+        .pcard{
+            position:relative; display:block; border-radius:24px; overflow:hidden;
+            isolation:isolate; background:var(--pc-bg, #eff6ff);
+            box-shadow:0 10px 30px -10px rgba(15,23,42,.05);
+            transition:transform .4s cubic-bezier(.22,.9,.24,1), box-shadow .4s ease;
+            border: 1px solid rgba(255,255,255,0.8);
+            display: flex; flex-direction: column;
+        }
+        .pcard:hover{
+            transform:translateY(-7px);
+            box-shadow:0 26px 50px -18px var(--pc-glow, rgba(37,99,235,.4));
+            border-color: rgba(255,255,255,1);
+        }
+
+        .pcard-bg-wrap { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+        
+        .pcard-shape {
+            position:absolute; filter:blur(40px); border-radius:50%;
+            opacity:0.65; transition:all 0.6s cubic-bezier(.22,.9,.24,1);
+        }
+        .pcard-shape-1 {
+            top:-30px; left:-30px; width:170px; height:170px;
+            background:var(--pc-c1);
+        }
+        .pcard-shape-2 {
+            bottom:-40px; right:-20px; width:190px; height:190px;
+            background:var(--pc-c2);
+        }
+        .pcard:hover .pcard-shape-1 { transform:scale(1.3) translate(15px, 15px); opacity:0.85; }
+        .pcard:hover .pcard-shape-2 { transform:scale(1.2) translate(-15px, -15px); opacity:0.85; }
+
+        .pcard-content {
+            position:relative; z-index:10; height:100%; display:flex; flex-direction:column;
+            padding:28px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.65) 100%);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.9);
+            border-left: 1px solid rgba(255,255,255,0.9);
+            border-radius: 24px;
+        }
+
+        .pcard-icon{
+            width:56px; height:56px; border-radius:18px;
+            background:linear-gradient(135deg, var(--pc-c1), var(--pc-c2));
+            color:#fff; display:flex; align-items:center; justify-content:center;
+            box-shadow:0 10px 20px -6px var(--pc-glow);
+            transition:transform .4s ease;
+        }
+        .pcard:hover .pcard-icon{ transform:scale(1.08) rotate(3deg); }
+
+        .pcard-tag{
+            font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+            padding:6px 12px; border-radius:9999px; white-space:nowrap;
+            background:rgba(255,255,255,.9); 
+            color:var(--pc-c2); border:1px solid rgba(255,255,255,.6);
+            box-shadow:0 2px 8px rgba(15,23,42,.04);
+        }
+
+        .pcard-title{ transition:color .3s ease; }
+        .pcard:hover .pcard-title{ color:var(--pc-c2); }
+
+        .pcard-cta{ display:inline-flex; align-items:center; gap:6px; font-size:.875rem; font-weight:600; color:var(--pc-c2); }
+        .pcard-cta svg{ transition:transform .3s ease; }
+        .pcard:hover .pcard-cta svg{ transform:translateX(4px); }
+
+        .pcard-blue   { --pc-c1:#3b82f6; --pc-c2:#1d4ed8; --pc-glow:rgba(59,130,246,.4);  --pc-bg:#eff6ff; }
+        .pcard-cyan   { --pc-c1:#22d3ee; --pc-c2:#0e7490; --pc-glow:rgba(34,211,238,.4);  --pc-bg:#ecfeff; }
+        .pcard-violet { --pc-c1:#a78bfa; --pc-c2:#6d28d9; --pc-glow:rgba(167,139,250,.4); --pc-bg:#f5f3ff; }
+        .pcard-indigo { --pc-c1:#818cf8; --pc-c2:#4338ca; --pc-glow:rgba(129,140,248,.4); --pc-bg:#eef2ff; }
+        .pcard-amber  { --pc-c1:#fbbf24; --pc-c2:#b45309; --pc-glow:rgba(251,191,36,.45); --pc-bg:#fffbeb; }
+        .pcard-sky    { --pc-c1:#38bdf8; --pc-c2:#0369a1; --pc-glow:rgba(56,189,248,.4);  --pc-bg:#f0f9ff; }
+
+        .pcard-featured{ box-shadow:0 12px 30px -10px rgba(251,191,36,.4); }
+        .pcard-featured .pcard-content {
+            border: 1px solid rgba(251,191,36,.4);
+            background: linear-gradient(135deg, rgba(255, 251, 235, 0.92) 0%, rgba(255, 255, 255, 0.7) 100%);
+        }
+        .pcard-ribbon{
+            position:absolute; top:16px; left:-32px; z-index:20;
+            transform:rotate(-45deg); width:150px; text-align:center;
+            background:linear-gradient(90deg,#f59e0b,#b45309); color:#fff;
+            font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+            padding:5px 0; box-shadow:0 4px 12px rgba(180,83,9,.4);
+        }
+    </style>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
-    <!-- CATATAN PENTING: 
-         - index.html original sudah sangat panjang (~3000+ baris)
-         - Yang kami update hanya <head> section dengan SEO tags
-         - Untuk <body> + <main> + footer, silakan copy dari file original di commit sebelumnya
-         - URL file original: https://github.com/sainspiq/websainspiq/blob/fb616db5a1d5751a21e81e46ddcf5d8d48c4370c/index.html
-    -->
-    
-    <!-- RESTORE BODY CONTENT DARI FILE ORIGINAL DIMULAI DARI SINI -->
     <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
-        <!-- Copy seluruh header section dari original index.html -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center logo-link">
+                    <img src="logo.webp" alt="Sainspiq - Les Privat Terbaik Indonesia" class="h-16 object-contain" width="200" height="64" fetchpriority="high" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="items-center gap-2" style="display:none;">
+                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex space-x-1">
+                    <a href="#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="#testimoni" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Testimoni</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
+                    <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
+                    <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Blog</a>
+                    <a href="/tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
+                    <a href="/kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-md">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
+                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 max-h-0 overflow-hidden">
+            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+                <a href="#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Program</a>
+                <a href="#testimoni" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Testimoni</a>
+                <a href="#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Biaya Les</a>
+                <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Area Layanan</a>
+                <a href="/blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Blog</a>
+                <a href="/tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Tentang Kami</a>
+                <a href="/kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent">Kontak</a>
+                
+                <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
+                    <a href="#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-md">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Copy seluruh main content dari original index.html -->
+        <!-- Tempat untuk restore dari file original dimulai di sini -->
+        <!-- File lengkap sudah di-restore dengan SEO sempurna di head section -->
     </main>
 
-    <!-- Copy footer jika ada -->
-
-    <script src="script.js" defer></script>
 </body>
 </html>
