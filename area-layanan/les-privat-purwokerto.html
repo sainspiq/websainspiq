@@ -342,15 +342,17 @@
             overflow: hidden;
             isolation: isolate;
             background: var(--pc-bg, #eff6ff);
-            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, .05);
+            /* Diperhalus shadow dasar pcard */
+            box-shadow: 0 15px 35px -10px rgba(15, 23, 42, .06);
             transition: transform .4s cubic-bezier(.22, .9, .24, 1), box-shadow .4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             display: flex;
             flex-direction: column;
         }
         .pcard:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 26px 50px -18px var(--pc-glow, rgba(37, 99, 235, .4));
+            transform: translateY(-8px);
+            /* Diperkuat glow saat hover untuk kesan premium */
+            box-shadow: 0 30px 60px -15px var(--pc-glow, rgba(37, 99, 235, .3));
             border-color: rgba(255, 255, 255, 1);
         }
         .pcard-bg-wrap {
@@ -631,12 +633,42 @@
 
         .glass-nav {
             background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
+        
+        /* PREMIUM UI ADDITIONS */
+        .hero-mesh {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(217,100%,96%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(210,100%,98%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(217,100%,94%,1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(210,100%,97%,1) 0px, transparent 50%);
+        }
+        
         .shadow-card {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 36px -12px rgba(15, 23, 42, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.12);
+            border-color: rgba(59, 130, 246, 0.2) !important;
+        }
+
+        @keyframes float-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float {
+            animation: float-subtle 6s ease-in-out infinite;
         }
 
         /* Marquee animation */
@@ -661,14 +693,14 @@
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
     <!-- ===== HEADER ===== -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="https://sainspiq.com/" class="flex items-center logo-link">
+                <a href="https://sainspiq.com/" class="flex items-center logo-link hover:opacity-90 transition-opacity">
                     <img src="https://sainspiq.com/logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="items-center gap-2" style="display:none;">
-                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                        <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center shadow-md">
                             <i data-lucide="graduation-cap" class="text-white w-5 h-5"></i>
                         </div>
                         <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary">.</span></span>
@@ -685,7 +717,7 @@
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-all shadow hover:shadow-lg hover:-translate-y-0.5">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -720,45 +752,46 @@
     <main>
 
         <!-- ===== HERO ===== -->
-        <section class="hero-section relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50">
-            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-support/10 rounded-full blur-3xl opacity-60"></div>
-            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-3xl opacity-60"></div>
+        <section class="hero-section hero-mesh relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-support/10 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="hero-grid flex justify-center items-center">
 
                     <div class="max-w-2xl text-center">
-                        <div class="hero-badge hero-animate flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-secondary text-sm font-semibold mb-16 mx-auto" style="transition-delay:0.1s">
+                        <div class="hero-badge hero-animate flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-blue-200/60 shadow-sm text-secondary text-sm font-semibold mb-16 mx-auto" style="transition-delay:0.1s">
                             <span class="relative flex h-2.5 w-2.5">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
                             </span>
                             <span class="flex flex-col items-center leading-tight sm:flex-row sm:gap-1">
                                 <span>Les Privat Purwokerto</span>
-                                <span>· Guru Datang ke Rumah &amp; Online</span>
+                                <span class="hidden sm:inline text-slate-400">·</span>
+                                <span>Guru Datang ke Rumah &amp; Online</span>
                             </span>
                         </div>
 
-                        <h1 class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="transition-delay:0.22s">
-                            Les Privat Purwokerto
-                            <span class="text-gradient font-extrabold block sm:inline">Guru Berkualitas Datang ke Rumah</span>
+                        <h1 class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-5" style="transition-delay:0.22s">
+                            Les Privat Purwokerto<br>
+                            <span class="text-gradient font-extrabold block sm:inline drop-shadow-sm pb-1">Guru Berkualitas Datang ke Rumah</span>
                         </h1>
 
-                        <p class="hero-desc hero-animate text-base sm:text-lg text-slate-600 mb-6 leading-relaxed max-w-xl mx-auto" style="transition-delay:0.34s">
+                        <p class="hero-desc hero-animate text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto" style="transition-delay:0.34s">
                             Tutor terbaik dari UI, ITB, UGM siap membantu anak Anda meraih prestasi. Les privat murah di Purwokerto untuk PAUD, TK, SD, SMP, SMA, UTBK, &amp; Olimpiade — termasuk calistung, mengaji, bahasa Inggris, dan matematika.
                         </p>
 
                         <div class="hero-illustration-cta-wrap relative">
-                            <div class="hero-animate hero-illustration-wrap mb-8" style="transition-delay:0.4s">
-                                <img src="https://sainspiq.com/hero_illustration.webp" alt="Les privat Purwokerto - Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="448" height="448" fetchpriority="high" />
+                            <div class="hero-animate hero-illustration-wrap mb-10 animate-float" style="transition-delay:0.4s">
+                                <img src="https://sainspiq.com/hero_illustration.webp" alt="Les privat Purwokerto - Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl shadow-xl border border-white/50" width="448" height="448" fetchpriority="high" />
                             </div>
 
-                            <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
-                                <a href="#konsultasi" class="hero-cta-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                            <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 md:gap-4 mb-8" style="transition-delay:0.46s">
+                                <a href="#konsultasi" class="hero-cta-primary inline-flex items-center justify-center px-5 py-3 sm:px-7 sm:py-3.5 text-sm md:text-base font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                                     <span>Konsultasi Gratis</span>
-                                    <i data-lucide="arrow-right" class="ml-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                                    <i data-lucide="arrow-right" class="ml-1.5 w-4 h-4"></i>
                                 </a>
-                                <a href="#program" class="hero-cta-secondary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                                <a href="#program" class="hero-cta-secondary inline-flex items-center justify-center px-5 py-3 sm:px-7 sm:py-3.5 text-sm md:text-base font-semibold text-primary bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl hover:bg-slate-50 transition-all shadow-sm hover:shadow-md hover:-translate-y-1">
                                     <span>Pilih Program</span>
                                 </a>
                             </div>
@@ -770,71 +803,87 @@
         </section>
 
         <!-- ===== KENAPA PURWOKERTO? ===== -->
-        <section class="py-14 md:py-20 border-y border-slate-200 bg-white">
+        <section class="py-14 md:py-24 border-y border-slate-200 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="reveal text-center max-w-2xl mx-auto mb-12">
-                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3">Khusus Purwokerto</p>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-3">Les Privat di Purwokerto &amp; Sekitarnya</h2>
-                    <p class="text-slate-500 text-sm sm:text-base">Kami melayani siswa dari berbagai kecamatan di Purwokerto dan kabupaten Banyumas, Cilacap, Purbalingga, Banjarnegara, hingga Kebumen. Tutor siap datang ke rumah atau mengajar online.</p>
+                <div class="reveal text-center max-w-2xl mx-auto mb-14">
+                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3 bg-blue-50 inline-block px-3 py-1 rounded-full">Khusus Purwokerto</p>
+                    <h2 class="text-2xl sm:text-4xl font-bold text-primary mb-4">Les Privat di Purwokerto &amp; Sekitarnya</h2>
+                    <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Kami melayani siswa dari berbagai kecamatan di Purwokerto dan kabupaten Banyumas, Cilacap, Purbalingga, Banjarnegara, hingga Kebumen. Tutor siap datang ke rumah atau mengajar online.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="reveal stagger-1 bg-slate-50 rounded-2xl p-6 text-center border border-slate-200">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+                    <div class="reveal stagger-1 bg-white rounded-2xl p-8 text-center border border-slate-100 shadow-card hover-lift">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 flex items-center justify-center mb-5 border border-blue-100">
                             <i data-lucide="map-pin" class="w-6 h-6 text-secondary"></i>
                         </div>
-                        <h3 class="font-bold text-primary text-lg">Tutor Lokal Purwokerto</h3>
-                        <p class="text-sm text-slate-500 mt-2">Guru berasal dari mahasiswa &amp; alumni PTN terbaik yang berdomisili di Purwokerto dan sekitarnya.</p>
+                        <h3 class="font-bold text-primary text-lg md:text-xl">Tutor Lokal Purwokerto</h3>
+                        <p class="text-sm text-slate-500 mt-3 leading-relaxed">Guru berasal dari mahasiswa &amp; alumni PTN terbaik yang berdomisili di Purwokerto dan sekitarnya.</p>
                     </div>
-                    <div class="reveal stagger-2 bg-slate-50 rounded-2xl p-6 text-center border border-slate-200">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                    <div class="reveal stagger-2 bg-white rounded-2xl p-8 text-center border border-slate-100 shadow-card hover-lift">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 flex items-center justify-center mb-5 border border-blue-100">
                             <i data-lucide="home" class="w-6 h-6 text-secondary"></i>
                         </div>
-                        <h3 class="font-bold text-primary text-lg">Datang ke Rumah</h3>
-                        <p class="text-sm text-slate-500 mt-2">Layanan tatap muka di rumah siswa untuk kenyamanan dan keamanan belajar maksimal.</p>
+                        <h3 class="font-bold text-primary text-lg md:text-xl">Datang ke Rumah</h3>
+                        <p class="text-sm text-slate-500 mt-3 leading-relaxed">Layanan tatap muka di rumah siswa untuk kenyamanan dan keamanan belajar maksimal.</p>
                     </div>
-                    <div class="reveal stagger-3 bg-slate-50 rounded-2xl p-6 text-center border border-slate-200">
-                        <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                    <div class="reveal stagger-3 bg-white rounded-2xl p-8 text-center border border-slate-100 shadow-card hover-lift">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 flex items-center justify-center mb-5 border border-blue-100">
                             <i data-lucide="video" class="w-6 h-6 text-secondary"></i>
                         </div>
-                        <h3 class="font-bold text-primary text-lg">Online via Zoom</h3>
-                        <p class="text-sm text-slate-500 mt-2">Pilihan belajar online interaktif dengan tutor terbaik, fleksibel dari mana saja.</p>
+                        <h3 class="font-bold text-primary text-lg md:text-xl">Online via Zoom</h3>
+                        <p class="text-sm text-slate-500 mt-3 leading-relaxed">Pilihan belajar online interaktif dengan tutor terbaik, fleksibel dari mana saja.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ===== LAYANAN SPESIFIK / KEYWORD TARGET ===== -->
-        <section class="py-14 md:py-20 bg-slate-50 border-b border-slate-200">
+        <section class="py-14 md:py-24 bg-slate-50/50 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="reveal text-center max-w-2xl mx-auto mb-12">
-                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3">Layanan Populer</p>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-3">Les Privat Purwokerto Sesuai Kebutuhan Anak Anda</h2>
-                    <p class="text-slate-500 text-sm sm:text-base">Sainspiq menyediakan les privat murah di Purwokerto untuk berbagai kebutuhan belajar, dari calistung &amp; mengaji, bahasa Inggris, hingga matematika untuk jenjang SD.</p>
+                <div class="reveal text-center max-w-2xl mx-auto mb-14">
+                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3 bg-blue-50 inline-block px-3 py-1 rounded-full border border-blue-100/50">Layanan Populer</p>
+                    <h2 class="text-2xl sm:text-4xl font-bold text-primary mb-4">Sesuai Kebutuhan Anak Anda</h2>
+                    <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Sainspiq menyediakan les privat murah di Purwokerto untuk berbagai kebutuhan belajar, dari calistung &amp; mengaji, bahasa Inggris, hingga matematika untuk jenjang SD.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <div class="reveal stagger-1 bg-white rounded-2xl p-6 border border-slate-200 shadow-card">
-                        <h3 class="font-bold text-primary text-lg mb-2">Les Privat Calistung &amp; Mengaji Purwokerto</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+                    <div class="reveal stagger-1 bg-white rounded-2xl p-8 border border-slate-100 shadow-card hover-lift">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center"><i data-lucide="book" class="w-5 h-5 text-secondary"></i></div>
+                            <h3 class="font-bold text-primary text-lg">Calistung &amp; Mengaji</h3>
+                        </div>
                         <p class="text-sm text-slate-600 leading-relaxed">Program les privat calistung (membaca, menulis, berhitung) dan mengaji di Purwokerto dirancang untuk anak usia dini dan SD kelas awal. Tutor datang ke rumah dengan metode belajar sambil bermain, membantu anak lancar membaca, menulis, berhitung, dan mengenal huruf hijaiyah sejak dini.</p>
                     </div>
-                    <div class="reveal stagger-2 bg-white rounded-2xl p-6 border border-slate-200 shadow-card">
-                        <h3 class="font-bold text-primary text-lg mb-2">Les Privat Bahasa Inggris Purwokerto</h3>
+                    <div class="reveal stagger-2 bg-white rounded-2xl p-8 border border-slate-100 shadow-card hover-lift">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center"><i data-lucide="message-square" class="w-5 h-5 text-secondary"></i></div>
+                            <h3 class="font-bold text-primary text-lg">Bahasa Inggris</h3>
+                        </div>
                         <p class="text-sm text-slate-600 leading-relaxed">Les privat bahasa Inggris di Purwokerto membantu siswa dari jenjang SD, SMP, hingga SMA meningkatkan kemampuan speaking, grammar, dan persiapan ujian sekolah. Tutor menyesuaikan materi dengan level dan tujuan belajar setiap anak, baik untuk nilai raport maupun percakapan sehari-hari.</p>
                     </div>
-                    <div class="reveal stagger-3 bg-white rounded-2xl p-6 border border-slate-200 shadow-card">
-                        <h3 class="font-bold text-primary text-lg mb-2">Les Privat SD Purwokerto</h3>
+                    <div class="reveal stagger-3 bg-white rounded-2xl p-8 border border-slate-100 shadow-card hover-lift">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center"><i data-lucide="backpack" class="w-5 h-5 text-secondary"></i></div>
+                            <h3 class="font-bold text-primary text-lg">Sekolah Dasar (SD)</h3>
+                        </div>
                         <p class="text-sm text-slate-600 leading-relaxed">Untuk siswa Sekolah Dasar di Purwokerto, Sainspiq menghadirkan tutor yang membantu penguatan semua mata pelajaran sesuai kurikulum Merdeka, termasuk matematika, bahasa Indonesia, IPA, dan bahasa Inggris, dengan pendekatan personal agar anak lebih percaya diri di sekolah.</p>
                     </div>
-                    <div class="reveal stagger-4 bg-white rounded-2xl p-6 border border-slate-200 shadow-card">
-                        <h3 class="font-bold text-primary text-lg mb-2">Les Privat Matematika Purwokerto</h3>
+                    <div class="reveal stagger-4 bg-white rounded-2xl p-8 border border-slate-100 shadow-card hover-lift">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center"><i data-lucide="calculator" class="w-5 h-5 text-secondary"></i></div>
+                            <h3 class="font-bold text-primary text-lg">Matematika</h3>
+                        </div>
                         <p class="text-sm text-slate-600 leading-relaxed">Les privat matematika di Purwokerto tersedia untuk jenjang SD, SMP, SMA, hingga persiapan UTBK/SNBT. Tutor membantu siswa memahami konsep dasar hingga soal-soal tingkat lanjut, dengan latihan soal terarah agar nilai matematika anak meningkat bertahap.</p>
                     </div>
                 </div>
 
-                <p class="reveal text-center text-slate-500 text-sm mt-8 max-w-3xl mx-auto leading-relaxed">
-                    Semua program di atas tersedia dengan paket <strong>les privat murah di Purwokerto</strong> mulai dari Rp200.000 per pertemuan, tanpa mengurangi kualitas pengajaran. Konsultasikan kebutuhan dan budget Anda secara gratis.
-                </p>
+                <div class="reveal text-center mt-12 max-w-3xl mx-auto">
+                    <div class="inline-block bg-white border border-blue-100 shadow-sm rounded-2xl p-6">
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Semua program di atas tersedia dengan paket <strong>les privat murah di Purwokerto</strong> mulai dari <span class="font-bold text-secondary">Rp200.000</span> per pertemuan, tanpa mengurangi kualitas pengajaran. Konsultasikan kebutuhan dan budget Anda secara gratis.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -843,38 +892,38 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="reveal text-center max-w-2xl mx-auto mb-10">
                     <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3">Jangkauan Layanan</p>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-3">Les Privat di Semua Kecamatan Purwokerto</h2>
-                    <p class="text-slate-500 text-sm sm:text-base">Tutor Sainspiq siap datang ke rumah atau mengajar online di seluruh wilayah Purwokerto.</p>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-3">Hadir di Seluruh Purwokerto</h2>
+                    <p class="text-slate-500 text-sm sm:text-base">Tutor Sainspiq siap datang ke rumah atau mengajar online di seluruh wilayah.</p>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto reveal">
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-4 text-center hover:border-secondary/40 transition-colors">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto reveal">
+                    <div class="bg-white shadow-sm border border-slate-100 rounded-xl px-4 py-5 text-center hover-lift cursor-default">
                         <span class="text-sm font-semibold text-primary">Purwokerto Utara</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-4 text-center hover:border-secondary/40 transition-colors">
+                    <div class="bg-white shadow-sm border border-slate-100 rounded-xl px-4 py-5 text-center hover-lift cursor-default">
                         <span class="text-sm font-semibold text-primary">Purwokerto Timur</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-4 text-center hover:border-secondary/40 transition-colors">
+                    <div class="bg-white shadow-sm border border-slate-100 rounded-xl px-4 py-5 text-center hover-lift cursor-default">
                         <span class="text-sm font-semibold text-primary">Purwokerto Selatan</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-4 text-center hover:border-secondary/40 transition-colors">
+                    <div class="bg-white shadow-sm border border-slate-100 rounded-xl px-4 py-5 text-center hover-lift cursor-default">
                         <span class="text-sm font-semibold text-primary">Purwokerto Barat</span>
                     </div>
                 </div>
 
-                <p class="text-center text-slate-400 text-xs mt-8 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-center text-slate-400 text-xs mt-10 max-w-3xl mx-auto leading-relaxed">
                     Les privat Purwokerto Utara, les privat Purwokerto Timur, les privat Purwokerto Selatan, les privat Purwokerto Barat, dan wilayah sekitarnya di Kabupaten Banyumas, Cilacap, Purbalingga, Banjarnegara, hingga Kebumen — tutor datang ke rumah atau belajar online via Zoom.
                 </p>
             </div>
         </section>
 
         <!-- ===== PROGRAM ===== -->
-        <section id="program" class="program-section py-10 md:py-24 bg-white relative">
+        <section id="program" class="program-section py-14 md:py-24 bg-slate-50/30 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="inline-block text-xs font-bold text-secondary tracking-widest uppercase bg-blue-50 px-4 py-1.5 rounded-full mb-3">Program Kami</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Les Privat Purwokerto untuk Semua Jenjang</h2>
+                    <span class="inline-block text-xs font-bold text-secondary tracking-widest uppercase bg-white border border-blue-100 shadow-sm px-4 py-1.5 rounded-full mb-4">Program Kami</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Untuk Semua Jenjang Pendidikan</h2>
                     <p class="text-slate-600 text-sm md:text-base">Materi sesuai kurikulum nasional (K-13 &amp; Merdeka) dengan pendekatan personal untuk setiap siswa.</p>
                 </div>
 
@@ -1003,10 +1052,10 @@
 
                 </div>
 
-                <div class="pcard-cta-block">
-                    <p class="text-slate-500 text-sm">Butuh rekomendasi program yang paling sesuai untuk anak Anda di Purwokerto?</p>
-                    <a href="#konsultasi" class="pcard-cta-btn inline-flex items-center gap-2 bg-secondary text-white font-semibold shadow-md hover:shadow-lg hover:bg-blue-700 transition-all hover:-translate-y-0.5">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                <div class="pcard-cta-block reveal">
+                    <p class="text-slate-500 text-sm mb-2">Butuh rekomendasi program yang paling sesuai untuk anak Anda di Purwokerto?</p>
+                    <a href="#konsultasi" class="pcard-cta-btn inline-flex items-center gap-2 bg-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all hover:-translate-y-1">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
                         Konsultasi Gratis Sekarang
                     </a>
                 </div>
@@ -1015,11 +1064,11 @@
         </section>
 
         <!-- ===== TUTOR ===== -->
-        <section class="py-10 md:py-20 bg-slate-50 border-b border-slate-200">
+        <section class="py-14 md:py-24 bg-white border-y border-slate-200">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-4">
+                <div class="text-center mb-10 reveal">
                     <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Jaringan Tutor Unggulan</h2>
-                    <h3 class="text-3xl font-bold text-primary">Tutor Kami Berasal Dari PTN Terbaik</h3>
+                    <h3 class="text-3xl font-bold text-primary">Tutor Berasal Dari PTN Terbaik</h3>
                     <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">Tutor kami adalah mahasiswa aktif atau alumni terbaik dari universitas top Indonesia, yang telah melalui seleksi ketat dan terverifikasi.</p>
                 </div>
 
@@ -1027,36 +1076,36 @@
 
                     <!-- Baris 1 -->
                     <div class="flex gap-4 mb-4" style="animation: marquee-right 28s linear infinite; width: max-content;">
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Indonesia</p><p class="text-[10px] text-slate-400">Depok, Jawa Barat</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Institut Tek. Bandung</p><p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p><p class="text-[10px] text-slate-400">Yogyakarta</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Padjadjaran</p><p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p></div>
                         </div>
                         <!-- duplicate -->
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Indonesia</p><p class="text-[10px] text-slate-400">Depok, Jawa Barat</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Institut Tek. Bandung</p><p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p><p class="text-[10px] text-slate-400">Yogyakarta</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Padjadjaran</p><p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p></div>
                         </div>
@@ -1064,36 +1113,36 @@
 
                     <!-- Baris 2 -->
                     <div class="flex gap-4" style="animation: marquee-left 28s linear infinite; width: max-content;">
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p><p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Airlangga</p><p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Diponegoro</p><p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Brawijaya</p><p class="text-[10px] text-slate-400">Malang, Jawa Timur</p></div>
                         </div>
                         <!-- duplicate -->
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p><p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Airlangga</p><p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Diponegoro</p><p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p></div>
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
+                        <div class="bg-white rounded-2xl p-5 shadow-card hover-lift flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0 cursor-default" style="width:160px;">
                             <img src="https://sainspiq.com/assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='https://sainspiq.com/assets/logos/default.webp';" />
                             <div class="text-center"><p class="text-xs font-bold text-primary">Univ. Brawijaya</p><p class="text-[10px] text-slate-400">Malang, Jawa Timur</p></div>
                         </div>
@@ -1101,17 +1150,17 @@
 
                 </div>
 
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-5 py-2.5 shadow-sm">
+                <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                    <div class="flex items-center gap-2 bg-white border border-slate-100 rounded-full px-5 py-2.5 shadow-sm hover-lift">
                         <i data-lucide="shield-check" class="w-4 h-4 text-secondary"></i>
                         <span class="text-sm font-medium text-slate-700">500+ Tutor Terverifikasi</span>
                     </div>
-                    <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-5 py-2.5 shadow-sm">
-                        <i data-lucide="star" class="w-4 h-4 text-accent"></i>
+                    <div class="flex items-center gap-2 bg-white border border-slate-100 rounded-full px-5 py-2.5 shadow-sm hover-lift">
+                        <i data-lucide="star" class="w-4 h-4 text-amber-500"></i>
                         <span class="text-sm font-medium text-slate-700">Top 1% Mahasiswa &amp; Alumni</span>
                     </div>
-                    <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-5 py-2.5 shadow-sm">
-                        <i data-lucide="user-check" class="w-4 h-4 text-green-600"></i>
+                    <div class="flex items-center gap-2 bg-white border border-slate-100 rounded-full px-5 py-2.5 shadow-sm hover-lift">
+                        <i data-lucide="user-check" class="w-4 h-4 text-green-500"></i>
                         <span class="text-sm font-medium text-slate-700">Seleksi Ketat &amp; Terlatih</span>
                     </div>
                 </div>
@@ -1119,17 +1168,17 @@
         </section>
 
         <!-- ===== DOKUMENTASI ===== -->
-        <section id="dokumentasi" class="py-10 md:py-24 bg-slate-50 border-b border-slate-200">
+        <section id="dokumentasi" class="py-14 md:py-24 bg-slate-50/50 border-b border-slate-200">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Bukti Nyata</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">Suasana Belajar Les Privat di Purwokerto</h3>
+                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2 bg-white border border-blue-100 shadow-sm px-4 py-1.5 rounded-full inline-block">Bukti Nyata</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4 mt-4">Suasana Belajar Les Privat</h3>
                     <p class="text-slate-500 text-sm leading-relaxed">Setiap sesi les adalah cerita nyata — di rumah siswa, di mana pun mereka berada. Intip suasana belajar seru yang sudah kami jalani bersama keluarga di Purwokerto.</p>
                 </div>
 
-                <div class="reveal w-full rounded-2xl overflow-hidden">
-                    <img src="https://sainspiq.com/assets/docs/doc-1.webp" alt="Dokumentasi les privat Purwokerto - Sainspiq" class="w-full h-auto block" width="800" height="600" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';" />
-                    <div class="doc-placeholder hidden w-full bg-gradient-to-br from-blue-50 to-blue-100 items-center justify-center flex-col gap-3" style="min-height:320px;">
+                <div class="reveal w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                    <img src="https://sainspiq.com/assets/docs/doc-1.webp" alt="Dokumentasi les privat Purwokerto - Sainspiq" class="w-full h-auto block hover:scale-105 transition-transform duration-700" width="800" height="600" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';" />
+                    <div class="doc-placeholder hidden w-full bg-gradient-to-br from-blue-50 to-blue-100 items-center justify-center flex-col gap-3" style="min-height:400px;">
                         <i data-lucide="image" class="w-12 h-12 text-blue-300"></i>
                         <span class="text-sm text-blue-400 font-medium">Upload foto ke assets/docs/doc-1.webp</span>
                     </div>
@@ -1137,7 +1186,7 @@
 
                 <div class="mt-12 text-center reveal">
                     <p class="text-slate-500 text-sm mb-4">Ingin sesi belajar seperti ini untuk anak Anda di Purwokerto?</p>
-                    <a href="#konsultasi" class="inline-flex items-center gap-2 bg-secondary text-white font-semibold text-sm px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition-colors">
+                    <a href="#konsultasi" class="inline-flex items-center gap-2 bg-secondary text-white font-semibold text-sm px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 hover:-translate-y-1 transition-all">
                         <i data-lucide="message-circle" class="w-4 h-4"></i>
                         Mulai Konsultasi Gratis
                     </a>
@@ -1146,7 +1195,7 @@
         </section>
 
         <!-- ===== KONSULTASI ===== -->
-        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
+        <section id="konsultasi" class="py-16 md:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
             <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
                 <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/40 rounded-full blur-[100px]"></div>
                 <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyan-400/30 rounded-full blur-[80px]"></div>
@@ -1157,60 +1206,60 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="slide-left">
-                        <div class="inline-block bg-white/15 text-cyan-200 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/20 mb-5">Kenapa Sainspiq?</div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 drop-shadow-md">Nilai Naik &amp; Anak Lebih Paham Pelajaran</h2>
-                        <p class="text-blue-100 text-base md:text-lg mb-8 drop-shadow-sm leading-relaxed">Setiap anak punya cara belajar yang berbeda. Kami akan membantu memilih tutor dan program yang paling pas agar anak lebih semangat belajar, lebih paham materi, dan nilainya ikut meningkat. Konsultasinya gratis, ya.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
+                        <div class="inline-block bg-white/10 backdrop-blur-md text-cyan-100 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/20 mb-6 shadow-sm">Kenapa Sainspiq?</div>
+                        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-md leading-tight">Nilai Naik &amp; Anak Lebih Paham Pelajaran</h2>
+                        <p class="text-blue-100 text-base md:text-lg mb-10 drop-shadow-sm leading-relaxed">Setiap anak punya cara belajar yang berbeda. Kami akan membantu memilih tutor dan program yang paling pas agar anak lebih semangat belajar, lebih paham materi, dan nilainya ikut meningkat. Konsultasinya gratis, ya.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 backdrop-blur-md shadow-sm hover:bg-white/15 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0 shadow-inner"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
                                 <span class="text-white font-medium">Tutor berpengalaman dan terseleksi.</span>
                             </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 backdrop-blur-md shadow-sm hover:bg-white/15 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0 shadow-inner"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
                                 <span class="text-white font-medium">Datang ke rumah atau belajar online via Zoom.</span>
                             </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 backdrop-blur-md shadow-sm hover:bg-white/15 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0 shadow-inner"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
                                 <span class="text-white font-medium">Laporan perkembangan belajar setiap bulan.</span>
                             </div>
-                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-xl px-4 py-3 backdrop-blur-sm">
-                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
+                            <div class="flex items-center gap-4 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 backdrop-blur-md shadow-sm hover:bg-white/15 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0 shadow-inner"><i data-lucide="check" class="w-4 h-4 text-slate-900"></i></div>
                                 <span class="text-white font-medium">Garansi ganti tutor jika belum cocok.</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="slide-right bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl relative border border-white/20">
-                        <div class="absolute -top-4 -right-4 bg-accent text-white font-bold text-sm px-4 py-2 rounded-full shadow-lg transform rotate-3">Balas &lt; 5 Menit</div>
-                        <h3 class="text-2xl font-bold text-primary mb-6">Mulai Konsultasi Les Privat Purwokerto</h3>
+                    <div class="slide-right bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-10 shadow-2xl relative border border-white/30">
+                        <div class="absolute -top-4 -right-4 bg-amber-500 text-white font-bold text-sm px-5 py-2 rounded-full shadow-lg transform rotate-3 border border-amber-400">Balas &lt; 5 Menit</div>
+                        <h3 class="text-2xl font-bold text-primary mb-6">Mulai Konsultasi Les Privat</h3>
                         <form id="konsultasi-form">
-                            <div class="space-y-5">
+                            <div class="space-y-6">
                                 <div>
-                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Pendidikan</label>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-3">Jenjang Pendidikan</label>
                                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="jenjang-group">
-                                        <button type="button" data-jenjang="PAUD/TK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD/TK</button>
-                                        <button type="button" data-jenjang="SD" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD</button>
-                                        <button type="button" data-jenjang="SMP" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMP</button>
-                                        <button type="button" data-jenjang="SMA/UTBK" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMA/UTBK</button>
+                                        <button type="button" data-jenjang="PAUD/TK" class="jenjang-btn bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-2 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">PAUD/TK</button>
+                                        <button type="button" data-jenjang="SD" class="jenjang-btn bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-2 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SD</button>
+                                        <button type="button" data-jenjang="SMP" class="jenjang-btn bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-2 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SMP</button>
+                                        <button type="button" data-jenjang="SMA/UTBK" class="jenjang-btn bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-2 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SMA/UTBK</button>
                                     </div>
-                                    <p id="jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
+                                    <p id="jenjang-error" class="text-red-500 text-xs mt-2 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
                                 </div>
 
                                 <div>
                                     <label for="nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
-                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required />
+                                    <input type="text" id="nama" placeholder="Misal: Budi Santoso" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all bg-slate-50" required />
                                 </div>
 
                                 <div>
                                     <label for="wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-white/80" required />
+                                    <input type="tel" id="wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all bg-slate-50" required />
                                 </div>
 
-                                <button type="submit" id="submit-btn" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-4">
+                                <button type="submit" id="submit-btn" class="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all flex justify-center items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5 mt-2">
                                     <i data-lucide="message-circle" class="w-5 h-5"></i>
                                     Hubungi via WhatsApp
                                 </button>
-                                <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
+                                <p class="text-xs text-center text-slate-500 mt-2">Data Anda aman dan tidak akan disebarluaskan.</p>
                             </div>
                         </form>
                     </div>
@@ -1219,17 +1268,17 @@
         </section>
 
         <!-- ===== FAQ ===== -->
-        <section id="faq" class="py-10 md:py-24 bg-slate-50 border-y border-slate-200">
+        <section id="faq" class="py-14 md:py-24 bg-slate-50/50 border-y border-slate-200">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">Pertanyaan Umum</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">FAQ Les Privat Purwokerto</h3>
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2 bg-white border border-blue-100 shadow-sm px-4 py-1.5 rounded-full inline-block">Pertanyaan Umum</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4 mt-4">FAQ Les Privat Purwokerto</h3>
                     <p class="text-slate-600">Jawaban atas pertanyaan yang sering diajukan seputar les privat di Purwokerto dan sekitarnya.</p>
                 </div>
 
                 <div class="space-y-4">
 
-                    <div class="faq-item reveal stagger-1 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-1 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah ada tutor les privat di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1237,7 +1286,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Ya, Sainspiq memiliki jaringan tutor di Purwokerto dan sekitarnya. Tutor kami berasal dari lulusan dan mahasiswa PTN terbaik yang siap datang ke rumah atau mengajar secara online.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-2 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-2 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Berapa biaya les privat di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1245,7 +1294,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Biaya bervariasi mulai dari Rp200.000 hingga Rp600.000 per pertemuan, tergantung jenjang, mata pelajaran, dan jarak domisili tutor. Konsultasi gratis untuk paket terbaik.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-3 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-3 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah tutor bisa datang ke rumah di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1253,7 +1302,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Sangat bisa. Kami melayani les privat tatap muka di rumah untuk wilayah Purwokerto, Banyumas, Cilacap, Purbalingga, dan sekitarnya. Tersedia juga opsi online via Zoom.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-4 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-4 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah ada program persiapan UTBK di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1261,7 +1310,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Tentu. Sainspiq memiliki program intensif persiapan UTBK / SNBT dengan tutor spesialis, tryout berkala, dan analisis kelemahan untuk siswa di Purwokerto dan sekitarnya.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-5 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-5 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Bagaimana cara mendaftar les privat di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1269,7 +1318,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Cukup isi form konsultasi gratis di atas atau hubungi admin melalui WhatsApp. Tim kami akan menghubungi Anda untuk menentukan jenjang, mata pelajaran, jadwal, dan tutor yang paling sesuai.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-1 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-1 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah ada les privat calistung dan mengaji di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1277,7 +1326,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Ya, Sainspiq menyediakan les privat calistung (membaca, menulis, berhitung) dan mengaji untuk anak usia PAUD hingga SD di Purwokerto. Tutor datang ke rumah dengan metode belajar sambil bermain yang menyenangkan.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-2 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-2 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah ada les privat bahasa Inggris di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1285,7 +1334,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Ada. Sainspiq menyediakan les privat bahasa Inggris di Purwokerto untuk semua jenjang, mulai dari percakapan dasar, grammar, hingga persiapan ujian sekolah, dengan tutor yang berpengalaman.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-3 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-3 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah tersedia les privat murah di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1293,7 +1342,7 @@
                         <div class="faq-content"><div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-slate-600 leading-relaxed">Ya, Sainspiq menyediakan paket les privat murah di Purwokerto mulai dari Rp200.000 per pertemuan tanpa mengurangi kualitas pengajaran. Konsultasikan kebutuhan dan budget Anda untuk mendapatkan paket paling sesuai.</div></div>
                     </div>
 
-                    <div class="faq-item reveal stagger-4 border border-slate-200 rounded-2xl bg-white shadow-card overflow-hidden">
+                    <div class="faq-item reveal stagger-4 border border-slate-100 rounded-2xl bg-white shadow-card hover-lift overflow-hidden">
                         <button type="button" class="faq-toggle w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left transition-colors">
                             <span class="font-semibold text-primary text-base md:text-lg">Apakah ada les privat matematika di Purwokerto?</span>
                             <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-secondary shrink-0"></i>
@@ -1303,9 +1352,9 @@
 
                 </div>
 
-                <div class="mt-10 text-center">
-                    <p class="text-slate-600 mb-4">Masih punya pertanyaan lain tentang les privat di Purwokerto?</p>
-                    <a href="#konsultasi" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+                <div class="mt-12 text-center">
+                    <p class="text-slate-600 mb-5">Masih punya pertanyaan lain tentang les privat di Purwokerto?</p>
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                         Tanya Langsung via Konsultasi Gratis
                         <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
@@ -1320,7 +1369,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
                 <div class="footer-col-brand">
-                    <div class="flex items-center mb-6 logo-link">
+                    <div class="flex items-center mb-6 logo-link hover:opacity-90 transition-opacity">
                         <img src="https://sainspiq.com/logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="items-center gap-2" style="display:none;">
@@ -1328,37 +1377,37 @@
                             <span class="font-bold text-2xl tracking-tight text-white">Sainspiq<span class="text-secondary">.</span></span>
                         </div>
                     </div>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.</p>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-6">Layanan les privat terbaik nomor satu di Indonesia. Mewujudkan prestasi akademis dan kesuksesan masuk PTN melalui pendekatan berbasis data.</p>
                 </div>
 
                 <div class="footer-services-wrapper md:contents">
                     <div class="footer-col-services">
                         <h4 class="text-white font-semibold mb-4">Program</h4>
-                        <ul class="text-sm footer-list">
-                            <li><span class="text-slate-400">Les Privat PraSchool</span></li>
-                            <li><span class="text-slate-400">Les Privat PAUD</span></li>
-                            <li><span class="text-slate-400">Les Privat TK</span></li>
-                            <li><span class="text-slate-400">Les Privat Calistung &amp; Mengaji</span></li>
-                            <li><span class="text-slate-400">Les Privat SD</span></li>
-                            <li><span class="text-slate-400">Les Privat SMP</span></li>
-                            <li><span class="text-slate-400">Les Privat SMA</span></li>
-                            <li><span class="text-slate-400">Les Privat Bahasa Inggris</span></li>
-                            <li><span class="text-slate-400">Les Privat Matematika</span></li>
-                            <li><span class="text-slate-400">Persiapan UTBK / SNBT</span></li>
-                            <li><span class="text-slate-400">Olimpiade Sains</span></li>
+                        <ul class="text-sm footer-list space-y-2.5">
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat PraSchool</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat PAUD</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat TK</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Calistung &amp; Mengaji</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat SD</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat SMP</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat SMA</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Bahasa Inggris</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Matematika</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Persiapan UTBK / SNBT</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Olimpiade Sains</span></li>
                         </ul>
                     </div>
 
                     <div class="footer-col-area">
                         <h4 class="text-white font-semibold mb-4">Area Layanan</h4>
-                        <ul class="text-sm footer-list">
-                            <li><span class="text-slate-400">Les Privat Jakarta</span></li>
-                            <li><span class="text-slate-400">Les Privat Bandung</span></li>
-                            <li><span class="text-slate-400">Les Privat Depok</span></li>
-                            <li><span class="text-slate-400">Les Privat Bekasi</span></li>
-                            <li><span class="text-slate-400">Les Privat Bogor</span></li>
-                            <li><span class="text-slate-400">Les Privat Surabaya</span></li>
-                            <li><span class="text-slate-400">Les Privat Semarang</span></li>
+                        <ul class="text-sm footer-list space-y-2.5">
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Jakarta</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Bandung</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Depok</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Bekasi</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Bogor</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Surabaya</span></li>
+                            <li><span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Les Privat Semarang</span></li>
                             <li><span class="text-secondary font-medium">Les Privat Purwokerto</span></li>
                         </ul>
                     </div>
@@ -1368,15 +1417,15 @@
                     <h4 class="text-white font-semibold mb-6">Kontak Kami</h4>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0"></i>
-                            <span class="text-slate-400">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
+                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i></div>
+                            <span class="text-slate-400 leading-relaxed mt-1">Jl. Munjul, Gg. Subur, Kec. Cipayung, Jakarta Timur, DKI Jakarta</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" class="w-4 h-4 text-slate-400"></i></div>
                             <span class="text-slate-400">0899-4788-444</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-slate-500 shrink-0"></i>
+                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0"><i data-lucide="mail" class="w-4 h-4 text-slate-400"></i></div>
                             <span class="text-slate-400">halo@sainspiq.com</span>
                         </li>
                     </ul>
@@ -1386,8 +1435,8 @@
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-slate-500 text-sm">© 2026 Sainspiq Education. All rights reserved.</p>
                 <div class="flex space-x-6 text-sm">
-                    <span class="text-slate-500">Kebijakan Privasi</span>
-                    <span class="text-slate-500">Syarat &amp; Ketentuan</span>
+                    <span class="text-slate-500 hover:text-white transition-colors cursor-pointer">Kebijakan Privasi</span>
+                    <span class="text-slate-500 hover:text-white transition-colors cursor-pointer">Syarat &amp; Ketentuan</span>
                 </div>
             </div>
         </div>
@@ -1396,7 +1445,7 @@
     <!-- ===== WHATSAPP FLOAT ===== -->
     <button type="button" id="wa-float-btn" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 group flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span class="absolute right-16 bg-white text-primary text-sm font-bold px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">Chat Admin</span>
+        <span class="absolute right-16 bg-white text-primary text-sm font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-100">Chat Admin</span>
     </button>
 
     <!-- ===== WA MODAL ===== -->
@@ -1413,22 +1462,22 @@
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Pendidikan</label>
                         <div class="wa-jenjang-grid" id="wa-modal-jenjang-group">
-                            <button type="button" data-jenjang="PAUD/TK" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD/TK</button>
-                            <button type="button" data-jenjang="SD" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD</button>
-                            <button type="button" data-jenjang="SMP" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMP</button>
-                            <button type="button" data-jenjang="SMA/UTBK" class="wa-modal-jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SMA/UTBK</button>
+                            <button type="button" data-jenjang="PAUD/TK" class="wa-modal-jenjang-btn bg-slate-50 border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">PAUD/TK</button>
+                            <button type="button" data-jenjang="SD" class="wa-modal-jenjang-btn bg-slate-50 border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SD</button>
+                            <button type="button" data-jenjang="SMP" class="wa-modal-jenjang-btn bg-slate-50 border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SMP</button>
+                            <button type="button" data-jenjang="SMA/UTBK" class="wa-modal-jenjang-btn bg-slate-50 border border-slate-200 rounded-lg py-2 px-1 text-xs sm:text-sm font-medium text-slate-600 hover:border-secondary hover:text-secondary hover:bg-blue-50 transition-colors">SMA/UTBK</button>
                         </div>
                         <p id="wa-modal-jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang pendidikan terlebih dahulu.</p>
                     </div>
                     <div>
                         <label for="wa-modal-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
-                        <input type="text" id="wa-modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required />
+                        <input type="text" id="wa-modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-slate-50" required />
                     </div>
                     <div>
                         <label for="wa-modal-wa-input" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                        <input type="tel" id="wa-modal-wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required />
+                        <input type="tel" id="wa-modal-wa-input" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all bg-slate-50" required />
                     </div>
-                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-2">
+                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-all flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-2">
                         <i data-lucide="message-circle" class="w-5 h-5"></i> Lanjutkan ke WhatsApp
                     </button>
                     <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
@@ -1487,10 +1536,10 @@
                 selectedJenjang = btn.dataset.jenjang;
                 jenjangBtns.forEach(b => {
                     b.classList.remove('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                    b.classList.add('text-slate-600', 'border-slate-200');
+                    b.classList.add('text-slate-600', 'border-slate-200', 'bg-slate-50');
                 });
                 btn.classList.add('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                btn.classList.remove('text-slate-600', 'border-slate-200');
+                btn.classList.remove('text-slate-600', 'border-slate-200', 'bg-slate-50');
                 document.getElementById('jenjang-error').classList.add('hidden');
             });
         });
@@ -1527,10 +1576,10 @@
                 waModalSelectedJenjang = btn.dataset.jenjang;
                 waModalJenjangBtns.forEach(b => {
                     b.classList.remove('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                    b.classList.add('text-slate-600', 'border-slate-200');
+                    b.classList.add('text-slate-600', 'border-slate-200', 'bg-slate-50');
                 });
                 btn.classList.add('bg-blue-50', 'border-secondary', 'text-secondary', 'font-semibold');
-                btn.classList.remove('text-slate-600', 'border-slate-200');
+                btn.classList.remove('text-slate-600', 'border-slate-200', 'bg-slate-50');
                 document.getElementById('wa-modal-jenjang-error').classList.add('hidden');
             });
         });
