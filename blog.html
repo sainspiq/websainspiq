@@ -67,8 +67,8 @@
     <style>
         .logo-link{ margin-left:-14px; }
         @media (min-width:640px){ .logo-link{ margin-left:-20px; } }
-        @media (min-width:768px){
-            header nav.hidden.md\:flex > a{ font-size:1rem; }
+        @media (min-width:1024px){
+            header nav.hidden.lg\:flex > a{ font-size:0.9rem; }
         }
         @media (max-width:767px){
             header.glass-nav{ background-color:rgba(255,255,255,0.92) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
@@ -146,23 +146,22 @@
                     </div>
                 </a>
 
-                <nav class="hidden md:flex space-x-1">
-                    <a href="/#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
-                    <a href="/#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
-                    <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
-                    <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all">Blog</a>
-                    <a href="/tentang-kami" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Tentang Kami</a>
-                    <a href="/kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Kontak</a>
+                <nav class="hidden lg:flex items-center">
+                    <a href="/#program" class="px-2.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all whitespace-nowrap">Program</a>
+                    <a href="/#faq" class="px-2.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all whitespace-nowrap">Biaya Les</a>
+                    <a href="/area-layanan" class="px-2.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all whitespace-nowrap">Area Layanan</a>
+                    <a href="/blog" class="px-2.5 py-2 rounded-lg text-sm font-medium text-secondary bg-blue-50 transition-all whitespace-nowrap">Blog</a>
+                    <a href="/tentang-kami" class="px-2.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all whitespace-nowrap">Tentang Kami</a>
+                    <a href="/kontak" class="px-2.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all whitespace-nowrap">Kontak</a>
                 </nav>
 
-                <div class="hidden md:flex items-center gap-4">
-                    <a href="/masuk" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Masuk</a>
-                    <a href="/#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                <div class="hidden lg:flex items-center gap-3 flex-none">
+                    <a href="/#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md whitespace-nowrap">
                         Konsultasi Gratis
                     </a>
                 </div>
 
-                <div class="md:hidden flex items-center gap-2">
+                <div class="lg:hidden flex items-center gap-2">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary transition-colors" aria-label="Buka menu">
                         <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
                     </button>
@@ -171,7 +170,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl opacity-0 -translate-y-2 pointer-events-none invisible z-40 transition-all duration-300 ease-in-out">
+        <div id="mobile-menu" class="lg:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl opacity-0 -translate-y-2 pointer-events-none invisible z-40 transition-all duration-300 ease-in-out">
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
                 <a href="/#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
                 <a href="/#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
@@ -181,7 +180,6 @@
                 <a href="/kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Kontak</a>
 
                 <div class="border-t border-blue-700/50 mt-2 pt-4 flex flex-col gap-3">
-                    <a href="/masuk" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-colors text-center border border-white/20">Masuk</a>
                     <a href="/#konsultasi" id="mobile-cta" class="inline-flex items-center justify-center px-5 py-3 text-sm font-bold text-secondary bg-white rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
                         Konsultasi Gratis
                     </a>
@@ -231,14 +229,14 @@
                     <div class="grid md:grid-cols-2 gap-8 p-8 md:p-12">
                         <div class="text-white flex flex-col justify-center">
                             <span class="inline-block bg-white/20 text-white text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-white/20 w-fit mb-4">Artikel Unggulan</span>
-                            <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Strategi Ampuh Lolos UTBK 2026: Persiapan Matang dari Awal</h2>
-                            <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-6">Pelajari strategi komprehensif untuk mempersiapkan diri menghadapi UTBK 2026. Dari manajemen waktu belajar hingga teknik menjawab soal, semua tersedia di sini.</p>
+                            <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4">15 SD Terbaik di Semarang 2026: Panduan Lengkap Sebelum Memilih Sekolah untuk Anak</h2>
+                            <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-6">Rekomendasi SD terbaik di Semarang 2026 (negeri, swasta Islam, Kristen/Katolik, hingga internasional) plus tips lolos tes masuk dan cara mendampingi anak agar tetap unggul di sekolah pilihan.</p>
                             <div class="flex flex-wrap items-center gap-4 text-sm text-blue-200 mb-6">
-                                <span>📅 28 Juni 2026</span>
-                                <span>👤 Admin Sainspiq</span>
+                                <span>📅 8 Juli 2026</span>
+                                <span>👤 Tim Sainspiq</span>
                                 <span>⏱️ 8 min baca</span>
                             </div>
-                            <a href="#" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-secondary bg-white rounded-xl hover:bg-blue-50 transition-colors w-fit shadow-lg">
+                            <a href="/blog/sd-terbaik-semarang" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-secondary bg-white rounded-xl hover:bg-blue-50 transition-colors w-fit shadow-lg">
                                 Baca Selengkapnya
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
@@ -393,13 +391,24 @@
         // ── BLOG DATA ──────────────────────────────────
         const articles = [
             {
+                id: 11,
+                title: "15 SD Terbaik di Semarang 2026: Panduan Lengkap Sebelum Memilih Sekolah untuk Anak",
+                excerpt: "Rekomendasi SD terbaik di Semarang 2026 (negeri, swasta Islam, Kristen/Katolik, hingga internasional) plus tips lolos tes masuk dan cara mendampingi anak.",
+                category: "Tips Belajar",
+                author: "Tim Sainspiq",
+                date: "8 Juli 2026",
+                readTime: "8 min",
+                link: "/blog/sd-terbaik-semarang"
+            },
+            {
                 id: 1,
                 title: "5 Teknik Membaca Cepat yang Efektif untuk Pelajar",
                 excerpt: "Tingkatkan kecepatan membaca Anda dengan teknik skimming, scanning, dan chunking. Ideal untuk menghadapi soal dengan teks panjang.",
                 category: "Tips Belajar",
                 author: "Admin Sainspiq",
                 date: "28 Juni 2026",
-                readTime: "5 min"
+                readTime: "5 min",
+                link: "#"
             },
             {
                 id: 2,
@@ -408,7 +417,8 @@
                 category: "UTBK",
                 author: "Tim Akademik",
                 date: "25 Juni 2026",
-                readTime: "6 min"
+                readTime: "6 min",
+                link: "#"
             },
             {
                 id: 3,
@@ -417,7 +427,8 @@
                 category: "Motivasi",
                 author: "Psikolog Sainspiq",
                 date: "22 Juni 2026",
-                readTime: "7 min"
+                readTime: "7 min",
+                link: "#"
             },
             {
                 id: 4,
@@ -426,7 +437,8 @@
                 category: "UTBK",
                 author: "Tutor Senior",
                 date: "20 Juni 2026",
-                readTime: "8 min"
+                readTime: "8 min",
+                link: "#"
             },
             {
                 id: 5,
@@ -435,7 +447,8 @@
                 category: "Tips Belajar",
                 author: "Admin Sainspiq",
                 date: "18 Juni 2026",
-                readTime: "5 min"
+                readTime: "5 min",
+                link: "#"
             },
             {
                 id: 6,
@@ -444,7 +457,8 @@
                 category: "Motivasi",
                 author: "Admin Sainspiq",
                 date: "16 Juni 2026",
-                readTime: "6 min"
+                readTime: "6 min",
+                link: "#"
             },
             {
                 id: 7,
@@ -453,7 +467,8 @@
                 category: "Tips Belajar",
                 author: "Tim Konsultasi",
                 date: "14 Juni 2026",
-                readTime: "6 min"
+                readTime: "6 min",
+                link: "#"
             },
             {
                 id: 8,
@@ -462,7 +477,8 @@
                 category: "UTBK",
                 author: "Tim Akademik",
                 date: "12 Juni 2026",
-                readTime: "7 min"
+                readTime: "7 min",
+                link: "#"
             },
             {
                 id: 9,
@@ -471,7 +487,8 @@
                 category: "Tips Belajar",
                 author: "Ahli Gizi",
                 date: "10 Juni 2026",
-                readTime: "5 min"
+                readTime: "5 min",
+                link: "#"
             },
             {
                 id: 10,
@@ -480,7 +497,8 @@
                 category: "Motivasi",
                 author: "Pelatih Olimpiade",
                 date: "8 Juni 2026",
-                readTime: "8 min"
+                readTime: "8 min",
+                link: "#"
             }
         ];
 
@@ -503,7 +521,8 @@
             count.textContent = articlesToRender.length + ' artikel';
 
             articlesToRender.forEach((article) => {
-                const card = document.createElement('div');
+                const card = document.createElement('a');
+                card.href = article.link || '#';
                 card.className = 'blog-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col';
 
                 // Warna latar placeholder berdasarkan kategori (tanpa icon)
