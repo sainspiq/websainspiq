@@ -26,10 +26,14 @@
             "description": "Layanan les privat terbaik untuk PAUD, TK, SD, SMP, SMA, dan persiapan UTBK di Semarang. Tutor top 1% dari UI, ITB, dan UGM.",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Jl. Munjul, Gg. Subur",
-                "addressLocality": "Kec. Cipayung",
-                "addressRegion": "Jakarta Timur, DKI Jakarta",
+                "addressLocality": "Kota Semarang",
+                "addressRegion": "Jawa Tengah",
                 "addressCountry": "ID"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -6.9666744,
+                "longitude": 110.4167576
             },
             "telephone": "+62-899-4788-444",
             "email": "halo@sainspiq.com",
@@ -50,7 +54,9 @@
                 { "@type": "AdministrativeArea", "name": "Gunungpati" },
                 { "@type": "AdministrativeArea", "name": "Mijen" },
                 { "@type": "AdministrativeArea", "name": "Ngaliyan" },
-                { "@type": "AdministrativeArea", "name": "Tugu" }
+                { "@type": "AdministrativeArea", "name": "Tugu" },
+                { "@type": "AdministrativeArea", "name": "Ungaran" },
+                { "@type": "AdministrativeArea", "name": "Kabupaten Semarang" }
             ],
             "hasOfferCatalog": {
                 "@type": "OfferCatalog",
@@ -59,6 +65,7 @@
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat PAUD Semarang" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat TK Semarang" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat SD Semarang" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat Mengaji & BTQ Semarang" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat SMP Semarang" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Les Privat SMA Semarang" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Persiapan UTBK Semarang" } }
@@ -123,6 +130,13 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Tentu. Sainspiq memberikan garansi kecocokan tutor. Jika dalam pertemuan awal dirasa kurang sesuai, kami akan carikan pengganti tanpa biaya tambahan."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Apakah Sainspiq menyediakan les privat mengaji di Semarang?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ya, Sainspiq menyediakan les privat mengaji dan BTQ (Baca Tulis Qur'an) di Semarang, guru datang ke rumah. Untuk jenjang PAUD, TK, dan SD, program calistung juga bisa dipaketkan sekaligus dengan mengaji sesuai kebutuhan."
                 }
             }, {
                 "@type": "Question",
@@ -616,6 +630,12 @@
             --pc-c2: #0369a1;
             --pc-glow: rgba(56, 189, 248, 0.35);
             --pc-bg: #f0f9ff;
+        }
+        .pcard-emerald {
+            --pc-c1: #34d399;
+            --pc-c2: #047857;
+            --pc-glow: rgba(52, 211, 153, 0.35);
+            --pc-bg: #ecfdf5;
         }
 
         .pcard-featured .pcard-content {
@@ -1190,7 +1210,7 @@
                                 <span class="pcard-tag">Mulai Dini</span>
                             </div>
                             <h3 class="pcard-title">PAUD &amp; TK</h3>
-                            <p class="pcard-desc">Pengenalan huruf, angka, dan motorik dasar dengan pendekatan bermain yang menyenangkan &amp; interaktif.</p>
+                            <p class="pcard-desc">Pengenalan huruf, angka, dan motorik dasar dengan pendekatan bermain yang menyenangkan &amp; interaktif. Bisa dipaketkan sekaligus dengan mengaji.</p>
                             <div class="pcard-cta"><span>Lihat Detail</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
                         </div>
                     </a>
@@ -1292,6 +1312,26 @@
                             </div>
                             <h3 class="pcard-title">Olimpiade Sains</h3>
                             <p class="pcard-desc">Persiapan OSK, OSP, OSN dengan tutor spesialis peraih medali nasional &amp; internasional.</p>
+                            <div class="pcard-cta"><span>Lihat Detail</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Mengaji & BTQ -->
+                    <a href="#konsultasi" class="pcard pcard-emerald group">
+                        <div class="pcard-bg-wrap">
+                            <div class="pcard-shape pcard-shape-1"></div>
+                            <div class="pcard-shape pcard-shape-2"></div>
+                            <div class="pcard-noise"></div>
+                            <i data-lucide="book-marked" class="pcard-ghost"></i>
+                            <span class="pcard-num">07</span>
+                        </div>
+                        <div class="pcard-content">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="pcard-icon"><i data-lucide="book-marked" class="w-6 h-6"></i></div>
+                                <span class="pcard-tag">Bonus Favorit</span>
+                            </div>
+                            <h3 class="pcard-title">Mengaji &amp; BTQ</h3>
+                            <p class="pcard-desc">Belajar baca tulis Al-Qur'an (BTQ), tahsin, dan hafalan surat pendek dengan ustadz/ustadzah berpengalaman, datang ke rumah.</p>
                             <div class="pcard-cta"><span>Lihat Detail</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
                         </div>
                     </a>
@@ -1618,7 +1658,7 @@
                 </div>
 
                 <p class="text-center text-slate-400 text-xs mt-8 max-w-3xl mx-auto leading-relaxed">
-                    Les privat Semarang Tengah, les privat Semarang Selatan, les privat Tembalang, les privat Banyumanik, les privat Pedurungan, les privat Ngaliyan, dan seluruh kecamatan lainnya di Semarang — tutor datang ke rumah atau belajar online via Zoom.
+                    Les privat Semarang Tengah, les privat Semarang Selatan, les privat Tembalang, les privat Banyumanik, les privat Pedurungan, les privat Ngaliyan, dan seluruh kecamatan lainnya di Semarang — tutor datang ke rumah atau belajar online via Zoom. Area sekitar seperti Ungaran &amp; Kabupaten Semarang juga dilayani melalui kelas online.
                 </p>
 
             </div>
