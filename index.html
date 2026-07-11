@@ -156,6 +156,68 @@
     <!-- Stylesheet Tailwind (compiled, production-ready) -->
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* ══════════════════════════════════════════
+           HERO: Rotating text (vertical slide-up) — premium & halus, CLS = 0
+           ══════════════════════════════════════════ */
+        .sr-only{
+            position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+            overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+        }
+        .rotating-text-wrap{
+            display:inline-block;
+            position:relative;
+            overflow:hidden;
+            vertical-align:bottom;
+            text-align:left;
+            /* Tinggi & lebar diset presisi via JS agar tidak ada layout shift (CLS = 0) */
+            height:1.15em;
+            line-height:1.15;
+        }
+        .rotating-text-track{
+            position:relative;
+            display:block;
+            width:100%;
+            height:100%;
+        }
+        .rotating-text-item{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            white-space:nowrap;
+            font: inherit;
+            font-weight:inherit;
+            letter-spacing:inherit;
+            line-height:inherit;
+            background:linear-gradient(90deg, #2563EB 0%, #06B6D4 100%);
+            -webkit-background-clip:text;
+            background-clip:text;
+            -webkit-text-fill-color:transparent;
+            color:transparent;
+            /* Glow elegan pada rotating text */
+            filter:drop-shadow(0 0 10px rgba(37,99,235,0.28)) drop-shadow(0 0 18px rgba(6,182,212,0.18));
+            transform:translateY(0);
+            opacity:1;
+            transition:transform 600ms cubic-bezier(0.65,0,0.35,1), opacity 600ms ease-in-out;
+            will-change:transform, opacity;
+            backface-visibility:hidden;
+        }
+        .rotating-text-item.rt-out{
+            transform:translateY(-100%);
+            opacity:0;
+        }
+        .rotating-text-item.rt-in-start{
+            transform:translateY(100%);
+            opacity:0;
+        }
+        .rotating-text-item.rt-in-end{
+            transform:translateY(0);
+            opacity:1;
+        }
+        @media (prefers-reduced-motion: reduce){
+            .rotating-text-item{ transition:none; }
+        }
+
         /* Ikon inline SVG (pengganti library Lucide via CDN, agar tidak ada request eksternal & long task) */
         .lucide-icon{ display:inline-block; vertical-align:middle; flex-shrink:0; }
         /* Geser logo header sedikit ke kiri (custom, tidak bergantung pada utility Tailwind yang belum ter-compile) */
@@ -482,7 +544,9 @@
                         </div>
                         
                         <h1 class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="transition-delay:0.22s">
-                            Raih Target Akademik dengan Pendampingan yang Tepat <span class="text-gradient font-extrabold" style="font-family: 'Allura', cursive; font-size:1.35em;"><span id="typeBersama"></span><span class="type-caret" id="caretBersama">|</span></span> <span class="text-gradient font-extrabold" id="typeSainspiq"></span><span class="type-caret" id="caretSainspiq" style="display:none;">|</span>
+                            Temukan Program Les Privat
+                            <span class="rotating-text-wrap" id="rotatingTextWrap" aria-hidden="true"><span class="rotating-text-track" id="rotatingTextTrack"><span class="rotating-text-item is-current">Calistung</span></span></span><span class="sr-only">Calistung, Mengaji, Matematika, Bahasa Inggris, Olimpiade Sains, Persiapan Ujian</span>
+                            Sesuai Kebutuhan Belajar Anak di Semua Jenjang
                         </h1>
                         
                         <p class="hero-desc hero-animate text-base sm:text-lg text-slate-600 mb-6 leading-relaxed max-w-xl mx-auto" style="transition-delay:0.34s">
@@ -1891,43 +1955,115 @@
         }
 
         // ══════════════════════════════════════════
-        // ANIMASI TYPING: "Bersama Sainspiq"
+        // ANIMASI HERO: Rotating text "Vertical Slide Up" (premium, CLS = 0)
+        // Tambah/kurangi kata cukup ubah array ROTATING_WORDS di bawah.
         // ══════════════════════════════════════════
-        function typeText(el, text, speed, onDone) {
-            let i = 0;
-            (function step() {
-                if (i <= text.length) {
-                    el.textContent = text.slice(0, i);
-                    i++;
-                    setTimeout(step, speed);
-                } else if (onDone) {
-                    onDone();
-                }
-            })();
-        }
+        (function initRotatingText() {
+            const ROTATING_WORDS = [
+                'Calistung',
+                'Mengaji',
+                'Matematika',
+                'Bahasa Inggris',
+                'Olimpiade Sains',
+                'Persiapan Ujian'
+            ];
+            const HOLD_MS = 2500;   // durasi setiap kata tampil
+            const ANIM_MS = 600;    // durasi transisi slide
 
-        function startTypewriter() {
-            setTimeout(() => {
-                const elBersama = document.getElementById('typeBersama');
-                const caretBersama = document.getElementById('caretBersama');
-                const elSainspiq = document.getElementById('typeSainspiq');
-                const caretSainspiq = document.getElementById('caretSainspiq');
-                if (!elBersama || !elSainspiq) return;
+            const wrap = document.getElementById('rotatingTextWrap');
+            const track = document.getElementById('rotatingTextTrack');
+            if (!wrap || !track) return;
 
-                typeText(elBersama, 'Bersama', 80, () => {
-                    caretBersama.style.display = 'none';
-                    caretSainspiq.style.display = 'inline-block';
-                    typeText(elSainspiq, 'Sainspiq', 80, () => {
-                        caretSainspiq.style.display = 'none';
+            let index = 0;
+            let currentEl = track.querySelector('.rotating-text-item');
+            let timerId = null;
+            let resizeRAF = null;
+
+            function makeItem(text) {
+                const span = document.createElement('span');
+                span.className = 'rotating-text-item';
+                span.textContent = text;
+                return span;
+            }
+
+            // Ukur lebar & tinggi maksimum dari seluruh kata agar container
+            // tidak pernah berubah ukuran (mencegah layout shift / CLS).
+            function measureAndSizeWrap() {
+                const probe = document.createElement('span');
+                probe.style.position = 'absolute';
+                probe.style.visibility = 'hidden';
+                probe.style.whiteSpace = 'nowrap';
+                probe.style.top = '-9999px';
+                probe.style.left = '-9999px';
+                probe.style.font = window.getComputedStyle(currentEl || track).font;
+                probe.style.letterSpacing = window.getComputedStyle(currentEl || track).letterSpacing;
+                document.body.appendChild(probe);
+
+                let maxWidth = 0;
+                ROTATING_WORDS.forEach((word) => {
+                    probe.textContent = word;
+                    maxWidth = Math.max(maxWidth, probe.getBoundingClientRect().width);
+                });
+                document.body.removeChild(probe);
+
+                const lineHeight = parseFloat(window.getComputedStyle(wrap).lineHeight) || wrap.offsetHeight;
+                wrap.style.width = Math.ceil(maxWidth) + 2 + 'px';
+                wrap.style.height = Math.ceil(lineHeight) + 'px';
+            }
+
+            function showNext() {
+                index = (index + 1) % ROTATING_WORDS.length;
+                const nextEl = makeItem(ROTATING_WORDS[index]);
+                const staleEl = currentEl; // simpan referensi elemen lama sebelum di-swap
+                nextEl.classList.add('rt-in-start');
+                track.appendChild(nextEl);
+
+                // Force reflow supaya browser benar-benar "commit" posisi awal
+                // (translateY(100%), opacity:0) sebelum ditransisikan.
+                void nextEl.offsetHeight;
+
+                // Double rAF: frame #1 memastikan style awal sudah dirender,
+                // frame #2 baru memicu perubahan class agar transisi CSS
+                // benar-benar terpicu (bukan langsung "loncat" ke posisi akhir).
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        staleEl.classList.add('rt-out');
+                        nextEl.classList.remove('rt-in-start');
+                        nextEl.classList.add('rt-in-end');
                     });
                 });
-            }, 950);
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startTypewriter);
-        } else {
-            startTypewriter();
-        }
+
+                setTimeout(() => {
+                    if (staleEl && staleEl.parentNode) staleEl.parentNode.removeChild(staleEl);
+                }, ANIM_MS + 50);
+
+                currentEl = nextEl;
+                currentEl.classList.add('is-current');
+            }
+
+            function loop() {
+                timerId = setTimeout(() => {
+                    showNext();
+                    loop();
+                }, HOLD_MS);
+            }
+
+            function start() {
+                measureAndSizeWrap();
+                loop();
+            }
+
+            window.addEventListener('resize', () => {
+                cancelAnimationFrame(resizeRAF);
+                resizeRAF = requestAnimationFrame(measureAndSizeWrap);
+            });
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(start);
+            } else {
+                start();
+            }
+        })();
 
         // ══════════════════════════════════════════
         // ANIMASI 2 & 4: Scroll reveal (reveal class)
