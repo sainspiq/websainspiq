@@ -189,17 +189,15 @@
             font-weight:inherit;
             letter-spacing:inherit;
             line-height:inherit;
-            background:linear-gradient(90deg, #2563EB 0%, #06B6D4 100%);
-            -webkit-background-clip:text;
-            background-clip:text;
-            -webkit-text-fill-color:transparent;
-            color:transparent;
-            /* Glow elegan pada rotating text */
-            filter:drop-shadow(0 0 10px rgba(37,99,235,0.28)) drop-shadow(0 0 18px rgba(6,182,212,0.18));
+            /* Warna solid biru (bukan gradient background-clip — kombinasi itu
+               menyebabkan bug rendering di beberapa browser saat dipadukan
+               dengan filter/drop-shadow, sehingga muncul kotak "background"
+               menimpa teks lain). Glow dibuat lewat text-shadow, tanpa background apapun. */
+            color:#2563EB;
+            text-shadow:0 0 10px rgba(37,99,235,0.30), 0 0 20px rgba(6,182,212,0.20);
             transform:translateY(0);
             opacity:1;
-            transition:transform 600ms cubic-bezier(0.65,0,0.35,1), opacity 600ms ease-in-out;
-            will-change:transform, opacity;
+            transition:transform 500ms ease-in-out, opacity 500ms ease-in-out;
             backface-visibility:hidden;
         }
         .rotating-text-item.rt-out{
@@ -1967,8 +1965,10 @@
                 'Olimpiade Sains',
                 'Persiapan Ujian'
             ];
-            const HOLD_MS = 2500;   // durasi setiap kata tampil
-            const ANIM_MS = 600;    // durasi transisi slide
+            const HOLD_MS = 2500;   // durasi setiap kata tampil penuh
+            const OUT_MS  = 450;    // durasi teks lama slide-up & fade-out
+            const GAP_MS  = 200;    // jeda kosong sebelum teks baru muncul (anti tabrakan)
+            const IN_MS   = 450;    // durasi teks baru slide-in & fade-in
 
             const wrap = document.getElementById('rotatingTextWrap');
             const track = document.getElementById('rotatingTextTrack');
@@ -1976,7 +1976,7 @@
 
             let index = 0;
             let currentEl = track.querySelector('.rotating-text-item');
-            let timerId = null;
+            let loopTimerId = null;
             let resizeRAF = null;
 
             function makeItem(text) {
@@ -2011,40 +2011,45 @@
                 wrap.style.height = Math.ceil(lineHeight) + 'px';
             }
 
-            function showNext() {
-                index = (index + 1) % ROTATING_WORDS.length;
-                const nextEl = makeItem(ROTATING_WORDS[index]);
-                const staleEl = currentEl; // simpan referensi elemen lama sebelum di-swap
-                nextEl.classList.add('rt-in-start');
-                track.appendChild(nextEl);
+            // Sequential: teks lama slide-up & hilang tuntas dulu (OUT_MS),
+            // lalu ada jeda kosong (GAP_MS), baru teks baru slide-in dari
+            // bawah (IN_MS). Tidak ada momen di mana dua teks tampil bersamaan.
+            function showNext(onSettled) {
+                const staleEl = currentEl;
 
-                // Force reflow supaya browser benar-benar "commit" posisi awal
-                // (translateY(100%), opacity:0) sebelum ditransisikan.
-                void nextEl.offsetHeight;
-
-                // Double rAF: frame #1 memastikan style awal sudah dirender,
-                // frame #2 baru memicu perubahan class agar transisi CSS
-                // benar-benar terpicu (bukan langsung "loncat" ke posisi akhir).
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        staleEl.classList.add('rt-out');
-                        nextEl.classList.remove('rt-in-start');
-                        nextEl.classList.add('rt-in-end');
-                    });
-                });
+                // Tahap 1: teks lama slide-up + fade-out
+                staleEl.classList.add('rt-out');
 
                 setTimeout(() => {
                     if (staleEl && staleEl.parentNode) staleEl.parentNode.removeChild(staleEl);
-                }, ANIM_MS + 50);
 
-                currentEl = nextEl;
-                currentEl.classList.add('is-current');
+                    // Tahap 2 (setelah OUT_MS + GAP_MS): masukkan teks baru,
+                    // posisikan di bawah box dulu (tak terlihat, tertahan overflow:hidden)
+                    index = (index + 1) % ROTATING_WORDS.length;
+                    const nextEl = makeItem(ROTATING_WORDS[index]);
+                    nextEl.classList.add('rt-in-start');
+                    track.appendChild(nextEl);
+
+                    // Force reflow, lalu double rAF, supaya transisi slide-in
+                    // benar-benar terpicu (bukan langsung loncat ke posisi akhir).
+                    void nextEl.offsetHeight;
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            nextEl.classList.remove('rt-in-start');
+                            nextEl.classList.add('rt-in-end');
+                        });
+                    });
+
+                    currentEl = nextEl;
+                    currentEl.classList.add('is-current');
+
+                    if (onSettled) setTimeout(onSettled, IN_MS);
+                }, OUT_MS + GAP_MS);
             }
 
             function loop() {
-                timerId = setTimeout(() => {
-                    showNext();
-                    loop();
+                loopTimerId = setTimeout(() => {
+                    showNext(loop);
                 }, HOLD_MS);
             }
 
