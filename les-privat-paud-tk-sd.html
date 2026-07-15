@@ -116,6 +116,7 @@
         /* WA Modal (untuk tombol float & sticky bar) */
         .wa-modal-overlay{ position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:9999; display:none; align-items:center; justify-content:center; padding:16px; }
         .wa-modal-overlay.is-open{ display:flex; }
+        .wa-float-btn{ position:fixed; right:20px; bottom:20px; z-index:60; width:56px; height:56px; border-radius:9999px; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px -4px rgba(15,23,42,.35); }
         .wa-modal-box{ background:#fff; border-radius:18px; box-shadow:0 25px 60px -12px rgba(0,0,0,0.45); width:100%; max-width:460px; padding:28px 24px; position:relative; max-height:90vh; overflow-y:auto; }
         @media (min-width:768px){ .wa-modal-box{ padding:32px; } }
         .wa-modal-close{ position:absolute; top:14px; right:14px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:9999px; background:#f1f5f9; color:#475569; border:none; cursor:pointer; transition:background .2s,color .2s; z-index:2; }
@@ -127,6 +128,8 @@
         /* Jenjang pill (khusus PAUD/TK/SD) */
         .jenjang-pill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
         @media (min-width:480px){ .jenjang-pill-grid{ grid-template-columns:repeat(4,1fr); } }
+
+        /* Sticky mobile bottom bar (khas ads landing page) */
 
         /* Hero form card */
         .hero-form-card{ background:#fff; border-radius:24px; box-shadow:0 25px 60px -15px rgba(15,23,42,.25); border:1px solid rgba(226,232,240,.8); }
@@ -172,7 +175,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="pb-20 lg:pb-0">
         <!-- ============ HERO + FORM ============ -->
         <section class="relative pt-28 pb-14 lg:pt-40 lg:pb-24 overflow-hidden bg-slate-50">
             <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-amber-400/10 rounded-full blur-3xl opacity-60"></div>
@@ -240,11 +243,6 @@
                                 <div>
                                     <label for="hero-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua</label>
                                     <input type="text" id="hero-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                                </div>
-
-                                <div>
-                                    <label for="hero-wa" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" id="hero-wa" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
                                 </div>
 
                                 <div>
@@ -377,7 +375,8 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Suasana belajar seru yang sudah kami jalani bersama ratusan keluarga di seluruh Indonesia.</p>
                 </div>
 
-                <div class="reveal overflow-hidden mb-4" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+                <div class="reveal overflow-hidden space-y-4" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+                    <!-- Baris 1: scroll ke kanan -->
                     <div class="aktivitas-track flex gap-4" style="animation: marquee-right 26s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
@@ -390,14 +389,6 @@
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
                             <img src="assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <!-- set 2 (duplikat untuk loop mulus) -->
@@ -414,43 +405,33 @@
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Baris 2: bergerak ke kiri, foto berbeda -->
-                <div class="reveal overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
-                    <div class="aktivitas-track flex gap-4" style="animation: marquee-left 30s linear infinite; width: max-content;">
+                    <!-- Baris 2: scroll ke kiri -->
+                    <div class="aktivitas-track flex gap-4" style="animation: marquee-left 26s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <!-- set 2 (duplikat untuk loop mulus) -->
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                            <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                     </div>
@@ -623,10 +604,6 @@
                                 <label for="final-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua</label>
                                 <input type="text" id="final-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
                             </div>
-                            <div>
-                                <label for="final-wa" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                <input type="tel" id="final-wa" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                            </div>
                             <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
                                 Daftar Les Privat Sekarang
@@ -651,6 +628,11 @@
         </div>
     </footer>
 
+    <!-- Tombol WhatsApp mengambang kanan bawah -->
+    <a href="#" id="wa-float-btn" class="wa-float-btn" aria-label="Chat WhatsApp">
+        <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.44.79 3.07 1.2 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.07h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.02 8.02 0 0 1-1.23-4.3c0-4.43 3.6-8.03 8.04-8.03 2.15 0 4.16.84 5.68 2.36a7.98 7.98 0 0 1 2.35 5.68c0 4.43-3.6 8.03-8.05 8.03z"/></svg>
+    </a>
+
     <!-- Modal Pilih Program (dari tombol "Daftar Program Ini") -->
     <div id="program-modal-overlay" class="wa-modal-overlay">
         <div class="wa-modal-box">
@@ -667,10 +649,6 @@
                     <div>
                         <label for="program-modal-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua</label>
                         <input type="text" id="program-modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                    </div>
-                    <div>
-                        <label for="program-modal-wa" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                        <input type="tel" id="program-modal-wa" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
                     </div>
                     <div>
                         <label for="program-modal-kota" class="block text-sm font-semibold text-slate-700 mb-2">Domisili (Kota)</label>
@@ -710,7 +688,6 @@
 
         const heroJenjang  = setupJenjangGroup('#hero-jenjang-group', 'hero-jenjang-error');
         const finalJenjang = setupJenjangGroup('#final-jenjang-group', 'final-jenjang-error');
-        const modalJenjang = setupJenjangGroup('#modal-jenjang-group', 'modal-jenjang-error');
 
         function kirimWA(pesan){
             const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
@@ -722,15 +699,20 @@
             }
         }
 
+        /* ── Tombol WA floating kanan bawah ── */
+        document.getElementById('wa-float-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            kirimWA('Halo Sainspiq! 👋\n\nSaya ingin bertanya tentang les privat PAUD, TK & SD. Mohon informasi lebih lanjut. Terima kasih!');
+        });
+
         /* ── Form Hero ── */
         document.getElementById('hero-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const jenjang = heroJenjang.get();
             if (!jenjang) { document.getElementById('hero-jenjang-error').classList.remove('hidden'); return; }
             const nama = document.getElementById('hero-nama').value.trim();
-            const wa   = document.getElementById('hero-wa').value.trim();
             const kota = document.getElementById('hero-kota').value.trim();
-            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Jenjang:* ${jenjang}\n*Nama:* ${nama}\n*No. WA:* ${wa}\n*Domisili:* ${kota}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Jenjang:* ${jenjang}\n*Nama:* ${nama}\n*Domisili:* ${kota}\n\nMohon informasi lebih lanjut. Terima kasih!`;
             kirimWA(pesan);
         });
 
@@ -740,28 +722,8 @@
             const jenjang = finalJenjang.get();
             if (!jenjang) { document.getElementById('final-jenjang-error').classList.remove('hidden'); return; }
             const nama = document.getElementById('final-nama').value.trim();
-            const wa   = document.getElementById('final-wa').value.trim();
-            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Jenjang:* ${jenjang}\n*Nama:* ${nama}\n*No. WA:* ${wa}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Jenjang:* ${jenjang}\n*Nama:* ${nama}\n\nMohon informasi lebih lanjut. Terima kasih!`;
             kirimWA(pesan);
-        });
-
-        /* ── WA Modal (float button) ── */
-        const waModalOverlay = document.getElementById('wa-modal-overlay');
-        function openWaModal(){ waModalOverlay.classList.add('is-open'); document.body.classList.add('wa-modal-open'); }
-        function closeWaModal(){ waModalOverlay.classList.remove('is-open'); document.body.classList.remove('wa-modal-open'); }
-        document.getElementById('wa-float-btn').addEventListener('click', openWaModal);
-        document.getElementById('wa-modal-close').addEventListener('click', closeWaModal);
-        waModalOverlay.addEventListener('click', (e) => { if (e.target === waModalOverlay) closeWaModal(); });
-
-        document.getElementById('wa-modal-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const jenjang = modalJenjang.get();
-            if (!jenjang) { document.getElementById('modal-jenjang-error').classList.remove('hidden'); return; }
-            const nama = document.getElementById('modal-nama').value.trim();
-            const wa   = document.getElementById('modal-wa').value.trim();
-            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Jenjang:* ${jenjang}\n*Nama:* ${nama}\n*No. WA:* ${wa}\n\nMohon informasi lebih lanjut. Terima kasih!`;
-            kirimWA(pesan);
-            closeWaModal();
         });
 
         /* ── Modal Pilih Program ── */
@@ -779,16 +741,14 @@
         document.getElementById('program-modal-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const nama   = document.getElementById('program-modal-nama').value.trim();
-            const wa     = document.getElementById('program-modal-wa').value.trim();
             const kota   = document.getElementById('program-modal-kota').value.trim();
-            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Program:* ${selectedProgram}\n*Nama:* ${nama}\n*No. WA:* ${wa}\n*Domisili:* ${kota}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin *mendaftar* les privat.\n\n*Program:* ${selectedProgram}\n*Nama:* ${nama}\n*Domisili:* ${kota}\n\nMohon informasi lebih lanjut. Terima kasih!`;
             kirimWA(pesan);
             closeProgramModal();
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key !== 'Escape') return;
-            if (waModalOverlay.classList.contains('is-open')) closeWaModal();
             if (programModalOverlay.classList.contains('is-open')) closeProgramModal();
         });
 
