@@ -110,6 +110,7 @@
 
         /* Marquee dokumentasi */
         @keyframes marquee-right{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
+        @keyframes marquee-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
         .aktivitas-track:hover{ animation-play-state:paused; }
 
         /* WA Modal (untuk tombol float & sticky bar) */
@@ -126,10 +127,6 @@
         /* Jenjang pill (khusus PAUD/TK/SD) */
         .jenjang-pill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
         @media (min-width:480px){ .jenjang-pill-grid{ grid-template-columns:repeat(4,1fr); } }
-
-        /* Sticky mobile bottom bar (khas ads landing page) */
-        .sticky-mobile-cta{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:#fff; box-shadow:0 -8px 24px -8px rgba(15,23,42,.25); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); display:flex; gap:10px; }
-        @media (min-width:1024px){ .sticky-mobile-cta{ display:none; } }
 
         /* Hero form card */
         .hero-form-card{ background:#fff; border-radius:24px; box-shadow:0 25px 60px -15px rgba(15,23,42,.25); border:1px solid rgba(226,232,240,.8); }
@@ -175,7 +172,7 @@
         </div>
     </header>
 
-    <main class="pb-20 lg:pb-0">
+    <main>
         <!-- ============ HERO + FORM ============ -->
         <section class="relative pt-28 pb-14 lg:pt-40 lg:pb-24 overflow-hidden bg-slate-50">
             <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-amber-400/10 rounded-full blur-3xl opacity-60"></div>
@@ -380,7 +377,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Suasana belajar seru yang sudah kami jalani bersama ratusan keluarga di seluruh Indonesia.</p>
                 </div>
 
-                <div class="reveal overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+                <div class="reveal overflow-hidden mb-4" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
                     <div class="aktivitas-track flex gap-4" style="animation: marquee-right 26s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
@@ -414,6 +411,46 @@
                         </div>
                         <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
                             <img src="assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Baris 2: bergerak ke kiri, foto berbeda -->
+                <div class="reveal overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+                    <div class="aktivitas-track flex gap-4" style="animation: marquee-left 30s linear infinite; width: max-content;">
+                        <!-- set 1 -->
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <!-- set 2 (duplikat untuk loop mulus) -->
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
+                            <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);"><svg class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
                         </div>
                     </div>
@@ -613,54 +650,6 @@
             <p class="text-slate-500 text-xs">© 2026 Sainspiq Education. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Sticky mobile CTA bar -->
-    <div class="sticky-mobile-cta">
-        <a href="#daftar" class="flex-1 inline-flex items-center justify-center bg-secondary text-white font-bold py-3 rounded-lg text-sm">Daftar Sekarang</a>
-        <button type="button" id="wa-float-btn" class="w-12 h-12 flex-shrink-0 bg-[#25D366] rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.44.79 3.07 1.2 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.07h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.02 8.02 0 0 1-1.23-4.3c0-4.43 3.6-8.03 8.04-8.03 2.15 0 4.16.84 5.68 2.36a7.98 7.98 0 0 1 2.35 5.68c0 4.43-3.6 8.03-8.05 8.03z"/></svg>
-        </button>
-    </div>
-
-    <!-- WA Quick Modal (dipakai tombol float mobile) -->
-    <div id="wa-modal-overlay" class="wa-modal-overlay">
-        <div class="wa-modal-box">
-            <button type="button" id="wa-modal-close" class="wa-modal-close" aria-label="Tutup">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-            <div class="wa-modal-header">
-                <div class="wa-modal-icon"><svg class="w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
-                <h3 class="text-xl font-bold text-primary">Daftar via WhatsApp</h3>
-            </div>
-            <p class="text-sm text-slate-500 mb-6">Isi data singkat, lalu kami lanjutkan obrolan di WhatsApp.</p>
-            <form id="wa-modal-form">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Jenjang Anak</label>
-                        <div class="jenjang-pill-grid" id="modal-jenjang-group">
-                            <button type="button" data-jenjang="PAUD (3-4 th)" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">PAUD</button>
-                            <button type="button" data-jenjang="TK (5-6 th)" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">TK</button>
-                            <button type="button" data-jenjang="SD Kelas 1-3" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD 1-3</button>
-                            <button type="button" data-jenjang="SD Kelas 4-6" class="jenjang-btn border border-slate-200 rounded-lg py-2 px-1 text-xs font-medium text-slate-600 hover:border-secondary hover:text-secondary transition-colors">SD 4-6</button>
-                        </div>
-                        <p id="modal-jenjang-error" class="text-red-500 text-xs mt-1 hidden">Pilih jenjang anak terlebih dahulu.</p>
-                    </div>
-                    <div>
-                        <label for="modal-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua</label>
-                        <input type="text" id="modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                    </div>
-                    <div>
-                        <label for="modal-wa" class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
-                        <input type="tel" id="modal-wa" placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
-                    </div>
-                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                        Lanjutkan ke WhatsApp
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- Modal Pilih Program (dari tombol "Daftar Program Ini") -->
     <div id="program-modal-overlay" class="wa-modal-overlay">
