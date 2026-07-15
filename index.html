@@ -810,7 +810,7 @@
                 <div class="pcard-grid">
 
                     <!-- ======== CARD 1 – PAUD & TK ======== -->
-                    <a href="#konsultasi" class="pcard pcard-blue group">
+                    <a href="#konsultasi" data-program="PAUD & TK" class="pcard pcard-blue group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -842,7 +842,7 @@
                     </a>
 
                     <!-- ======== CARD 2 – SD ======== -->
-                    <a href="#konsultasi" class="pcard pcard-cyan group">
+                    <a href="#konsultasi" data-program="Sekolah Dasar (SD)" class="pcard pcard-cyan group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -876,7 +876,7 @@
                     </a>
 
                     <!-- ======== CARD 3 – SMP ======== -->
-                    <a href="#konsultasi" class="pcard pcard-violet group">
+                    <a href="#konsultasi" data-program="SMP" class="pcard pcard-violet group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -912,7 +912,7 @@
                     </a>
 
                     <!-- ======== CARD 4 – SMA ======== -->
-                    <a href="#konsultasi" class="pcard pcard-indigo group">
+                    <a href="#konsultasi" data-program="SMA" class="pcard pcard-indigo group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -946,7 +946,7 @@
                     </a>
 
                     <!-- ======== CARD 5 – UTBK (Unggulan) ======== -->
-                    <a href="#konsultasi" class="pcard pcard-amber pcard-featured group">
+                    <a href="#konsultasi" data-program="Persiapan UTBK" class="pcard pcard-amber pcard-featured group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -982,7 +982,7 @@
                     </a>
 
                     <!-- ======== CARD 6 – Olimpiade ======== -->
-                    <a href="#konsultasi" class="pcard pcard-sky group">
+                    <a href="#konsultasi" data-program="Olimpiade Sains" class="pcard pcard-sky group program-select-btn">
                         
                         <!-- Abstract Background -->
                         <div class="pcard-bg-wrap">
@@ -1797,6 +1797,42 @@
         </div>
     </div>
 
+    <!-- Program Pilihan Popup Modal (Nama & Alamat) -->
+    <div id="program-modal-overlay" class="wa-modal-overlay">
+        <div id="program-modal-box" class="wa-modal-box">
+            <button type="button" id="program-modal-close" class="wa-modal-close" aria-label="Tutup">
+                <svg class="lucide-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></svg>
+            </button>
+            <div class="wa-modal-header">
+                <div class="wa-modal-icon">
+                    <svg class="lucide-icon w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
+                </div>
+                <h3 class="text-xl font-bold text-primary">Program: <span id="program-modal-name" class="text-secondary">-</span></h3>
+            </div>
+            <p class="text-sm text-slate-500 mb-6">Isi data singkat berikut, lalu kami lanjutkan obrolan di WhatsApp.</p>
+            <form id="program-modal-form">
+                <div class="space-y-5">
+                    <div>
+                        <label for="program-modal-nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Orang Tua / Siswa</label>
+                        <input type="text" id="program-modal-nama" placeholder="Misal: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
+                    </div>
+
+                    <div>
+                        <label for="program-modal-alamat" class="block text-sm font-semibold text-slate-700 mb-2">Alamat</label>
+                        <input type="text" id="program-modal-alamat" placeholder="Misal: Jl. Merdeka No. 10, Jakarta Timur" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" required>
+                    </div>
+
+                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-blue-700 transition-colors flex justify-center items-center gap-2 shadow-lg hover:shadow-xl mt-2">
+                        <svg class="lucide-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
+                        Lanjutkan ke WhatsApp
+                    </button>
+                    <p class="text-xs text-center text-slate-500 mt-3">Data Anda aman dan tidak akan disebarluaskan.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         const ADMIN_WA = '628994788444';
 
@@ -1936,6 +1972,52 @@
 
             window.open(url, '_blank');
             closeWaModal();
+        });
+
+        // ── PROGRAM CARD: POPUP NAMA & ALAMAT ────────
+        const programModalOverlay = document.getElementById('program-modal-overlay');
+        const programModalClose   = document.getElementById('program-modal-close');
+        const programModalName    = document.getElementById('program-modal-name');
+        const programModalForm    = document.getElementById('program-modal-form');
+        let selectedProgram = '';
+
+        function openProgramModal(programName) {
+            selectedProgram = programName;
+            programModalName.textContent = programName;
+            programModalOverlay.classList.add('is-open');
+            document.body.classList.add('wa-modal-open');
+        }
+        function closeProgramModal() {
+            programModalOverlay.classList.remove('is-open');
+            document.body.classList.remove('wa-modal-open');
+        }
+
+        document.querySelectorAll('.program-select-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProgramModal(btn.dataset.program);
+            });
+        });
+
+        programModalClose.addEventListener('click', closeProgramModal);
+        programModalOverlay.addEventListener('click', (e) => {
+            if (e.target === programModalOverlay) closeProgramModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && programModalOverlay.classList.contains('is-open')) closeProgramModal();
+        });
+
+        programModalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nama   = document.getElementById('program-modal-nama').value.trim();
+            const alamat = document.getElementById('program-modal-alamat').value.trim();
+
+            const pesan = `Halo Sainspiq! 👋\n\nSaya ingin konsultasi les privat.\n\n*Program:* ${selectedProgram}\n*Nama:* ${nama}\n*Alamat:* ${alamat}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+            const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(pesan)}`;
+
+            window.open(url, '_blank');
+            closeProgramModal();
         });
 
         // ══════════════════════════════════════════
