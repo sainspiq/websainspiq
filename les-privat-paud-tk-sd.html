@@ -81,19 +81,23 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="/" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-blue-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+                    <img src="logo.webp" alt="Sainspiq Logo" class="h-10 sm:h-12 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="items-center gap-2" style="display:none;">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-blue-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary text-3xl leading-none">.</span></span>
                     </div>
-                    <span class="font-bold text-2xl tracking-tight text-primary">Sainspiq<span class="text-secondary text-3xl leading-none">.</span></span>
                 </a>
 
                 <!-- CTA Header -->
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3 sm:gap-4">
                     <a href="tel:+628994788444" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-secondary transition-colors">
                         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         0899-4788-444
                     </a>
-                    <a href="#daftar" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <!-- Tombol Daftar Sekarang dipastikan muncul di mobile dengan menghapus 'hidden' -->
+                    <a href="#daftar" class="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 whitespace-nowrap">
                         Daftar Sekarang
                     </a>
                 </div>
@@ -271,30 +275,30 @@
                 </div>
             </div>
 
-            <!-- Menggunakan unspalsh untuk placeholder estetika resolusi tinggi -->
+            <!-- Mengembalikan path lokal dengan fallback gambar otomatis jika file lokal belum diupload -->
             <div class="reveal space-y-6" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
                 <!-- Baris 1: scroll ke kanan -->
                 <div class="aktivitas-track flex gap-6" style="animation: marquee-right 30s linear infinite; width: max-content;">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-1.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+1';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-2.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+2';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-3.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+3';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-4.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+4';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
                     <!-- Duplikat untuk loop -->
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-1.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+1';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-2.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+2';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-3.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/eff6ff/2563eb?text=Dokumentasi+3';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
                 </div>
 
                 <!-- Baris 2: scroll ke kiri -->
                 <div class="aktivitas-track flex gap-6" style="animation: marquee-left 35s linear infinite; width: max-content;">
-                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1603354350317-6f7aaaa2e17c?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-5.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+5';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-6.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+6';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-7.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+7';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-8.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+8';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
                     <!-- Duplikat untuk loop -->
-                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
-                    <img src="https://images.unsplash.com/photo-1603354350317-6f7aaaa2e17c?q=80&w=400&h=400&auto=format&fit=crop" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-5.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+5';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-6.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+6';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
+                    <img src="assets/aktivitas/aktivitas-7.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f0fdf4/16a34a?text=Dokumentasi+7';" class="w-48 h-48 sm:w-60 sm:h-60 rounded-3xl object-cover shadow-md" alt="Galeri">
                 </div>
             </div>
         </section>
