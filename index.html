@@ -157,6 +157,15 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* ══════════════════════════════════════════
+           FIX: section hasil belajar — foto harus menempel ke batas bawah section
+           (override aturan global mobile "section{padding-bottom:40px!important}" di styles.css)
+           ══════════════════════════════════════════ */
+        #hasil-belajar-section{ padding-bottom:0!important; margin-bottom:0!important; }
+        @media (max-width:767px){
+            #hasil-belajar-section{ padding-bottom:0!important; }
+        }
+
+        /* ══════════════════════════════════════════
            HERO: Rotating text (vertical slide-up) — premium & halus, CLS = 0
            ══════════════════════════════════════════ */
         .sr-only{
@@ -556,7 +565,7 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="pt-14 md:pt-20 pb-0 mb-0 border-y border-slate-200 bg-white flex flex-col">
+        <section id="hasil-belajar-section" class="pt-14 md:pt-20 pb-0 mb-0 border-y border-slate-200 bg-white flex flex-col">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <!-- Heading pengantar -->
