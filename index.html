@@ -157,6 +157,33 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* ══════════════════════════════════════════
+           HERO: Custom background foto (section "Temukan Program Les Privat")
+           Ganti nama file di bawah ini sesuai foto yang diupload (format .webp)
+           ══════════════════════════════════════════ */
+        .hero-section{
+            position:relative;
+            background-image:url('hero-bg.webp');
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .hero-section::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:linear-gradient(180deg, rgba(255,255,255,0.90) 0%, rgba(255,255,255,0.94) 60%, rgba(248,250,252,0.97) 100%);
+            z-index:0;
+        }
+        .hero-section > *{
+            position:relative;
+            z-index:1;
+        }
+        .hero-badge{
+            border:none !important;
+            box-shadow:none !important;
+        }
+
+        /* ══════════════════════════════════════════
            FIX: section hasil belajar — foto harus menempel ke batas bawah section
            (override aturan global mobile "section{padding-bottom:40px!important}" di styles.css)
            ══════════════════════════════════════════ */
