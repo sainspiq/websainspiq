@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seleksi Calon Tutor - Sainspiq</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://sainspiq.com/pernyataan-tutor">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { font-family: 'Poppins', sans-serif; }
+  body { background: linear-gradient(180deg, #0b3d91 0%, #0a2f6e 100%); }
+  .paper {
+    background:#fffdf8;
+  }
+  .stamp {
+    border: 3px solid #b91c1c;
+    color:#b91c1c;
+    transform: rotate(-3deg);
+  }
+  .q-card {
+    border-left: 4px solid #b91c1c;
+    background: #fff7f0;
+  }
+  textarea:focus, input:focus { outline: none; box-shadow: 0 0 0 3px rgba(185,28,28,0.15); border-color:#b91c1c; }
+  .btn-send {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+  }
+  .btn-send:active { transform: scale(0.98); }
+  @keyframes pulseWarn {
+    0%,100% { opacity:1; }
+    50% { opacity:0.55; }
+  }
+  .pulse-dot { animation: pulseWarn 1.6s ease-in-out infinite; }
+</style>
+</head>
+<body class="min-h-screen py-8 px-4">
+
+<div class="max-w-2xl mx-auto">
+
+  <!-- Header -->
+  <div class="text-center mb-6">
+    <p class="text-blue-200 text-xs tracking-[0.3em] uppercase mb-1">Sainspiq — Lembaga Bimbingan Profesional</p>
+    <div class="flex items-center justify-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-red-600 pulse-dot"></span>
+      <h1 class="text-white text-lg font-semibold">Formulir Seleksi Calon Tutor</h1>
+    </div>
+  </div>
+
+  <div class="paper rounded-2xl shadow-2xl overflow-hidden">
+
+    <!-- Peringatan -->
+    <div class="stamp mx-6 mt-6 mb-2 py-3 px-4 rounded-md text-center bg-white">
+      <p class="font-extrabold text-sm sm:text-base tracking-wide uppercase">⚠ Peringatan Sebelum Mendaftar</p>
+    </div>
+
+    <div class="px-6 pb-2 text-neutral-700 text-sm leading-relaxed space-y-2">
+      <p>Sainspiq adalah <span class="font-semibold">lembaga bimbingan profesional</span>. Karena itu, setiap orang yang mendaftar sebagai tutor <span class="font-semibold">wajib melalui proses seleksi</span> sebelum diterima.</p>
+      <p>Belakangan ini, cukup banyak laporan tutor bermasalah yang beredar di grup asosiasi bimbel se-Indonesia. Untuk melindungi wali murid dan menjaga nama baik lembaga, kami perlu memastikan setiap calon tutor <span class="font-semibold">serius, jujur, dan bertanggung jawab</span>.</p>
+      <p class="text-red-700 font-medium">Jawab pertanyaan di bawah ini dengan jujur. Jawaban asal-asalan atau tidak sesuai kenyataan akan membuat pendaftaran Anda otomatis ditolak.</p>
+    </div>
+
+    <!-- Form -->
+    <form id="formSeleksi" class="px-6 py-6 space-y-5">
+
+      <div>
+        <label class="block text-sm font-semibold text-neutral-800 mb-1">Nama Lengkap</label>
+        <input required type="text" id="nama" placeholder="Tulis nama lengkap Anda"
+          class="w-full border border-neutral-300 rounded-lg px-4 py-2.5 text-sm text-neutral-800 bg-white">
+      </div>
+
+      <div class="q-card rounded-lg p-4">
+        <label class="block text-sm font-semibold text-neutral-800 mb-2">1. Apakah Anda tipikal orang yang bermasalah, suka berbohong, atau suka membuat alasan yang tidak syar'i?</label>
+        <textarea required id="q1" rows="2" placeholder="Tulis jawaban Anda"
+          class="w-full border border-neutral-300 rounded-lg px-4 py-2.5 text-sm text-neutral-800 bg-white resize-none"></textarea>
+      </div>
+
+      <div class="q-card rounded-lg p-4">
+        <label class="block text-sm font-semibold text-neutral-800 mb-2">2. Apakah Anda punya kesibukan dalam waktu dekat? (PPL, KKN, pindah tempat, dll)</label>
+        <textarea required id="q2" rows="2" placeholder="Tulis jawaban Anda"
+          class="w-full border border-neutral-300 rounded-lg px-4 py-2.5 text-sm text-neutral-800 bg-white resize-none"></textarea>
+      </div>
+
+      <div class="q-card rounded-lg p-4">
+        <label class="block text-sm font-semibold text-neutral-800 mb-2">3. Apakah Anda sudah mengecek alamat wali murid, sehingga setelah mendaftar tidak tiba-tiba bilang "jauh" lalu batal mendadak?</label>
+        <textarea required id="q3" rows="2" placeholder="Tulis jawaban Anda"
+          class="w-full border border-neutral-300 rounded-lg px-4 py-2.5 text-sm text-neutral-800 bg-white resize-none"></textarea>
+      </div>
+
+      <div class="q-card rounded-lg p-4">
+        <label class="block text-sm font-semibold text-neutral-800 mb-2">4. Apakah Anda pernah membatalkan les secara sepihak atau sengaja membuat masalah dengan wali murid hingga membuat wali murid kecewa dengan lembaga tempat Anda mengajar?</label>
+        <textarea required id="q4" rows="2" placeholder="Tulis jawaban Anda"
+          class="w-full border border-neutral-300 rounded-lg px-4 py-2.5 text-sm text-neutral-800 bg-white resize-none"></textarea>
+      </div>
+
+      <button type="submit"
+        class="btn-send w-full text-white font-semibold py-3.5 rounded-lg text-sm shadow-lg hover:opacity-90 transition flex items-center justify-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4c-4.85 0-8.8 3.94-8.8 8.79 0 1.55.4 3.06 1.17 4.39L3.2 21.5l4.44-1.16a8.8 8.8 0 0 0 4.4 1.19h.01c4.85 0 8.8-3.94 8.8-8.79 0-2.35-.92-4.56-2.6-6.22l-.65-.2zM12.05 20a7.3 7.3 0 0 1-3.72-1.02l-.27-.16-2.77.72.74-2.7-.18-.28a7.28 7.28 0 0 1-1.12-3.87c0-4.03 3.29-7.31 7.33-7.31a7.28 7.28 0 0 1 7.32 7.31c0 4.04-3.29 7.31-7.33 7.31zm4.02-5.48c-.22-.11-1.3-.64-1.5-.71-.2-.08-.35-.11-.5.11-.15.22-.57.71-.7.86-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.1-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.21-.69-1.65-.18-.44-.37-.38-.5-.38-.13-.01-.28-.01-.43-.01-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87s.81 2.17.92 2.32c.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.3-.53 1.49-1.04.18-.51.18-.95.13-1.04-.05-.1-.2-.15-.42-.26z"/></svg>
+        Kirim Jawaban ke WhatsApp
+      </button>
+
+      <p class="text-xs text-center text-neutral-400 pt-1">Jawaban akan dikirim langsung ke tim seleksi Sainspiq melalui WhatsApp.</p>
+    </form>
+  </div>
+
+  <p class="text-center text-blue-200/70 text-xs mt-5">© Sainspiq — Formulir internal, bukan untuk disebarluaskan</p>
+</div>
+
+<script>
+document.getElementById('formSeleksi').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const nama = document.getElementById('nama').value.trim();
+  const q1 = document.getElementById('q1').value.trim();
+  const q2 = document.getElementById('q2').value.trim();
+  const q3 = document.getElementById('q3').value.trim();
+  const q4 = document.getElementById('q4').value.trim();
+
+  const pesan =
+`*FORMULIR SELEKSI CALON TUTOR SAINSPIQ*
+
+*Nama:* ${nama}
+
+*1. Tipikal bermasalah/suka bohong/alasan tidak syar'i?*
+${q1}
+
+*2. Kesibukan dalam waktu dekat (PPL/KKN/pindah)?*
+${q2}
+
+*3. Sudah mengecek alamat wali murid (agar tidak batal mendadak karena jauh)?*
+${q3}
+
+*4. Pernah membatalkan sepihak / bikin masalah dengan wali murid?*
+${q4}`;
+
+  const nomorWA = "6285159377404";
+  const url = "https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan);
+  window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>
