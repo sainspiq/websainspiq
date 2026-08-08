@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Form Pendaftaran Bimbel SAINSPIQ</title>
+<meta name="description" content="Formulir pendaftaran siswa baru Bimbel SAINSPIQ. Isi data lengkap dan kirim langsung via WhatsApp.">
+<link rel="canonical" href="https://sainspiq.com/pendaftaran-siswa">
+<meta property="og:title" content="Form Pendaftaran Bimbel SAINSPIQ">
+<meta property="og:description" content="Isi data pendaftaran siswa baru Bimbel SAINSPIQ dan kirim langsung via WhatsApp.">
+<meta property="og:url" content="https://sainspiq.com/pendaftaran-siswa">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-900:#0b2e63;
+    --blue-700:#1450a3;
+    --blue-600:#1a63c4;
+    --blue-500:#2879e0;
+    --blue-100:#e8f0fd;
+    --amber-500:#f5a623;
+    --amber-600:#e2900d;
+    --amber-100:#fff4e0;
+    --wa-green:#25d366;
+    --wa-green-dark:#1eb958;
+    --ink:#122140;
+    --ink-soft:#5c6b84;
+    --line:#e1e7f2;
+    --bg:#f4f7fc;
+    --card:#ffffff;
+    --danger:#e0432c;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow:0 10px 30px -12px rgba(11,46,99,0.18);
+    --shadow-sm:0 2px 8px rgba(11,46,99,0.06);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:linear-gradient(180deg,var(--blue-900) 0%, var(--blue-700) 235px, var(--bg) 235px);
+    font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+  }
+  h1,h2,h3,.brand{font-family:'Poppins', sans-serif;}
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:650px;
+    margin:0 auto;
+    padding:0 16px;
+  }
+
+  /* HEADER */
+  .topbar{
+    padding:28px 0 6px;
+    text-align:center;
+  }
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    font-size:23px;
+    color:#fff;
+    letter-spacing:0.5px;
+  }
+  .brand .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--amber-500);
+    display:inline-block;
+  }
+  .brand-sub{
+    color:rgba(255,255,255,0.72);
+    font-size:12.5px;
+    margin-top:4px;
+    font-weight:500;
+  }
+
+  .hero{
+    text-align:center;
+    padding:20px 8px 30px;
+    color:#fff;
+  }
+  .hero h1{
+    font-size:21px;
+    line-height:1.4;
+    margin:0 0 10px;
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  .hero p{
+    margin:0 auto;
+    max-width:420px;
+    font-size:14px;
+    color:rgba(255,255,255,0.8);
+    line-height:1.55;
+  }
+
+  /* PROGRESS */
+  .progress{
+    display:flex;
+    align-items:flex-start;
+    max-width:650px;
+    margin:0 auto 22px;
+    padding:0 6px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--bg);
+    padding-top:14px;
+    padding-bottom:14px;
+  }
+  .progress .step{
+    flex:1;
+    text-align:center;
+    position:relative;
+  }
+  .progress .step .circle{
+    width:28px;height:28px;
+    border-radius:50%;
+    background:#fff;
+    border:2px solid var(--line);
+    color:var(--ink-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12.5px;font-weight:700;
+    margin:0 auto 7px;
+    transition:all .25s ease;
+    position:relative;
+    z-index:2;
+  }
+  .progress .step.active .circle{
+    background:var(--amber-500);
+    border-color:var(--amber-500);
+    color:#fff;
+    box-shadow:0 0 0 5px var(--amber-100);
+  }
+  .progress .step.done .circle{
+    background:var(--blue-600);
+    border-color:var(--blue-600);
+    color:#fff;
+  }
+  .progress .step span.label{
+    font-size:10.5px;
+    color:var(--ink-soft);
+    font-weight:600;
+    display:block;
+    letter-spacing:0.1px;
+  }
+  .progress .step.active span.label{color:var(--blue-700);}
+  .progress .step.done span.label{color:var(--blue-600);}
+  .progress .line{
+    position:absolute;
+    top:14px;
+    left:50%;
+    width:100%;
+    height:2px;
+    background:var(--line);
+    z-index:1;
+  }
+  .progress .step.done .line{background:var(--blue-600);}
+  .progress .step:last-child .line{display:none;}
+
+  /* CARD */
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:24px 20px 28px;
+    margin-bottom:16px;
+    border:1px solid var(--line);
+  }
+  .section-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 20px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-title .num{
+    width:32px;height:32px;
+    border-radius:10px;
+    background:var(--blue-100);
+    color:var(--blue-700);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .section-title h2{
+    font-size:16px;
+    margin:0;
+    color:var(--blue-900);
+    font-weight:700;
+    letter-spacing:0.1px;
+  }
+
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:7px;
+  }
+  label .req{color:var(--danger);margin-left:2px;}
+  label .opt{color:var(--ink-soft);font-weight:500;font-size:12px;}
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:var(--radius-sm);
+    border:1.5px solid var(--line);
+    background:#fbfcfe;
+    font-size:15px;
+    font-family:inherit;
+    color:var(--ink);
+    transition:border-color .15s, box-shadow .15s, background .15s;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  textarea{resize:vertical;min-height:80px;line-height:1.5;}
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:var(--blue-500);
+    background:#fff;
+    box-shadow:0 0 0 4px var(--blue-100);
+  }
+  input.err, select.err, textarea.err{
+    border-color:var(--danger);
+    background:#fff5f4;
+  }
+  .error-msg{
+    color:var(--danger);
+    font-size:12px;
+    margin-top:5px;
+    font-weight:600;
+    display:none;
+  }
+  .error-msg.show{display:block;}
+
+  select{
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c6b84' stroke-width='2.5'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    background-size:16px;
+    padding-right:36px;
+  }
+
+  .row2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  @media (max-width:420px){
+    .row2{grid-template-columns:1fr;}
+  }
+
+  .hint{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    line-height:1.5;
+  }
+
+  fieldset{border:none;padding:0;margin:0;}
+  .radio-group, .check-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .pill{
+    position:relative;
+    display:flex;
+  }
+  .pill input{
+    position:absolute;
+    opacity:0;
+    width:100%;height:100%;
+    cursor:pointer;
+    margin:0;
+    left:0;top:0;
+  }
+  .pill label{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:10px 16px;
+    border-radius:999px;
+    border:1.5px solid var(--line);
+    background:#fbfcfe;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+    cursor:pointer;
+    line-height:1.3;
+    text-align:center;
+    transition:background .15s, border-color .15s, color .15s;
+  }
+  .pill input:checked + label{
+    background:var(--blue-600);
+    border-color:var(--blue-600);
+    color:#fff;
+  }
+  .pill input:focus-visible + label{
+    box-shadow:0 0 0 3px var(--blue-100);
+  }
+  .pill input:hover + label{
+    border-color:var(--blue-500);
+  }
+  .pill input:checked:hover + label{
+    border-color:var(--blue-600);
+  }
+
+  .info-box{
+    background:var(--amber-100);
+    border:1.5px solid #f6d798;
+    border-radius:var(--radius-sm);
+    padding:14px 16px;
+    font-size:13px;
+    color:#7a4c07;
+    line-height:1.6;
+    margin-top:6px;
+  }
+  .info-box strong{display:block;margin-bottom:6px;font-size:13.5px;}
+
+  .note-box{
+    background:var(--blue-100);
+    border:1.5px solid #c7dcfa;
+    border-radius:var(--radius);
+    padding:18px 18px;
+    margin:18px 0;
+    color:var(--blue-900);
+  }
+  .note-box h3{
+    margin:0 0 10px;
+    font-size:15px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .note-box ul{
+    margin:0;
+    padding-left:18px;
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  /* ACTIONS */
+  .actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:6px;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    padding:15px 18px;
+    border-radius:14px;
+    border:none;
+    font-size:15.5px;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+    transition:transform .1s, box-shadow .15s, opacity .15s;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--wa-green), var(--wa-green-dark));
+    color:#fff;
+    box-shadow:0 8px 20px -6px rgba(37,211,102,0.55);
+  }
+  .btn-ghost{
+    background:#fff;
+    color:var(--ink-soft);
+    border:1.5px solid var(--line);
+  }
+  .btn-reset{
+    background:transparent;
+    color:var(--ink-soft);
+    text-decoration:underline;
+    font-weight:600;
+    font-size:13px;
+    padding:8px;
+  }
+  .btn[disabled]{opacity:0.7;cursor:not-allowed;}
+
+  .spinner{
+    width:16px;height:16px;
+    border-radius:50%;
+    border:2.5px solid rgba(255,255,255,0.4);
+    border-top-color:#fff;
+    animation:spin .7s linear infinite;
+    display:none;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* PREVIEW MODAL */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(11,20,40,0.55);
+    backdrop-filter:blur(2px);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+    padding:0;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:#fff;
+    width:100%;
+    max-width:650px;
+    max-height:88vh;
+    border-radius:20px 20px 0 0;
+    display:flex;
+    flex-direction:column;
+    animation:slideUp .25s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .modal-head{
+    padding:18px 20px 12px;
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .modal-head h3{
+    margin:0 0 4px;
+    font-size:16px;
+    color:var(--blue-900);
+    display:flex;align-items:center;gap:8px;
+  }
+  .modal-head p{margin:0;font-size:12.5px;color:var(--ink-soft);}
+  .modal-body{
+    padding:16px 20px;
+    overflow-y:auto;
+    flex:1;
+  }
+  .wa-preview{
+    background:#e9f8ee;
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:13px;
+    line-height:1.65;
+    white-space:pre-wrap;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    color:#1c2b1f;
+    border:1px solid #cdeed6;
+  }
+  .modal-foot{
+    padding:14px 20px 20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    gap:10px;
+    flex-shrink:0;
+  }
+  .modal-foot .btn{padding:13px;font-size:14px;}
+
+  .toast{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--blue-900);
+    color:#fff;
+    padding:13px 20px;
+    border-radius:12px;
+    font-size:13.5px;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s, transform .25s;
+    z-index:200;
+    max-width:90%;
+    text-align:center;
+  }
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+    pointer-events:auto;
+  }
+
+  footer{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:22px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>SAINSPIQ</div>
+  <div class="brand-sub">Bimbingan Belajar Privat &amp; Online</div>
+</div>
+
+<div class="hero wrap">
+  <h1>FORM PENDAFTARAN BIMBEL SAINSPIQ 📗</h1>
+  <p>Silakan isi data berikut dengan lengkap untuk proses pendaftaran siswa.</p>
+</div>
+
+<div class="progress wrap" id="progressBar">
+  <div class="step active" data-step="1">
+    <div class="circle">1</div>
+    <span class="label">Data Siswa</span>
+    <div class="line"></div>
+  </div>
+  <div class="step" data-step="2">
+    <div class="circle">2</div>
+    <span class="label">Orang Tua</span>
+    <div class="line"></div>
+  </div>
+  <div class="step" data-step="3">
+    <div class="circle">3</div>
+    <span class="label">Program Les</span>
+    <div class="line"></div>
+  </div>
+</div>
+
+<form class="wrap" id="regForm" novalidate>
+
+  <!-- DATA SISWA -->
+  <div class="card" data-section="1">
+    <div class="section-title"><div class="num">1</div><h2>Data Siswa</h2></div>
+
+    <div class="field">
+      <label for="namaLengkap">Nama Lengkap<span class="req">*</span></label>
+      <input type="text" id="namaLengkap" placeholder="Contoh: Ahmad Fauzan Ramadhan">
+      <div class="error-msg">Nama lengkap wajib diisi.</div>
+    </div>
+
+    <div class="field">
+      <label for="namaPanggilan">Nama Panggilan<span class="req">*</span></label>
+      <input type="text" id="namaPanggilan" placeholder="Contoh: Fauzan">
+      <div class="error-msg">Nama panggilan wajib diisi.</div>
+    </div>
+
+    <div class="field">
+      <label>Jenis Kelamin<span class="req">*</span></label>
+      <div class="radio-group" id="jenisKelaminGroup">
+        <div class="pill">
+          <input type="radio" name="jenisKelamin" id="jk_l" value="Laki-laki">
+          <label for="jk_l">👦 Laki-laki</label>
+        </div>
+        <div class="pill">
+          <input type="radio" name="jenisKelamin" id="jk_p" value="Perempuan">
+          <label for="jk_p">👧 Perempuan</label>
+        </div>
+      </div>
+      <div class="error-msg" id="err_jk">Pilih jenis kelamin siswa.</div>
+    </div>
+
+    <div class="field row2">
+      <div>
+        <label for="tempatLahir">Tempat Lahir</label>
+        <input type="text" id="tempatLahir" placeholder="Kota kelahiran">
+      </div>
+      <div>
+        <label for="tanggalLahir">Tanggal Lahir</label>
+        <input type="date" id="tanggalLahir">
+      </div>
+    </div>
+
+    <div class="field row2">
+      <div>
+        <label for="kelas">Kelas</label>
+        <input type="text" id="kelas" placeholder="Contoh: 5 SD">
+      </div>
+      <div>
+        <label for="sekolah">Nama Sekolah</label>
+        <input type="text" id="sekolah" placeholder="Nama sekolah siswa">
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA ORANG TUA -->
+  <div class="card" data-section="2">
+    <div class="section-title"><div class="num">2</div><h2>Data Orang Tua</h2></div>
+
+    <div class="field">
+      <label for="namaOrtu">Nama Orang Tua<span class="req">*</span></label>
+      <input type="text" id="namaOrtu" placeholder="Contoh: Bapak Wahyu Setiawan">
+      <div class="error-msg">Nama orang tua wajib diisi.</div>
+    </div>
+
+    <div class="field">
+      <label for="hpOrtu">No. HP / WhatsApp Orang Tua<span class="req">*</span></label>
+      <input type="tel" id="hpOrtu" placeholder="Contoh: 08981677111" inputmode="numeric">
+      <div class="error-msg">Nomor HP wajib diisi dan formatnya valid.</div>
+      <div class="hint">Format akan otomatis disesuaikan, contoh: 08xxxxxxxxxx.</div>
+    </div>
+
+    <div class="field">
+      <label for="jalan">Alamat Lengkap — Jalan<span class="req">*</span></label>
+      <input type="text" id="jalan" placeholder="Nama jalan &amp; nomor rumah">
+      <div class="error-msg">Alamat jalan wajib diisi.</div>
+    </div>
+
+    <div class="field row2">
+      <div>
+        <label for="kelurahan">Kelurahan/Desa</label>
+        <input type="text" id="kelurahan" placeholder="Nama kelurahan/desa">
+      </div>
+      <div>
+        <label for="kecamatan">Kecamatan</label>
+        <input type="text" id="kecamatan" placeholder="Nama kecamatan">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="kabupaten">Kabupaten/Kota</label>
+      <input type="text" id="kabupaten" placeholder="Nama kabupaten/kota">
+    </div>
+  </div>
+
+  <!-- PROGRAM LES -->
+  <div class="card" data-section="3">
+    <div class="section-title"><div class="num">3</div><h2>Program Les</h2></div>
+
+    <div class="field">
+      <label>Materi Les<span class="req">*</span></label>
+      <div class="check-group" id="materiGroup">
+        <div class="pill"><input type="checkbox" name="materi" id="m1" value="Calistung"><label for="m1">Calistung</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m2" value="Bahasa Inggris"><label for="m2">Bahasa Inggris</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m3" value="Matematika"><label for="m3">Matematika</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m4" value="Bahasa Indonesia"><label for="m4">Bahasa Indonesia</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m5" value="IPA"><label for="m5">IPA</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m6" value="IPS"><label for="m6">IPS</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m7" value="Mengaji"><label for="m7">Mengaji</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m8" value="Semua Mata Pelajaran"><label for="m8">Semua Mata Pelajaran</label></div>
+        <div class="pill"><input type="checkbox" name="materi" id="m9" value="Lainnya"><label for="m9">Lainnya</label></div>
+      </div>
+      <div class="error-msg" id="err_materi">Pilih minimal satu materi les.</div>
+      <div class="field" id="materiLainnyaWrap" style="display:none;margin-top:10px;">
+        <input type="text" id="materiLainnya" placeholder="Tuliskan materi lain yang diinginkan">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Jumlah Paket Les<span class="req">*</span></label>
+      <div class="radio-group" id="paketGroup">
+        <div class="pill"><input type="radio" name="paket" id="p1" value="4x pertemuan"><label for="p1">4x pertemuan</label></div>
+        <div class="pill"><input type="radio" name="paket" id="p2" value="8x pertemuan"><label for="p2">8x pertemuan</label></div>
+        <div class="pill"><input type="radio" name="paket" id="p3" value="12x pertemuan"><label for="p3">12x pertemuan</label></div>
+        <div class="pill"><input type="radio" name="paket" id="p4" value="Lainnya"><label for="p4">Lainnya</label></div>
+      </div>
+      <div class="error-msg" id="err_paket">Pilih jumlah paket les.</div>
+      <div class="field" id="paketLainnyaWrap" style="display:none;margin-top:10px;">
+        <input type="text" id="paketLainnya" placeholder="Tuliskan jumlah paket yang diinginkan">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="jadwal">Jadwal Les<span class="req">*</span></label>
+      <textarea id="jadwal" placeholder="Contoh: Senin, Rabu, Jumat pukul 16.00–18.00"></textarea>
+      <div class="error-msg">Jadwal les wajib diisi.</div>
+      <div class="hint">Silakan berikan beberapa opsi hari dan jam agar tentor lebih mudah menyesuaikan.</div>
+    </div>
+
+    <div class="field">
+      <label for="mulaiTanggal">Les Mulai Tanggal/Hari</label>
+      <input type="date" id="mulaiTanggal">
+      <div class="hint">Jadwal dapat disesuaikan kembali dengan tentor.</div>
+    </div>
+
+    <div class="field">
+      <label>Durasi<span class="req">*</span></label>
+      <div class="radio-group" id="durasiGroup">
+        <div class="pill"><input type="radio" name="durasi" id="d1" value="60 menit"><label for="d1">60 menit</label></div>
+        <div class="pill"><input type="radio" name="durasi" id="d2" value="90 menit"><label for="d2">90 menit</label></div>
+        <div class="pill"><input type="radio" name="durasi" id="d3" value="120 menit"><label for="d3">120 menit</label></div>
+      </div>
+      <div class="error-msg" id="err_durasi">Pilih durasi les.</div>
+    </div>
+
+    <div class="field">
+      <label for="catatan">Catatan untuk Siswa/i <span class="opt">(opsional)</span></label>
+      <textarea id="catatan" placeholder="Contoh: Anak masih kesulitan membaca, ingin meningkatkan kemampuan berhitung, dll."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Dapat Informasi Bimbel SAINSPIQ dari mana?</label>
+      <div class="radio-group" id="sumberGroup">
+        <div class="pill"><input type="radio" name="sumber" id="s1" value="Instagram"><label for="s1">Instagram</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s2" value="Facebook"><label for="s2">Facebook</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s3" value="Google"><label for="s3">Google</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s4" value="Teman/Keluarga"><label for="s4">Teman/Keluarga</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s5" value="TikTok"><label for="s5">TikTok</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s6" value="WhatsApp"><label for="s6">WhatsApp</label></div>
+        <div class="pill"><input type="radio" name="sumber" id="s7" value="Lainnya"><label for="s7">Lainnya</label></div>
+      </div>
+      <div class="field" id="sumberLainnyaWrap" style="display:none;margin-top:10px;">
+        <input type="text" id="sumberLainnya" placeholder="Tuliskan sumber informasi lain">
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box wrap">
+    <h3>📌 Catatan</h3>
+    <ul>
+      <li>Boleh berikan kami banyak opsi jadwal, baik hari &amp; jamnya, agar tentor mudah menyesuaikan.</li>
+      <li>Jika mau, jadwal juga dapat disepakati langsung dengan tentor.</li>
+      <li>Les dimulai H+3 atau maksimal H+7 setelah pendaftaran.</li>
+    </ul>
+  </div>
+
+  <div class="actions wrap">
+    <button type="submit" class="btn btn-primary" id="submitBtn">
+      <span class="spinner" id="submitSpinner"></span>
+      <span id="submitLabel">KIRIM PENDAFTARAN VIA WHATSAPP</span>
+    </button>
+    <button type="button" class="btn btn-reset" id="resetBtn">Reset Form</button>
+  </div>
+</form>
+
+<footer class="wrap">SAINSPIQ — Bimbingan Belajar Privat &amp; Online</footer>
+
+<!-- PREVIEW MODAL -->
+<div class="overlay" id="previewOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>📋 Preview Pesan WhatsApp</h3>
+      <p>Periksa kembali data sebelum mengirim ke Admin SAINSPIQ.</p>
+    </div>
+    <div class="modal-body">
+      <div class="wa-preview" id="waPreviewText"></div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" id="editBtn">Kembali Edit</button>
+      <button type="button" class="btn btn-primary" id="sendBtn">Kirim ke WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const WA_NUMBER = "628981677111";
+
+  const form = document.getElementById('regForm');
+  const sections = Array.from(document.querySelectorAll('.card[data-section]'));
+  const progressSteps = Array.from(document.querySelectorAll('#progressBar .step'));
+
+  // ---- Update progress indicator on scroll ----
+  function updateProgress(){
+    let current = 1;
+    const scrollPos = window.scrollY + 160;
+    sections.forEach(sec=>{
+      if(sec.offsetTop <= scrollPos){
+        current = parseInt(sec.dataset.section,10);
+      }
+    });
+    progressSteps.forEach(step=>{
+      const n = parseInt(step.dataset.step,10);
+      step.classList.remove('active','done');
+      if(n < current) step.classList.add('done');
+      else if(n === current) step.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // ---- Conditional "Lainnya" fields ----
+  document.getElementById('m9').addEventListener('change', function(){
+    document.getElementById('materiLainnyaWrap').style.display = this.checked ? 'block' : 'none';
+  });
+  document.getElementById('p4').addEventListener('change', function(){
+    document.getElementById('paketLainnyaWrap').style.display = this.checked ? 'block' : 'none';
+  });
+  document.querySelectorAll('input[name="paket"]').forEach(r=>{
+    r.addEventListener('change', function(){
+      if(this.value !== 'Lainnya'){
+        document.getElementById('paketLainnyaWrap').style.display = 'none';
+      }
+    });
+  });
+  document.getElementById('s7').addEventListener('change', function(){
+    document.getElementById('sumberLainnyaWrap').style.display = this.checked ? 'block' : 'none';
+  });
+  document.querySelectorAll('input[name="sumber"]').forEach(r=>{
+    r.addEventListener('change', function(){
+      if(this.value !== 'Lainnya'){
+        document.getElementById('sumberLainnyaWrap').style.display = 'none';
+      }
+    });
+  });
+
+  // ---- Phone number auto formatting ----
+  const hpInput = document.getElementById('hpOrtu');
+  hpInput.addEventListener('blur', function(){
+    let v = this.value.trim().replace(/[\s\-().]/g,'');
+    if(v.startsWith('+62')) v = '0' + v.slice(3);
+    else if(v.startsWith('62')) v = '0' + v.slice(2);
+    else if(v.startsWith('8')) v = '0' + v;
+    this.value = v;
+  });
+
+  // ---- Validation helpers ----
+  function setError(el, show){
+    if(!el) return;
+    el.classList.toggle('err', show);
+  }
+  function showFieldError(fieldEl, msgEl, show){
+    setError(fieldEl, show);
+    if(msgEl) msgEl.classList.toggle('show', show);
+  }
+
+  function validate(){
+    let valid = true;
+    const firstInvalid = [];
+
+    function check(inputEl, condition, msgEl){
+      const errorContainer = inputEl.closest('.field');
+      const msg = msgEl || (errorContainer ? errorContainer.querySelector('.error-msg') : null);
+      showFieldError(inputEl, msg, !condition);
+      if(!condition){
+        valid = false;
+        firstInvalid.push(inputEl);
+      }
+    }
+
+    check(document.getElementById('namaLengkap'), document.getElementById('namaLengkap').value.trim().length > 0);
+    check(document.getElementById('namaPanggilan'), document.getElementById('namaPanggilan').value.trim().length > 0);
+
+    const jkChecked = document.querySelector('input[name="jenisKelamin"]:checked');
+    document.getElementById('err_jk').classList.toggle('show', !jkChecked);
+    if(!jkChecked){ valid = false; firstInvalid.push(document.getElementById('jenisKelaminGroup')); }
+
+    check(document.getElementById('namaOrtu'), document.getElementById('namaOrtu').value.trim().length > 0);
+
+    const hpVal = hpInput.value.trim().replace(/[\s\-().]/g,'');
+    const hpValid = /^0\d{8,14}$/.test(hpVal);
+    check(hpInput, hpValid);
+
+    check(document.getElementById('jalan'), document.getElementById('jalan').value.trim().length > 0);
+
+    const materiChecked = document.querySelectorAll('input[name="materi"]:checked').length > 0;
+    document.getElementById('err_materi').classList.toggle('show', !materiChecked);
+    if(!materiChecked){ valid = false; firstInvalid.push(document.getElementById('materiGroup')); }
+
+    const paketChecked = document.querySelector('input[name="paket"]:checked');
+    document.getElementById('err_paket').classList.toggle('show', !paketChecked);
+    if(!paketChecked){ valid = false; firstInvalid.push(document.getElementById('paketGroup')); }
+
+    check(document.getElementById('jadwal'), document.getElementById('jadwal').value.trim().length > 0);
+
+    const durasiChecked = document.querySelector('input[name="durasi"]:checked');
+    document.getElementById('err_durasi').classList.toggle('show', !durasiChecked);
+    if(!durasiChecked){ valid = false; firstInvalid.push(document.getElementById('durasiGroup')); }
+
+    if(firstInvalid.length){
+      firstInvalid[0].scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    return valid;
+  }
+
+  // live-clear errors as user types/selects
+  form.addEventListener('input', function(e){
+    if(e.target.matches('input,textarea')){
+      const field = e.target.closest('.field');
+      const msg = field ? field.querySelector('.error-msg') : null;
+      if(e.target.value.trim().length > 0) showFieldError(e.target, msg, false);
+    }
+  });
+  form.addEventListener('change', function(e){
+    if(e.target.name === 'jenisKelamin') document.getElementById('err_jk').classList.remove('show');
+    if(e.target.name === 'materi') document.getElementById('err_materi').classList.remove('show');
+    if(e.target.name === 'paket') document.getElementById('err_paket').classList.remove('show');
+    if(e.target.name === 'durasi') document.getElementById('err_durasi').classList.remove('show');
+  });
+
+  // ---- Build WhatsApp message ----
+  function val(id){ return document.getElementById(id).value.trim(); }
+
+  function formatTanggal(dateStr){
+    if(!dateStr) return '-';
+    const d = new Date(dateStr + 'T00:00:00');
+    if(isNaN(d)) return dateStr;
+    return d.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+  }
+
+  function buildMessage(){
+    const nama = val('namaLengkap') || '-';
+    const panggilan = val('namaPanggilan') || '-';
+    const jk = (document.querySelector('input[name="jenisKelamin"]:checked') || {}).value || '-';
+    const tempatLahir = val('tempatLahir') || '-';
+    const tglLahir = val('tanggalLahir') ? formatTanggal(val('tanggalLahir')) : '-';
+    const kelas = val('kelas') || '-';
+    const sekolah = val('sekolah') || '-';
+    const namaOrtu = val('namaOrtu') || '-';
+    const hp = hpInput.value.trim() || '-';
+    const jalan = val('jalan') || '-';
+    const kelurahan = val('kelurahan') || '-';
+    const kecamatan = val('kecamatan') || '-';
+    const kabupaten = val('kabupaten') || '-';
+
+    let materiList = Array.from(document.querySelectorAll('input[name="materi"]:checked')).map(el=>el.value);
+    if(materiList.includes('Lainnya') && val('materiLainnya')){
+      materiList = materiList.filter(m=>m!=='Lainnya');
+      materiList.push(val('materiLainnya'));
+    }
+    const materi = materiList.length ? materiList.join(', ') : '-';
+
+    let paket = (document.querySelector('input[name="paket"]:checked') || {}).value || '-';
+    if(paket === 'Lainnya' && val('paketLainnya')) paket = val('paketLainnya');
+
+    const jadwal = val('jadwal') || '-';
+    const mulai = val('mulaiTanggal') ? formatTanggal(val('mulaiTanggal')) : '-';
+    const durasi = (document.querySelector('input[name="durasi"]:checked') || {}).value || '-';
+    const catatan = val('catatan') || '-';
+
+    let sumber = (document.querySelector('input[name="sumber"]:checked') || {}).value || '-';
+    if(sumber === 'Lainnya' && val('sumberLainnya')) sumber = val('sumberLainnya');
+
+    return `FORM PENDAFTARAN BIMBEL SAINSPIQ 📗
+
+No. Registrasi : (diisi oleh pihak Bimbel SainsPiq)
+
+DATA SISWA
+1. Nama Lengkap : ${nama}
+2. Nama Panggilan : ${panggilan}
+3. Jenis Kelamin : ${jk}
+4. Tempat/Tanggal Lahir : ${tempatLahir}, ${tglLahir}
+5. Kelas/Sekolah : ${kelas} / ${sekolah}
+
+DATA ORANG TUA
+6. Nama Orang Tua : ${namaOrtu}
+7. No. HP : ${hp}
+
+ALAMAT
+8. Alamat Lengkap :
+Jl. ${jalan}
+Kelurahan : ${kelurahan}
+Kecamatan : ${kecamatan}
+Kabupaten/Kota : ${kabupaten}
+
+PROGRAM LES
+9. Materi Les : ${materi}
+10. Jumlah Paket Les : ${paket}
+11. Jadwal Les : ${jadwal}
+12. Les Mulai : ${mulai}
+13. Durasi : ${durasi}
+14. Catatan untuk Siswa/i :
+${catatan}
+15. Sumber Informasi :
+${sumber}
+
+Mohon diproses untuk pendaftaran siswa baru Bimbel SAINSPIQ. 🙏`;
+  }
+
+  // ---- Submit -> show preview ----
+  const submitBtn = document.getElementById('submitBtn');
+  const submitSpinner = document.getElementById('submitSpinner');
+  const submitLabel = document.getElementById('submitLabel');
+  const overlay = document.getElementById('previewOverlay');
+  const waPreviewText = document.getElementById('waPreviewText');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitSpinner.style.display = 'inline-block';
+    submitLabel.textContent = 'Memeriksa data...';
+    submitBtn.disabled = true;
+
+    setTimeout(function(){
+      submitSpinner.style.display = 'none';
+      submitLabel.textContent = 'KIRIM PENDAFTARAN VIA WHATSAPP';
+      submitBtn.disabled = false;
+
+      if(!validate()){
+        showToast('⚠️ Mohon lengkapi data yang wajib diisi.');
+        return;
+      }
+      waPreviewText.textContent = buildMessage();
+      overlay.classList.add('show');
+    }, 450);
+  });
+
+  document.getElementById('editBtn').addEventListener('click', function(){
+    overlay.classList.remove('show');
+  });
+
+  document.getElementById('sendBtn').addEventListener('click', function(){
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner" style="display:inline-block;"></span> Menyiapkan...';
+
+    setTimeout(function(){
+      showToast('✅ Data pendaftaran sudah siap dikirim ke Admin SAINSPIQ.');
+      const message = buildMessage();
+      const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message);
+
+      setTimeout(function(){
+        window.open(url, '_blank');
+        overlay.classList.remove('show');
+        btn.disabled = false;
+        btn.innerHTML = 'Kirim ke WhatsApp';
+      }, 700);
+    }, 300);
+  });
+
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) overlay.classList.remove('show');
+  });
+
+  // ---- Reset ----
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(confirm('Yakin ingin mengosongkan semua data formulir?')){
+      form.reset();
+      document.querySelectorAll('.error-msg.show').forEach(el=>el.classList.remove('show'));
+      document.querySelectorAll('.err').forEach(el=>el.classList.remove('err'));
+      document.getElementById('materiLainnyaWrap').style.display = 'none';
+      document.getElementById('paketLainnyaWrap').style.display = 'none';
+      document.getElementById('sumberLainnyaWrap').style.display = 'none';
+      window.scrollTo({top:0, behavior:'smooth'});
+      showToast('Formulir telah direset.');
+    }
+  });
+
+  // ---- Toast ----
+  let toastTimer;
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>{ toast.classList.remove('show'); }, 3200);
+  }
+})();
+</script>
+</body>
+</html>
