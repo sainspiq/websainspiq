@@ -654,12 +654,15 @@
       <div class="field" id="materiLainnyaWrap" style="display:none;margin-top:10px;">
         <input type="text" id="materiLainnya" placeholder="Tuliskan materi lain yang diinginkan">
       </div>
+      <div class="info-box">
+        <strong>📌 Khusus Siswa SMP &amp; SMA</strong>
+        Untuk jenjang SMP dan SMA, mohon pilih maksimal 1–2 mata pelajaran yang ingin difokuskan (mapel terkonsentrasi). Tentor mengajar secara linear dan hanya dapat mendampingi maksimal 2 mapel per siswa.
+      </div>
     </div>
 
     <div class="field">
       <label>Jumlah Paket Les<span class="req">*</span></label>
       <div class="radio-group" id="paketGroup">
-        <div class="pill"><input type="radio" name="paket" id="p1" value="4x pertemuan"><label for="p1">4x pertemuan</label></div>
         <div class="pill"><input type="radio" name="paket" id="p2" value="8x pertemuan"><label for="p2">8x pertemuan</label></div>
         <div class="pill"><input type="radio" name="paket" id="p3" value="12x pertemuan"><label for="p3">12x pertemuan</label></div>
         <div class="pill"><input type="radio" name="paket" id="p4" value="Lainnya"><label for="p4">Lainnya</label></div>
@@ -679,18 +682,8 @@
 
     <div class="field">
       <label for="mulaiTanggal">Les Mulai Tanggal/Hari</label>
-      <input type="date" id="mulaiTanggal">
+      <input type="text" id="mulaiTanggal" placeholder="Contoh: Senin, 12 Agustus 2026">
       <div class="hint">Jadwal dapat disesuaikan kembali dengan tentor.</div>
-    </div>
-
-    <div class="field">
-      <label>Durasi<span class="req">*</span></label>
-      <div class="radio-group" id="durasiGroup">
-        <div class="pill"><input type="radio" name="durasi" id="d1" value="60 menit"><label for="d1">60 menit</label></div>
-        <div class="pill"><input type="radio" name="durasi" id="d2" value="90 menit"><label for="d2">90 menit</label></div>
-        <div class="pill"><input type="radio" name="durasi" id="d3" value="120 menit"><label for="d3">120 menit</label></div>
-      </div>
-      <div class="error-msg" id="err_durasi">Pilih durasi les.</div>
     </div>
 
     <div class="field">
@@ -865,10 +858,6 @@
 
     check(document.getElementById('jadwal'), document.getElementById('jadwal').value.trim().length > 0);
 
-    const durasiChecked = document.querySelector('input[name="durasi"]:checked');
-    document.getElementById('err_durasi').classList.toggle('show', !durasiChecked);
-    if(!durasiChecked){ valid = false; firstInvalid.push(document.getElementById('durasiGroup')); }
-
     if(firstInvalid.length){
       firstInvalid[0].scrollIntoView({behavior:'smooth', block:'center'});
     }
@@ -888,7 +877,6 @@
     if(e.target.name === 'jenisKelamin') document.getElementById('err_jk').classList.remove('show');
     if(e.target.name === 'materi') document.getElementById('err_materi').classList.remove('show');
     if(e.target.name === 'paket') document.getElementById('err_paket').classList.remove('show');
-    if(e.target.name === 'durasi') document.getElementById('err_durasi').classList.remove('show');
   });
 
   // ---- Build WhatsApp message ----
@@ -927,8 +915,7 @@
     if(paket === 'Lainnya' && val('paketLainnya')) paket = val('paketLainnya');
 
     const jadwal = val('jadwal') || '-';
-    const mulai = val('mulaiTanggal') ? formatTanggal(val('mulaiTanggal')) : '-';
-    const durasi = (document.querySelector('input[name="durasi"]:checked') || {}).value || '-';
+    const mulai = val('mulaiTanggal') || '-';
     const catatan = val('catatan') || '-';
 
     let sumber = (document.querySelector('input[name="sumber"]:checked') || {}).value || '-';
@@ -961,10 +948,9 @@ PROGRAM LES
 10. Jumlah Paket Les : ${paket}
 11. Jadwal Les : ${jadwal}
 12. Les Mulai : ${mulai}
-13. Durasi : ${durasi}
-14. Catatan untuk Siswa/i :
+13. Catatan untuk Siswa/i :
 ${catatan}
-15. Sumber Informasi :
+14. Sumber Informasi :
 ${sumber}
 
 Mohon diproses untuk pendaftaran siswa baru Bimbel SAINSPIQ. 🙏`;
