@@ -110,8 +110,30 @@
                     <a href="#daftar" class="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 whitespace-nowrap">
                         Daftar Sekarang
                     </a>
+
+                    <!-- Tombol Menu Mobile -->
+                    <div class="lg:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-slate-600 hover:text-secondary transition-colors" aria-label="Buka menu">
+                            <svg id="menu-icon" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <g id="menu-icon-menu"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></g>
+                                <g id="menu-icon-x" style="display:none;"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></g>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-slate-200 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
+            <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+                <a href="/#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Program</a>
+                <a href="/biaya-les-privat" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Biaya Les</a>
+                <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Area Layanan</a>
+                <a href="/blog" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Blog</a>
+                <a href="/tentang-kami" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Tentang Kami</a>
+                <a href="/kontak" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-secondary transition-all">Kontak</a>
+            </nav>
         </div>
     </header>
 
@@ -552,6 +574,37 @@
                 }
             });
         });
+    </script>
+
+    <!-- Toggle Menu Mobile -->
+    <script>
+        (function () {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('menu-icon-menu');
+            const iconX = document.getElementById('menu-icon-x');
+            if (!btn || !menu) return;
+            let open = false;
+
+            btn.addEventListener('click', () => {
+                open = !open;
+                if (open) {
+                    menu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                    menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+                } else {
+                    menu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none', 'invisible');
+                    menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'visible');
+                }
+                if (iconMenu && iconX) {
+                    iconMenu.style.display = open ? 'none' : '';
+                    iconX.style.display = open ? '' : 'none';
+                }
+            });
+
+            menu.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => btn.click());
+            });
+        })();
     </script>
 </body>
 </html>
