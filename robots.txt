@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /private
+Disallow: /meta-tags-template.html
 
 Sitemap: https://sainspiq.com/sitemap.xml
