@@ -24,12 +24,12 @@
     <meta name="twitter:image" content="https://sainspiq.com/hero_illustration.webp">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="logo.webp">
-    <link rel="apple-touch-icon" href="logo.webp">
+    <link rel="icon" type="image/webp" href="/logo.webp">
+    <link rel="apple-touch-icon" href="/logo.webp">
 
     <!-- Preload aset LCP (logo & hero illustration) -->
-    <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
-    <link rel="preload" as="image" href="hero_illustration.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/logo.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/hero_illustration.webp" fetchpriority="high">
 
     <!-- Schema Markup: Service (Les Privat Surabaya) -->
     <script type="application/ld+json">
@@ -184,7 +184,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap"></noscript>
 
     <!-- Stylesheet Tailwind (compiled, production-ready) -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
         /* ══════════════════════════════════════════
            HERO: Custom background foto (section "Temukan Program Les Privat")
@@ -192,7 +192,7 @@
            ══════════════════════════════════════════ */
         .hero-section{
             position:relative;
-            background-image:url('hero-bg.webp');
+            background-image:url('/hero-bg.webp');
             background-size:cover;
             background-position:center;
             background-repeat:no-repeat;
@@ -296,7 +296,7 @@
         /* Background Section FAQ (watercolor biru) */
         .faq-bg-section{
             position:relative;
-            background-image:url('assets/faq/faq-bg.webp');
+            background-image:url('/assets/faq/faq-bg.webp');
             background-size:cover;
             background-position:center;
             background-repeat:no-repeat;
@@ -507,9 +507,9 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- LOGO HEADER: ganti src="logo-sainspiq.png" dengan path logo kamu -->
+                <!-- LOGO HEADER: ganti src="/logo-sainspiq.png" dengan path logo kamu -->
                 <a href="/" class="flex items-center logo-link">
-                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
+                    <img src="/logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <!-- Fallback teks jika file logo belum ada -->
                     <div class="items-center gap-2" style="display:none;">
@@ -614,7 +614,7 @@
 
                         <div class="hero-illustration-cta-wrap relative">
                             <div class="hero-animate hero-illustration-wrap mb-8" style="transition-delay:0.4s">
-                                <img src="hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="448" height="448" fetchpriority="high">
+                                <img src="/hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="448" height="448" fetchpriority="high">
                             </div>
 
                             <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
@@ -685,7 +685,7 @@
             <!-- Foto full width, menempel di garis batas bawah section -->
             <div class="reveal" style="margin-top:3rem; margin-bottom:0; padding-bottom:0;">
                 <img
-                    src="hasil-belajar-sainspiq.webp"
+                    src="/hasil-belajar-sainspiq.webp"
                     alt="Momen belajar siswa Sainspiq bersama tutor privat"
                     width="1600"
                     height="700"
@@ -825,28 +825,28 @@
                     <div class="flex gap-4 mb-4" style="animation: marquee-right 28s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
                                 <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
                                 <p class="text-[10px] text-slate-400">Yogyakarta</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -854,28 +854,28 @@
                         </div>
                         <!-- set 2 (duplikat untuk seamless loop) -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ui.webp" alt="Universitas Indonesia" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Indonesia</p>
                                 <p class="text-[10px] text-slate-400">Depok, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/itb.webp" alt="ITB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Bandung</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ugm.webp" alt="UGM" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Gadjah Mada</p>
                                 <p class="text-[10px] text-slate-400">Yogyakarta</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/unpad.webp" alt="UNPAD" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Padjadjaran</p>
                                 <p class="text-[10px] text-slate-400">Bandung, Jawa Barat</p>
@@ -887,28 +887,28 @@
                     <div class="flex gap-4" style="animation: marquee-left 28s linear infinite; width: max-content;">
                         <!-- set 1 -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
                                 <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
                                 <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
@@ -916,28 +916,28 @@
                         </div>
                         <!-- set 2 (duplikat untuk seamless loop) -->
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/its.webp" alt="ITS" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Institut Tek. Sepuluh N.</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/unair.webp" alt="UNAIR" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Airlangga</p>
                                 <p class="text-[10px] text-slate-400">Surabaya, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/undip.webp" alt="UNDIP" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Diponegoro</p>
                                 <p class="text-[10px] text-slate-400">Semarang, Jawa Tengah</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl p-5 shadow-card flex flex-col items-center justify-center gap-3 border border-slate-100 flex-shrink-0" style="width:160px;">
-                            <img src="assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
+                            <img src="/assets/logos/ub.webp" alt="UB" class="h-14 object-contain" width="56" height="56" loading="lazy" onerror="this.onerror=null; this.src='assets/logos/default.webp';">
                             <div class="text-center">
                                 <p class="text-xs font-bold text-primary">Univ. Brawijaya</p>
                                 <p class="text-[10px] text-slate-400">Malang, Jawa Timur</p>
@@ -987,61 +987,61 @@
                 <div class="mb-10 reveal overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
                     <div class="aktivitas-track flex gap-4 mb-4" style="animation: marquee-right 30s linear infinite; width: max-content;">
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-2.webp" alt="Aktivitas les privat Sainspiq foto 2" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-2.webp" alt="Aktivitas les privat Sainspiq foto 2" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-1.webp" alt="Aktivitas les privat Sainspiq foto 1" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-2.webp" alt="Aktivitas les privat Sainspiq foto 2" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-2.webp" alt="Aktivitas les privat Sainspiq foto 2" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-3.webp" alt="Aktivitas les privat Sainspiq foto 3" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-4.webp" alt="Aktivitas les privat Sainspiq foto 4" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-5.webp" alt="Aktivitas les privat Sainspiq foto 5" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
@@ -1050,61 +1050,61 @@
 
                     <div class="aktivitas-track flex gap-4 mb-4" style="animation: marquee-left 34s linear infinite; width: max-content;">
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-6.webp" alt="Aktivitas les privat Sainspiq foto 6" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-7.webp" alt="Aktivitas les privat Sainspiq foto 7" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-8.webp" alt="Aktivitas les privat Sainspiq foto 8" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-9.webp" alt="Aktivitas les privat Sainspiq foto 9" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-10.webp" alt="Aktivitas les privat Sainspiq foto 10" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
@@ -1113,61 +1113,61 @@
 
                     <div class="aktivitas-track flex gap-4" style="animation: marquee-right 32s linear infinite; width: max-content;">
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-11.webp" alt="Aktivitas les privat Sainspiq foto 11" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-11.webp" alt="Aktivitas les privat Sainspiq foto 11" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-12.webp" alt="Aktivitas les privat Sainspiq foto 12" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-12.webp" alt="Aktivitas les privat Sainspiq foto 12" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-13.webp" alt="Aktivitas les privat Sainspiq foto 13" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-13.webp" alt="Aktivitas les privat Sainspiq foto 13" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-14.webp" alt="Aktivitas les privat Sainspiq foto 14" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-14.webp" alt="Aktivitas les privat Sainspiq foto 14" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-15.webp" alt="Aktivitas les privat Sainspiq foto 15" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-15.webp" alt="Aktivitas les privat Sainspiq foto 15" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-11.webp" alt="Aktivitas les privat Sainspiq foto 11" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-11.webp" alt="Aktivitas les privat Sainspiq foto 11" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-12.webp" alt="Aktivitas les privat Sainspiq foto 12" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-12.webp" alt="Aktivitas les privat Sainspiq foto 12" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-13.webp" alt="Aktivitas les privat Sainspiq foto 13" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-13.webp" alt="Aktivitas les privat Sainspiq foto 13" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-14.webp" alt="Aktivitas les privat Sainspiq foto 14" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-14.webp" alt="Aktivitas les privat Sainspiq foto 14" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
                             </div>
                             <div class="rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0" style="width:150px; height:150px;">
-                                <img src="assets/aktivitas/aktivitas-15.webp" alt="Aktivitas les privat Sainspiq foto 15" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img src="/assets/aktivitas/aktivitas-15.webp" alt="Aktivitas les privat Sainspiq foto 15" class="w-full h-full object-cover" width="150" height="150" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="hidden w-full h-full items-center justify-center" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                     <svg class="lucide-icon w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                                 </div>
@@ -1177,7 +1177,7 @@
 
                 <!-- Foto Dokumentasi Full Width — DISEMBUNYIKAN khusus di index.html (masih dipakai di page lain, jangan hapus). Sudah digantikan galeri foto aktivitas di atas. Hapus style="display:none;" kalau mau dimunculkan lagi. -->
                 <div class="reveal w-full rounded-2xl overflow-hidden" style="display:none;">
-                    <img src="assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" width="800" height="600" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
+                    <img src="/assets/docs/doc-1.webp" alt="Dokumentasi les privat Sainspiq" class="w-full h-auto block" width="800" height="600" loading="lazy" onerror="this.onerror=null; this.closest('div').querySelector('.doc-placeholder').style.display='flex'; this.style.display='none';">
                     <!-- Placeholder kalau foto belum ada -->
                     <div class="doc-placeholder hidden w-full bg-gradient-to-br from-blue-50 to-blue-100 items-center justify-center flex-col gap-3" style="min-height:320px;">
                         <svg class="lucide-icon w-12 h-12 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
@@ -1478,7 +1478,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 608/1223;">
-                                        <img src="assets/testimoni/testi-bunda-lina.webp" alt="Testimoni WhatsApp Bunda Lina, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-bunda-lina.webp" alt="Testimoni WhatsApp Bunda Lina, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1495,7 +1495,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 688/1206;">
-                                        <img src="assets/testimoni/testi-pak-dodi.webp" alt="Testimoni WhatsApp Pak Dodi, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-pak-dodi.webp" alt="Testimoni WhatsApp Pak Dodi, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1512,7 +1512,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 623/1229;">
-                                        <img src="assets/testimoni/testi-bunda-sinta.webp" alt="Testimoni WhatsApp Bunda Sinta, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-bunda-sinta.webp" alt="Testimoni WhatsApp Bunda Sinta, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1529,7 +1529,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 645/1121;">
-                                        <img src="assets/testimoni/testi-pak-agus.webp" alt="Testimoni WhatsApp Pak Agus, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-pak-agus.webp" alt="Testimoni WhatsApp Pak Agus, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1546,7 +1546,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 398/743;">
-                                        <img src="assets/testimoni/testi-bunda-syifa.webp" alt="Testimoni WhatsApp Bunda Syifa, orang tua siswa Sainspiq" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-bunda-syifa.webp" alt="Testimoni WhatsApp Bunda Syifa, orang tua siswa Sainspiq" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1563,7 +1563,7 @@
                             <div class="testimoni-slide w-full flex-shrink-0 px-1 sm:px-2">
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 432/818;">
-                                        <img src="assets/testimoni/testi-pak-surya.webp" alt="Testimoni WhatsApp Pak Surya, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <img src="/assets/testimoni/testi-pak-surya.webp" alt="Testimoni WhatsApp Pak Surya, orang tua siswa Sainspiq dari Surabaya" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                         <div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
@@ -1832,9 +1832,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 footer-grid">
                 <div class="footer-col-brand">
-                    <!-- LOGO FOOTER: ganti src="logo-sainspiq-white.png" dengan path logo putih kamu -->
+                    <!-- LOGO FOOTER: ganti src="/logo-sainspiq-white.png" dengan path logo putih kamu -->
                     <a href="/" class="flex items-center mb-6 logo-link">
-                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
+                        <img src="/logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <!-- Fallback teks jika file logo belum ada -->
                         <div class="items-center gap-2" style="display:none;">
