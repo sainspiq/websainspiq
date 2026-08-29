@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Meta Tags -->
-    <title>Les Privat Seluruh Kota di Indonesia & Online Seluruh Pelosok Daerah | Sainspiq</title>
+    <title>Area Layanan Les Privat | Sainspiq</title>
     <meta name="description" content="Sainspiq melayani les privat dan mengaji kunjungan rumah (guru datang ke rumah) di SELURUH kota di Indonesia, serta les online hingga ke pelosok daerah. Hubungi kami untuk tutor terbaik di kota Anda." />
     <meta name="keywords" content="les privat, guru datang ke rumah, les privat jakarta, les privat seluruh indonesia, les online seluruh pelosok, guru les privat, bimbingan belajar, les mengaji, persiapan UTBK" />
     <meta name="author" content="Sainspiq Education" />
@@ -13,7 +13,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Les Privat Seluruh Kota di Indonesia & Online Seluruh Daerah | Sainspiq" />
+    <meta property="og:title" content="Area Layanan Les Privat | Sainspiq" />
     <meta property="og:description" content="Tutor profesional datang langsung ke rumah Anda di seluruh kota Indonesia, atau belajar online hingga ke daerah." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sainspiq.com/area-layanan" />
@@ -22,7 +22,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Les Privat Seluruh Kota di Indonesia & Online Seluruh Daerah | Sainspiq" />
+    <meta name="twitter:title" content="Area Layanan Les Privat | Sainspiq" />
     <meta name="twitter:description" content="Tutor profesional datang langsung ke rumah Anda di seluruh kota Indonesia, atau belajar online hingga ke daerah." />
     <meta name="twitter:image" content="https://sainspiq.com/logo.webp" />
 
@@ -43,7 +43,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com">
@@ -52,12 +52,12 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
                     colors: {
-                        primary: '#0b1120',
+                        primary: '#0f172a',
                         secondary: '#2563eb',
-                        accent: '#7c3aed',
-                        support: '#38bdf8',
+                        accent: '#f97316',
+                        support: '#06b6d4',
                         surface: '#f1f5f9',
                         glass: 'rgba(255,255,255,0.72)',
                     },
@@ -99,7 +99,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             background: #ffffff;
         }
@@ -159,7 +159,7 @@
 
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 60%, #38bdf8 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #f97316 60%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -272,7 +272,7 @@
         }
     </style>
 </head>
-<body>
+<body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
     <!-- ==================== HEADER ==================== -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
@@ -294,7 +294,8 @@
                 <!-- Desktop Nav -->
                 <nav class="hidden lg:flex items-center gap-1">
                     <a href="/#program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
-                    <a href="/#faq" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
+                    <a href="/#testimoni" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Testimoni</a>
+                    <a href="/biaya-les-privat" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
                     <a href="#daftar-area" class="px-4 py-2 rounded-full text-sm font-bold text-secondary bg-blue-50/80 transition-all">Area Layanan</a>
                     <a href="/blog" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Blog</a>
                     <a href="/tentang-kami" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Tentang Kami</a>
@@ -303,7 +304,6 @@
 
                 <!-- Desktop CTA -->
                 <div class="hidden lg:flex items-center gap-4">
-                    <a href="/masuk" class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">Masuk</a>
                     <button onclick="openWaModal('Konsultasi Umum')" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-secondary rounded-full hover:bg-blue-700 hover:shadow-glow transition-all shadow-md">
                         Konsultasi Gratis
                     </button>
@@ -323,13 +323,13 @@
         <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
             <nav class="flex flex-col p-4 gap-2">
                 <a href="/#program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
-                <a href="/#faq" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Biaya Les</a>
+                <a href="/#testimoni" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Testimoni</a>
+                <a href="/biaya-les-privat" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Biaya Les</a>
                 <a href="#daftar-area" class="p-4 rounded-xl text-base font-bold text-secondary bg-blue-50 transition-all">Area Layanan</a>
                 <a href="/blog" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Blog</a>
                 <a href="/tentang-kami" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Tentang Kami</a>
                 <a href="/kontak" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Kontak</a>
                 <div class="h-px bg-slate-100 my-2"></div>
-                <a href="/masuk" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all text-center border border-slate-200">Masuk</a>
                 <button onclick="openWaModal('Konsultasi via Mobile')" class="w-full inline-flex items-center justify-center px-5 py-4 text-base font-bold text-white bg-secondary rounded-xl hover:bg-blue-700 transition-colors shadow-md">
                     Konsultasi Sekarang
                 </button>
