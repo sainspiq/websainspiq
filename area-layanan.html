@@ -31,7 +31,7 @@
         {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
-            "name": "Sainspiq Education",
+            "name": "Sainspiq",
             "url": "https://sainspiq.com",
             "logo": "https://sainspiq.com/logo.webp",
             "description": "Layanan les privat dan mengaji dengan sistem guru datang ke rumah untuk seluruh wilayah Indonesia.",
@@ -271,6 +271,57 @@
             }
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://sainspiq.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Area Layanan", "item": "https://sainspiq.com/area-layanan" }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Area Layanan Les Privat Sainspiq",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Les Privat Jakarta Selatan",
+      "url": "https://sainspiq.com/area-layanan/les-privat-jakarta-selatan"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Les Privat Jakarta Timur",
+      "url": "https://sainspiq.com/area-layanan/les-privat-jakarta-timur"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Les Privat Semarang",
+      "url": "https://sainspiq.com/area-layanan/les-privat-semarang"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Les Privat Purwokerto",
+      "url": "https://sainspiq.com/area-layanan/les-privat-purwokerto"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Les Privat Surabaya",
+      "url": "https://sainspiq.com/area-layanan/les-privat-surabaya"
+    }
+  ]
+}
+    </script>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
@@ -281,7 +332,7 @@
 
                 <!-- Logo -->
                 <a href="/" class="flex items-center gap-3 group shrink-0">
-                    <img src="logo.webp" alt="Sainspiq" class="h-10 object-contain w-auto" width="125" height="40" fetchpriority="high"
+                    <img src="/logo.webp" alt="Sainspiq" class="h-10 object-contain w-auto" width="125" height="40" fetchpriority="high"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="items-center gap-2" style="display:none;">
                         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-lg">
@@ -293,7 +344,7 @@
 
                 <!-- Desktop Nav -->
                 <nav class="hidden lg:flex items-center gap-1">
-                    <a href="/#program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
+                    <a href="/program" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Program</a>
                     <a href="/#testimoni" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Testimoni</a>
                     <a href="/biaya-les-privat" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-all">Biaya Les</a>
                     <a href="#daftar-area" class="px-4 py-2 rounded-full text-sm font-bold text-secondary bg-blue-50/80 transition-all">Area Layanan</a>
@@ -322,7 +373,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
             <nav class="flex flex-col p-4 gap-2">
-                <a href="/#program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
+                <a href="/program" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Program</a>
                 <a href="/#testimoni" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Testimoni</a>
                 <a href="/biaya-les-privat" class="p-4 rounded-xl text-base font-semibold text-slate-700 hover:bg-slate-50 transition-all">Biaya Les</a>
                 <a href="#daftar-area" class="p-4 rounded-xl text-base font-bold text-secondary bg-blue-50 transition-all">Area Layanan</a>
@@ -523,6 +574,79 @@
             </div>
         </section>
 
+
+        <!-- ========== HALAMAN KOTA (struktur internal link) ========== -->
+        <section id="halaman-kota" class="py-20 bg-slate-50 scroll-mt-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-100 px-3 py-1.5 rounded-full mb-4">Halaman Kota</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-3">Informasi Lengkap per Kota</h2>
+                <p class="text-slate-600 mb-10 max-w-2xl">Setiap kota punya halaman sendiri berisi cakupan kecamatan, testimoni orang tua setempat, dan ketersediaan tutor. Pilih kota Anda di bawah ini.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <a href="/area-layanan/les-privat-jakarta-selatan" class="group block p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-none">
+                                <i data-lucide="building-2" class="w-5 h-5 text-blue-600"></i>
+                            </span>
+                            <h3 class="font-bold text-primary group-hover:text-blue-700 leading-snug">Les Privat Jakarta Selatan</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Kebayoran, Cilandak, Pesanggrahan, Jagakarsa, dan sekitarnya.</p>
+                        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                            Lihat halaman kota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                    <a href="/area-layanan/les-privat-jakarta-timur" class="group block p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-none">
+                                <i data-lucide="building-2" class="w-5 h-5 text-blue-600"></i>
+                            </span>
+                            <h3 class="font-bold text-primary group-hover:text-blue-700 leading-snug">Les Privat Jakarta Timur</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Cipayung, Kramat Jati, Duren Sawit, Cakung, dan sekitarnya.</p>
+                        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                            Lihat halaman kota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                    <a href="/area-layanan/les-privat-semarang" class="group block p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-none">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
+                            </span>
+                            <h3 class="font-bold text-primary group-hover:text-blue-700 leading-snug">Les Privat Semarang</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Semarang kota, Banyumanik, Tembalang, sampai area Ungaran.</p>
+                        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                            Lihat halaman kota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                    <a href="/area-layanan/les-privat-purwokerto" class="group block p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-none">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
+                            </span>
+                            <h3 class="font-bold text-primary group-hover:text-blue-700 leading-snug">Les Privat Purwokerto</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Purwokerto dan Banyumas Raya — basis operasional tutor kami.</p>
+                        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                            Lihat halaman kota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                    <a href="/area-layanan/les-privat-surabaya" class="group block p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-none">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
+                            </span>
+                            <h3 class="font-bold text-primary group-hover:text-blue-700 leading-snug">Les Privat Surabaya</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Simokerto, Tambaksari, dan kecamatan lain di Surabaya.</p>
+                        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                            Lihat halaman kota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                </div>
+                <p class="text-sm text-slate-500 mt-8">Kota Anda belum ada di daftar? <a href="/kontak" class="text-secondary font-semibold hover:underline">Hubungi kami</a> — kami melayani seluruh Indonesia.</p>
+            </div>
+        </section>
+
         <!-- ========== MODE BELAJAR ========== -->
         <section class="py-24 bg-primary text-white relative overflow-hidden">
             <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/15 via-accent/5 to-transparent pointer-events-none"></div>
@@ -604,7 +728,7 @@
                 <!-- Brand -->
                 <div class="lg:col-span-1">
                     <a href="/" class="flex items-center gap-2 mb-6">
-                        <img src="logo.webp" alt="Sainspiq" class="h-10 object-contain w-auto" width="125" height="40" loading="lazy"
+                        <img src="/logo.webp" alt="Sainspiq" class="h-10 object-contain w-auto" width="125" height="40" loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="items-center gap-2" style="display:none;">
                             <div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
@@ -622,11 +746,11 @@
                 <div>
                     <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Program</h4>
                     <ul class="space-y-3.5 text-sm font-medium">
-                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> Calistung &amp; TK</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SD (Semua Mapel)</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SMP (Fisika, MTK, dll)</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SMA (IPA/IPS)</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> Persiapan UTBK SNBT</a></li>
+                        <li><a href="/program/les-privat-paud-tk" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> Calistung &amp; TK</a></li>
+                        <li><a href="/program/les-privat-sd" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SD (Semua Mapel)</a></li>
+                        <li><a href="/program/les-privat-smp" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SMP (Fisika, MTK, dll)</a></li>
+                        <li><a href="/program/les-privat-sma" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> SMA (IPA/IPS)</a></li>
+                        <li><a href="/program/persiapan-utbk-snbt" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-secondary"></i> Persiapan UTBK SNBT</a></li>
                     </ul>
                 </div>
 
@@ -669,6 +793,7 @@
                 <div class="flex space-x-6 text-sm">
                     <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
                     <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat &amp; Ketentuan</a>
+                    <a href="/pernyataan-tutor" class="text-slate-500 hover:text-white transition-colors">Gabung Jadi Tutor</a>
                 </div>
             </div>
         </div>
