@@ -32,6 +32,21 @@
     <link rel="preload" as="image" href="hero_illustration.webp" fetchpriority="high">
 
     <!-- Schema Markup: EducationalOrganization (Structured Data) -->
+
+    <!-- Identitas situs: memperkuat pengenalan nama situs & sitelinks -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://sainspiq.com/#website",
+      "url": "https://sainspiq.com/",
+      "name": "Sainspiq",
+      "alternateName": ["Sainspiq Les Privat", "Sainspiq Education"],
+      "inLanguage": "id-ID",
+      "description": "Layanan les privat dengan guru datang ke rumah dan online untuk PAUD, TK, SD, SMP, SMA, persiapan UTBK/SNBT, dan Olimpiade Sains.",
+      "publisher": { "@id": "https://sainspiq.com/#organization" }
+    }
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -479,7 +494,7 @@
             <div class="flex justify-between items-center h-16">
                 <!-- LOGO HEADER: ganti src="logo-sainspiq.png" dengan path logo kamu -->
                 <a href="/" class="flex items-center logo-link">
-                    <img src="logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
+                    <img src="/logo.webp" alt="Sainspiq" class="h-16 object-contain" width="200" height="64" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <!-- Fallback teks jika file logo belum ada -->
                     <div class="items-center gap-2" style="display:none;">
@@ -493,7 +508,7 @@
                 </a>
 
                 <nav class="hidden md:flex space-x-1">
-                    <a href="#program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
+                    <a href="/program" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Program</a>
                     <a href="#testimoni" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Testimoni</a>
                     <a href="/biaya-les-privat" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Biaya Les</a>
                     <a href="/area-layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-secondary transition-all">Area Layanan</a>
@@ -522,7 +537,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full bg-gradient-to-br from-secondary to-blue-900 backdrop-blur-md border-t border-blue-800 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none invisible z-40">
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-                <a href="#program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
+                <a href="/program" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Program</a>
                 <a href="#testimoni" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Testimoni</a>
                 <a href="/biaya-les-privat" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Biaya Les</a>
                 <a href="/area-layanan" class="mobile-menu-link px-4 py-3 rounded-lg text-sm font-medium text-blue-50 bg-white/5 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10">Area Layanan</a>
@@ -1291,6 +1306,14 @@
 
                 </div><!-- /grid -->
 
+                <!-- Link ke halaman Program (penting untuk struktur situs) -->
+                <div class="text-center mt-8 mb-2">
+                    <a href="/program" class="inline-flex items-center gap-2 text-secondary font-semibold hover:text-blue-700 transition-colors underline underline-offset-4 decoration-blue-200 hover:decoration-blue-500">
+                        Lihat detail lengkap semua program les privat
+                        <svg class="lucide-icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </a>
+                </div>
+
                 <!-- CTA bawah (opsional) -->
                 <div class="pcard-cta-block">
                     <p class="text-slate-500 text-sm">Butuh rekomendasi program yang paling sesuai?</p>
@@ -1693,7 +1716,7 @@
                 <div class="footer-col-brand">
                     <!-- LOGO FOOTER: ganti src="logo-sainspiq-white.png" dengan path logo putih kamu -->
                     <a href="/" class="flex items-center mb-6 logo-link">
-                        <img src="logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
+                        <img src="/logo.webp" alt="Sainspiq" class="h-14 object-contain" width="175" height="56" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <!-- Fallback teks jika file logo belum ada -->
                         <div class="items-center gap-2" style="display:none;">
@@ -1715,14 +1738,14 @@
                     <div class="footer-col-services">
                         <h4 class="text-white font-semibold mb-4">Program</h4>
                         <ul class="text-sm footer-list">
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
-                            <li><a href="#program" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
+                            <li><a href="/program/les-privat-paud-tk" class="text-slate-400 hover:text-white transition-colors">Les Privat PraSchool</a></li>
+                            <li><a href="/program/les-privat-paud-tk" class="text-slate-400 hover:text-white transition-colors">Les Privat PAUD</a></li>
+                            <li><a href="/program/les-privat-paud-tk" class="text-slate-400 hover:text-white transition-colors">Les Privat TK</a></li>
+                            <li><a href="/program/les-privat-sd" class="text-slate-400 hover:text-white transition-colors">Les Privat SD</a></li>
+                            <li><a href="/program/les-privat-smp" class="text-slate-400 hover:text-white transition-colors">Les Privat SMP</a></li>
+                            <li><a href="/program/les-privat-sma" class="text-slate-400 hover:text-white transition-colors">Les Privat SMA</a></li>
+                            <li><a href="/program/persiapan-utbk-snbt" class="text-slate-400 hover:text-white transition-colors">Persiapan UTBK / SNBT</a></li>
+                            <li><a href="/program/olimpiade-sains" class="text-slate-400 hover:text-white transition-colors">Olimpiade Sains</a></li>
                         </ul>
                     </div>
 
@@ -1767,6 +1790,7 @@
                 <div class="flex space-x-6 text-sm">
                     <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
                     <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="/pernyataan-tutor" class="text-slate-500 hover:text-white transition-colors">Gabung Jadi Tutor</a>
                 </div>
             </div>
         </div>

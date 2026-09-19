@@ -71,6 +71,27 @@
         
         body.wa-modal-open { overflow: hidden; }
     </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Beranda",
+      "item": "https://sainspiq.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kontak",
+      "item": "https://sainspiq.com/kontak"
+    }
+  ]
+}
+    </script>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
 
@@ -80,7 +101,7 @@
             <div class="flex justify-between items-center h-[72px]">
                 <!-- Logo -->
                 <a href="/" class="flex items-center logo-link group">
-                    <img src="logo.webp" alt="Sainspiq" class="h-12 md:h-14 object-contain transition-transform group-hover:scale-105" width="180" height="56" fetchpriority="high"
+                    <img src="/logo.webp" alt="Sainspiq" class="h-12 md:h-14 object-contain transition-transform group-hover:scale-105" width="180" height="56" fetchpriority="high"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="items-center gap-2" style="display:none;">
                         <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
@@ -92,7 +113,7 @@
 
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
-                    <a href="/#program" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">Program</a>
+                    <a href="/program" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">Program</a>
                     <a href="/#testimoni" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">Testimoni</a>
                     <a href="/biaya-les-privat" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">Biaya Les</a>
                     <a href="/area-layanan" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">Area Layanan</a>
@@ -120,7 +141,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden absolute top-[72px] left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-2xl transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none invisible z-40">
             <nav class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-2">
-                <a href="/#program" class="mobile-menu-link px-4 py-3.5 rounded-xl text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-all">Program</a>
+                <a href="/program" class="mobile-menu-link px-4 py-3.5 rounded-xl text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-all">Program</a>
                 <a href="/#testimoni" class="mobile-menu-link px-4 py-3.5 rounded-xl text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-all">Testimoni</a>
                 <a href="/biaya-les-privat" class="mobile-menu-link px-4 py-3.5 rounded-xl text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-all">Biaya Les</a>
                 <a href="/area-layanan" class="mobile-menu-link px-4 py-3.5 rounded-xl text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-all">Area Layanan</a>
@@ -386,7 +407,7 @@
                 <!-- Brand Column -->
                 <div class="lg:col-span-1">
                     <a href="/" class="flex items-center mb-6 logo-link group">
-                        <img src="logo.webp" alt="Sainspiq" class="h-12 object-contain grayscale brightness-200 transition-all group-hover:grayscale-0 group-hover:brightness-100" width="160" height="48" loading="lazy"
+                        <img src="/logo.webp" alt="Sainspiq" class="h-12 object-contain grayscale brightness-200 transition-all group-hover:grayscale-0 group-hover:brightness-100" width="160" height="48" loading="lazy"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="items-center gap-2" style="display:none;">
                             <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
@@ -404,11 +425,11 @@
                 <div>
                     <h4 class="text-white font-semibold mb-6 tracking-wide text-sm uppercase">Program Belajar</h4>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="/#program" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat PAUD & TK</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat SD & SMP</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat SMA</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Persiapan UTBK / SNBT</a></li>
-                        <li><a href="/#program" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Olimpiade Sains</a></li>
+                        <li><a href="/program/les-privat-paud-tk" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat PAUD & TK</a></li>
+                        <li><a href="/program/les-privat-sd" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat SD & SMP</a></li>
+                        <li><a href="/program/les-privat-sma" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Les Privat SMA</a></li>
+                        <li><a href="/program/persiapan-utbk-snbt" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Persiapan UTBK / SNBT</a></li>
+                        <li><a href="/program/olimpiade-sains" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Olimpiade Sains</a></li>
                     </ul>
                 </div>
 
@@ -416,11 +437,11 @@
                 <div>
                     <h4 class="text-white font-semibold mb-6 tracking-wide text-sm uppercase">Area Layanan</h4>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="/area-layanan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Jakarta & Sekitarnya</a></li>
-                        <li><a href="/area-layanan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Bogor, Depok, Bekasi</a></li>
-                        <li><a href="/area-layanan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Bandung & Semarang</a></li>
-                        <li><a href="/area-layanan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Surabaya & Sidoarjo</a></li>
-                        <li><a href="/area-layanan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span> Purwokerto</a></li>
+                        <li><a href="/area-layanan/les-privat-jakarta-selatan" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>Les Privat Jakarta Selatan</a></li>
+                        <li><a href="/area-layanan/les-privat-jakarta-timur" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>Les Privat Jakarta Timur</a></li>
+                        <li><a href="/area-layanan/les-privat-semarang" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>Les Privat Semarang</a></li>
+                        <li><a href="/area-layanan/les-privat-surabaya" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>Les Privat Surabaya</a></li>
+                        <li><a href="/area-layanan/les-privat-purwokerto" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>Les Privat Purwokerto</a></li>
                     </ul>
                 </div>
 
@@ -450,6 +471,7 @@
                 <div class="flex space-x-6 text-sm">
                     <a href="/kebijakan-privasi" class="text-slate-500 hover:text-white transition-colors">Kebijakan Privasi</a>
                     <a href="/syarat-ketentuan" class="text-slate-500 hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="/pernyataan-tutor" class="text-slate-500 hover:text-white transition-colors">Gabung Jadi Tutor</a>
                 </div>
             </div>
         </div>
