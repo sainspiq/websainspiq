@@ -1,3 +1,6 @@
+# Halaman error kustom
+ErrorDocument 404 /404.html
+
 # Gzip Compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
@@ -14,7 +17,11 @@
   ExpiresByType text/html "access plus 1 day"
 </IfModule>
 
-# Remove www
+# Paksa HTTPS & hapus www (satu lompatan 301, tanpa loop)
+# 1) www (http/https) -> https non-www langsung.
+# 2) non-www yang masih http -> https dengan host yang sama.
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^(.*)$ https://sainspiq.com/$1 [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
