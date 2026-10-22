@@ -29,7 +29,7 @@
 
     <!-- Preload aset LCP (logo & hero illustration) -->
     <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
-    <link rel="preload" as="image" href="hero_illustration.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="hero_illustration.webp" fetchpriority="high" imagesrcset="hero_illustration-512.webp 512w, hero_illustration-768.webp 768w, hero_illustration-896.webp 896w, hero_illustration.webp 1125w" imagesizes="(max-width: 767px) 100vw, (max-width: 1023px) 448px, 512px">
 
     <!-- Schema Markup: EducationalOrganization (Structured Data) -->
 
@@ -181,6 +181,12 @@
             background-size:cover;
             background-position:center;
             background-repeat:no-repeat;
+        }
+        /* Varian background hero khusus layar kecil (file lebih ringan, foto sama) */
+        @media (max-width: 767px){
+            .hero-section{
+                background-image:url('hero-bg-mobile.webp');
+            }
         }
         .hero-section::before{
             content:"";
@@ -627,7 +633,7 @@
 
                         <div class="hero-illustration-cta-wrap relative">
                             <div class="hero-animate hero-illustration-wrap mb-8" style="transition-delay:0.4s">
-                                <img src="hero_illustration.webp" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="448" height="448" fetchpriority="high">
+                                <img src="hero_illustration.webp" srcset="hero_illustration-512.webp 512w, hero_illustration-768.webp 768w, hero_illustration-896.webp 896w, hero_illustration.webp 1125w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 448px, 512px" alt="Ilustrasi les privat Sainspiq" class="hero-illustration-img mx-auto w-full max-w-md rounded-2xl" width="512" height="387" fetchpriority="high">
                             </div>
 
                             <div class="hero-animate hero-cta-row flex flex-row flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.46s">
