@@ -536,6 +536,27 @@
             .hero-grid > div{ max-width:48rem; }
             .hero-section .hero-illustration-img{ max-width:32rem; }
         }
+
+        /* ══════════════════════════════════════════════════════════════════
+           HERO: tampil penuh sejak paint pertama (optimasi LCP, 22 Okt 2026)
+           Elemen .hero-animate di dalam hero tidak lagi menunggu class
+           .visible dari JS — fade-in 0,7 dtk + transition-delay s.d. 0,46 dtk
+           setelah DOMContentLoaded membuat render konten hero (dan elemen
+           LCP) tertahan. Aturan ter-scope ini memaksa keadaan akhir
+           (opacity 1, transform nol, tanpa transisi) khusus di dalam
+           .hero-section saja. Spesifisitas (0,2,0) mengalahkan aturan dasar
+           .hero-animate (0,1,0) di styles.css & critical CSS, dan nilainya
+           identik dengan keadaan .visible — jadi saat JS menambahkan class
+           .visible belakangan, tidak ada kedip maupun transisi ulang.
+           Tampilan akhir hero tidak berubah; animasi reveal-on-scroll
+           section di bawah hero (.reveal/.slide-*) tidak disentuh.
+           ══════════════════════════════════════════════════════════════════ */
+        .hero-section .hero-animate,
+        .hero-section .hero-animate-right{
+            opacity:1;
+            transform:none;
+            transition:none;
+        }
     </style>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
