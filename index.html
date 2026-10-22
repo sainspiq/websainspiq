@@ -165,6 +165,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload file font Poppins (subset latin) agar font tiba sebelum/seiring paint pertama:
+         tanpa ini font swap (fallback -> Poppins) terjadi setelah teks tampil dan menggeser
+         layout header & hero (CLS). URL = file yang sama yang dirujuk @font-face di css2. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4Z1xlFQ.woff2">
     <!-- Font dimuat async (preload + swap) supaya tidak memblokir render pertama -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Allura&display=swap" media="print" onload="this.media='all'">
@@ -233,9 +241,22 @@
             overflow:hidden;
             vertical-align:bottom;
             text-align:left;
-            /* Tinggi & lebar diset presisi via JS agar tidak ada layout shift (CLS = 0) */
-            height:1.15em;
+            /* Ukuran wadah DICADANGKAN dari CSS dengan nilai persis yang akan diset
+               JS (measureAndSizeWrap: lebar kata terpanjang "Olimpiade Sains" dalam
+               Poppins 700 + 2px, tinggi = ceil(line-height)) di tiap breakpoint
+               ukuran font H1 (30/48/60px). Tanpa cadangan ini, wadah menyusut ke
+               lebar kata pertama sebelum JS jalan, lalu melebar saat fonts.ready —
+               baris H1 di bawahnya ter-wrap ulang dan bergeser (CLS). Dengan nilai
+               yang identik, penyetelan JS menjadi no-op: tidak ada reflow. */
+            width:225px;
+            height:35px;
             line-height:1.15;
+        }
+        @media (min-width:640px){
+            .rotating-text-wrap{ width:358px; height:56px; }
+        }
+        @media (min-width:1024px){
+            .rotating-text-wrap{ width:447px; height:69px; }
         }
         .rotating-text-track{
             position:relative;
@@ -556,6 +577,49 @@
             opacity:1;
             transform:none;
             transition:none;
+        }
+
+        /* ══════════════════════════════════════════════════════════════════
+           WA FLOAT: geometri final sejak paint pertama (perbaikan CLS)
+           Tombol WhatsApp melayang dirender di akhir <body>, tetapi class
+           utility-nya (fixed/flex/absolute label, dst.) tidak termasuk dalam
+           critical CSS inline — hanya ada di styles.css yang dimuat async.
+           Akibatnya antara paint pertama dan swap styles.css, tombol tampil
+           dengan geometri salah (label "Chat Admin" ikut in-flow, kotak
+           tombol ±155x130px), lalu menyusut ke lingkaran 60x60px saat swap:
+           layout shift terukur 0,0155 (desktop). Aturan di sini mencadangkan
+           properti penentu layout dengan nilai identik dengan utility-nya
+           (bottom-6/right-6 = 1,5rem; md:bottom-8/right-8 = 2rem; p-4 = 1rem;
+           ikon 28px -> tombol 60x60px; label right-16 = 4rem, absolute,
+           nowrap, opacity 0). Warna/bayangan/radius tetap dari styles.css
+           (paint-only, tidak menggeser layout). Keadaan settled tidak berubah.
+           ══════════════════════════════════════════════════════════════════ */
+        #wa-float-btn{
+            position:fixed;
+            right:1.5rem;
+            bottom:1.5rem;
+            z-index:50;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:1rem;
+        }
+        @media (min-width:768px){
+            #wa-float-btn{ right:2rem; bottom:2rem; }
+        }
+        #wa-float-btn > span{
+            position:absolute;
+            right:4rem;
+            white-space:nowrap;
+            opacity:0;
+            pointer-events:none;
+        }
+        /* Pasangan hover untuk label di atas: spesifisitas ID pada aturan
+           opacity:0 mengalahkan utility .group-hover:opacity-100 di
+           styles.css, jadi keadaan hover dinyatakan eksplisit di sini
+           dengan nilai yang sama (label muncul saat tombol di-hover). */
+        #wa-float-btn:hover > span{
+            opacity:1;
         }
     </style>
 </head>
