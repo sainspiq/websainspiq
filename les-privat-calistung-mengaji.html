@@ -107,24 +107,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- Tailwind CDN (halaman ini berdiri sendiri / tidak memakai styles.css hasil purge index.html) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1e3a8a',
-                        secondary: '#2563eb',
-                        support: '#0ea5e9'
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif']
-                    }
-                }
-            }
+    <!-- Tailwind CSS: compile lokal styles.css (migrasi dari Play CDN) -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Migrasi CDN -> compile: warna identitas halaman ini dari tailwind.config
+           lama dipertahankan persis. CSS tanpa layer ini menimpa @layer theme di
+           styles.css, khusus halaman ini saja (tema global tidak diubah). */
+        :root {
+            --color-primary: #1e3a8a; /* biru-900 khas halaman ini (global: #0f172a) */
+            --color-support: #0ea5e9; /* sky-500 khas halaman ini (global: #06b6d4) */
         }
-    </script>
+    </style>
+
 
     <style>
         html{ font-family:'Poppins', sans-serif; }
@@ -220,7 +214,7 @@
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-xs hover:shadow-md">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -290,7 +284,7 @@
                         <span>Konsultasi Gratis</span>
                         <svg class="lucide-icon ml-1.5 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                     </a>
-                    <a href="#area-layanan" class="inline-flex items-center justify-center px-5 py-3 sm:px-6 text-sm sm:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                    <a href="#area-layanan" class="inline-flex items-center justify-center px-5 py-3 sm:px-6 text-sm sm:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-xs">
                         <span>Cek Area Layanan</span>
                     </a>
                 </div>
