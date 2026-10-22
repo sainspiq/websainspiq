@@ -46,58 +46,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
-                    colors: {
-                        primary: '#0f172a',
-                        secondary: '#2563eb',
-                        accent: '#f97316',
-                        support: '#06b6d4',
-                        surface: '#f1f5f9',
-                        glass: 'rgba(255,255,255,0.72)',
-                    },
-                    boxShadow: {
-                        soft: '0 20px 60px -20px rgba(0,0,0,0.08)',
-                        glow: '0 0 40px rgba(37,99,235,0.35)',
-                        card: '0 12px 40px -12px rgba(0,0,0,0.10)',
-                        'card-hover': '0 24px 64px -16px rgba(37,99,235,0.20)',
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'hero-pattern': 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%232563eb" fill-opacity="0.04"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-                    },
-                    animation: {
-                        'float': 'float 8s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
-                        'shimmer': 'shimmer 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% center' },
-                            '100%': { backgroundPosition: '200% center' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@0.469.0" defer>
     </script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        <link rel="stylesheet" href="styles.css">
+<style>
+        /* Migrasi v4: reset `* { margin:0; padding:0; box-sizing:border-box }` bawaan
+           halaman dihapus — sudah dicakup preflight Tailwind (styles.css), dan sebagai
+           CSS unlayered aturan itu menimpa utility margin/padding v4 (cascade layers). */
         body {
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
@@ -392,7 +350,7 @@
     <main>
 
         <!-- ========== HERO ========== -->
-        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-surface bg-hero-pattern">
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-100 bg-hero-pattern">
             <!-- Blobs -->
             <div class="blob bg-blue-200/50 w-[500px] h-[500px] -top-32 -left-32"></div>
             <div class="blob bg-purple-200/30 w-[400px] h-[400px] bottom-0 right-0 translate-x-1/4 translate-y-1/4" style="animation-delay: 4s;"></div>
@@ -402,7 +360,7 @@
                 <div class="max-w-4xl mx-auto text-center">
 
                     <!-- Badge -->
-                    <div class="reveal inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-sm border border-white/80 text-secondary text-sm font-bold mb-8 shadow-sm">
+                    <div class="reveal inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-sm border border-white/80 text-secondary text-sm font-bold mb-8 shadow-xs">
                         <span class="relative flex h-3 w-3">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
@@ -472,7 +430,7 @@
                     <!-- Jabodetabek -->
                     <div class="reveal stagger-1 area-card rounded-3xl p-8 cursor-pointer group" onclick="openWaModal('Jabodetabek')">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-sm">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-xs">
                                 <i data-lucide="map-pinned" class="w-7 h-7"></i>
                             </div>
                             <div>
@@ -489,7 +447,7 @@
                     <!-- Jawa Barat -->
                     <div class="reveal stagger-2 area-card rounded-3xl p-8 cursor-pointer group" onclick="openWaModal('Jawa Barat')">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-sm">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-xs">
                                 <i data-lucide="map-pinned" class="w-7 h-7"></i>
                             </div>
                             <div>
@@ -506,7 +464,7 @@
                     <!-- Jawa Tengah & DIY -->
                     <div class="reveal stagger-3 area-card rounded-3xl p-8 cursor-pointer group" onclick="openWaModal('Jawa Tengah & DIY')">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-sm">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-xs">
                                 <i data-lucide="map-pinned" class="w-7 h-7"></i>
                             </div>
                             <div>
@@ -523,7 +481,7 @@
                     <!-- Jawa Timur -->
                     <div class="reveal stagger-1 area-card rounded-3xl p-8 cursor-pointer group" onclick="openWaModal('Jawa Timur')">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-sm">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-xs">
                                 <i data-lucide="map-pinned" class="w-7 h-7"></i>
                             </div>
                             <div>
@@ -540,7 +498,7 @@
                     <!-- Luar Jawa -->
                     <div class="reveal stagger-2 area-card rounded-3xl p-8 cursor-pointer group" onclick="openWaModal('Luar Jawa')">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-sm">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shadow-xs">
                                 <i data-lucide="plane" class="w-7 h-7"></i>
                             </div>
                             <div>

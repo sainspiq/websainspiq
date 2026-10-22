@@ -54,25 +54,9 @@
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
 
     <!-- Tailwind (self-contained, tidak bergantung file CSS eksternal) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',
-                        secondary: '#2563eb'
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        script: ['Allura', 'cursive']
-                    }
-                }
-            }
-        };
-    </script>
 
-    <style>
+        <link rel="stylesheet" href="styles.css">
+<style>
         /* ===== Reset dasar & tipografi ===== */
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; }
@@ -217,7 +201,7 @@
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="max-w-4xl mx-auto text-center">
-                    <div class="hero-animate inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-blue-100 shadow-sm text-secondary text-sm font-bold mb-8 mx-auto hover:shadow-md transition-shadow" style="transition-delay:0.1s">
+                    <div class="hero-animate inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-blue-100 shadow-xs text-secondary text-sm font-bold mb-8 mx-auto hover:shadow-md transition-shadow" style="transition-delay:0.1s">
                         <i data-lucide="sparkles" class="w-4 h-4 text-blue-500"></i>
                         <span class="bg-gradient-to-r from-blue-600 to-secondary bg-clip-text text-transparent">Mengenal Sainspiq</span>
                     </div>
@@ -265,7 +249,7 @@
                             
                             <div class="space-y-8 relative z-10">
                                 <div class="flex gap-5 items-start">
-                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center flex-shrink-0 shadow-sm border border-white">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center flex-shrink-0 shadow-xs border border-white">
                                         <i data-lucide="map-pin" class="w-7 h-7 text-blue-600"></i>
                                     </div>
                                     <div>
@@ -275,7 +259,7 @@
                                 </div>
                                 
                                 <div class="flex gap-5 items-start">
-                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center flex-shrink-0 shadow-sm border border-white">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center flex-shrink-0 shadow-xs border border-white">
                                         <i data-lucide="book-open" class="w-7 h-7 text-emerald-600"></i>
                                     </div>
                                     <div>
@@ -285,7 +269,7 @@
                                 </div>
                                 
                                 <div class="flex gap-5 items-start">
-                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center flex-shrink-0 shadow-sm border border-white">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center flex-shrink-0 shadow-xs border border-white">
                                         <i data-lucide="trending-up" class="w-7 h-7 text-purple-600"></i>
                                     </div>
                                     <div>
@@ -368,32 +352,32 @@
                 </div>
                 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
-                    <div class="reveal stagger-1 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-red-900/5 transition-all duration-300 hover:-translate-y-2">
-                        <div class="w-14 h-14 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div class="reveal stagger-1 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xs hover:shadow-xl hover:shadow-red-900/5 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all duration-300 shadow-xs">
                             <i data-lucide="heart-handshake" class="w-7 h-7"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3">Personal & Peduli</h3>
                         <p class="text-slate-600 leading-relaxed text-sm">Setiap anak unik, sehingga pendekatan belajarnya pun kami sesuaikan satu per satu dengan penuh perhatian.</p>
                     </div>
                     
-                    <div class="reveal stagger-2 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-2">
-                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div class="reveal stagger-2 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xs hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-xs">
                             <i data-lucide="shield-check" class="w-7 h-7"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3">Terpercaya</h3>
                         <p class="text-slate-600 leading-relaxed text-sm">Tutor melalui proses seleksi dan kurasi ketat sebelum mendampingi proses belajar putra-putri Anda.</p>
                     </div>
                     
-                    <div class="reveal stagger-3 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-amber-900/5 transition-all duration-300 hover:-translate-y-2">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div class="reveal stagger-3 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xs hover:shadow-xl hover:shadow-amber-900/5 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-xs">
                             <i data-lucide="sparkles" class="w-7 h-7"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3">Konsisten</h3>
                         <p class="text-slate-600 leading-relaxed text-sm">Kemajuan belajar dipantau bertahap agar hasil yang dicapai terasa nyata, terukur, dan bukan instan.</p>
                     </div>
                     
-                    <div class="reveal stagger-4 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300 hover:-translate-y-2">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div class="reveal stagger-4 group bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xs hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-xs">
                             <i data-lucide="book-heart" class="w-7 h-7"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3">Akhlak Mulia</h3>
