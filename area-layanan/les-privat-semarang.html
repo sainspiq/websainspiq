@@ -214,34 +214,24 @@
 
     <script src="https://unpkg.com/lucide@0.469.0" defer></script>
     
-    <!-- Tailwind CSS via CDN untuk menggantikan file styles.css yang terpisah -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',    // Mengakomodasi class text-primary, bg-primary
-                        secondary: '#2563eb',  // Mengakomodasi class text-secondary, bg-secondary
-                        accent: '#f59e0b'      // Mengakomodasi class text-accent, bg-accent
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
+    <!-- Tailwind CSS: compile lokal styles.css (migrasi dari Play CDN) -->
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Migrasi CDN -> compile: accent khas halaman ini dari tailwind.config lama
+           dipertahankan persis (amber-500; tema global #f97316). CSS tanpa layer ini
+           menimpa @layer theme di styles.css, khusus halaman ini saja. */
+        :root {
+            --color-accent: #f59e0b;
         }
-    </script>
+    </style>
+
 
     <style>
         /* ── Reset / Base ── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* Reset box-sizing/margin/padding bawaan halaman ini DIHAPUS saat migrasi
+           ke styles.css compile: preflight Tailwind v4 (@layer base) sudah
+           mencakupnya, dan aturan tanpa layer seperti itu mematikan utility
+           margin/padding v4 yang berada di @layer utilities. */
         html {
             scroll-behavior: smooth;
         }
@@ -1032,7 +1022,7 @@
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md">
+                    <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-blue-700 transition-colors shadow-xs hover:shadow-md">
                         Konsultasi Gratis
                     </a>
                 </div>
@@ -1097,7 +1087,7 @@
                             <span>Konsultasi Gratis</span>
                             <i data-lucide="arrow-right" class="ml-1.5 w-4 h-4"></i>
                         </a>
-                        <a href="#program" class="inline-flex items-center justify-center px-5 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                        <a href="#program" class="inline-flex items-center justify-center px-5 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-primary bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-xs">
                             <span>Lihat Program</span>
                         </a>
                     </div>
@@ -1226,13 +1216,13 @@
                 </style>
 
                 <div class="mt-8 flex flex-wrap justify-center gap-3">
-                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-sm">
+                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-xs">
                         <i data-lucide="shield-check" class="w-3.5 h-3.5 text-secondary"></i> 500+ Tutor
                     </span>
-                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-sm">
+                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-xs">
                         <i data-lucide="star" class="w-3.5 h-3.5 text-accent"></i> Top 1% Mahasiswa
                     </span>
-                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-sm">
+                    <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-medium text-slate-700 shadow-xs">
                         <i data-lucide="user-check" class="w-3.5 h-3.5 text-green-600"></i> Seleksi Ketat
                     </span>
                 </div>
@@ -1733,30 +1723,30 @@
 
                     <div class="slide-left">
                         <span class="inline-block bg-white/15 text-cyan-200 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/20 mb-4">Konsultasi Gratis</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-md">Les Privat Semarang Terdekat</h2>
-                        <p class="text-blue-100 text-base md:text-lg mb-6 drop-shadow-sm leading-relaxed">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-[0_4px_3px_rgb(0_0_0/0.07),0_2px_2px_rgb(0_0_0/0.06)]">Les Privat Semarang Terdekat</h2>
+                        <p class="text-blue-100 text-base md:text-lg mb-6 drop-shadow-xs leading-relaxed">
                             Dapatkan tutor terbaik untuk putra-putri Anda. Kami akan membantu memilih program yang paling sesuai dengan kebutuhan dan budget. Konsultasi pertama gratis — tanpa biaya.
                         </p>
                         <div class="space-y-2.5">
-                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-sm">
+                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-[4px]">
                                 <div class="w-7 h-7 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
                                     <i data-lucide="check" class="w-3.5 h-3.5 text-slate-900"></i>
                                 </div>
                                 <span class="text-white text-sm font-medium">Tutor dari UI, ITB, UGM &amp; PTN terbaik</span>
                             </div>
-                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-sm">
+                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-[4px]">
                                 <div class="w-7 h-7 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
                                     <i data-lucide="check" class="w-3.5 h-3.5 text-slate-900"></i>
                                 </div>
                                 <span class="text-white text-sm font-medium">Datang ke rumah atau online via Zoom</span>
                             </div>
-                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-sm">
+                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-[4px]">
                                 <div class="w-7 h-7 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
                                     <i data-lucide="check" class="w-3.5 h-3.5 text-slate-900"></i>
                                 </div>
                                 <span class="text-white text-sm font-medium">Laporan perkembangan belajar setiap bulan</span>
                             </div>
-                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-sm">
+                            <div class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-[4px]">
                                 <div class="w-7 h-7 rounded-full bg-cyan-400 flex items-center justify-center flex-shrink-0">
                                     <i data-lucide="check" class="w-3.5 h-3.5 text-slate-900"></i>
                                 </div>
@@ -1765,7 +1755,7 @@
                         </div>
                     </div>
 
-                    <div class="slide-right bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20">
+                    <div class="slide-right bg-white/95 backdrop-blur-[4px] rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20">
                         <div class="absolute -top-4 -right-4 bg-accent text-white font-bold text-sm px-4 py-2 rounded-full shadow-lg transform rotate-3">
                             Balas &lt; 5 Menit
                         </div>

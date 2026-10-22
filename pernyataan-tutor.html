@@ -20,7 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Migrasi CDN -> compile: halaman ini dulu memakai palet bawaan Tailwind v3
+     tanpa config sama sekali. --color-neutral-800 bawaan v3 (#262626)
+     dipertahankan persis; @theme styles.css menimpanya menjadi #1e293b untuk
+     halaman lain. CSS tanpa layer ini menimpa @layer theme khusus halaman ini. */
+  :root { --color-neutral-800: #262626; }
+</style>
 <style>
   * { font-family: 'Poppins', sans-serif; }
   body { background: linear-gradient(180deg, #0b3d91 0%, #0a2f6e 100%); }
