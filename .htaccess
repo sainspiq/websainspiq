@@ -17,11 +17,11 @@ ErrorDocument 404 /404.html
   ExpiresByType text/html "access plus 1 day"
 </IfModule>
 
-# Paksa HTTPS & hapus www (satu lompatan 301, tanpa loop)
-# 1) www (http/https) -> https non-www langsung.
-# 2) non-www yang masih http -> https dengan host yang sama.
+# Paksa HTTPS & samakan host ke www (satu lompatan 301, tanpa loop)
+# Mengikuti host final live: https://www.sainspiq.com
+# http (host apa pun) ATAU https non-www -> https://www.sainspiq.com dalam satu redirect.
+# https + www tidak memicu aturan apa pun (tidak ada loop).
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^(.*)$ https://sainspiq.com/$1 [L,R=301]
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.sainspiq.com/$1 [L,R=301]

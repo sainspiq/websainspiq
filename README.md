@@ -2,7 +2,7 @@
 
 Situs statis (HTML murni, tanpa framework/build system) untuk **Sainspiq**,
 lembaga les privat dengan guru datang ke rumah & online.
-Domain produksi: **https://sainspiq.com**
+Domain produksi: **https://www.sainspiq.com**
 
 Dokumen ini adalah catatan perawatan situs: cara membangun CSS, peta folder,
 dan konvensi yang harus diikuti agar struktur tidak kembali berantakan.
