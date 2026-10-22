@@ -484,6 +484,99 @@
             font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
             padding:5px 0; box-shadow:0 4px 12px rgba(180,83,9,.4);
         }
+
+        /* ══════════════════════════════════════════════════════════════════
+           PERBAIKAN LAYOUT DESKTOP — audit visual 22 Okt 2026
+           (screenshot before/after: workspace/websainspiq-indexfix/)
+
+           BAGIAN A — Pulihkan utility Tailwind yang HILANG dari styles.css.
+           styles.css adalah hasil compile lama: sejumlah class yang dipakai
+           index.html tidak terdefinisi di sana (terverifikasi lewat computed
+           style di browser), sehingga class-class itu mati total:
+             .max-w-4xl   → container section "Paling Banyak Dicari" melebar
+                            full-width 1440px, tidak 896px seperti desainnya
+             .pt-14/.md:pt-20 → padding-atas section #hasil-belajar = 0px,
+                            judul menempel ke tepi atas section
+             .pb-10/.md:pb-24 → padding-bawah section terakhir = 0px
+             .max-w-[280px]   → foto testimoni tampil 566px (≈2× desain 280px),
+                            section testimoni membengkak setinggi 1605px
+             .object-cover/.object-top → computed object-fit = "fill",
+                            foto galeri & testimoni tertarik/distorsi
+             .top-1/2, .-left-4, .-translate-y-1/2, .w-10, .h-10 (dan varian
+             md:) → tombol panah carousel testimoni kehilangan posisi & ukuran
+             .sm:flex & .sm:block → ikut hilang (di styles.css hanya ada
+             .sm:flex-row); panah carousel memakai "hidden sm:flex" sehingga
+             panahnya tidak pernah tampil di ≥640px (computed display:none)
+           Nilai di bawah persis nilai standar Tailwind untuk class tersebut.
+           ══════════════════════════════════════════════════════════════════ */
+        .max-w-4xl{ max-width:56rem; }
+        .max-w-\[280px\]{ max-width:280px; }
+        .object-cover{ object-fit:cover; }
+        .object-top{ object-position:top; }
+        .pt-14{ padding-top:3.5rem; }
+        .pb-10{ padding-bottom:2.5rem; }
+        .pb-0{ padding-bottom:0; }
+        .mt-8{ margin-top:2rem; }
+        .mt-6{ margin-top:1.5rem; }
+        .mt-0\.5{ margin-top:.125rem; }
+        .mb-10{ margin-bottom:2.5rem; }
+        .mb-1\.5{ margin-bottom:.375rem; }
+        .mb-0{ margin-bottom:0; }
+        .mt-auto{ margin-top:auto; }
+        .gap-1\.5{ gap:.375rem; }
+        .h-10{ height:2.5rem; }
+        .w-10{ width:2.5rem; }
+        .top-1\/2{ top:50%; }
+        .-left-4{ left:-1rem; }
+        .-translate-y-1\/2{ transform:translateY(-50%); }
+        .bg-slate-100{ background-color:#f1f5f9; }
+        .bg-slate-300{ background-color:#cbd5e1; }
+        .underline{ text-decoration-line:underline; }
+        .underline-offset-4{ text-underline-offset:4px; }
+        .decoration-blue-200{ text-decoration-color:#bfdbfe; }
+        .hover\:text-blue-700:hover{ color:#1d4ed8; }
+        .hover\:decoration-blue-500:hover{ text-decoration-color:#3b82f6; }
+        @media (min-width:640px){
+            .sm\:flex{ display:flex; }
+            .sm\:block{ display:block; }
+            .sm\:p-6{ padding:1.5rem; }
+            .sm\:px-2{ padding-left:.5rem; padding-right:.5rem; }
+        }
+        @media (min-width:768px){
+            .md\:pt-20{ padding-top:5rem; }
+            .md\:pb-24{ padding-bottom:6rem; }
+            .md\:-left-6{ left:-1.5rem; }
+            .md\:-right-6{ right:-1.5rem; }
+        }
+
+        /* ══════════════════════════════════════════════════════════════════
+           BAGIAN B — Standardisasi layout DESKTOP (≥1024px).
+           Masalah dari screenshot before (viewport 1440×900):
+             • Lebar container zigzag antar-section: 1280 (hero/program/
+               konsultasi/footer) vs 1024 (#tutor) vs 1152 (#dokumentasi)
+               → tepi kiri konten tidak segaris (x=80 vs 208 vs 144).
+               Diseragamkan ke 1280px. #faq (768) & #testimoni (672) TIDAK
+               diubah: keduanya memang kolom baca/carousel sempit terpusat.
+             • Ritme vertikal: #tutor 80px vs section lain 96px → samakan 96.
+             • Judul section tidak seragam: #hasil-belajar & #tutor 30px vs
+               section lain 36px → samakan 36px (line-height 40px).
+             • Hero terlalu renggang & sempit untuk desktop: tinggi 1339px,
+               padding-atas 192px, jarak badge→judul 64px, kolom teks maks
+               672px (H1 60px membungkus 5 baris), ilustrasi maks 448px.
+               Dipadatkan: padding 144/96, badge 40px, kolom teks 768px,
+               ilustrasi 512px. Mobile & tablet tidak disentuh bagian ini.
+           ══════════════════════════════════════════════════════════════════ */
+        @media (min-width:1024px){
+            #tutor > .max-w-5xl,
+            #dokumentasi > .max-w-6xl{ max-width:80rem; }
+            #tutor{ padding-top:6rem; padding-bottom:6rem; }
+            #hasil-belajar-section h2,
+            #tutor h3{ font-size:2.25rem; line-height:2.5rem; }
+            .hero-section{ padding-top:9rem; padding-bottom:6rem; }
+            .hero-section .hero-badge{ margin-bottom:2.5rem; }
+            .hero-grid > div{ max-width:48rem; }
+            .hero-section .hero-illustration-img{ max-width:32rem; }
+        }
     </style>
 </head>
 <body class="font-sans text-primary bg-white antialiased selection:bg-secondary selection:text-white">
