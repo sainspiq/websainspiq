@@ -347,27 +347,10 @@
     .hero-illustration-wrap {
         margin-bottom: 1.5rem !important;
     }
-    /* Banner hasil belajar: terkandung di container, tinggi dibatasi,
-       tidak lagi membentang selebar layar setinggi 864px. Foto sumber
-       masih mengandung bilah hitam di kiri-kanan, jadi gambar diperlebar
-       113,2% dan digeser hingga bilah itu terpotong oleh overflow wrapper. */
+    /* Banner tutor disembunyikan di desktop (permintaan pemilik);
+       di mobile tetap tampil seperti semula */
     .hasil-banner {
-        width: calc(100% - 4rem);
-        max-width: 80rem;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.25);
-    }
-    .hasil-banner img {
-        display: block;
-        width: 113.2%;
-        max-width: none;
-        margin-left: -6.1%;
-        max-height: 560px;
-        object-fit: cover;
-        object-position: 50% 8%;
+        display: none !important;
     }
 }
 
