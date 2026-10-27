@@ -341,11 +341,54 @@
         font-size: 3rem !important;
         line-height: 1.15 !important;
     }
-    .hero-illustration-img {
-        max-width: 24rem !important;
+    /* Hero 2 kolom berdampingan: teks kiri, foto kanan.
+       Struktur HTML tidak diubah (mobile tetap sama persis): wrapper
+       dibuat display:contents sehingga anak-anaknya jadi item grid. */
+    section.hero-section .hero-grid {
+        display: grid !important;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3rem;
+        align-items: center;
+        text-align: left;
+    }
+    section.hero-section .hero-grid > div,
+    .hero-illustration-cta-wrap {
+        display: contents;
+    }
+    .hero-badge {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    section.hero-section h1 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .hero-desc {
+        grid-column: 1;
+        grid-row: 3;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .hero-cta-row {
+        grid-column: 1;
+        grid-row: 4;
+        justify-self: start;
+        margin-bottom: 0 !important;
     }
     .hero-illustration-wrap {
-        margin-bottom: 1.5rem !important;
+        grid-column: 2;
+        grid-row: 2 / -1;
+        align-self: stretch;
+        /* Jangan biarkan tinggi foto ikut menentukan tinggi baris grid:
+           baris cukup setinggi konten teks, foto mengisi area sisanya. */
+        contain: size;
+        margin-bottom: 0 !important;
+    }
+    .hero-illustration-img {
+        max-width: 100% !important;
     }
     /* Banner tutor disembunyikan di desktop (permintaan pemilik);
        di mobile tetap tampil seperti semula */
