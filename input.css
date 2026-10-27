@@ -40,10 +40,9 @@
 
 /* Custom Utilities (disalin persis dari versi CDN) */
 .glass-nav {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.12);
 }
 .text-gradient {
     background-clip: text;
@@ -326,4 +325,79 @@
 }
 .faq-item.faq-open .faq-toggle {
     color: #2563EB;
+}
+
+/* ── DESAIN DESKTOP (≥1024px): perbaikan kerapian ── */
+@media (min-width: 1024px) {
+    /* Hero lebih ringkas agar tombol CTA masuk layar pertama */
+    section.hero-section {
+        padding-top: 9rem !important;
+        padding-bottom: 5rem !important;
+    }
+    .hero-badge {
+        margin-bottom: 2rem !important;
+    }
+    section.hero-section h1 {
+        font-size: 3rem !important;
+        line-height: 1.15 !important;
+    }
+    /* Hero 2 kolom berdampingan: teks kiri, foto kanan.
+       Struktur HTML tidak diubah (mobile tetap sama persis): wrapper
+       dibuat display:contents sehingga anak-anaknya jadi item grid. */
+    section.hero-section .hero-grid {
+        display: grid !important;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3rem;
+        align-items: center;
+        text-align: left;
+    }
+    section.hero-section .hero-grid > div,
+    .hero-illustration-cta-wrap {
+        display: contents;
+    }
+    .hero-badge {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    section.hero-section h1 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .hero-desc {
+        grid-column: 1;
+        grid-row: 3;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .hero-cta-row {
+        grid-column: 1;
+        grid-row: 4;
+        justify-self: start;
+        margin-bottom: 0 !important;
+    }
+    .hero-illustration-wrap {
+        grid-column: 2;
+        grid-row: 2 / -1;
+        align-self: stretch;
+        /* Jangan biarkan tinggi foto ikut menentukan tinggi baris grid:
+           baris cukup setinggi konten teks, foto mengisi area sisanya. */
+        contain: size;
+        margin-bottom: 0 !important;
+    }
+    .hero-illustration-img {
+        max-width: 100% !important;
+    }
+    /* Banner tutor disembunyikan di desktop (permintaan pemilik);
+       di mobile tetap tampil seperti semula */
+    .hasil-banner {
+        display: none !important;
+    }
+}
+
+/* Logo footer jadi putih di latar gelap (logo.webp berlatar transparan) */
+.footer-logo-light {
+    filter: brightness(0) invert(1);
 }
