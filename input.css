@@ -40,10 +40,9 @@
 
 /* Custom Utilities (disalin persis dari versi CDN) */
 .glass-nav {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.12);
 }
 .text-gradient {
     background-clip: text;
@@ -326,4 +325,53 @@
 }
 .faq-item.faq-open .faq-toggle {
     color: #2563EB;
+}
+
+/* ── DESAIN DESKTOP (≥1024px): perbaikan kerapian ── */
+@media (min-width: 1024px) {
+    /* Hero lebih ringkas agar tombol CTA masuk layar pertama */
+    section.hero-section {
+        padding-top: 9rem !important;
+        padding-bottom: 5rem !important;
+    }
+    .hero-badge {
+        margin-bottom: 2rem !important;
+    }
+    section.hero-section h1 {
+        font-size: 3rem !important;
+        line-height: 1.15 !important;
+    }
+    .hero-illustration-img {
+        max-width: 24rem !important;
+    }
+    .hero-illustration-wrap {
+        margin-bottom: 1.5rem !important;
+    }
+    /* Banner hasil belajar: terkandung di container, tinggi dibatasi,
+       tidak lagi membentang selebar layar setinggi 864px. Foto sumber
+       masih mengandung bilah hitam di kiri-kanan, jadi gambar diperlebar
+       113,2% dan digeser hingga bilah itu terpotong oleh overflow wrapper. */
+    .hasil-banner {
+        width: calc(100% - 4rem);
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.25);
+    }
+    .hasil-banner img {
+        display: block;
+        width: 113.2%;
+        max-width: none;
+        margin-left: -6.1%;
+        max-height: 560px;
+        object-fit: cover;
+        object-position: 50% 8%;
+    }
+}
+
+/* Logo footer jadi putih di latar gelap (logo.webp berlatar transparan) */
+.footer-logo-light {
+    filter: brightness(0) invert(1);
 }
