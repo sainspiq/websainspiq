@@ -1,0 +1,9 @@
+# Redirect URL lama (404 di GSC 10 Nov 2026) ke halaman yang benar
+/anak-usia-4-tahun-harus-les-apa /blog/anak-usia-4-tahun-harus-les-apa 301
+/purwokerto.html /area-layanan/les-privat-purwokerto 301
+/les-privat-jakarta-timur /area-layanan/les-privat-jakarta-timur 301
+/les-privat-jakarta-timur/ /area-layanan/les-privat-jakarta-timur 301
+/les-privat-jakarta-selatan /area-layanan/les-privat-jakarta-selatan 301
+/les-privat-jakarta-selatan/ /area-layanan/les-privat-jakarta-selatan 301
+/masuk https://sainspiq.my.id 301
+/login.html https://sainspiq.my.id 301
