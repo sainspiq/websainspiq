@@ -217,7 +217,7 @@
 
         .pcard{
             position:relative; display:block; border-radius:24px; overflow:hidden;
-            isolation:isolate; background:var(--pc-bg, #eff6ff);
+            isolation:isolate; background:var(--pc-bg, #f5f3ff);
             box-shadow:0 10px 30px -10px rgba(15,23,42,.05);
             transition:transform .4s cubic-bezier(.22,.9,.24,1), box-shadow .4s ease;
             border: 1px solid rgba(255,255,255,0.8);
@@ -225,7 +225,7 @@
         }
         .pcard:hover{
             transform:translateY(-7px);
-            box-shadow:0 26px 50px -18px var(--pc-glow, rgba(37,99,235,.4));
+            box-shadow:0 26px 50px -18px var(--pc-glow, rgba(109, 40, 217,.4));
             border-color: rgba(255,255,255,1);
         }
         .pcard-bg-wrap { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
@@ -283,12 +283,12 @@
         .pcard-cta{ display:inline-flex; align-items:center; gap:6px; font-size:.875rem; font-weight:600; color:var(--pc-c2); }
         .pcard-cta svg{ transition:transform .3s ease; }
         .pcard:hover .pcard-cta svg{ transform:translateX(4px); }
-        .pcard-blue   { --pc-c1:#3b82f6; --pc-c2:#1d4ed8; --pc-glow:rgba(59,130,246,.4);  --pc-bg:#eff6ff; }
-        .pcard-cyan   { --pc-c1:#22d3ee; --pc-c2:#0e7490; --pc-glow:rgba(34,211,238,.4);  --pc-bg:#ecfeff; }
+        .pcard-blue   { --pc-c1:#7c3aed; --pc-c2:#5b21b6; --pc-glow:rgba(124, 58, 237,.4);  --pc-bg:#f5f3ff; }
+        .pcard-cyan   { --pc-c1:#c084fc; --pc-c2:#7e22ce; --pc-glow:rgba(192, 132, 252,.4);  --pc-bg:#faf5ff; }
         .pcard-violet { --pc-c1:#a78bfa; --pc-c2:#6d28d9; --pc-glow:rgba(167,139,250,.4); --pc-bg:#f5f3ff; }
         .pcard-indigo { --pc-c1:#818cf8; --pc-c2:#4338ca; --pc-glow:rgba(129,140,248,.4); --pc-bg:#eef2ff; }
         .pcard-amber  { --pc-c1:#fbbf24; --pc-c2:#b45309; --pc-glow:rgba(251,191,36,.45); --pc-bg:#fffbeb; }
-        .pcard-sky    { --pc-c1:#38bdf8; --pc-c2:#0369a1; --pc-glow:rgba(56,189,248,.4);  --pc-bg:#f0f9ff; }
+        .pcard-sky    { --pc-c1:#a78bfa; --pc-c2:#6d28d9; --pc-glow:rgba(167, 139, 250,.4);  --pc-bg:#f5f3ff; }
         .pcard-featured{ box-shadow:0 12px 30px -10px rgba(251,191,36,.4); }
         .pcard-featured .pcard-content {
             border: 1px solid rgba(251,191,36,.4);
@@ -308,7 +308,7 @@
             border:1px solid #e2e8f0; border-radius:16px; padding:16px 18px;
             transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;
         }
-        .area-card:hover{ border-color:#93c5fd; box-shadow:0 10px 24px -12px rgba(37,99,235,.35); transform:translateY(-3px); }
+        .area-card:hover{ border-color:#c4b5fd; box-shadow:0 10px 24px -12px rgba(109, 40, 217,.35); transform:translateY(-3px); }
 
         /* Foto dokumentasi: perkecil di tampilan desktop (mobile tetap full width) */
         @media (min-width:768px){
@@ -727,7 +727,7 @@
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 1086/1448;">
                                         <img src="/assets/testimoni/testi-bunda-aisyah.webp" alt="Testimoni WhatsApp Bunda Aisyah, orang tua siswa Sainspiq dari Tangerang" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
+<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
                                         </div>
@@ -744,7 +744,7 @@
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 1086/1448;">
                                         <img src="/assets/testimoni/testi-bunda-fitri.webp" alt="Testimoni WhatsApp Bunda Fitri, orang tua siswa Sainspiq dari Jakarta" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
+<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
                                         </div>
@@ -761,7 +761,7 @@
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 1086/1448;">
                                         <img src="/assets/testimoni/testi-bunda-maya.webp" alt="Testimoni WhatsApp Bunda Maya, orang tua siswa Sainspiq dari Bekasi" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
+<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
                                         </div>
@@ -778,7 +778,7 @@
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 1086/1448;">
                                         <img src="/assets/testimoni/testi-bunda-rina.webp" alt="Testimoni WhatsApp Bunda Rina, orang tua siswa Sainspiq dari Jakarta" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
+<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
                                         </div>
@@ -795,7 +795,7 @@
                                 <div class="bg-white rounded-2xl shadow-card border border-slate-100 p-4 sm:p-6 flex flex-col items-center">
                                     <div class="w-full max-w-[280px] rounded-xl overflow-hidden bg-slate-100" style="aspect-ratio: 1086/1448;">
                                         <img src="/assets/testimoni/testi-bunda-intan.webp" alt="Testimoni WhatsApp Bunda Intan, orang tua siswa Sainspiq dari Depok" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe);">
+<div class="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-400" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe);">
                                             <svg class="lucide-icon w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
                                             <span class="text-xs font-medium">Foto belum diupload</span>
                                         </div>
@@ -837,7 +837,7 @@
         <!-- /Wrapper Dokumentasi + Testimoni -->
 
         <!-- Konsultasi Section -->
-        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
+        <section id="konsultasi" class="py-10 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #2e1065 0%, #5b21b6 55%, #7c3aed 100%)">
             <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
                 <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-400/40 rounded-full blur-[100px]"></div>
                 <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyan-400/30 rounded-full blur-[80px]"></div>

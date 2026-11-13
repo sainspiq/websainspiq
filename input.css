@@ -11,9 +11,9 @@
     --font-sans: "Poppins", sans-serif;
 
     --color-primary: #0F172A;
-    --color-secondary: #2563EB;
+    --color-secondary: #6d28d9;
     --color-accent: #F97316;
-    --color-support: #06B6D4;
+    --color-support: #7c3aed;
 
     --color-neutral-50: #F8FAFC;
     --color-neutral-100: #F1F5F9;
@@ -29,7 +29,7 @@
        shadow-glow + pola hero untuk utility hover:shadow-glow & bg-hero-pattern.
        Nilai disalin persis dari config lama; tanda kutip di dalam SVG diganti
        kutip tunggal agar data-URI valid sebagai CSS. */
-    --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.35);
+    --shadow-glow: 0 0 40px rgba(109, 40, 217, 0.35);
     --background-image-hero-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     /* Migrasi final les-privat-paud-tk-sd.html (dulu tailwind.config inline Play CDN):
        glow hijau tombol WhatsApp melayang; nilai disalin persis dari config lama.
@@ -48,7 +48,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #2563EB, #06B6D4);
+    background-image: linear-gradient(to right, #6d28d9, #7c3aed);
 }
 .card-transition {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -324,7 +324,7 @@
     transform: rotate(180deg);
 }
 .faq-item.faq-open .faq-toggle {
-    color: #2563EB;
+    color: #6d28d9;
 }
 
 /* ── DESAIN DESKTOP (≥1024px): perbaikan kerapian ── */
@@ -399,5 +399,5 @@
 
 /* Logo footer jadi putih di latar gelap (logo.webp berlatar transparan) */
 .footer-logo-light {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(0.62);
 }
