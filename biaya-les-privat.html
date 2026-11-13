@@ -172,7 +172,7 @@
                menyebabkan bug rendering di beberapa browser saat dipadukan
                dengan filter/drop-shadow, sehingga muncul kotak "background"
                menimpa teks lain). Glow dibuat lewat text-shadow, tanpa background apapun. */
-            color:#2563EB;
+            color:#6d28d9;
             transform:translateY(0);
             opacity:1;
             transition:transform 500ms ease-in-out, opacity 500ms ease-in-out;
@@ -314,7 +314,7 @@
         /* Base Card Container */
         .pcard{
             position:relative; display:block; border-radius:24px; overflow:hidden;
-            isolation:isolate; background:var(--pc-bg, #eff6ff);
+            isolation:isolate; background:var(--pc-bg, #f5f3ff);
             box-shadow:0 10px 30px -10px rgba(15,23,42,.05);
             transition:transform .4s cubic-bezier(.22,.9,.24,1), box-shadow .4s ease;
             border: 1px solid rgba(255,255,255,0.8);
@@ -323,7 +323,7 @@
         }
         .pcard:hover{
             transform:translateY(-7px);
-            box-shadow:0 26px 50px -18px var(--pc-glow, rgba(37,99,235,.4));
+            box-shadow:0 26px 50px -18px var(--pc-glow, rgba(109, 40, 217,.4));
             border-color: rgba(255,255,255,1);
         }
 
@@ -408,12 +408,12 @@
         .pcard:hover .pcard-cta svg{ transform:translateX(4px); }
 
         /* Tema warna per card */
-        .pcard-blue   { --pc-c1:#3b82f6; --pc-c2:#1d4ed8; --pc-glow:rgba(59,130,246,.4);  --pc-bg:#eff6ff; }
-        .pcard-cyan   { --pc-c1:#22d3ee; --pc-c2:#0e7490; --pc-glow:rgba(34,211,238,.4);  --pc-bg:#ecfeff; }
+        .pcard-blue   { --pc-c1:#7c3aed; --pc-c2:#5b21b6; --pc-glow:rgba(124, 58, 237,.4);  --pc-bg:#f5f3ff; }
+        .pcard-cyan   { --pc-c1:#c084fc; --pc-c2:#7e22ce; --pc-glow:rgba(192, 132, 252,.4);  --pc-bg:#faf5ff; }
         .pcard-violet { --pc-c1:#a78bfa; --pc-c2:#6d28d9; --pc-glow:rgba(167,139,250,.4); --pc-bg:#f5f3ff; }
         .pcard-indigo { --pc-c1:#818cf8; --pc-c2:#4338ca; --pc-glow:rgba(129,140,248,.4); --pc-bg:#eef2ff; }
         .pcard-amber  { --pc-c1:#fbbf24; --pc-c2:#b45309; --pc-glow:rgba(251,191,36,.45); --pc-bg:#fffbeb; }
-        .pcard-sky    { --pc-c1:#38bdf8; --pc-c2:#0369a1; --pc-glow:rgba(56,189,248,.4);  --pc-bg:#f0f9ff; }
+        .pcard-sky    { --pc-c1:#a78bfa; --pc-c2:#6d28d9; --pc-glow:rgba(167, 139, 250,.4);  --pc-bg:#f5f3ff; }
 
         /* Card unggulan (UTBK) */
         .pcard-featured{ box-shadow:0 12px 30px -10px rgba(251,191,36,.4); }
@@ -441,7 +441,7 @@
         }
         .price-table{ width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
         .price-table thead th{
-            background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 60%,#0ea5e9 100%);
+            background:linear-gradient(135deg,#2e1065 0%,#5b21b6 60%,#7c3aed 100%);
             color:#fff; font-weight:700; font-size:.8rem; letter-spacing:.03em; text-transform:uppercase;
             padding:16px 18px; text-align:left; white-space:nowrap;
         }
@@ -450,8 +450,8 @@
         .price-table tbody td{ padding:14px 18px; border-top:1px solid #e2e8f0; white-space:nowrap; }
         .price-table tbody td:not(:first-child){ text-align:center; font-variant-numeric:tabular-nums; }
         .price-table tbody tr:nth-child(even){ background:#f8fafc; }
-        .price-table tbody tr:hover{ background:#eff6ff; }
-        .price-table tbody td:first-child{ font-weight:700; color:var(--tw-text-secondary,#1d4ed8); color:#1d4ed8; }
+        .price-table tbody tr:hover{ background:#f5f3ff; }
+        .price-table tbody td:first-child{ font-weight:700; color:var(--tw-text-secondary,#5b21b6); color:#5b21b6; }
         .price-table tfoot td{ padding:14px 18px; background:#0f172a; color:#e2e8f0; font-size:.8rem; }
 
         .pricelist-img-frame{
@@ -469,7 +469,7 @@
         }
         .biaya-note-icon{
             width:38px; height:38px; border-radius:12px; flex-shrink:0;
-            background:#eff6ff; color:#1d4ed8; display:flex; align-items:center; justify-content:center;
+            background:#f5f3ff; color:#5b21b6; display:flex; align-items:center; justify-content:center;
         }
     </style>
 </head>
@@ -774,7 +774,7 @@
         </section>
 
         <!-- CTA Konsultasi -->
-        <section class="py-14 md:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)">
+        <section class="py-14 md:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #2e1065 0%, #5b21b6 55%, #7c3aed 100%)">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Masih Ragu Pilih Paket yang Mana?</h2>
                 <p class="text-blue-100 mb-8 max-w-xl mx-auto">Konsultasikan kebutuhan belajar anak Anda secara gratis, tim kami akan membantu menentukan jenjang, mata pelajaran, dan paket yang paling sesuai.</p>
