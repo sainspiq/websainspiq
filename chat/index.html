@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexusAI — Multi-Model AI Chat Studio</title>
+  <title>Keena AI — Multi-Model AI Chat Studio</title>
   <link rel="canonical" href="https://sainspiq.com/chat" />
 
   <!-- Google Fonts: Geist & JetBrains Mono -->
@@ -279,7 +279,7 @@
 </head>
 <body class="bg-slate-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans antialiased selection:bg-indigo-500/30 selection:text-indigo-200 overflow-hidden h-[100dvh] flex">
 
-  <!-- Ikon kustom NexusAI (heksagon = inti, simpul = jaringan) -->
+  <!-- Ikon kustom Keena AI (heksagon = inti, simpul = jaringan) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
       <symbol id="ic-settings" viewBox="0 0 24 24"><circle class="cog-ring" cx="12" cy="12" r="9" stroke-width="3" stroke-linecap="butt" stroke-dasharray="2.356 2.356"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></symbol>
@@ -312,7 +312,7 @@
             </svg>
           </div>
           <div>
-            <span class="font-bold tracking-tight text-base">NexusAI</span>
+            <span class="font-bold tracking-tight text-base">Keena AI</span>
           </div>
         </div>
 
@@ -1732,7 +1732,7 @@
         }
 
         const provider = msg.provider || 'gemini';
-        const modelLabel = msg.modelName || 'NexusAI';
+        const modelLabel = msg.modelName || 'Keena AI';
         const isStreamingThis = isLastAssistant && state.isStreaming;
 
         return `
@@ -2786,21 +2786,21 @@
         return;
       }
 
-      let mdContent = `# ${chat.title || 'Percakapan NexusAI'}\n`;
+      let mdContent = `# ${chat.title || 'Percakapan Keena AI'}\n`;
       mdContent += `_Diekspor pada ${new Date().toLocaleString('id-ID')}_\n\n---\n\n`;
 
       chat.messages.forEach(msg => {
-        const sender = msg.role === 'user' ? 'Pengguna' : (msg.modelName || 'NexusAI');
+        const sender = msg.role === 'user' ? 'Pengguna' : (msg.modelName || 'Keena AI');
         mdContent += `### ${sender}\n\n${msg.content}\n\n---\n\n`;
       });
 
       const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      const safeFilename = (chat.title || 'nexusai-chat')
+      const safeFilename = (chat.title || 'keena-ai-chat')
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '') || 'nexusai-chat';
+        .replace(/^-|-$/g, '') || 'keena-ai-chat';
       a.href = url;
       a.download = `${safeFilename}.md`;
       document.body.appendChild(a);
