@@ -859,22 +859,13 @@
 
     const MODEL_CATALOG = [
       {
-        id: 'gemini-2.5-flash',
+        id: 'gemini-3.8-flash',
         vision: true,
-        name: 'Gemini 2.5 Flash',
+        name: 'Gemini 3.8 Flash',
         provider: 'gemini',
         providerLabel: 'Google Gemini',
         badgeColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
-        description: 'Cepat, multimodal, dan efisien untuk tugas harian'
-      },
-      {
-        id: 'gemini-2.5-pro',
-        vision: true,
-        name: 'Gemini 2.5 Pro',
-        provider: 'gemini',
-        providerLabel: 'Google Gemini',
-        badgeColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
-        description: 'Penalaran mendalam & pemrograman kompleks'
+        description: 'Model Flash terbaru Google — cepat, multimodal, efisien'
       },
       {
         id: 'gpt-4o',
@@ -982,7 +973,7 @@
     let state = {
       conversations: [],
       activeChatId: null,
-      selectedModelId: 'gemini-2.5-flash',
+      selectedModelId: 'gemini-3.8-flash',
       settings: {
         geminiKey: '',
         openaiKey: '',
@@ -1192,6 +1183,10 @@
         const savedModel = localStorage.getItem(STORAGE_KEYS.SELECTED_MODEL);
         if (savedModel && MODEL_CATALOG.some(m => m.id === savedModel)) {
           state.selectedModelId = savedModel;
+        } else if (savedModel === 'gemini-2.5-flash' || savedModel === 'gemini-2.5-pro') {
+          // Gemini 2.5 dipensiunkan Google (2 Nov 2026) — migrasikan simpanan lama ke penggantinya.
+          state.selectedModelId = 'gemini-3.8-flash';
+          try { localStorage.setItem(STORAGE_KEYS.SELECTED_MODEL, 'gemini-3.8-flash'); } catch (e) {}
         }
 
         const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
