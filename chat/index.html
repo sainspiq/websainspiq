@@ -794,7 +794,12 @@
      * 1. KONFIGURASI MODEL & PROVIDER
      * Mendefinisikan katalog model dari Google Gemini, OpenAI, xAI Grok, dan Custom API.
      */
-    const DEFAULT_SYSTEM_PROMPT = "Anda adalah asisten AI yang cerdas, akurat, ramah, dan sangat membantu. Gunakan format Markdown yang rapi serta blok kode dengan sintaks yang jelas. Jawablah dalam bahasa Indonesia yang natural kecuali pengguna meminta bahasa lain.";
+    const DEFAULT_SYSTEM_PROMPT = "Anda adalah Keena AI, asisten AI yang cerdas, akurat, ramah, dan sangat membantu. Gunakan format Markdown yang rapi serta blok kode dengan sintaks yang jelas. Jawablah dalam bahasa Indonesia yang natural kecuali pengguna meminta bahasa lain. Jika ditanya nama atau siapa dirimu, jawab bahwa kamu adalah Keena AI. Jangan pernah menyebut nama model, penyedia, atau perusahaan di balik Keena AI (seperti Gemini, GPT, Grok, Solar, Upstage, OpenAI, Google, atau xAI) — jika ditanya model apa yang kamu pakai, jawab saja bahwa kamu adalah Keena AI.";
+
+    // Teks prompt bawaan versi lama (tanpa identitas Keena AI). Pengunjung yang
+    // sudah menyimpan prompt lama otomatis dimigrasikan ke prompt baru saat
+    // halaman dimuat; prompt yang sudah diubah sendiri tidak disentuh.
+    const LEGACY_DEFAULT_SYSTEM_PROMPT = "Anda adalah asisten AI yang cerdas, akurat, ramah, dan sangat membantu. Gunakan format Markdown yang rapi serta blok kode dengan sintaks yang jelas. Jawablah dalam bahasa Indonesia yang natural kecuali pengguna meminta bahasa lain.";
 
     // Nama tampilan publik untuk asisten di halaman chat — model asli yang
     // dipakai di belakang layar sengaja tidak ditampilkan.
@@ -1108,6 +1113,12 @@
         const savedSettings = localStorage.getItem(STORAGE_KEYS.SETTINGS);
         if (savedSettings) {
           state.settings = { ...state.settings, ...JSON.parse(savedSettings) };
+          // Migrasi sekali: prompt bawaan lama (tanpa identitas Keena AI)
+          // diganti prompt baru. Prompt yang sudah diubah pengguna tidak disentuh.
+          if (state.settings.systemPrompt === LEGACY_DEFAULT_SYSTEM_PROMPT) {
+            state.settings.systemPrompt = DEFAULT_SYSTEM_PROMPT;
+            try { localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(state.settings)); } catch (e) { /* abaikan */ }
+          }
         }
 
         const savedConvs = localStorage.getItem(STORAGE_KEYS.CONVERSATIONS);
