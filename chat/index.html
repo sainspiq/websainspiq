@@ -791,6 +791,24 @@
                   </div>
                   <p class="s-hint">Level lebih tinggi lebih teliti untuk soal bertahap, tetapi lebih lambat dan memakai lebih banyak token.</p>
                 </div>
+
+                <div class="p-4 space-y-2.5">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="min-w-0">
+                      <label for="setting-gemini-thinking" class="s-label">Thinking level (Gemini)</label>
+                      <div class="s-hint">Khusus Gemini 3.8 Flash</div>
+                    </div>
+                    <div class="relative shrink-0">
+                      <select id="setting-gemini-thinking" class="s-input !w-auto !py-2 pr-9 text-xs cursor-pointer">
+                        <option value="low">Low — tercepat</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High — paling teliti</option>
+                      </select>
+                      <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    </div>
+                  </div>
+                  <p class="s-hint">Low paling cepat untuk chat sehari-hari. Medium/High lebih teliti untuk soal sulit, tetapi jawaban pertama lebih lama keluar dan token lebih boros.</p>
+                </div>
               </div></section>
           <section class="settings-panel space-y-5 hidden pt-2" data-panel="prompt">
             <p class="s-hint mt-1">Instruksi ini dikirim di awal setiap percakapan dan menentukan kepribadian AI.</p>
@@ -980,6 +998,7 @@
         xaiKey: '',
         upstageKey: '',
         reasoningEffort: '',
+        geminiThinking: 'low',
         customUrl: 'https://openrouter.ai/api/v1',
         customKey: '',
         customModel: 'anthropic/claude-3.7-sonnet',
@@ -2555,6 +2574,7 @@
 
       // Render maksimal 1x per frame agar jawaban panjang tidak lag
       let renderQueued = false;
+      let lastStreamRenderAt = 0;
       let reasoningQueued = false;
       let reasoningRevealed = false;
       let reasoningCollapsed = false;
@@ -2565,9 +2585,16 @@
         renderQueued = true;
         requestAnimationFrame(() => {
           renderQueued = false;
-          const contentEl = document.getElementById(`message-content-${msgIndex}`);
-          if (contentEl) {
-            contentEl.innerHTML = renderMarkdownSafe(assistantMsg.content);
+          // Markdown utuh (marked + DOMPurify) di-parse ulang tiap render —
+          // batasi ke 1x per 400ms supaya jawaban panjang tidak ngelag di HP.
+          // Render akhir tetap jalan penuh di finally generateAssistantReply.
+          const now = performance.now();
+          if (now - lastStreamRenderAt >= 400) {
+            lastStreamRenderAt = now;
+            const contentEl = document.getElementById(`message-content-${msgIndex}`);
+            if (contentEl) {
+              contentEl.innerHTML = renderMarkdownSafe(assistantMsg.content);
+            }
           }
           // Lipat blok berpikir otomatis begitu jawaban mulai tampil
           if (assistantMsg.reasoning && !reasoningCollapsed) {
@@ -2710,7 +2737,10 @@
       const payload = {
         contents,
         generationConfig: {
-          temperature: Number(state.settings.temperature ?? 0.7)
+          temperature: Number(state.settings.temperature ?? 0.7),
+          // Gemini 3.8 Flash default-nya thinking medium — jawaban pertama lama
+          // keluar. Low = tercepat untuk chat (pengaturan di Pengaturan > Perilaku).
+          thinkingConfig: { thinkingLevel: (state.settings.geminiThinking || 'low') }
         },
         ...(useGrounding ? { tools: [{ google_search: {} }] } : {})
       };
@@ -2873,6 +2903,7 @@
       document.getElementById('setting-xai-key').value = state.settings.xaiKey || '';
       document.getElementById('setting-upstage-key').value = state.settings.upstageKey || '';
       document.getElementById('setting-reasoning-effort').value = state.settings.reasoningEffort || '';
+      document.getElementById('setting-gemini-thinking').value = state.settings.geminiThinking || 'low';
       document.getElementById('setting-custom-url').value = state.settings.customUrl || 'https://openrouter.ai/api/v1';
       document.getElementById('setting-custom-model').value = state.settings.customModel || 'anthropic/claude-3.7-sonnet';
       document.getElementById('setting-custom-key').value = state.settings.customKey || '';
@@ -3055,6 +3086,7 @@
       state.settings.xaiKey = document.getElementById('setting-xai-key').value.trim();
       state.settings.upstageKey = document.getElementById('setting-upstage-key').value.trim();
       state.settings.reasoningEffort = document.getElementById('setting-reasoning-effort').value || '';
+      state.settings.geminiThinking = document.getElementById('setting-gemini-thinking').value || 'low';
       state.settings.customUrl = document.getElementById('setting-custom-url').value.trim() || 'https://openrouter.ai/api/v1';
       state.settings.customModel = document.getElementById('setting-custom-model').value.trim() || 'anthropic/claude-3.7-sonnet';
       state.settings.customKey = document.getElementById('setting-custom-key').value.trim();
@@ -3086,6 +3118,7 @@
         xaiKey: '',
         upstageKey: '',
         reasoningEffort: '',
+        geminiThinking: 'low',
         customUrl: 'https://openrouter.ai/api/v1',
         customKey: '',
         customModel: 'anthropic/claude-3.7-sonnet',
