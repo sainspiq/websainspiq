@@ -494,6 +494,9 @@
               <button type="button" onclick="openCameraModal()" class="w-8 h-8 shrink-0 inline-flex items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-300 transition-colors cursor-pointer" title="Ambil foto dari kamera" aria-label="Ambil foto dari kamera">
                 <i data-lucide="camera" class="w-4 h-4"></i>
               </button>
+              <button type="button" id="web-search-btn" onclick="toggleWebSearch()" class="w-8 h-8 shrink-0 inline-flex items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-300 transition-colors cursor-pointer" title="Cari di web untuk pesan berikutnya" aria-label="Cari di web">
+                <i data-lucide="globe" class="w-4 h-4"></i>
+              </button>
               <div class="relative min-w-0 max-w-full">
                 <button id="quick-model-btn" type="button" onclick="toggleQuickModelMenu(event)" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-medium transition-colors cursor-pointer min-w-0 max-w-full text-xs" title="Ganti model" aria-haspopup="listbox">
                   <span id="input-model-dot" class="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -951,7 +954,9 @@
       editing: null,
       deleteConfirmTimer: null,
       desktopSidebarCollapsed: false,
-      pendingAttachments: []
+      pendingAttachments: [],
+      searchNext: false,
+      isSearching: false
     };
 
     /**
@@ -1714,6 +1719,7 @@
           return `
             <div class="flex justify-end animate-fade-in">
               <div class="group max-w-[88%] sm:max-w-[78%] flex flex-col items-end">
+                ${renderWebSearchChip(msg.webSearch)}
                 ${renderMessageAttachments(msg.attachments)}
                 ${msg.content && msg.content.trim() ? `<div class="px-4 py-3 rounded-2xl rounded-br-sm bg-indigo-600 text-white text-sm sm:text-[15px] leading-relaxed shadow-sm whitespace-pre-wrap break-words">${escapeHtml(msg.content)}</div>` : ''}
                 <div class="mt-1 flex items-center gap-1 opacity-0 group-hover:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
@@ -1804,13 +1810,30 @@
       if (!input) return;
       const text = input.value.trim();
       const attachments = state.pendingAttachments.slice();
-      if ((!text && attachments.length === 0) || state.isStreaming) return;
+      if ((!text && attachments.length === 0) || state.isStreaming || state.isSearching) return;
 
       // Model tanpa dukungan gambar tidak bisa menerima lampiran gambar
       const modelInfo = getActiveModelInfo();
       if (attachments.some(a => a.kind === 'image') && modelInfo.vision === false) {
         showToast('Model ini tidak bisa membaca gambar. Pilih Gemini, GPT-4o, atau Grok untuk mengirim gambar.', 'error');
         return;
+      }
+
+      // Cari di web dulu bila diminta (tombol globe) atau pertanyaannya butuh info terbaru
+      const wantSearch = state.searchNext || needsWebSearch(text);
+      state.searchNext = false;
+      updateSearchToggleUI();
+      let webSearch = null;
+      if (wantSearch && text) {
+        state.isSearching = true;
+        updateSendButtonState();
+        showToast('Mencari di web…', 'info');
+        try {
+          webSearch = await searchWeb(text);
+          if (!webSearch) showToast('Pencarian web gagal — menjawab dari pengetahuan model.', 'error');
+        } finally {
+          state.isSearching = false;
+        }
       }
 
       // Buat sesi percakapan baru jika belum ada
@@ -1829,12 +1852,13 @@
 
       const nowTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
-      // Tambahkan pesan user (beserta lampirannya)
+      // Tambahkan pesan user (beserta lampiran & hasil pencarian web)
       chat.messages.push({
         role: 'user',
         content: text,
         timestamp: nowTime,
-        ...(attachments.length ? { attachments } : {})
+        ...(attachments.length ? { attachments } : {}),
+        ...(webSearch ? { webSearch } : {})
       });
 
       // Reset input textarea & lampiran
@@ -2031,19 +2055,20 @@
     }
 
     // Teks dokumen lampiran disisipkan ke pesan yang dikirim ke API
-    function userMessageTextForApi(m) {
+    function userMessageTextForApi(m, includeSearch) {
       let t = m.content || '';
       (m.attachments || []).forEach(a => {
         if (a.kind === 'text' && a.text) {
           t += '\n\n--- Lampiran: ' + a.name + ' ---\n' + a.text + '\n--- Akhir lampiran ---';
         }
       });
+      if (includeSearch && m.webSearch) t += webSearchContextBlock(m.webSearch);
       return t;
     }
 
-    // Gambar hanya dikirim bersama pesan user TERBARU (hemat token di giliran berikutnya)
-    function messageToGeminiParts(m, includeImages) {
-      const parts = [{ text: userMessageTextForApi(m) || 'Jelaskan gambar terlampir.' }];
+    // Gambar & hasil pencarian hanya dikirim bersama pesan user TERBARU (hemat token di giliran berikutnya)
+    function messageToGeminiParts(m, includeImages, includeSearch) {
+      const parts = [{ text: userMessageTextForApi(m, includeSearch) || 'Jelaskan gambar terlampir.' }];
       if (includeImages) {
         (m.attachments || []).forEach(a => {
           if (a.kind === 'image' && a.dataUrl) {
@@ -2055,8 +2080,8 @@
       return parts;
     }
 
-    function messageToOpenAIContent(m, includeImages) {
-      const text = userMessageTextForApi(m);
+    function messageToOpenAIContent(m, includeImages, includeSearch) {
+      const text = userMessageTextForApi(m, includeSearch);
       const images = includeImages ? (m.attachments || []).filter(a => a.kind === 'image' && a.dataUrl) : [];
       if (!images.length) return text;
       const content = [{ type: 'text', text: text || 'Jelaskan gambar terlampir.' }];
@@ -2123,6 +2148,136 @@
       closeCameraModal();
       renderAttachmentsStrip();
       updateSendButtonState();
+    }
+
+    /**
+     * 12c. CARI DI WEB: berlaku untuk SEMUA model (termasuk Solar) — hasil
+     * pencarian disuntikkan ke konteks jawaban. Tanpa API key tambahan:
+     * DuckDuckGo lewat allorigins, cadangan Wikipedia.
+     */
+    const WEB_SEARCH_TIMEOUT_MS = 12000;
+    const WEB_SEARCH_DDG_TIMEOUT_MS = 6000;
+    const WEB_SEARCH_MAX_RESULTS = 6;
+
+    const WEB_SEARCH_HINTS = /\b(hari ini|terbaru|terkini|berita|sekarang|saat ini|kemarin|minggu ini|bulan ini|tahun ini|2026|2027|harga|jadwal|skor|hasil pertandingan|siapa juara|kapan|update|trending|viral|cuaca|kurs|harga emas|harga saham)\b/i;
+
+    function needsWebSearch(text) {
+      return WEB_SEARCH_HINTS.test(text || '');
+    }
+
+    function toggleWebSearch() {
+      state.searchNext = !state.searchNext;
+      updateSearchToggleUI();
+      showToast(state.searchNext ? 'Pencarian web AKTIF untuk pesan berikutnya.' : 'Pencarian web dimatikan.', 'info');
+    }
+
+    function updateSearchToggleUI() {
+      const btn = document.getElementById('web-search-btn');
+      if (!btn) return;
+      const on = !!state.searchNext;
+      btn.classList.toggle('bg-indigo-500/10', on);
+      btn.classList.toggle('text-indigo-500', on);
+      btn.classList.toggle('dark:text-indigo-400', on);
+      btn.title = on ? 'Pencarian web AKTIF — klik untuk mematikan' : 'Cari di web untuk pesan berikutnya';
+    }
+
+    function decodeDdgHref(href) {
+      if (!href) return '';
+      const m = href.match(/[?&]uddg=([^&]+)/);
+      if (m) { try { return decodeURIComponent(m[1]); } catch (e) { return href; } }
+      return href;
+    }
+
+    async function fetchWithTimeout(url, ms) {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), ms);
+      try {
+        const res = await fetch(url, { signal: ctrl.signal });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.text();
+      } finally { clearTimeout(t); }
+    }
+
+    async function searchDuckDuckGo(query) {
+      const ddg = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
+      const html = await fetchWithTimeout('https://api.allorigins.win/raw?url=' + encodeURIComponent(ddg), WEB_SEARCH_DDG_TIMEOUT_MS);
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const out = [];
+      doc.querySelectorAll('.result').forEach(el => {
+        if (out.length >= WEB_SEARCH_MAX_RESULTS) return;
+        const a = el.querySelector('.result__a');
+        const sn = el.querySelector('.result__snippet');
+        const title = a ? a.textContent.trim() : '';
+        const url = a ? decodeDdgHref(a.getAttribute('href') || '') : '';
+        const snippet = sn ? sn.textContent.trim() : '';
+        if (title && url) out.push({ title, url, snippet });
+      });
+      return out;
+    }
+
+    async function searchWikipedia(query) {
+      const url = 'https://id.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + encodeURIComponent(query) + '&srlimit=5&format=json&origin=*';
+      const raw = await fetchWithTimeout(url, WEB_SEARCH_TIMEOUT_MS);
+      const data = JSON.parse(raw);
+      const list = (data && data.query && data.query.search) || [];
+      return list.map(it => ({
+        title: it.title,
+        url: 'https://id.wikipedia.org/wiki/' + encodeURIComponent(it.title.replace(/ /g, '_')),
+        snippet: (it.snippet || '').replace(/<[^>]+>/g, '')
+      }));
+    }
+
+    async function searchDuckDuckGoJson(query) {
+      const url = 'https://api.duckduckgo.com/?q=' + encodeURIComponent(query) + '&format=json&no_html=1&skip_disambig=1';
+      const raw = await fetchWithTimeout(url, 8000);
+      const data = JSON.parse(raw);
+      const out = [];
+      if (data.AbstractText && data.AbstractURL) {
+        out.push({ title: data.Heading || 'Ringkasan', url: data.AbstractURL, snippet: data.AbstractText });
+      }
+      (data.RelatedTopics || []).forEach(t => {
+        if (out.length >= WEB_SEARCH_MAX_RESULTS) return;
+        const topic = t && t.Text ? t : (t && t.Topics && t.Topics[0]);
+        if (topic && topic.Text && topic.FirstURL) out.push({ title: topic.Text.slice(0, 80), url: topic.FirstURL, snippet: topic.Text });
+      });
+      return out;
+    }
+
+    async function searchWeb(query) {
+      const q = (query || '').trim().slice(0, 200);
+      if (!q) return null;
+      // Ketiga sumber jalan paralel — dipakai yang tercepat & berisi hasil,
+      // urutan prioritas: DuckDuckGo (web) > jawaban instan DDG > Wikipedia.
+      const settled = await Promise.allSettled([
+        searchDuckDuckGo(q).catch(() => []),
+        searchDuckDuckGoJson(q).catch(() => []),
+        searchWikipedia(q).catch(() => [])
+      ]);
+      const ddg = settled[0].status === 'fulfilled' ? settled[0].value : [];
+      if (ddg.length) return { query: q, results: ddg, source: 'DuckDuckGo' };
+      const ddgJson = settled[1].status === 'fulfilled' ? settled[1].value : [];
+      if (ddgJson.length) return { query: q, results: ddgJson, source: 'DuckDuckGo' };
+      const wiki = settled[2].status === 'fulfilled' ? settled[2].value : [];
+      if (wiki.length) return { query: q, results: wiki, source: 'Wikipedia' };
+      return null;
+    }
+
+    function webSearchContextBlock(ws) {
+      if (!ws || !ws.results || !ws.results.length) return '';
+      const lines = ws.results.map((r, i) => (i + 1) + '. ' + r.title + ' (' + r.url + ')\n   ' + (r.snippet || '(tanpa cuplikan)'));
+      return '\n\n--- Hasil pencarian web terbaru untuk "' + ws.query + '" (sumber: ' + ws.source + ') ---\n' + lines.join('\n') + '\n--- Akhir hasil pencarian ---\nGunakan informasi di atas untuk menjawab pertanyaan pengguna. Jika informasinya tidak cukup atau bertentangan, katakan terus terang. Sebutkan nama sumbernya saat memakai fakta dari hasil pencarian.';
+    }
+
+    // Chip sumber di gelembung pesan user
+    function renderWebSearchChip(ws) {
+      if (!ws || !ws.results || !ws.results.length) return '';
+      const items = ws.results.map(r => `<li class="truncate"><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:underline">${escapeHtml(r.title)}</a></li>`).join('');
+      return `<details class="w-full max-w-full text-left">
+        <summary class="cursor-pointer inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/15 text-white text-xs">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Pencarian web: ${escapeHtml(ws.query)} · ${ws.results.length} sumber</span>
+        </summary>
+        <ul class="mt-1.5 space-y-0.5 px-2 text-[11px] text-zinc-300 list-disc list-inside">${items}</ul>
+      </details>`;
     }
 
     function makeAutoTitle(text) {
@@ -2382,10 +2537,13 @@
 
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelId)}:streamGenerateContent?alt=sse`;
 
-      const contents = historyMessages.map((m, i) => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: messageToGeminiParts(m, m.role === 'user' && i === historyMessages.length - 1)
-      }));
+      const contents = historyMessages.map((m, i) => {
+        const isLatestUser = m.role === 'user' && i === historyMessages.length - 1;
+        return {
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: messageToGeminiParts(m, isLatestUser, isLatestUser)
+        };
+      });
 
       const payload = {
         contents,
@@ -2459,7 +2617,7 @@
       }
       historyMessages.forEach((m, i) => {
         const includeImages = m.role === 'user' && i === historyMessages.length - 1;
-        messages.push({ role: m.role, content: m.role === 'user' ? messageToOpenAIContent(m, includeImages) : m.content });
+        messages.push({ role: m.role, content: m.role === 'user' ? messageToOpenAIContent(m, includeImages, includeImages) : m.content });
       });
 
       const headers = {
@@ -2823,7 +2981,7 @@
       const input = document.getElementById('chat-input');
       const sendBtn = document.getElementById('send-btn');
       if (!input || !sendBtn) return;
-      sendBtn.disabled = state.isStreaming || (input.value.trim().length === 0 && state.pendingAttachments.length === 0);
+      sendBtn.disabled = state.isStreaming || state.isSearching || (input.value.trim().length === 0 && state.pendingAttachments.length === 0);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -2832,6 +2990,7 @@
       updateModelSelectorUI();
       renderChatHistory();
       renderMessages();
+      updateSearchToggleUI();
 
       const chatInput = document.getElementById('chat-input');
       if (chatInput) {
