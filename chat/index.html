@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusAI — Multi-Model AI Chat Studio</title>
+  <link rel="canonical" href="https://sainspiq.com/chat" />
+
+  <!-- Google Fonts: Geist & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            zinc: {
+              850: '#1f1f23',
+              925: '#111114',
+              950: '#09090b',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'fade-in': 'fadeIn 0.2s ease-out forwards',
+            'slide-up': 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(8px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+  <!-- Marked.js untuk Rendering Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+  <!-- DOMPurify: sanitasi HTML hasil render Markdown (anti-XSS) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+
+  <!-- Highlight.js untuk Syntax Highlighting Blok Kode -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <style>
+    /* Custom Scrollbar Halus untuk Dark & Light Mode */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(161, 161, 170, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(161, 161, 170, 0.45);
+    }
+
+    /* Styling Konten Markdown di dalam Bubble Chat */
+    .markdown-body {
+      line-height: 1.7;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .markdown-body p {
+      margin-bottom: 0.85rem;
+    }
+    .markdown-body p:last-child {
+      margin-bottom: 0;
+    }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+      font-weight: 600;
+      margin-top: 1.25rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+    .markdown-body h1 { font-size: 1.4rem; }
+    .markdown-body h2 { font-size: 1.2rem; }
+    .markdown-body h3 { font-size: 1.05rem; }
+    .markdown-body ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-body ol {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-body li {
+      margin-bottom: 0.35rem;
+    }
+    .markdown-body blockquote {
+      border-left: 3px solid #6366f1;
+      padding-left: 1rem;
+      margin: 0.85rem 0;
+      opacity: 0.85;
+      font-style: italic;
+    }
+    .markdown-body a {
+      color: #60a5fa;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+      display: block;
+      overflow-x: auto;
+    }
+    .markdown-body th, .markdown-body td {
+      border: 1px solid rgba(161, 161, 170, 0.25);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .markdown-body th {
+      background: rgba(161, 161, 170, 0.1);
+      font-weight: 600;
+    }
+    /* Inline code */
+    .markdown-body :not(pre) > code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.375rem;
+      background-color: rgba(113, 113, 122, 0.2);
+    }
+    /* Code block override */
+    .markdown-body pre {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+    .markdown-body pre code.hljs {
+      padding: 1rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      background: #0d0d10;
+      border-bottom-left-radius: 0.75rem;
+      border-bottom-right-radius: 0.75rem;
+      overflow-x: auto;
+      display: block;
+    }
+
+    /* Kursor berkedip saat streaming berlangsung */
+    .streaming-cursor::after {
+      content: '▋';
+      display: inline-block;
+      margin-left: 3px;
+      animation: blink 0.9s infinite;
+      color: #818cf8;
+      font-size: 0.9em;
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Gradien teks ala Gemini */
+    /* Hilangkan panah bawaan browser pada <select> */
+    select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: none; }
+
+    /* Hilangkan penanda panah bawaan pada <details> */
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+
+
+    /* ===== Pengaturan: sistem desain ===== */
+    .ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .settings-glyph { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+    .group:hover .settings-glyph { transform: rotate(60deg); }
+
+    .s-card { border: 1px solid #e4e4e7; border-radius: 1rem; background: #fff; }
+    .dark .s-card { border-color: #232327; background: #141417; }
+    .s-card > * + * { border-top: 1px solid #f0f0f2; }
+    .dark .s-card > * + * { border-top-color: #1d1d21; }
+
+    .s-input {
+      width: 100%; padding: .65rem .9rem; border-radius: .75rem; font-size: .8125rem;
+      background: #fafafa; border: 1px solid #e4e4e7; color: inherit;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .dark .s-input { background: #09090b; border-color: #2a2a2f; }
+    .s-input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.16); }
+    .s-input::placeholder { color: #a1a1aa; }
+
+    /* Halaman pengaturan bergaya daftar */
+    .sgroup { background: #fff; border: 1px solid #ececef; border-radius: 1.5rem; overflow: hidden; }
+    .dark .sgroup { background: #141417; border-color: #1f1f23; }
+    .shead { padding: 0 1.25rem; margin: 1.6rem 0 .55rem; font-size: .875rem; color: #71717a; }
+    .dark .shead { color: #8b8b94; }
+    .srow { position: relative; display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.25rem; text-align: left; font-size: 1rem; cursor: pointer; transition: background .15s; }
+    .srow:hover { background: rgba(113,113,122,.08); }
+    .srow + .srow::before { content: ''; position: absolute; top: 0; left: 1.25rem; right: 1.25rem; height: 1px; background: #f0f0f2; }
+    .dark .srow + .srow::before { background: #232327; }
+    .srow-ico { width: 1.5rem; height: 1.5rem; flex-shrink: 0; color: #52525b; }
+    .dark .srow-ico { color: #d4d4d8; }
+    .srow-label { flex: 1; min-width: 0; }
+    .srow-value { max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .9375rem; color: #71717a; }
+    .dark .srow-value { color: #8b8b94; }
+    .srow-chev { width: 1.15rem; height: 1.15rem; flex-shrink: 0; color: #71717a; }
+    .srow.danger, .srow.danger .srow-ico { color: #e11d48; }
+    .dark .srow.danger, .dark .srow.danger .srow-ico { color: #fb7185; }
+
+    .s-label { font-size: .8125rem; font-weight: 600; }
+    .s-hint { font-size: .75rem; line-height: 1.5; color: #71717a; }
+    .dark .s-hint { color: #8b8b94; }
+
+    .s-chip { font-size: .6875rem; font-weight: 500; padding: .125rem .5rem; border-radius: 9999px; background: #f4f4f5; color: #71717a; white-space: nowrap; }
+    .dark .s-chip { background: #1b1b1f; color: #8b8b94; }
+    .s-chip.on { background: rgba(16,185,129,.12); color: #059669; }
+    .dark .s-chip.on { color: #34d399; }
+
+    .model-row { display: flex; align-items: center; gap: .75rem; width: 100%; padding: .7rem .9rem; text-align: left; cursor: pointer; transition: background .15s; }
+    .model-row:hover { background: rgba(113,113,122,.07); }
+    .model-row[aria-checked="true"] { background: rgba(99,102,241,.07); }
+    .model-radio { width: 1.05rem; height: 1.05rem; border-radius: 9999px; border: 1.5px solid #c4c4cc; flex-shrink: 0; display: grid; place-items: center; transition: border-color .15s; }
+    .dark .model-radio { border-color: #3f3f46; }
+    .model-row[aria-checked="true"] .model-radio { border-color: #6366f1; }
+    .model-row[aria-checked="true"] .model-radio::after { content: ''; width: .5rem; height: .5rem; border-radius: 9999px; background: #6366f1; }
+
+    .s-range { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: 9999px; background: linear-gradient(to right, #6366f1 var(--fill, 35%), rgba(113,113,122,.25) var(--fill, 35%)); cursor: pointer; }
+    .s-range::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 9999px; background: #fff; border: 2px solid #6366f1; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+    .s-range::-moz-range-thumb { width: 14px; height: 14px; border-radius: 9999px; background: #fff; border: 2px solid #6366f1; }
+
+    .settings-panel:not(.hidden) { animation: panelIn .22s ease-out; }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .settings-panel:not(.hidden) { animation: none; } .settings-glyph { transition: none; } }
+
+    .srow:focus-visible, .model-row:focus-visible, .s-test-btn:focus-visible {
+      outline: 2px solid #6366f1; outline-offset: 2px;
+    }
+    [data-panel]:focus-visible { outline: none; }
+
+    .s-test-btn {
+      display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .75rem; border-radius: .6rem;
+      font-size: .75rem; font-weight: 500; cursor: pointer; flex-shrink: 0;
+      border: 1px solid #e4e4e7; background: transparent; color: inherit; transition: background .15s, border-color .15s;
+    }
+    .dark .s-test-btn { border-color: #2a2a30; }
+    .s-test-btn:hover:not(:disabled) { background: rgba(99,102,241,.08); border-color: rgba(99,102,241,.4); }
+    .s-test-btn:disabled { opacity: .6; cursor: progress; }
+    .t-ok { color: #059669; } .dark .t-ok { color: #34d399; }
+    .t-err { color: #e11d48; } .dark .t-err { color: #fb7185; }
+    .t-warn { color: #b45309; } .dark .t-warn { color: #fbbf24; }
+    .spin { width: .8rem; height: .8rem; border-radius: 9999px; border: 2px solid rgba(99,102,241,.3); border-top-color: #6366f1; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .spin { animation-duration: 1.6s; } }
+
+    .gemini-gradient-text {
+      color: #6366f1;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans antialiased selection:bg-indigo-500/30 selection:text-indigo-200 overflow-hidden h-[100dvh] flex">
+
+  <!-- Ikon kustom NexusAI (heksagon = inti, simpul = jaringan) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="ic-settings" viewBox="0 0 24 24"><circle class="cog-ring" cx="12" cy="12" r="9" stroke-width="3" stroke-linecap="butt" stroke-dasharray="2.356 2.356"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="ic-robot" viewBox="0 0 24 24"><path d="M12 2.8v2.6"/><circle cx="12" cy="2.6" r="1" fill="currentColor" stroke="none"/><rect x="4.5" y="5.4" width="15" height="12.2" rx="4"/><path d="M2.4 10.4v3.4M21.6 10.4v3.4"/><circle cx="9.2" cy="11.2" r="1.35" fill="currentColor" stroke="none"/><circle cx="14.8" cy="11.2" r="1.35" fill="currentColor" stroke="none"/><path d="M9.3 14.7h5.4"/><path d="M8.5 17.6v2.2M15.5 17.6v2.2"/></symbol>
+      <symbol id="ic-model" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="7" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8.4 7h7.2M7.2 9.1l3.6 6.8M16.8 9.1l-3.6 6.8"/></symbol>
+      <symbol id="ic-key" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="3.6"/><path d="m10.6 12.9 8.4-8.4M16 7.5l2.6 2.6M13.4 10.1l2 2"/></symbol>
+      <symbol id="ic-tune" viewBox="0 0 24 24"><path d="M4.4 17a8 8 0 1 1 15.2 0"/><path d="m12 14.2 3.8-5"/><circle cx="12" cy="14.6" r="1.3"/></symbol>
+      <symbol id="ic-look" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8a8.2 8.2 0 0 1 0 16.4z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="ic-prompt" viewBox="0 0 24 24"><rect x="3.8" y="4.2" width="16.4" height="15.6" rx="4.2"/><path d="M8.2 9.4h7.6M8.2 13h4.2"/><path d="M15.4 14.2v2.6M14.1 15.5h2.6" opacity=".7"/></symbol>
+      <symbol id="ic-export" viewBox="0 0 24 24"><path d="M12 4v10.2M8.2 10.8 12 14.6l3.8-3.8"/><path d="M5 15.5v2.2A1.3 1.3 0 0 0 6.3 19h11.4a1.3 1.3 0 0 0 1.3-1.3v-2.2"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Backdrop Mobile untuk Sidebar -->
+  <div id="sidebar-backdrop" onclick="toggleSidebar(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-30 hidden lg:hidden transition-opacity"></div>
+
+  <!-- =========================================================
+       SIDEBAR KIRI: Manajemen Riwayat Chat & Pengaturan
+       ========================================================= -->
+  <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-[61vw] min-w-[14rem] max-w-72 lg:min-w-0 lg:max-w-none lg:w-72 bg-white dark:bg-zinc-925 border-r border-zinc-200 dark:border-zinc-800/80 flex flex-col transition-all duration-300 ease-in-out -translate-x-full lg:translate-x-0 shrink-0 overflow-hidden">
+    
+    <!-- Inner wrapper berlebar tetap agar konten tidak terhimpit saat animasi collapse desktop -->
+    <div class="w-full lg:w-72 h-full flex flex-col shrink-0">
+      <!-- Header Sidebar: Brand & Tombol Tutup Mobile -->
+      <div class="p-4 flex items-center justify-between border-b border-zinc-200/70 dark:border-zinc-800/70">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-zinc-900">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-bold tracking-tight text-base">NexusAI</span>
+          </div>
+        </div>
+
+        <button type="button" onclick="toggleSidebar(false)" class="lg:hidden p-2 rounded-xl text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" title="Tutup Sidebar">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Tombol + Chat Baru & Pencarian Riwayat -->
+      <div class="p-3 space-y-2.5">
+        <button type="button" onclick="createNewChat()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-medium text-sm shadow-sm transition-all active:scale-[0.99] cursor-pointer">
+          <span class="flex items-center gap-2.5">
+            <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
+            Chat Baru
+          </span>
+        </button>
+
+        <!-- Kotak Pencarian Riwayat Chat -->
+        <div class="relative">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input
+            id="history-search-input"
+            type="text"
+            oninput="renderChatHistory()"
+            placeholder="Cari riwayat chat..."
+            class="w-full pl-8 pr-3 py-2 rounded-xl bg-slate-100/80 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 text-xs text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/60 transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Label Riwayat Percakapan -->
+      <div class="px-4 pt-1 pb-1.5 flex items-center justify-between">
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Riwayat Percakapan</span>
+        <span id="chat-count-badge" class="text-[11px] text-zinc-400 dark:text-zinc-500">0</span>
+      </div>
+
+      <!-- Daftar Riwayat Chat (Scrollable) -->
+      <div id="chat-history-list" class="flex-1 overflow-y-auto px-2.5 py-1 space-y-1">
+        <!-- Item riwayat percakapan dirender via JS -->
+      </div>
+
+      <!-- Footer Sidebar: Tombol Pengaturan -->
+      <div class="p-3 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-slate-50/60 dark:bg-zinc-950/40">
+        <button type="button" onclick="openSettingsModal()" class="group w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200/70 dark:hover:bg-zinc-800/80 transition-colors cursor-pointer">
+          <span class="flex items-center gap-2.5">
+            <svg class="ico settings-glyph w-[18px] h-[18px] text-indigo-500" aria-hidden="true"><use href="#ic-settings"/></svg>
+            Pengaturan
+          </span>
+          <span id="api-status-indicator" class="w-2 h-2 rounded-full bg-rose-500 animate-pulse" title="Status Konfigurasi API"></span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       AREA UTAMA: Header, Container Chat, & Kotak Input
+       ========================================================= -->
+  <main class="flex-1 flex flex-col min-w-0 h-full relative bg-slate-50 dark:bg-zinc-950">
+
+    <!-- Header Atas: HANYA Tombol Toggle Sidebar (#sidebar-toggle) yang selalu tampil di semua ukuran layar -->
+    <header class="h-14 sm:h-16 px-3 sm:px-6 border-b border-zinc-200/70 dark:border-zinc-800/70 bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md flex items-center justify-between z-20 shrink-0">
+      <div class="flex items-center min-w-0 gap-3">
+        <button
+          id="sidebar-toggle"
+          type="button"
+          onclick="toggleSidebar()"
+          aria-label="Buka / Tutup Sidebar"
+          title="Buka / Tutup Sidebar"
+          class="inline-flex items-center justify-center p-2.5 rounded-xl bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 border border-zinc-200/90 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-2xs transition-all active:scale-95 cursor-pointer"
+        >
+          <!-- Crisp Sidebar Panel SVG Icon (selalu tampil tanpa bergantung library eksternal) -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="3"></rect>
+            <path d="M9 3v18"></path>
+          </svg>
+        </button>
+        <div class="min-w-0 leading-tight">
+          <div id="header-chat-title" class="text-sm font-semibold truncate">Chat Baru</div>
+          <div id="header-model-label" class="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">Gemini 2.5 Flash</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Area Pesan Chat (Scrollable) -->
+    <div id="chat-scroll-container" class="flex-1 overflow-y-auto px-3 sm:px-6 pt-4 pb-1 sm:py-6 scroll-smooth">
+      <div class="max-w-3xl mx-auto w-full">
+
+        <!-- Layar Selamat Datang (Welcome Screen) -->
+        <div id="welcome-screen" class="pt-6 pb-2 sm:py-14 flex flex-col items-center text-center animate-fade-in">
+          <div class="mb-4 sm:mb-5 text-zinc-500 dark:text-zinc-400">
+            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z"/>
+            </svg>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
+            Halo! Apa yang ingin kita <span class="gemini-gradient-text">eksplorasi</span> hari ini?
+          </h1>
+          <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-lg mb-6 sm:mb-8">
+            Beralih secara mulus antara <strong class="text-zinc-700 dark:text-zinc-200">Gemini</strong>, <strong class="text-zinc-700 dark:text-zinc-200">ChatGPT</strong>, <strong class="text-zinc-700 dark:text-zinc-200">Grok</strong>, <strong class="text-zinc-700 dark:text-zinc-200">Upstage Solar</strong>, atau <strong class="text-zinc-700 dark:text-zinc-200">Custom API</strong> melalui menu Pengaturan.
+          </p>
+
+          <!-- Kartu Saran Prompt Cepat -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 w-full text-left">
+            <button type="button" onclick="useQuickPrompt('Buatkan komponen React / JavaScript modern untuk sistem autentikasi lengkap dengan validasi form dan penanganan error.')" class="group w-full flex items-start gap-3 text-left p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900/70 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-800 transition-all cursor-pointer shadow-xs">
+              <i data-lucide="code-2" class="w-4 h-4 mt-0.5 shrink-0 text-zinc-500 dark:text-zinc-400"></i>
+              <div class="min-w-0 flex-1 text-left">
+                <span class="block font-semibold text-sm leading-5">Tulis & Optimasi Kode</span>
+                <p class="mt-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-2">Buat komponen autentikasi modern dengan validasi form dan penanganan error.</p>
+              </div>
+            </button>
+
+            <button type="button" onclick="useQuickPrompt('Ringkas konsep arsitektur Microservices vs Monolith dalam bentuk tabel perbandingan pro, kontra, dan kapan waktu terbaik memilih masing-masing.')" class="group w-full flex items-start gap-3 text-left p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900/70 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-800 transition-all cursor-pointer shadow-xs">
+              <i data-lucide="file-text" class="w-4 h-4 mt-0.5 shrink-0 text-zinc-500 dark:text-zinc-400"></i>
+              <div class="min-w-0 flex-1 text-left">
+                <span class="block font-semibold text-sm leading-5">Ringkas & Bandingkan</span>
+                <p class="mt-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-2">Tabel perbandingan Microservices vs Monolith beserta kapan harus memilihnya.</p>
+              </div>
+            </button>
+
+            <button type="button" onclick="useQuickPrompt('Bantu saya brainstorming 5 ide produk SaaS berbasis AI yang relevan untuk UMKM di Indonesia beserta strategi monetisasinya.')" class="group w-full flex items-start gap-3 text-left p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900/70 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-800 transition-all cursor-pointer shadow-xs">
+              <i data-lucide="lightbulb" class="w-4 h-4 mt-0.5 shrink-0 text-zinc-500 dark:text-zinc-400"></i>
+              <div class="min-w-0 flex-1 text-left">
+                <span class="block font-semibold text-sm leading-5">Brainstorming Ide Produk</span>
+                <p class="mt-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-2">5 ide SaaS berbasis AI untuk UMKM di Indonesia dan strategi monetisasinya.</p>
+              </div>
+            </button>
+
+            <button type="button" onclick="useQuickPrompt('Jelaskan cara kerja Transformer dan mekanisme Self-Attention pada LLM dengan analogi sederhana yang mudah dipahami pemula.')" class="group w-full flex items-start gap-3 text-left p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900/70 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-800 transition-all cursor-pointer shadow-xs">
+              <i data-lucide="sparkles" class="w-4 h-4 mt-0.5 shrink-0 text-zinc-500 dark:text-zinc-400"></i>
+              <div class="min-w-0 flex-1 text-left">
+                <span class="block font-semibold text-sm leading-5">Jelaskan Konsep Kompleks</span>
+                <p class="mt-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-2">Cara kerja Transformer & Self-Attention pada LLM dengan analogi sederhana.</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Daftar Pesan Percakapan -->
+        <div id="messages-list" class="space-y-6 pb-4 hidden">
+          <!-- Pesan pengguna dan balasan AI dirender di sini -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Area Input Bawah -->
+    <div class="px-3 sm:px-6 pt-1 sm:pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-slate-50 via-slate-50 to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent shrink-0">
+      <div class="max-w-3xl mx-auto">
+
+        <!-- Tombol Hentikan Generasi (Muncul saat streaming aktif) -->
+        <div id="stop-generation-wrapper" class="hidden flex justify-center mb-3">
+          <button type="button" onclick="stopGeneration()" class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-800 text-white text-xs font-medium border border-zinc-700 shadow-lg hover:bg-zinc-800 dark:hover:bg-zinc-700 transition-all cursor-pointer">
+            <span class="w-2.5 h-2.5 rounded-xs bg-rose-500 animate-pulse"></span>
+            Hentikan Generasi
+          </button>
+        </div>
+
+        <!-- Kotak Input Utama -->
+        <div class="relative rounded-3xl bg-white dark:bg-zinc-900 shadow-sm border border-zinc-300/90 dark:border-zinc-800 focus-within:border-indigo-500/70 dark:focus-within:border-indigo-500/60 transition-all">
+          <textarea
+            id="chat-input"
+            rows="2"
+            placeholder="Kirim pesan ke AI..." title="Enter untuk kirim, Shift+Enter untuk baris baru"
+            class="w-full bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-base leading-6 px-5 pt-4 pb-2 min-h-[4.5rem] resize-none focus:outline-none max-h-64 overflow-y-auto block"
+          ></textarea>
+
+          <!-- Toolbar Bawah di Dalam Kotak Input -->
+          <div class="flex items-center justify-between gap-2 px-3.5 pb-3.5 pt-1">
+            <div class="flex items-center min-w-0 flex-1 text-[11px] text-zinc-400 dark:text-zinc-500">
+              <div class="relative min-w-0 max-w-full">
+                <button id="quick-model-btn" type="button" onclick="toggleQuickModelMenu(event)" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-medium transition-colors cursor-pointer min-w-0 max-w-full text-xs" title="Ganti model" aria-haspopup="listbox">
+                  <span id="input-model-dot" class="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
+                  <span id="input-model-label" class="truncate">Gemini 2.5 Flash</span>
+                </button>
+                <div id="quick-model-menu" class="hidden absolute bottom-full left-0 mb-2 w-72 max-w-[calc(100vw-2rem)] max-h-72 overflow-y-auto rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-2xl p-1.5 z-30" role="listbox"></div>
+              </div>
+            </div>
+
+            <button
+              id="send-btn"
+              type="button"
+              onclick="handleSendMessage()"
+              disabled
+              class="w-10 h-10 shrink-0 inline-flex items-center justify-center rounded-2xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-zinc-200 dark:disabled:bg-zinc-800 text-white disabled:text-zinc-400 dark:disabled:text-zinc-600 transition-all cursor-pointer disabled:cursor-not-allowed shadow-sm"
+              title="Kirim Pesan"
+            >
+              <i data-lucide="arrow-up" class="w-4 h-4 stroke-[2.5]"></i>
+            </button>
+          </div>
+        </div>
+
+        <p class="text-center text-[11px] leading-snug text-zinc-400 dark:text-zinc-500 mt-1.5">
+          API Key disimpan lokal di browser dan dikirim langsung ke penyedia AI.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================
+       MODAL PENGATURAN: Model Switcher, Tema, Ekspor, API Keys, System Prompt & Temperature
+       ========================================================= -->
+  <div id="settings-modal" class="fixed inset-0 z-50 hidden flex-col bg-slate-50 dark:bg-zinc-950">
+    <div class="w-full h-full min-h-0 flex flex-col">
+
+      <!-- Header: judul di tengah, tombol kembali di kiri -->
+      <div class="grid grid-cols-[2.5rem_1fr_2.5rem] items-center px-3 pt-3 pb-2 shrink-0">
+        <button type="button" onclick="settingsBack()" aria-label="Kembali" title="Kembali" class="w-10 h-10 -ml-1 flex items-center justify-center rounded-full text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+          <i data-lucide="arrow-left" class="w-6 h-6"></i>
+        </button>
+        <h2 id="settings-title" class="text-center text-lg font-medium">Pengaturan</h2>
+        <span></span>
+      </div>
+
+      <div id="settings-body" class="flex-1 min-h-0 overflow-y-auto px-4 pb-8">
+        <div class="max-w-xl mx-auto text-sm">
+
+          <!-- Halaman utama: daftar rapi -->
+          <section class="settings-panel pt-4" data-panel="main">
+            <div class="sgroup">
+              <button type="button" onclick="showSettingsPage('model')" class="srow"><svg class="ico srow-ico" aria-hidden="true"><use href="#ic-model"/></svg><span class="srow-label">Model AI</span><span class="srow-value" id="row-value-model"></span><i data-lucide="chevron-right" class="srow-chev"></i></button>
+              <button type="button" onclick="showSettingsPage('keys')" class="srow"><svg class="ico srow-ico" aria-hidden="true"><use href="#ic-key"/></svg><span class="srow-label">API Key</span><span class="srow-value" id="row-value-keys"></span><i data-lucide="chevron-right" class="srow-chev"></i></button>
+            </div>
+
+            <div class="shead">Preferensi</div>
+            <div class="sgroup">
+              <button type="button" onclick="showSettingsPage('behavior')" class="srow"><svg class="ico srow-ico" aria-hidden="true"><use href="#ic-tune"/></svg><span class="srow-label">Perilaku AI</span><i data-lucide="chevron-right" class="srow-chev"></i></button>
+              <button type="button" onclick="showSettingsPage('prompt')" class="srow"><svg class="ico srow-ico" aria-hidden="true"><use href="#ic-prompt"/></svg><span class="srow-label">Instruksi sistem</span><i data-lucide="chevron-right" class="srow-chev"></i></button>
+              <div class="srow">
+                <svg class="ico srow-ico" aria-hidden="true"><use href="#ic-look"/></svg>
+                <span class="srow-label">Tema</span>
+                <span class="srow-value" id="theme-value-label">Gelap</span>
+                <i data-lucide="chevrons-up-down" class="srow-chev"></i>
+                <select id="setting-theme" data-instant aria-label="Tema" onchange="applyTheme(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                  <option value="system">Sistem</option>
+                  <option value="light">Terang</option>
+                  <option value="dark">Gelap</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="shead">Data</div>
+            <div class="sgroup">
+              <button type="button" id="export-md-btn" onclick="exportChatToMarkdown()" class="srow"><svg class="ico srow-ico" aria-hidden="true"><use href="#ic-export"/></svg><span class="srow-label">Ekspor percakapan</span><span class="srow-value">.md</span></button>
+              <button type="button" onclick="confirmResetSettings()" class="srow danger"><i data-lucide="rotate-ccw" class="srow-ico"></i><span class="srow-label">Reset ke default</span></button>
+            </div>
+
+            <p class="s-hint px-5 mt-5">API Key hanya disimpan di browser ini dan dikirim langsung ke penyedia AI.</p>
+          </section>
+
+          <!-- Sub-halaman -->
+          <section class="settings-panel space-y-5 hidden pt-2" data-panel="model">
+              <p class="s-hint mt-1">Pilih model untuk percakapan baru. Anda juga bisa menggantinya cepat dari kotak chat.</p>
+
+              <div class="s-card">
+                <div class="flex items-center justify-between gap-3 p-4">
+                  <span id="current-model-icon" class="hidden"></span>
+                  <div class="min-w-0">
+                    <div class="s-hint">Model aktif</div>
+                    <div id="current-model-name" class="text-sm font-semibold truncate leading-tight mt-0.5">Gemini 2.5 Flash</div>
+                    <div id="current-model-provider" class="s-hint truncate">Google Gemini</div>
+                  </div>
+                  <span id="modal-connection-status" class="text-[11px] font-medium text-emerald-500 shrink-0">Siap</span>
+                </div>
+              </div>
+
+              <div id="model-dropdown-menu" class="space-y-5" role="radiogroup" aria-label="Daftar model"></div>
+            </section>
+          <section class="settings-panel space-y-5 hidden pt-2" data-panel="keys">
+              <p class="s-hint mt-1 flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 shrink-0"></i>Key hanya disimpan di browser ini dan dikirim langsung ke penyedia AI.</p>
+
+              <div class="s-card overflow-hidden">
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <label for="setting-gemini-key" class="s-label truncate">Google Gemini</label>
+                <span id="key-chip-gemini" class="s-chip">Kosong</span>
+              </div>
+              <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="text-xs text-indigo-500 hover:underline shrink-0">Dapatkan key</a>
+            </div>
+            <div class="relative">
+              <input id="setting-gemini-key" type="password" autocomplete="off" oninput="updateKeyBadges(); clearTestResult('gemini')" placeholder="AIzaSy..." class="s-input pr-10 font-mono text-xs" />
+              <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-gemini-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="flex items-center gap-3 min-h-[1.9rem]">
+              <button type="button" id="key-test-btn-gemini" onclick="testConnection('gemini')" class="s-test-btn">Uji koneksi</button>
+              <span id="key-test-gemini" class="s-hint" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <label for="setting-openai-key" class="s-label truncate">OpenAI (ChatGPT)</label>
+                <span id="key-chip-openai" class="s-chip">Kosong</span>
+              </div>
+              <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener" class="text-xs text-indigo-500 hover:underline shrink-0">Dapatkan key</a>
+            </div>
+            <div class="relative">
+              <input id="setting-openai-key" type="password" autocomplete="off" oninput="updateKeyBadges(); clearTestResult('openai')" placeholder="sk-proj-..." class="s-input pr-10 font-mono text-xs" />
+              <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-openai-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="flex items-center gap-3 min-h-[1.9rem]">
+              <button type="button" id="key-test-btn-openai" onclick="testConnection('openai')" class="s-test-btn">Uji koneksi</button>
+              <span id="key-test-openai" class="s-hint" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <label for="setting-xai-key" class="s-label truncate">xAI (Grok)</label>
+                <span id="key-chip-xai" class="s-chip">Kosong</span>
+              </div>
+              <a href="https://console.x.ai/" target="_blank" rel="noopener" class="text-xs text-indigo-500 hover:underline shrink-0">Dapatkan key</a>
+            </div>
+            <div class="relative">
+              <input id="setting-xai-key" type="password" autocomplete="off" oninput="updateKeyBadges(); clearTestResult('xai')" placeholder="xai-..." class="s-input pr-10 font-mono text-xs" />
+              <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-xai-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="flex items-center gap-3 min-h-[1.9rem]">
+              <button type="button" id="key-test-btn-xai" onclick="testConnection('xai')" class="s-test-btn">Uji koneksi</button>
+              <span id="key-test-xai" class="s-hint" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <label for="setting-upstage-key" class="s-label truncate">Upstage (Solar)</label>
+                <span id="key-chip-upstage" class="s-chip">Kosong</span>
+              </div>
+              <a href="https://console.upstage.ai/api-keys" target="_blank" rel="noopener" class="text-xs text-indigo-500 hover:underline shrink-0">Dapatkan key</a>
+            </div>
+            <div class="relative">
+              <input id="setting-upstage-key" type="password" autocomplete="off" oninput="updateKeyBadges(); clearTestResult('upstage')" placeholder="up_..." class="s-input pr-10 font-mono text-xs" />
+              <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-upstage-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="flex items-center gap-3 min-h-[1.9rem]">
+              <button type="button" id="key-test-btn-upstage" onclick="testConnection('upstage')" class="s-test-btn">Uji koneksi</button>
+              <span id="key-test-upstage" class="s-hint" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+              </div>
+
+              <div class="s-card overflow-hidden">
+                <div class="p-4">
+                  <div class="s-label">OpenRouter / Custom API</div>
+                  <p class="s-hint mt-0.5">Kompatibel dengan OpenAI: OpenRouter, DeepSeek, Ollama.</p>
+                </div>
+                <div class="p-4 space-y-3">
+                  <div>
+                    <label for="setting-custom-url" class="s-hint block mb-1.5">Base URL</label>
+                    <input id="setting-custom-url" type="text" oninput="clearTestResult('custom')" placeholder="https://openrouter.ai/api/v1" class="s-input font-mono text-xs" />
+                  </div>
+                  <div>
+                    <label for="setting-custom-model" class="s-hint block mb-1.5">Model ID</label>
+                    <input id="setting-custom-model" type="text" placeholder="anthropic/claude-3.7-sonnet" class="s-input font-mono text-xs" />
+                  </div>
+                  <div>
+                    <label for="setting-custom-key" class="s-hint block mb-1.5">API key (boleh kosong untuk Ollama lokal)</label>
+                    <div class="relative">
+                      <input id="setting-custom-key" type="password" autocomplete="off" oninput="clearTestResult('custom')" placeholder="sk-or-v1-..." class="s-input pr-10 font-mono text-xs" />
+                      <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-custom-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+            <div class="flex items-center gap-3 min-h-[1.9rem]">
+              <button type="button" id="key-test-btn-custom" onclick="testConnection('custom')" class="s-test-btn">Uji koneksi</button>
+              <span id="key-test-custom" class="s-hint" role="status" aria-live="polite"></span>
+            </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          <section class="settings-panel space-y-5 hidden pt-2" data-panel="behavior">
+              <p class="s-hint mt-1">Atur gaya jawaban dan kepribadian AI.</p>
+
+              <div class="s-card overflow-hidden">
+                <div class="p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-3">
+                    <label for="setting-temperature" class="s-label">Temperature</label>
+                    <span id="temperature-value-label" class="font-mono text-xs font-semibold text-indigo-500">0.7</span>
+                  </div>
+                  <input id="setting-temperature" type="range" min="0" max="2" step="0.1" value="0.7" oninput="syncTemperature(this)" class="s-range" />
+                  <div class="flex justify-between s-hint">
+                    <span>Presisi</span><span>Seimbang</span><span>Kreatif</span>
+                  </div>
+                </div>
+
+                <div class="p-4 space-y-2.5">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="min-w-0">
+                      <label for="setting-reasoning-effort" class="s-label">Reasoning effort</label>
+                      <div class="s-hint">Khusus Solar Pro 4 dan Solar Mini 4</div>
+                    </div>
+                    <div class="relative shrink-0">
+                      <select id="setting-reasoning-effort" class="s-input !w-auto !py-2 pr-9 text-xs cursor-pointer">
+                        <option value="">Nonaktif</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="xhigh">XHigh</option>
+                        <option value="max">Max</option>
+                      </select>
+                      <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    </div>
+                  </div>
+                  <p class="s-hint">Level lebih tinggi lebih teliti untuk soal bertahap, tetapi lebih lambat dan memakai lebih banyak token.</p>
+                </div>
+              </div></section>
+          <section class="settings-panel space-y-5 hidden pt-2" data-panel="prompt">
+            <p class="s-hint mt-1">Instruksi ini dikirim di awal setiap percakapan dan menentukan kepribadian AI.</p>
+            <div class="s-card overflow-hidden">
+                <div class="p-4 space-y-2.5">
+                  <div class="flex items-center justify-between gap-3">
+                    <label for="setting-system-prompt" class="s-label">System prompt</label>
+                    <button type="button" onclick="restoreDefaultPrompt()" class="text-xs text-indigo-500 hover:underline cursor-pointer">Pulihkan teks awal</button>
+                  </div>
+                  <textarea id="setting-system-prompt" rows="6" placeholder="Anda adalah asisten AI yang cerdas, ramah, dan membantu..." class="s-input text-xs leading-relaxed resize-y"></textarea>
+                  <p class="s-hint">Instruksi ini dikirim di awal setiap percakapan.</p>
+                </div>
+              </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Bilah simpan: hanya muncul saat ada perubahan -->
+      <div id="settings-footer" class="hidden items-center gap-2 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-zinc-200 dark:border-zinc-800 shrink-0 bg-white/80 dark:bg-zinc-950/90 backdrop-blur" role="status" aria-live="polite">
+        <span class="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-400 min-w-0 flex-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span><span class="truncate">Ada perubahan belum disimpan</span></span>
+        <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 transition-colors cursor-pointer">Batal</button>
+        <button type="button" onclick="saveSettings()" class="px-5 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-colors cursor-pointer">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container (Pengganti alert() yang modern) -->
+  <div id="toast-container" class="fixed bottom-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- =========================================================
+       LOGIKA APLIKASI JAVASCRIPT (STATE, STREAMING API, UI)
+       ========================================================= -->
+  <script>
+    /**
+     * 1. KONFIGURASI MODEL & PROVIDER
+     * Mendefinisikan katalog model dari Google Gemini, OpenAI, xAI Grok, dan Custom API.
+     */
+    const DEFAULT_SYSTEM_PROMPT = "Anda adalah asisten AI yang cerdas, akurat, ramah, dan sangat membantu. Gunakan format Markdown yang rapi serta blok kode dengan sintaks yang jelas. Jawablah dalam bahasa Indonesia yang natural kecuali pengguna meminta bahasa lain.";
+
+    const MODEL_CATALOG = [
+      {
+        id: 'gemini-2.5-flash',
+        name: 'Gemini 2.5 Flash',
+        provider: 'gemini',
+        providerLabel: 'Google Gemini',
+        badgeColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+        description: 'Cepat, multimodal, dan efisien untuk tugas harian'
+      },
+      {
+        id: 'gemini-2.5-pro',
+        name: 'Gemini 2.5 Pro',
+        provider: 'gemini',
+        providerLabel: 'Google Gemini',
+        badgeColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+        description: 'Penalaran mendalam & pemrograman kompleks'
+      },
+      {
+        id: 'gpt-4o',
+        name: 'GPT-4o',
+        provider: 'openai',
+        providerLabel: 'OpenAI ChatGPT',
+        badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+        description: 'Model flagship serba bisa dari OpenAI'
+      },
+      {
+        id: 'gpt-4o-mini',
+        name: 'GPT-4o Mini',
+        provider: 'openai',
+        providerLabel: 'OpenAI ChatGPT',
+        badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+        description: 'Ringan, super cepat, dan hemat biaya'
+      },
+      {
+        id: 'o3-mini',
+        name: 'o3-mini (Reasoning)',
+        provider: 'openai',
+        providerLabel: 'OpenAI ChatGPT',
+        badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+        description: 'Model penalaran logika, sains, dan coding'
+      },
+      {
+        id: 'grok-3',
+        name: 'Grok 3',
+        provider: 'xai',
+        providerLabel: 'xAI Grok',
+        badgeColor: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/30',
+        description: 'Model flagship xAI dengan analisis tajam'
+      },
+      {
+        id: 'grok-3-mini',
+        name: 'Grok 3 Mini',
+        provider: 'xai',
+        providerLabel: 'xAI Grok',
+        badgeColor: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/30',
+        description: 'Respons cepat dengan penalaran efisien'
+      },
+      {
+        id: 'grok-2-latest',
+        name: 'Grok 2 Latest',
+        provider: 'xai',
+        providerLabel: 'xAI Grok',
+        badgeColor: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/30',
+        description: 'Model stabil generasi kedua dari xAI'
+      },
+      {
+        id: 'solar-pro4',
+        name: 'Solar Pro 4',
+        provider: 'upstage',
+        providerLabel: 'Upstage Solar',
+        badgeColor: 'bg-teal-500/15 text-teal-400 border-teal-500/30',
+        description: 'Model flagship Upstage untuk tugas kompleks'
+      },
+      {
+        id: 'solar-mini4',
+        name: 'Solar Mini 4',
+        provider: 'upstage',
+        providerLabel: 'Upstage Solar',
+        badgeColor: 'bg-teal-500/15 text-teal-400 border-teal-500/30',
+        description: 'Ringan, cepat, dan hemat biaya dari Upstage'
+      },
+      {
+        id: 'syn-pro',
+        name: 'Syn Pro',
+        provider: 'upstage',
+        providerLabel: 'Upstage Solar',
+        badgeColor: 'bg-teal-500/15 text-teal-400 border-teal-500/30',
+        description: 'Model Syn dari Upstage'
+      },
+      {
+        id: 'custom-model',
+        name: 'Custom / OpenRouter',
+        provider: 'custom',
+        providerLabel: 'Custom Endpoint',
+        badgeColor: 'bg-purple-500/15 text-purple-400 border-purple-500/30',
+        description: 'Gunakan Base URL & Model ID kustom Anda'
+      }
+    ];
+
+    /**
+     * 2. STATE APLIKASI & PENYIMPANAN LOKAL
+     */
+    const STORAGE_KEYS = {
+      CONVERSATIONS: 'nexusai_conversations_v1',
+      ACTIVE_ID: 'nexusai_active_chat_id_v1',
+      SETTINGS: 'nexusai_settings_v1',
+      SELECTED_MODEL: 'nexusai_selected_model_v1',
+      THEME: 'nexusai_theme_v1'
+    };
+
+    let state = {
+      conversations: [],
+      activeChatId: null,
+      selectedModelId: 'gemini-2.5-flash',
+      settings: {
+        geminiKey: '',
+        openaiKey: '',
+        xaiKey: '',
+        upstageKey: '',
+        reasoningEffort: '',
+        customUrl: 'https://openrouter.ai/api/v1',
+        customKey: '',
+        customModel: 'anthropic/claude-3.7-sonnet',
+        temperature: 0.7,
+        systemPrompt: DEFAULT_SYSTEM_PROMPT
+      },
+      isStreaming: false,
+      abortController: null,
+      pendingDeleteChatId: null,
+      renamingChatId: null,
+      renameDraft: '',
+      editing: null,
+      deleteConfirmTimer: null,
+      desktopSidebarCollapsed: false
+    };
+
+    /**
+     * 3. IKON SVG KHUSUS SETIAP PROVIDER
+     */
+    function getProviderIconSVG(provider, sizeClass = 'w-5 h-5') {
+      // Avatar robot untuk semua balasan AI
+      return `<div class="${sizeClass} flex items-center justify-center shrink-0 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+        <svg class="ico w-[18px] h-[18px]" aria-hidden="true"><use href="#ic-robot"/></svg>
+      </div>`;
+    }
+
+    /**
+     * 4. KONFIGURASI MARKED.JS UNTUK BLOK KODE DENGAN TOMBOL SALIN KODE
+     */
+    function setupMarkdownRenderer() {
+      if (!window.marked) return;
+      const renderer = new marked.Renderer();
+
+      renderer.code = function (codeObj, langArg) {
+        const rawCode = typeof codeObj === 'object' ? codeObj.text : codeObj;
+        const rawLang = typeof codeObj === 'object' ? codeObj.lang : langArg;
+        const language = (rawLang || 'plaintext').trim().split(/\s+/)[0];
+
+        let highlighted = escapeHtml(rawCode);
+        try {
+          if (window.hljs) {
+            if (language && hljs.getLanguage(language)) {
+              highlighted = hljs.highlight(rawCode, { language }).value;
+            } else {
+              highlighted = hljs.highlightAuto(rawCode).value;
+            }
+          }
+        } catch (e) {
+          highlighted = escapeHtml(rawCode);
+        }
+
+        const encodedCode = encodeURIComponent(rawCode);
+
+        return `
+          <div class="my-3.5 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-[#0d0d10] shadow-sm">
+            <div class="flex items-center justify-between px-3.5 py-2 bg-zinc-900 border-b border-zinc-800 text-xs text-zinc-400">
+              <span class="font-mono font-medium lowercase tracking-wide text-zinc-300">${escapeHtml(language)}</span>
+              <button
+                type="button"
+                data-copy-code="${encodedCode}"
+                class="copy-code-btn flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors cursor-pointer text-[11px] font-medium"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Salin Kode</span>
+              </button>
+            </div>
+            <pre><code class="hljs language-${escapeHtml(language)}">${highlighted}</code></pre>
+          </div>
+        `;
+      };
+
+      marked.setOptions({
+        renderer,
+        breaks: true,
+        gfm: true
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /**
+     * 5. UTILITAS CLIPBOARD (KOMPATIBEL IFRAME DENGAN document.execCommand)
+     */
+    function copyTextToClipboard(text) {
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.top = '-9999px';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        return successful;
+      } catch (err) {
+        console.error('Gagal menyalin ke clipboard:', err);
+        return false;
+      }
+    }
+
+    function copyCodeFromButton(btn, encodedCode) {
+      const decoded = decodeURIComponent(encodedCode);
+      const ok = copyTextToClipboard(decoded);
+      if (ok) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `
+          <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="text-emerald-400">Tersalin!</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+        }, 2000);
+      } else {
+        showToast('Gagal menyalin kode ke clipboard.', 'error');
+      }
+    }
+
+    function copyMessageContent(chatId, messageIndex) {
+      const chat = state.conversations.find(c => c.id === chatId);
+      if (!chat || !chat.messages[messageIndex]) return;
+      const ok = copyTextToClipboard(chat.messages[messageIndex].content);
+      if (ok) {
+        showToast('Pesan berhasil disalin ke clipboard.', 'success');
+      }
+    }
+
+    /**
+     * 6. NOTIFIKASI TOAST ELEGAN (PENGGANTI ALERT)
+     */
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+
+      const colors = {
+        success: 'bg-emerald-950/95 border-emerald-500/40 text-emerald-200',
+        error: 'bg-rose-950/95 border-rose-500/40 text-rose-200',
+        info: 'bg-zinc-900/95 border-zinc-700 text-zinc-100'
+      };
+
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl text-xs font-medium backdrop-blur-md animate-slide-up ${colors[type] || colors.info}`;
+      toast.innerHTML = `<span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(6px)';
+        toast.style.transition = 'all 0.2s ease';
+        setTimeout(() => toast.remove(), 220);
+      }, 3000);
+    }
+
+    /**
+     * 7. INISIALISASI & PERSISTENSI LOCALSTORAGE
+     */
+    function loadFromStorage() {
+      try {
+        const savedSettings = localStorage.getItem(STORAGE_KEYS.SETTINGS);
+        if (savedSettings) {
+          state.settings = { ...state.settings, ...JSON.parse(savedSettings) };
+        }
+
+        const savedConvs = localStorage.getItem(STORAGE_KEYS.CONVERSATIONS);
+        if (savedConvs) {
+          state.conversations = JSON.parse(savedConvs);
+        }
+
+        const savedActiveId = localStorage.getItem(STORAGE_KEYS.ACTIVE_ID);
+        if (savedActiveId && state.conversations.some(c => c.id === savedActiveId)) {
+          state.activeChatId = savedActiveId;
+        } else if (state.conversations.length > 0) {
+          state.activeChatId = state.conversations[0].id;
+        }
+
+        const savedModel = localStorage.getItem(STORAGE_KEYS.SELECTED_MODEL);
+        if (savedModel && MODEL_CATALOG.some(m => m.id === savedModel)) {
+          state.selectedModelId = savedModel;
+        }
+
+        const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
+        applyTheme(savedTheme);
+      } catch (e) {
+        console.error('Gagal memuat data dari localStorage:', e);
+      }
+    }
+
+    function saveConversationsToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(state.conversations));
+        if (state.activeChatId) {
+          localStorage.setItem(STORAGE_KEYS.ACTIVE_ID, state.activeChatId);
+        } else {
+          localStorage.removeItem(STORAGE_KEYS.ACTIVE_ID);
+        }
+      } catch (e) {
+        console.error('Gagal menyimpan percakapan:', e);
+        showToast('Penyimpanan browser penuh — chat terbaru mungkin tidak tersimpan. Ekspor atau hapus chat lama.', 'error');
+      }
+    }
+
+    /**
+     * 8. TEMA DARK MODE & LIGHT MODE
+     */
+    const THEME_LABELS = { system: 'Sistem', light: 'Terang', dark: 'Gelap' };
+
+    function applyTheme(pref) {
+      if (!THEME_LABELS[pref]) pref = 'dark';
+      const effective = pref === 'system'
+        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : pref;
+      document.documentElement.classList.toggle('dark', effective === 'dark');
+      localStorage.setItem(STORAGE_KEYS.THEME, pref);
+      syncThemeSelect();
+    }
+
+    function syncThemeSelect() {
+      const pref = localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
+      const select = document.getElementById('setting-theme');
+      const label = document.getElementById('theme-value-label');
+      if (select) select.value = pref;
+      if (label) label.textContent = THEME_LABELS[pref] || 'Gelap';
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    }
+
+    /**
+     * 9. SIDEBAR TOGGLE (DESKTOP COLLAPSE & MOBILE DRAWER)
+     */
+    function toggleSidebar(forceState) {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (!sidebar) return;
+
+      const isDesktop = window.innerWidth >= 1024;
+
+      if (isDesktop) {
+        // Desktop: collapse/expand lebar sidebar dengan transisi halus sehingga area chat melebar
+        const shouldCollapse = typeof forceState === 'boolean'
+          ? !forceState
+          : !state.desktopSidebarCollapsed;
+
+        state.desktopSidebarCollapsed = shouldCollapse;
+
+        if (shouldCollapse) {
+          sidebar.classList.remove('lg:w-72');
+          sidebar.classList.add('lg:w-0', 'lg:border-r-0', 'lg:opacity-0', 'lg:pointer-events-none');
+        } else {
+          sidebar.classList.remove('lg:w-0', 'lg:border-r-0', 'lg:opacity-0', 'lg:pointer-events-none');
+          sidebar.classList.add('lg:w-72');
+        }
+        return;
+      }
+
+      // Mobile / Tablet (< 1024px): slide drawer + backdrop overlay
+      const shouldOpen = typeof forceState === 'boolean'
+        ? forceState
+        : sidebar.classList.contains('-translate-x-full');
+
+      if (shouldOpen) {
+        sidebar.classList.remove('-translate-x-full');
+        if (backdrop) backdrop.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
+    }
+
+    /**
+     * 10. MODEL SWITCHER & STATUS PROVIDER (DI DALAM MODAL PENGATURAN)
+     */
+    function getActiveModelInfo() {
+      const found = MODEL_CATALOG.find(m => m.id === state.selectedModelId) || MODEL_CATALOG[0];
+      let displayName = found.name;
+      let isConfigured = true;
+
+      if (found.provider === 'gemini') {
+        isConfigured = Boolean(state.settings.geminiKey && state.settings.geminiKey.trim());
+      } else if (found.provider === 'openai') {
+        isConfigured = Boolean(state.settings.openaiKey && state.settings.openaiKey.trim());
+      } else if (found.provider === 'xai') {
+        isConfigured = Boolean(state.settings.xaiKey && state.settings.xaiKey.trim());
+      } else if (found.provider === 'upstage') {
+        isConfigured = Boolean(state.settings.upstageKey && state.settings.upstageKey.trim());
+      } else if (found.provider === 'custom') {
+        const customModelName = (state.settings.customModel || '').trim();
+        displayName = customModelName ? `Custom (${customModelName})` : 'Custom / OpenRouter';
+        isConfigured = Boolean(state.settings.customUrl && state.settings.customUrl.trim());
+      }
+
+      return {
+        ...found,
+        displayName,
+        isConfigured
+      };
+    }
+
+    function updateModelSelectorUI() {
+      const info = getActiveModelInfo();
+      const iconEl = document.getElementById('current-model-icon');
+      const nameEl = document.getElementById('current-model-name');
+      const providerEl = document.getElementById('current-model-provider');
+      const inputModelLabel = document.getElementById('input-model-label');
+      const inputModelDot = document.getElementById('input-model-dot');
+      const statusBadge = document.getElementById('modal-model-status-badge');
+      const connStatus = document.getElementById('modal-connection-status');
+
+      if (iconEl) iconEl.innerHTML = '';
+      if (nameEl) nameEl.textContent = info.displayName;
+      if (providerEl) providerEl.textContent = info.providerLabel;
+      if (inputModelLabel) inputModelLabel.textContent = info.displayName;
+
+      if (inputModelDot) {
+        inputModelDot.className = `w-1.5 h-1.5 rounded-full ${
+          info.isConfigured
+            ? 'bg-emerald-500'
+            : 'bg-rose-500'
+        }`;
+      }
+
+      if (statusBadge) {
+        statusBadge.textContent = info.providerLabel;
+        statusBadge.className = `text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${info.badgeColor}`;
+      }
+
+      if (connStatus) {
+        if (info.isConfigured) {
+          connStatus.textContent = 'API Key Terpasang';
+          connStatus.className = 'text-[11px] font-medium text-emerald-500 shrink-0';
+        } else {
+          connStatus.textContent = 'Butuh API Key';
+          connStatus.className = 'text-[11px] font-medium text-rose-500 shrink-0';
+        }
+      }
+
+      renderModelDropdownList();
+      updateApiStatusIndicator();
+      updateHeaderInfo();
+    }
+
+    function updateApiStatusIndicator() {
+      const dot = document.getElementById('api-status-indicator');
+      if (!dot) return;
+      const info = getActiveModelInfo();
+      if (info.isConfigured) {
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+        dot.title = `Terhubung: ${info.providerLabel}`;
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-rose-500 animate-pulse';
+        dot.title = `API Key untuk ${info.providerLabel} belum diisi`;
+      }
+    }
+
+    function hasKeyFor(model) {
+      if (model.provider === 'gemini') return Boolean((state.settings.geminiKey || '').trim());
+      if (model.provider === 'openai') return Boolean((state.settings.openaiKey || '').trim());
+      if (model.provider === 'xai') return Boolean((state.settings.xaiKey || '').trim());
+      if (model.provider === 'upstage') return Boolean((state.settings.upstageKey || '').trim());
+      if (model.provider === 'custom') return Boolean((state.settings.customUrl || '').trim());
+      return true;
+    }
+
+    function renderQuickModelMenu() {
+      const menu = document.getElementById('quick-model-menu');
+      if (!menu) return;
+      menu.innerHTML = MODEL_CATALOG.map(model => {
+        const isSelected = model.id === state.selectedModelId;
+        const ready = hasKeyFor(model);
+        const label = model.id === 'custom-model' && (state.settings.customModel || '').trim()
+          ? `Custom (${state.settings.customModel.trim()})`
+          : model.name;
+        const dot = ready ? 'bg-emerald-500' : 'bg-rose-500';
+        return `
+          <button type="button" role="option" aria-selected="${isSelected}" onclick="selectModelFromQuickMenu('${model.id}')"
+            class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left text-xs transition-colors cursor-pointer ${
+              isSelected ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 font-semibold' : 'text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+            }">
+            <span class="w-1.5 h-1.5 rounded-full shrink-0 ${dot}"></span>
+            <span class="flex-1 truncate">${escapeHtml(label)}</span>
+          </button>`;
+      }).join('') + `
+        <button type="button" onclick="closeQuickModelMenu(); openSettingsModal();"
+          class="w-full mt-1 pt-2 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-2 px-2.5 py-2 text-xs text-zinc-500 hover:text-indigo-500 cursor-pointer">
+          Atur API Key & Model…
+        </button>`;
+    }
+
+    function toggleQuickModelMenu(event) {
+      if (event) event.stopPropagation();
+      const menu = document.getElementById('quick-model-menu');
+      if (!menu) return;
+      if (menu.classList.contains('hidden')) {
+        renderQuickModelMenu();
+        menu.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+      }
+    }
+
+    function closeQuickModelMenu() {
+      const menu = document.getElementById('quick-model-menu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    function selectModelFromQuickMenu(modelId) {
+      closeQuickModelMenu();
+      selectModel(modelId);
+    }
+
+    function updateHeaderInfo() {
+      const titleEl = document.getElementById('header-chat-title');
+      const modelEl = document.getElementById('header-model-label');
+      const chat = getActiveConversation();
+      if (titleEl) titleEl.textContent = chat ? (chat.title || 'Percakapan Baru') : 'Chat Baru';
+      if (modelEl) modelEl.textContent = getActiveModelInfo().displayName;
+    }
+
+    // Status draf pengaturan: perubahan baru berlaku setelah menekan Simpan
+    let settingsDraftModelId = null;
+    let settingsDirty = false;
+
+    function markSettingsDirty() {
+      settingsDirty = true;
+      const el = document.getElementById('settings-footer');
+      if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+    }
+
+    function resetSettingsDirty() {
+      settingsDirty = false;
+      settingsDraftModelId = null;
+      const el = document.getElementById('settings-footer');
+      if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+    }
+
+    function selectModelInSettings(modelId) {
+      settingsDraftModelId = modelId;
+      markSettingsDirty();
+      renderModelDropdownList();
+      updateSettingsRowValues();
+    }
+
+    function renderModelDropdownList() {
+      const menu = document.getElementById('model-dropdown-menu');
+      if (!menu) return;
+
+      // Kelompokkan model per penyedia (urutan katalog dipertahankan)
+      const groups = [];
+      MODEL_CATALOG.forEach(model => {
+        let g = groups.find(x => x.label === model.providerLabel);
+        if (!g) { g = { label: model.providerLabel, provider: model.provider, models: [] }; groups.push(g); }
+        g.models.push(model);
+      });
+
+      menu.innerHTML = groups.map(group => {
+        const ready = hasKeyFor(group.models[0]);
+        const chip = `<span class="s-chip ${ready ? 'on' : ''}">${ready ? 'Terhubung' : 'Belum ada key'}</span>`;
+
+        const rows = group.models.map(model => {
+          const isSelected = model.id === (settingsDraftModelId || state.selectedModelId);
+          const labelName = model.id === 'custom-model' && (state.settings.customModel || '').trim()
+            ? `Custom (${state.settings.customModel.trim()})`
+            : model.name;
+          return `
+            <button type="button" role="radio" aria-checked="${isSelected}" onclick="selectModelInSettings('${model.id}')" class="model-row">
+              <span class="model-radio"></span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-[13px] font-medium truncate">${escapeHtml(labelName)}</span>
+                <span class="block s-hint truncate">${escapeHtml(model.description)}</span>
+              </span>
+            </button>`;
+        }).join('');
+
+        return `
+          <div>
+            <div class="flex items-center justify-between px-1 mb-2">
+              <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">${escapeHtml(group.label)}</span>
+              ${chip}
+            </div>
+            <div class="s-card overflow-hidden">${rows}</div>
+          </div>`;
+      }).join('');
+    }
+
+    function selectModel(modelId) {
+      state.selectedModelId = modelId;
+      localStorage.setItem(STORAGE_KEYS.SELECTED_MODEL, modelId);
+      updateModelSelectorUI();
+      const info = getActiveModelInfo();
+      showToast(`Model beralih ke ${info.displayName}`, 'info');
+    }
+
+    /**
+     * 11. MANAJEMEN RIWAYAT PERCAKAPAN (SIDEBAR)
+     */
+    function getActiveConversation() {
+      return state.conversations.find(c => c.id === state.activeChatId) || null;
+    }
+
+    function createNewChat() {
+      if (state.isStreaming) {
+        stopGeneration();
+      }
+      state.activeChatId = null;
+      state.editing = null;
+      state.renamingChatId = null;
+      saveConversationsToStorage();
+      renderChatHistory();
+      renderMessages();
+
+      if (window.innerWidth < 1024) {
+        toggleSidebar(false);
+      }
+      const input = document.getElementById('chat-input');
+      if (input) input.focus();
+    }
+
+    function selectConversation(chatId) {
+      if (state.isStreaming) {
+        stopGeneration();
+      }
+      state.activeChatId = chatId;
+      state.editing = null;
+      state.renamingChatId = null;
+      saveConversationsToStorage();
+      renderChatHistory();
+      renderMessages();
+
+      if (window.innerWidth < 1024) {
+        toggleSidebar(false);
+      }
+    }
+
+    function handleDeleteChatClick(event, chatId) {
+      event.stopPropagation();
+
+      if (state.pendingDeleteChatId === chatId) {
+        // Konfirmasi kedua: hapus percakapan
+        clearTimeout(state.deleteConfirmTimer);
+        state.pendingDeleteChatId = null;
+        state.conversations = state.conversations.filter(c => c.id !== chatId);
+        if (state.activeChatId === chatId) {
+          state.activeChatId = state.conversations.length > 0 ? state.conversations[0].id : null;
+        }
+        saveConversationsToStorage();
+        renderChatHistory();
+        renderMessages();
+        showToast('Percakapan telah dihapus.', 'info');
+      } else {
+        // Klik pertama: minta konfirmasi inline
+        state.pendingDeleteChatId = chatId;
+        renderChatHistory();
+        clearTimeout(state.deleteConfirmTimer);
+        state.deleteConfirmTimer = setTimeout(() => {
+          state.pendingDeleteChatId = null;
+          renderChatHistory();
+        }, 3000);
+      }
+    }
+
+    function startRenameChat(event, chatId) {
+      if (event) event.stopPropagation();
+      const chat = state.conversations.find(c => c.id === chatId);
+      if (!chat) return;
+      state.renamingChatId = chatId;
+      state.renameDraft = chat.title || '';
+      renderChatHistory();
+      const input = document.getElementById('rename-input');
+      if (input) { input.focus(); input.select(); }
+    }
+
+    function commitRenameChat(chatId) {
+      if (state.renamingChatId !== chatId) return;
+      const input = document.getElementById('rename-input');
+      const value = (input ? input.value : state.renameDraft).trim();
+      state.renamingChatId = null;
+      const chat = state.conversations.find(c => c.id === chatId);
+      if (chat && value) {
+        chat.title = value.slice(0, 80);
+        chat.titleCustom = true;
+        saveConversationsToStorage();
+      }
+      renderChatHistory();
+      updateHeaderInfo();
+    }
+
+    function cancelRenameChat() {
+      state.renamingChatId = null;
+      renderChatHistory();
+    }
+
+    function handleRenameKeydown(event, chatId) {
+      event.stopPropagation();
+      if (event.key === 'Enter') { event.preventDefault(); commitRenameChat(chatId); }
+      else if (event.key === 'Escape') { event.preventDefault(); cancelRenameChat(); }
+    }
+
+    function renderChatHistory() {
+      const liveRename = document.getElementById('rename-input');
+      if (liveRename && state.renamingChatId) state.renameDraft = liveRename.value;
+      const listEl = document.getElementById('chat-history-list');
+      const countBadge = document.getElementById('chat-count-badge');
+      const searchInput = document.getElementById('history-search-input');
+      if (!listEl) return;
+
+      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+      const filtered = query
+        ? state.conversations.filter(c =>
+            (c.title || '').toLowerCase().includes(query) ||
+            (c.messages || []).some(m => (m.content || '').toLowerCase().includes(query))
+          )
+        : state.conversations;
+
+      if (countBadge) countBadge.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="px-3 py-8 text-center text-xs text-zinc-400 dark:text-zinc-500">
+            ${query ? 'Tidak ada percakapan yang cocok.' : 'Belum ada riwayat percakapan.<br/>Mulai obrolan baru sekarang!'}
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(chat => {
+        const isActive = chat.id === state.activeChatId;
+        const isConfirmingDelete = state.pendingDeleteChatId === chat.id;
+        const isRenaming = state.renamingChatId === chat.id;
+
+        return `
+          <div
+            onclick="selectConversation('${chat.id}')"
+            class="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm cursor-pointer transition-all ${
+              isActive
+                ? 'bg-zinc-200/80 dark:bg-zinc-800/90 text-zinc-950 dark:text-white font-medium'
+                : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200'
+            }"
+          >
+            <div class="flex items-center gap-2.5 min-w-0">
+              <i data-lucide="message-square" class="w-4 h-4 shrink-0 ${isActive ? 'text-indigo-500' : 'opacity-60'}"></i>
+              ${isRenaming
+                ? `<input id="rename-input" type="text" maxlength="80" value="${escapeHtml(state.renameDraft)}"
+                    onclick="event.stopPropagation()"
+                    onkeydown="handleRenameKeydown(event, '${chat.id}')"
+                    onblur="commitRenameChat('${chat.id}')"
+                    class="w-full min-w-0 px-2 py-0.5 rounded-lg bg-white dark:bg-zinc-950 border border-indigo-500/60 text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none" />`
+                : `<span class="truncate" ondblclick="startRenameChat(event, '${chat.id}')" title="Klik dua kali untuk mengganti nama">${escapeHtml(chat.title || 'Percakapan Baru')}</span>`}
+            </div>
+
+            ${isRenaming ? '' : `<button
+              type="button"
+              onclick="startRenameChat(event, '${chat.id}')"
+              title="Ganti nama percakapan"
+              class="shrink-0 px-1.5 py-1 rounded-lg transition-all cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100 [@media(hover:none)]:opacity-100 text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10"
+            >
+              <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+            </button>`}
+
+            <button
+              type="button"
+              onclick="handleDeleteChatClick(event, '${chat.id}')"
+              title="${isConfirmingDelete ? 'Klik lagi untuk mengonfirmasi hapus' : 'Hapus percakapan'}"
+              class="shrink-0 px-1.5 py-1 rounded-lg transition-all cursor-pointer ${
+                isConfirmingDelete
+                  ? 'bg-rose-500 text-white text-[10px] font-semibold opacity-100'
+                  : 'opacity-0 group-hover:opacity-100 focus:opacity-100 text-zinc-400 hover:text-rose-500 hover:bg-rose-500/10'
+              }"
+            >
+              ${isConfirmingDelete ? 'Hapus?' : '<i data-lucide="trash-2" class="w-3.5 h-3.5"></i>'}
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /**
+     * 12. RENDER PESAN & WELCOME SCREEN
+     */
+    function renderMarkdownSafe(markdownText) {
+      if (!window.marked) return escapeHtml(markdownText).replace(/\n/g, '<br/>');
+      try {
+        const rawHtml = marked.parse(markdownText || '');
+        if (!window.DOMPurify) return escapeHtml(markdownText).replace(/\n/g, '<br/>');
+        return DOMPurify.sanitize(rawHtml, { ADD_ATTR: ['target'] });
+      } catch (e) {
+        return escapeHtml(markdownText).replace(/\n/g, '<br/>');
+      }
+    }
+
+    function renderMessages() {
+      updateHeaderInfo();
+      const welcomeScreen = document.getElementById('welcome-screen');
+      const messagesList = document.getElementById('messages-list');
+      const chat = getActiveConversation();
+
+      if (!chat || !chat.messages || chat.messages.length === 0) {
+        if (welcomeScreen) welcomeScreen.classList.remove('hidden');
+        if (messagesList) {
+          messagesList.classList.add('hidden');
+          messagesList.innerHTML = '';
+        }
+        return;
+      }
+
+      if (welcomeScreen) welcomeScreen.classList.add('hidden');
+      if (messagesList) messagesList.classList.remove('hidden');
+
+      messagesList.innerHTML = chat.messages.map((msg, idx) => {
+        const isUser = msg.role === 'user';
+        const isLastAssistant = !isUser && idx === chat.messages.length - 1;
+
+        if (isUser) {
+          const isEditing = state.editing && state.editing.chatId === chat.id && state.editing.idx === idx;
+          if (isEditing) {
+            return `
+              <div class="flex justify-end animate-fade-in">
+                <div class="w-[92%] sm:w-[80%] flex flex-col items-end gap-2">
+                  <textarea id="edit-textarea" rows="2" onkeydown="handleEditKeydown(event)" oninput="autoResizeTextarea(this)"
+                    class="w-full px-4 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-indigo-500/60 text-sm sm:text-[15px] leading-relaxed text-zinc-900 dark:text-zinc-100 focus:outline-none resize-none max-h-64 overflow-y-auto">${escapeHtml(msg.content)}</textarea>
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="cancelEditMessage()" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 cursor-pointer">Batal</button>
+                    <button type="button" onclick="submitEditMessage()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer">Kirim Ulang</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          return `
+            <div class="flex justify-end animate-fade-in">
+              <div class="group max-w-[88%] sm:max-w-[78%] flex flex-col items-end">
+                <div class="px-4 py-3 rounded-2xl rounded-br-sm bg-indigo-600 text-white text-sm sm:text-[15px] leading-relaxed shadow-sm whitespace-pre-wrap break-words">${escapeHtml(msg.content)}</div>
+                <div class="mt-1 flex items-center gap-1 opacity-0 group-hover:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
+                  <button type="button" onclick="startEditMessage('${chat.id}', ${idx})" class="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 text-[11px] flex items-center gap-1 cursor-pointer" title="Edit pesan & kirim ulang">
+                    <i data-lucide="pencil" class="w-3 h-3"></i>
+                    <span>Edit</span>
+                  </button>
+                  <button type="button" onclick="copyMessageContent('${chat.id}', ${idx})" class="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 text-[11px] flex items-center gap-1 cursor-pointer" title="Salin pesan">
+                    <i data-lucide="copy" class="w-3 h-3"></i>
+                    <span>Salin</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        const provider = msg.provider || 'gemini';
+        const modelLabel = msg.modelName || 'NexusAI';
+        const isStreamingThis = isLastAssistant && state.isStreaming;
+
+        return `
+          <div class="flex items-start gap-3 sm:gap-4 animate-fade-in">
+            ${getProviderIconSVG(provider, 'w-8 h-8 mt-0.5')}
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">${escapeHtml(modelLabel)}</span>
+                ${msg.timestamp ? `<span class="text-[10px] text-zinc-400 dark:text-zinc-500">${escapeHtml(msg.timestamp)}</span>` : ''}
+              </div>
+
+              <details id="message-reasoning-wrap-${idx}" class="mb-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-900/60 ${msg.reasoning ? '' : 'hidden'}" ${isStreamingThis && !msg.content ? 'open' : ''}>
+                <summary class="cursor-pointer select-none px-3 py-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                  <span class="${isStreamingThis && !msg.content ? 'animate-pulse' : ''}">Proses berpikir</span>
+                </summary>
+                <div id="message-reasoning-${idx}" class="px-3 pb-3 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 whitespace-pre-wrap break-words max-h-64 overflow-y-auto">${escapeHtml(msg.reasoning || '')}</div>
+              </details>
+
+              <div
+                id="message-content-${idx}"
+                class="markdown-body text-sm sm:text-[15px] text-zinc-800 dark:text-zinc-100 ${isStreamingThis ? 'streaming-cursor' : ''}"
+              >${renderMarkdownSafe(msg.content)}</div>
+
+              <!-- Aksi Bawah Pesan AI -->
+              <div class="mt-2.5 flex items-center gap-1.5 ${isStreamingThis ? 'hidden' : ''}">
+                <button type="button" onclick="copyMessageContent('${chat.id}', ${idx})" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/80 transition-colors cursor-pointer" title="Salin jawaban">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Salin</span>
+                </button>
+                ${
+                  isLastAssistant
+                    ? `<button type="button" onclick="regenerateLastResponse()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10 transition-colors cursor-pointer" title="Buat ulang jawaban">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                        <span>Regenerasi</span>
+                      </button>`
+                    : ''
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+      scrollToBottom();
+    }
+
+    function scrollToBottom() {
+      const container = document.getElementById('chat-scroll-container');
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    /**
+     * 13. PENGIRIMAN PESAN, REGENERASI, & STREAMING MULTI-PROVIDER
+     */
+    function useQuickPrompt(promptText) {
+      const input = document.getElementById('chat-input');
+      if (!input) return;
+      input.value = promptText;
+      autoResizeTextarea(input);
+      updateSendButtonState();
+      handleSendMessage();
+    }
+
+    async function handleSendMessage() {
+      const input = document.getElementById('chat-input');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text || state.isStreaming) return;
+
+      // Buat sesi percakapan baru jika belum ada
+      let chat = getActiveConversation();
+      if (!chat) {
+        const title = makeAutoTitle(text);
+        chat = {
+          id: 'chat_' + Date.now(),
+          title,
+          createdAt: new Date().toISOString(),
+          messages: []
+        };
+        state.conversations.unshift(chat);
+        state.activeChatId = chat.id;
+      }
+
+      const nowTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+      // Tambahkan pesan user
+      chat.messages.push({
+        role: 'user',
+        content: text,
+        timestamp: nowTime
+      });
+
+      // Reset input textarea
+      input.value = '';
+      autoResizeTextarea(input);
+      updateSendButtonState();
+
+      saveConversationsToStorage();
+      renderChatHistory();
+      renderMessages();
+
+      await generateAssistantReply(chat);
+    }
+
+    function makeAutoTitle(text) {
+      return text.length > 42 ? text.slice(0, 42) + '...' : text;
+    }
+
+    function startEditMessage(chatId, idx) {
+      if (state.isStreaming) {
+        showToast('Tunggu jawaban selesai atau hentikan dulu sebelum mengedit.', 'info');
+        return;
+      }
+      state.editing = { chatId, idx };
+      renderMessages();
+      const ta = document.getElementById('edit-textarea');
+      if (ta) {
+        autoResizeTextarea(ta);
+        ta.focus();
+        ta.setSelectionRange(ta.value.length, ta.value.length);
+        ta.scrollIntoView({ block: 'center' });
+      }
+    }
+
+    function cancelEditMessage() {
+      state.editing = null;
+      renderMessages();
+    }
+
+    function handleEditKeydown(event) {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        submitEditMessage();
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        cancelEditMessage();
+      }
+    }
+
+    async function submitEditMessage() {
+      if (!state.editing || state.isStreaming) return;
+      const { chatId, idx } = state.editing;
+      const chat = state.conversations.find(c => c.id === chatId);
+      const ta = document.getElementById('edit-textarea');
+      if (!chat || !chat.messages[idx] || !ta) return;
+
+      const text = ta.value.trim();
+      if (!text) {
+        showToast('Pesan tidak boleh kosong.', 'error');
+        return;
+      }
+
+      // Judul otomatis ikut diperbarui jika belum pernah diganti manual
+      const oldText = chat.messages[idx].content;
+      if (idx === 0 && !chat.titleCustom && chat.title === makeAutoTitle(oldText)) {
+        chat.title = makeAutoTitle(text);
+      }
+
+      chat.messages = chat.messages.slice(0, idx + 1);
+      chat.messages[idx].content = text;
+      state.editing = null;
+
+      saveConversationsToStorage();
+      renderChatHistory();
+      renderMessages();
+      await generateAssistantReply(chat);
+    }
+
+    async function regenerateLastResponse() {
+      if (state.isStreaming) return;
+      const chat = getActiveConversation();
+      if (!chat || chat.messages.length === 0) return;
+
+      // Hapus balasan AI terakhir jika ada
+      if (chat.messages[chat.messages.length - 1].role === 'assistant') {
+        chat.messages.pop();
+      }
+      if (chat.messages.length === 0) return;
+
+      saveConversationsToStorage();
+      renderMessages();
+      await generateAssistantReply(chat);
+    }
+
+    function stopGeneration() {
+      if (state.abortController) {
+        state.abortController.abort();
+        state.abortController = null;
+      }
+      setStreamingState(false);
+      saveConversationsToStorage();
+      renderMessages();
+      showToast('Generasi respons dihentikan.', 'info');
+    }
+
+    function setStreamingState(active) {
+      state.isStreaming = active;
+      const stopWrapper = document.getElementById('stop-generation-wrapper');
+      if (stopWrapper) {
+        if (active) {
+          stopWrapper.classList.remove('hidden');
+        } else {
+          stopWrapper.classList.add('hidden');
+        }
+      }
+      updateSendButtonState();
+    }
+
+    async function generateAssistantReply(chat) {
+      const modelInfo = getActiveModelInfo();
+      const nowTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+      const assistantMsg = {
+        role: 'assistant',
+        content: '',
+        provider: modelInfo.provider,
+        modelName: modelInfo.displayName,
+        timestamp: nowTime
+      };
+      chat.messages.push(assistantMsg);
+      const msgIndex = chat.messages.length - 1;
+
+      state.abortController = new AbortController();
+      setStreamingState(true);
+      renderMessages();
+
+      // Render maksimal 1x per frame agar jawaban panjang tidak lag
+      let renderQueued = false;
+      let reasoningQueued = false;
+      let reasoningRevealed = false;
+      let reasoningCollapsed = false;
+
+      const updateStreamChunk = (chunkText) => {
+        assistantMsg.content += chunkText;
+        if (renderQueued) return;
+        renderQueued = true;
+        requestAnimationFrame(() => {
+          renderQueued = false;
+          const contentEl = document.getElementById(`message-content-${msgIndex}`);
+          if (contentEl) {
+            contentEl.innerHTML = renderMarkdownSafe(assistantMsg.content);
+          }
+          // Lipat blok berpikir otomatis begitu jawaban mulai tampil
+          if (assistantMsg.reasoning && !reasoningCollapsed) {
+            reasoningCollapsed = true;
+            const wrap = document.getElementById(`message-reasoning-wrap-${msgIndex}`);
+            if (wrap) wrap.open = false;
+          }
+          scrollToBottom();
+        });
+      };
+
+      const updateReasoningChunk = (chunkText) => {
+        assistantMsg.reasoning = (assistantMsg.reasoning || '') + chunkText;
+        if (reasoningQueued) return;
+        reasoningQueued = true;
+        requestAnimationFrame(() => {
+          reasoningQueued = false;
+          const wrap = document.getElementById(`message-reasoning-wrap-${msgIndex}`);
+          const box = document.getElementById(`message-reasoning-${msgIndex}`);
+          if (wrap && !reasoningRevealed) {
+            reasoningRevealed = true;
+            wrap.classList.remove('hidden');
+            if (!assistantMsg.content) wrap.open = true;
+          }
+          if (box) {
+            box.textContent = assistantMsg.reasoning;
+            box.scrollTop = box.scrollHeight;
+          }
+          scrollToBottom();
+        });
+      };
+
+      try {
+        if (modelInfo.provider === 'gemini') {
+          await streamGeminiAPI(chat.messages.slice(0, -1), modelInfo.id, updateStreamChunk, state.abortController.signal);
+        } else if (modelInfo.provider === 'openai') {
+          await streamOpenAICompatibleAPI(
+            'https://api.openai.com/v1/chat/completions',
+            state.settings.openaiKey.trim(),
+            modelInfo.id,
+            chat.messages.slice(0, -1),
+            updateStreamChunk,
+            state.abortController.signal,
+            { onReasoning: updateReasoningChunk }
+          );
+        } else if (modelInfo.provider === 'xai') {
+          await streamOpenAICompatibleAPI(
+            'https://api.x.ai/v1/chat/completions',
+            state.settings.xaiKey.trim(),
+            modelInfo.id,
+            chat.messages.slice(0, -1),
+            updateStreamChunk,
+            state.abortController.signal,
+            { onReasoning: updateReasoningChunk }
+          );
+        } else if (modelInfo.provider === 'upstage') {
+          await streamOpenAICompatibleAPI(
+            'https://api.upstage.ai/v1/chat/completions',
+            (state.settings.upstageKey || '').trim(),
+            modelInfo.id,
+            chat.messages.slice(0, -1),
+            updateStreamChunk,
+            state.abortController.signal,
+            {
+              onReasoning: updateReasoningChunk,
+              extraBody: (state.settings.reasoningEffort && ['solar-pro4', 'solar-mini4'].includes(modelInfo.id))
+                ? { reasoning_effort: state.settings.reasoningEffort }
+                : {}
+            }
+          );
+        } else if (modelInfo.provider === 'custom') {
+          const baseUrl = (state.settings.customUrl || '').trim().replace(/\/+$/, '');
+          const endpoint = baseUrl.endsWith('/chat/completions') ? baseUrl : `${baseUrl}/chat/completions`;
+          const customModelId = (state.settings.customModel || 'gpt-4o-mini').trim();
+          await streamOpenAICompatibleAPI(
+            endpoint,
+            (state.settings.customKey || '').trim(),
+            customModelId,
+            chat.messages.slice(0, -1),
+            updateStreamChunk,
+            state.abortController.signal,
+            { onReasoning: updateReasoningChunk }
+          );
+        }
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          // Dihentikan oleh pengguna
+        } else {
+          console.error('Streaming API Error:', err);
+          if (!assistantMsg.content) {
+            assistantMsg.content = `> **Terjadi Kesalahan Koneksi API**\n>\n> ${err.message || 'Gagal menghubungi penyedia AI.'}\n>\n> Pastikan **API Key** dan konfigurasi model sudah benar di menu **Pengaturan**.`;
+          }
+          showToast(err.message || 'Gagal menerima respons dari API.', 'error');
+        }
+      } finally {
+        // Buang bubble AI yang kosong (mis. dihentikan sebelum token pertama)
+        if (!assistantMsg.content.trim() && !(assistantMsg.reasoning || '').trim()) {
+          const emptyIdx = chat.messages.indexOf(assistantMsg);
+          if (emptyIdx > -1) chat.messages.splice(emptyIdx, 1);
+        }
+        state.abortController = null;
+        setStreamingState(false);
+        saveConversationsToStorage();
+        renderChatHistory();
+        renderMessages();
+      }
+    }
+
+    /**
+     * 14. STREAMING ENGINE: GEMINI, OPENAI / GROK / CUSTOM
+     */
+
+    async function streamGeminiAPI(historyMessages, modelId, onChunk, signal) {
+      const apiKey = (state.settings.geminiKey || '').trim();
+      if (!apiKey) {
+        throw new Error('Google Gemini API Key belum diatur. Silakan masukkan API Key di menu Pengaturan.');
+      }
+
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelId)}:streamGenerateContent?alt=sse`;
+
+      const contents = historyMessages.map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }]
+      }));
+
+      const payload = {
+        contents,
+        generationConfig: {
+          temperature: Number(state.settings.temperature ?? 0.7)
+        }
+      };
+
+      const sysPrompt = (state.settings.systemPrompt || '').trim();
+      if (sysPrompt) {
+        payload.systemInstruction = {
+          parts: [{ text: sysPrompt }]
+        };
+      }
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+        body: JSON.stringify(payload),
+        signal
+      });
+
+      if (!response.ok) {
+        const errBody = await response.json().catch(() => ({}));
+        throw new Error(errBody?.error?.message || `Gemini API Error (${response.status})`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed.startsWith('data:')) continue;
+          const jsonStr = trimmed.slice(5).trim();
+          if (!jsonStr || jsonStr === '[DONE]') continue;
+
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const parts = parsed?.candidates?.[0]?.content?.parts || [];
+            for (const part of parts) {
+              if (part.text) onChunk(part.text);
+            }
+          } catch (e) {
+            // Abaikan potongan JSON parsial
+          }
+        }
+      }
+    }
+
+    async function streamOpenAICompatibleAPI(endpoint, apiKey, modelId, historyMessages, onChunk, signal, options = {}) {
+      if (!endpoint) {
+        throw new Error('Endpoint URL API belum diatur di Pengaturan.');
+      }
+      if (!apiKey && !endpoint.includes('localhost') && !endpoint.includes('127.0.0.1')) {
+        throw new Error('API Key belum diatur untuk provider ini. Silakan isi di menu Pengaturan.');
+      }
+
+      const messages = [];
+      const sysPrompt = (state.settings.systemPrompt || '').trim();
+      if (sysPrompt) {
+        messages.push({ role: 'system', content: sysPrompt });
+      }
+      historyMessages.forEach(m => {
+        messages.push({ role: m.role, content: m.content });
+      });
+
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      if (apiKey) {
+        headers['Authorization'] = `Bearer ${apiKey}`;
+      }
+
+      const payload = {
+        model: modelId,
+        messages,
+        stream: true,
+        ...(options.extraBody || {})
+      };
+
+      // Model reasoning o3-mini tidak selalu menerima parameter temperature standar
+      if (!modelId.startsWith('o3')) {
+        payload.temperature = Number(state.settings.temperature ?? 0.7);
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+        signal
+      });
+
+      if (!response.ok) {
+        const errBody = await response.json().catch(() => ({}));
+        throw new Error(errBody?.error?.message || `API Error (${response.status})`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+      let finishReason = null;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed.startsWith('data:')) continue;
+          const dataStr = trimmed.slice(5).trim();
+          if (!dataStr || dataStr === '[DONE]') continue;
+
+          try {
+            const parsed = JSON.parse(dataStr);
+            const choice = parsed?.choices?.[0];
+            const reasoningDelta = choice?.delta?.reasoning ?? choice?.delta?.reasoning_content;
+            if (reasoningDelta && options.onReasoning) {
+              options.onReasoning(reasoningDelta);
+            }
+            const delta = choice?.delta?.content;
+            if (delta) {
+              onChunk(delta);
+            }
+            if (choice?.finish_reason) finishReason = choice.finish_reason;
+          } catch (e) {
+            // Abaikan potongan parsial
+          }
+        }
+      }
+
+      if (finishReason === 'length') {
+        showToast('Batas token tercapai — jawaban terpotong. Turunkan Reasoning Effort atau persingkat pertanyaan.', 'error');
+      }
+    }
+
+    /**
+     * 15. MODAL PENGATURAN & EKSPOR MARKDOWN
+     */
+    function openSettingsModal() {
+      const modal = document.getElementById('settings-modal');
+      if (!modal) return;
+      resetSettingsDirty();
+
+      document.getElementById('setting-gemini-key').value = state.settings.geminiKey || '';
+      document.getElementById('setting-openai-key').value = state.settings.openaiKey || '';
+      document.getElementById('setting-xai-key').value = state.settings.xaiKey || '';
+      document.getElementById('setting-upstage-key').value = state.settings.upstageKey || '';
+      document.getElementById('setting-reasoning-effort').value = state.settings.reasoningEffort || '';
+      document.getElementById('setting-custom-url').value = state.settings.customUrl || 'https://openrouter.ai/api/v1';
+      document.getElementById('setting-custom-model').value = state.settings.customModel || 'anthropic/claude-3.7-sonnet';
+      document.getElementById('setting-custom-key').value = state.settings.customKey || '';
+      document.getElementById('setting-system-prompt').value = state.settings.systemPrompt || DEFAULT_SYSTEM_PROMPT;
+
+      const tempVal = Number(state.settings.temperature ?? 0.7);
+      const tempSlider = document.getElementById('setting-temperature');
+      const tempLabel = document.getElementById('temperature-value-label');
+      if (tempSlider) tempSlider.value = tempVal;
+      if (tempLabel) tempLabel.textContent = tempVal.toFixed(1);
+
+      syncTemperature(document.getElementById('setting-temperature'));
+      updateModelSelectorUI();
+      updateKeyBadges();
+      showSettingsPage('main');
+      syncThemeSelect();
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    const SETTINGS_PAGE_TITLES = {
+      main: 'Pengaturan', model: 'Model AI', keys: 'API Key', behavior: 'Perilaku AI', prompt: 'Instruksi sistem'
+    };
+    let settingsPage = 'main';
+
+    function showSettingsPage(name) {
+      if (!SETTINGS_PAGE_TITLES[name]) name = 'main';
+      settingsPage = name;
+      document.querySelectorAll('.settings-panel').forEach(panel => {
+        panel.classList.toggle('hidden', panel.dataset.panel !== name);
+      });
+      const title = document.getElementById('settings-title');
+      if (title) title.textContent = SETTINGS_PAGE_TITLES[name];
+      const body = document.getElementById('settings-body');
+      if (body) body.scrollTop = 0;
+      if (name === 'main') updateSettingsRowValues();
+    }
+
+    function settingsBack() {
+      if (settingsPage !== 'main') showSettingsPage('main');
+      else requestCloseSettings();
+    }
+
+    function updateSettingsRowValues() {
+      const modelEl = document.getElementById('row-value-model');
+      if (modelEl) {
+        const id = settingsDraftModelId || state.selectedModelId;
+        const m = MODEL_CATALOG.find(x => x.id === id) || MODEL_CATALOG[0];
+        const custom = (state.settings.customModel || '').trim();
+        modelEl.textContent = (m.id === 'custom-model' && custom ? `Custom (${custom})` : m.name);
+      }
+      const keysEl = document.getElementById('row-value-keys');
+      if (keysEl) {
+        const n = ['gemini', 'openai', 'xai', 'upstage']
+          .filter(id => { const i = document.getElementById(`setting-${id}-key`); return i && i.value.trim(); }).length;
+        keysEl.textContent = n ? `${n} terpasang` : 'Belum ada';
+      }
+    }
+
+    function confirmResetSettings() {
+      if (window.confirm('Kembalikan semua pengaturan ke default? API Key di browser ini akan dihapus.')) {
+        resetSettingsToDefault();
+      }
+    }
+
+    function updateKeyBadges() {
+      ['gemini', 'openai', 'xai', 'upstage'].forEach(id => {
+        const input = document.getElementById(`setting-${id}-key`);
+        const chip = document.getElementById(`key-chip-${id}`);
+        if (!input || !chip) return;
+        const filled = input.value.trim().length > 0;
+        chip.textContent = filled ? 'Terpasang' : 'Kosong';
+        chip.classList.toggle('on', filled);
+      });
+      updateSettingsRowValues();
+    }
+
+    function syncTemperature(slider) {
+      if (!slider) return;
+      const v = parseFloat(slider.value);
+      const label = document.getElementById('temperature-value-label');
+      if (label) label.textContent = v.toFixed(1);
+      slider.style.setProperty('--fill', `${(v / 2) * 100}%`);
+    }
+
+    function setTestResult(pid, type, text) {
+      const out = document.getElementById(`key-test-${pid}`);
+      if (!out) return;
+      out.textContent = text;
+      out.className = `s-hint ${type ? 't-' + type : ''}`;
+    }
+
+    function clearTestResult(pid) {
+      setTestResult(pid, '', '');
+    }
+
+    async function testConnection(pid) {
+      const btn = document.getElementById(`key-test-btn-${pid}`);
+      const out = document.getElementById(`key-test-${pid}`);
+      const keyInput = document.getElementById(pid === 'custom' ? 'setting-custom-key' : `setting-${pid}-key`);
+      if (!btn || !out || !keyInput) return;
+
+      const key = keyInput.value.trim();
+      const headers = {};
+      let url = '';
+
+      if (pid === 'custom') {
+        let base = (document.getElementById('setting-custom-url').value || '').trim().replace(/\/+$/, '');
+        base = base.replace(/\/chat\/completions$/, '');
+        if (!base) { setTestResult(pid, 'warn', 'Isi Base URL terlebih dahulu.'); return; }
+        url = `${base}/models`;
+        if (key) headers['Authorization'] = `Bearer ${key}`;
+      } else {
+        if (!key) { setTestResult(pid, 'warn', 'Isi key terlebih dahulu.'); return; }
+        if (pid === 'gemini') {
+          url = 'https://generativelanguage.googleapis.com/v1beta/models?pageSize=1';
+          headers['x-goog-api-key'] = key;
+        } else {
+          const bases = { openai: 'https://api.openai.com/v1', xai: 'https://api.x.ai/v1', upstage: 'https://api.upstage.ai/v1' };
+          url = `${bases[pid]}/models`;
+          headers['Authorization'] = `Bearer ${key}`;
+        }
+      }
+
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 10000);
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spin"></span>Menguji…';
+      setTestResult(pid, '', '');
+
+      try {
+        const res = await fetch(url, { headers, signal: controller.signal });
+        const rejected = res.status === 401 || res.status === 403 || (pid === 'gemini' && res.status === 400);
+        if (res.ok) {
+          setTestResult(pid, 'ok', 'Terhubung. Key diterima server.');
+        } else if (rejected) {
+          setTestResult(pid, 'err', `Key ditolak (${res.status}). Periksa kembali key Anda.`);
+        } else if (res.status === 404 || res.status === 405) {
+          setTestResult(pid, 'warn', 'Server aktif, tetapi tidak menyediakan endpoint uji. Key belum bisa diverifikasi.');
+        } else if (res.status === 429) {
+          setTestResult(pid, 'warn', 'Terkena batas penggunaan (429). Coba lagi nanti.');
+        } else {
+          setTestResult(pid, 'err', `Server membalas dengan kode ${res.status}.`);
+        }
+      } catch (e) {
+        if (e && e.name === 'AbortError') {
+          setTestResult(pid, 'err', 'Waktu habis setelah 10 detik. Periksa koneksi internet.');
+        } else {
+          setTestResult(pid, 'err', 'Tidak bisa menjangkau server. Periksa koneksi, URL, atau izin CORS.');
+        }
+      } finally {
+        clearTimeout(timer);
+        btn.disabled = false;
+        btn.textContent = 'Uji koneksi';
+      }
+    }
+
+    function restoreDefaultPrompt() {
+      const box = document.getElementById('setting-system-prompt');
+      if (box) { box.value = DEFAULT_SYSTEM_PROMPT; markSettingsDirty(); }
+    }
+
+    function requestCloseSettings() {
+      if (settingsDirty && !window.confirm('Buang perubahan yang belum disimpan?')) return;
+      closeSettingsModal();
+    }
+
+    function closeSettingsModal() {
+      const modal = document.getElementById('settings-modal');
+      if (!modal) return;
+      resetSettingsDirty();
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveSettings() {
+      state.settings.geminiKey = document.getElementById('setting-gemini-key').value.trim();
+      state.settings.openaiKey = document.getElementById('setting-openai-key').value.trim();
+      state.settings.xaiKey = document.getElementById('setting-xai-key').value.trim();
+      state.settings.upstageKey = document.getElementById('setting-upstage-key').value.trim();
+      state.settings.reasoningEffort = document.getElementById('setting-reasoning-effort').value || '';
+      state.settings.customUrl = document.getElementById('setting-custom-url').value.trim() || 'https://openrouter.ai/api/v1';
+      state.settings.customModel = document.getElementById('setting-custom-model').value.trim() || 'anthropic/claude-3.7-sonnet';
+      state.settings.customKey = document.getElementById('setting-custom-key').value.trim();
+      state.settings.systemPrompt = document.getElementById('setting-system-prompt').value.trim() || DEFAULT_SYSTEM_PROMPT;
+      state.settings.temperature = parseFloat(document.getElementById('setting-temperature').value) || 0.7;
+
+      try {
+        localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(state.settings));
+      } catch (e) {
+        console.error('Gagal menyimpan pengaturan:', e);
+      }
+
+      if (settingsDraftModelId && settingsDraftModelId !== state.selectedModelId) {
+        state.selectedModelId = settingsDraftModelId;
+        try { localStorage.setItem(STORAGE_KEYS.SELECTED_MODEL, settingsDraftModelId); } catch (e) {}
+      }
+
+      updateModelSelectorUI();
+      closeSettingsModal();
+      showToast('Pengaturan berhasil disimpan!', 'success');
+    }
+
+    function resetSettingsToDefault() {
+      state.settings = {
+        geminiKey: '',
+        openaiKey: '',
+        xaiKey: '',
+        upstageKey: '',
+        reasoningEffort: '',
+        customUrl: 'https://openrouter.ai/api/v1',
+        customKey: '',
+        customModel: 'anthropic/claude-3.7-sonnet',
+        temperature: 0.7,
+        systemPrompt: DEFAULT_SYSTEM_PROMPT
+      };
+      localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(state.settings));
+      openSettingsModal();
+      showToast('Pengaturan dikembalikan ke default.', 'info');
+    }
+
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      btn.innerHTML = isPassword
+        ? '<i data-lucide="eye-off" class="w-4 h-4"></i>'
+        : '<i data-lucide="eye" class="w-4 h-4"></i>';
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function exportChatToMarkdown() {
+      const chat = getActiveConversation();
+      if (!chat || !chat.messages || chat.messages.length === 0) {
+        showToast('Belum ada pesan pada percakapan aktif untuk diekspor.', 'info');
+        return;
+      }
+
+      let mdContent = `# ${chat.title || 'Percakapan NexusAI'}\n`;
+      mdContent += `_Diekspor pada ${new Date().toLocaleString('id-ID')}_\n\n---\n\n`;
+
+      chat.messages.forEach(msg => {
+        const sender = msg.role === 'user' ? 'Pengguna' : (msg.modelName || 'NexusAI');
+        mdContent += `### ${sender}\n\n${msg.content}\n\n---\n\n`;
+      });
+
+      const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const safeFilename = (chat.title || 'nexusai-chat')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '') || 'nexusai-chat';
+      a.href = url;
+      a.download = `${safeFilename}.md`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('Percakapan berhasil diekspor ke file .md!', 'success');
+    }
+
+    /**
+     * 16. AUTO-RESIZE TEXTAREA & EVENT LISTENERS INISIALISASI
+     */
+    function autoResizeTextarea(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 256) + 'px';
+    }
+
+    function updateSendButtonState() {
+      const input = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('send-btn');
+      if (!input || !sendBtn) return;
+      sendBtn.disabled = state.isStreaming || input.value.trim().length === 0;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupMarkdownRenderer();
+      loadFromStorage();
+      updateModelSelectorUI();
+      renderChatHistory();
+      renderMessages();
+
+      const chatInput = document.getElementById('chat-input');
+      if (chatInput) {
+        chatInput.addEventListener('input', () => {
+          autoResizeTextarea(chatInput);
+          updateSendButtonState();
+        });
+
+        chatInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+          }
+        });
+      }
+
+      // Event delegation untuk tombol "Salin Kode" (aman dari sanitasi DOMPurify)
+      document.addEventListener('click', (e) => {
+        const copyBtn = e.target.closest && e.target.closest('[data-copy-code]');
+        if (copyBtn) {
+          copyCodeFromButton(copyBtn, copyBtn.getAttribute('data-copy-code'));
+          return;
+        }
+        if (!e.target.closest || !e.target.closest('#quick-model-menu')) closeQuickModelMenu();
+      });
+
+      // Link hasil Markdown selalu dibuka di tab baru dengan aman
+      if (window.DOMPurify) {
+        DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+          if (node.tagName === 'A') {
+            node.setAttribute('target', '_blank');
+            node.setAttribute('rel', 'noopener noreferrer');
+          }
+        });
+      }
+
+      // Shortcut global Ctrl+K / Cmd+K untuk Chat Baru & Escape untuk menutup modal
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          createNewChat();
+        }
+        if (e.key === 'Escape') {
+          const sm = document.getElementById('settings-modal');
+          if (sm && !sm.classList.contains('hidden')) settingsBack();
+          closeQuickModelMenu();
+        }
+      });
+
+      // Tandai perubahan belum disimpan (kecuali kontrol yang berlaku langsung, mis. tema)
+      const settingsBody = document.getElementById('settings-body');
+      if (settingsBody) {
+        ['input', 'change'].forEach(evt => settingsBody.addEventListener(evt, (e) => {
+          if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-instant')) return;
+          markSettingsDirty();
+        }));
+      }
+
+      // Ikuti perubahan tema sistem saat pilihan Tema = Sistem
+      const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      themeMedia.addEventListener('change', () => {
+        if (localStorage.getItem(STORAGE_KEYS.THEME) === 'system') applyTheme('system');
+      });
+
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
