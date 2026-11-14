@@ -706,6 +706,28 @@
                   </div>
                 </div>
               </div>
+              <div class="s-card overflow-hidden">
+                <div class="p-4">
+                  <div class="s-label">Pencarian Web (Google)</div>
+                  <p class="s-hint mt-0.5">Hasil pencarian jadi dari Google.com. Gratis 100 pencarian/hari. Tanpa ini, pencarian memakai DuckDuckGo + Wikipedia.</p>
+                </div>
+                <div class="p-4 space-y-3">
+                  <div>
+                    <label for="setting-google-search-key" class="s-hint block mb-1.5">Google Search API key</label>
+                    <div class="relative">
+                      <input id="setting-google-search-key" type="password" autocomplete="off" placeholder="AIza..." class="s-input pr-10 font-mono text-xs" />
+                      <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-google-search-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="setting-google-search-cx" class="s-hint block mb-1.5">ID Mesin Telusur (CX)</label>
+                    <input id="setting-google-search-cx" type="text" autocomplete="off" placeholder="012345678901234567890:abcde..." class="s-input font-mono text-xs" />
+                  </div>
+                  <p class="s-hint">Cara dapatkan: 1) buat mesin telusur di <a href="https://programmablesearchengine.google.com/" target="_blank" rel="noopener" class="text-indigo-500 hover:underline">programmablesearchengine.google.com</a> (pilih "Telusuri seluruh web") lalu salin ID-nya; 2) aktifkan Custom Search API di Google Cloud Console lalu buat API key.</p>
+                </div>
+              </div>
             </section>
           <section class="settings-panel space-y-5 hidden pt-2" data-panel="behavior">
               <p class="s-hint mt-1">Atur gaya jawaban dan kepribadian AI.</p>
@@ -943,6 +965,8 @@
         customUrl: 'https://openrouter.ai/api/v1',
         customKey: '',
         customModel: 'anthropic/claude-3.7-sonnet',
+        googleSearchKey: '',
+        googleSearchCx: '',
         temperature: 0.7,
         systemPrompt: DEFAULT_SYSTEM_PROMPT
       },
@@ -1762,6 +1786,8 @@
                 class="markdown-body text-sm sm:text-[15px] text-zinc-800 dark:text-zinc-100 ${isStreamingThis ? 'streaming-cursor' : ''}"
               >${renderMarkdownSafe(msg.content)}</div>
 
+              ${msg.groundingSources && msg.groundingSources.length ? `<div class="mt-2 text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-400"><span class="font-medium">Sumber:</span> ${msg.groundingSources.map(s => `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline">${escapeHtml(s.title)}</a>`).join(' · ')}</div>` : ''}
+
               <!-- Aksi Bawah Pesan AI -->
               <div class="mt-2.5 flex items-center gap-1.5 ${isStreamingThis ? 'hidden' : ''}">
                 <button type="button" onclick="copyMessageContent('${chat.id}', ${idx})" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/80 transition-colors cursor-pointer" title="Salin jawaban">
@@ -1819,20 +1845,26 @@
         return;
       }
 
-      // Cari di web dulu bila diminta (tombol globe) atau pertanyaannya butuh info terbaru
+      // Cari di web dulu bila diminta (tombol globe) atau pertanyaannya butuh info terbaru.
+      // Gemini: grounding bawaan — modelnya sendiri yang cari di Google (pakai key Gemini).
+      // Model lain: pencarian generik (Google API key / DuckDuckGo / Wikipedia) disuntik ke konteks.
       const wantSearch = state.searchNext || needsWebSearch(text);
       state.searchNext = false;
       updateSearchToggleUI();
       let webSearch = null;
       if (wantSearch && text) {
-        state.isSearching = true;
-        updateSendButtonState();
-        showToast('Mencari di web…', 'info');
-        try {
-          webSearch = await searchWeb(text);
-          if (!webSearch) showToast('Pencarian web gagal — menjawab dari pengetahuan model.', 'error');
-        } finally {
-          state.isSearching = false;
+        if (modelInfo.provider === 'gemini') {
+          webSearch = { query: text, results: [], source: 'Google Grounding' };
+        } else {
+          state.isSearching = true;
+          updateSendButtonState();
+          showToast('Mencari di web…', 'info');
+          try {
+            webSearch = await searchWeb(text);
+            if (!webSearch) showToast('Pencarian web gagal — menjawab dari pengetahuan model.', 'error');
+          } finally {
+            state.isSearching = false;
+          }
         }
       }
 
@@ -2151,9 +2183,11 @@
     }
 
     /**
-     * 12c. CARI DI WEB: berlaku untuk SEMUA model (termasuk Solar) — hasil
-     * pencarian disuntikkan ke konteks jawaban. Tanpa API key tambahan:
-     * DuckDuckGo lewat allorigins, cadangan Wikipedia.
+     * 12c. CARI DI WEB: berlaku untuk SEMUA model (termasuk Solar).
+     * Gemini: grounding bawaan (tools google_search, pakai key Gemini) —
+     * modelnya sendiri yang cari di Google; sumber tampil di bawah jawaban.
+     * Model lain: hasil pencarian (Google API key / DuckDuckGo / Wikipedia)
+     * disuntikkan ke konteks jawaban.
      */
     const WEB_SEARCH_TIMEOUT_MS = 12000;
     const WEB_SEARCH_DDG_TIMEOUT_MS = 6000;
@@ -2243,21 +2277,35 @@
       return out;
     }
 
+    async function searchGoogle(query) {
+      const key = (state.settings.googleSearchKey || '').trim();
+      const cx = (state.settings.googleSearchCx || '').trim();
+      if (!key || !cx) return [];
+      const url = 'https://www.googleapis.com/customsearch/v1?key=' + encodeURIComponent(key) + '&cx=' + encodeURIComponent(cx) + '&q=' + encodeURIComponent(query) + '&num=6&hl=id';
+      const raw = await fetchWithTimeout(url, WEB_SEARCH_TIMEOUT_MS);
+      const data = JSON.parse(raw);
+      if (data.error) throw new Error((data.error && data.error.message) || 'Google Search error');
+      return (data.items || []).map(it => ({ title: it.title || '', url: it.link || '', snippet: it.snippet || '' })).filter(r => r.title && r.url);
+    }
+
     async function searchWeb(query) {
       const q = (query || '').trim().slice(0, 200);
       if (!q) return null;
-      // Ketiga sumber jalan paralel — dipakai yang tercepat & berisi hasil,
-      // urutan prioritas: DuckDuckGo (web) > jawaban instan DDG > Wikipedia.
+      // Semua sumber jalan paralel — dipakai yang berisi hasil, urutan prioritas:
+      // Google (butuh API key + CX di Pengaturan) > DuckDuckGo (web) > jawaban instan DDG > Wikipedia.
       const settled = await Promise.allSettled([
+        searchGoogle(q).catch(() => []),
         searchDuckDuckGo(q).catch(() => []),
         searchDuckDuckGoJson(q).catch(() => []),
         searchWikipedia(q).catch(() => [])
       ]);
-      const ddg = settled[0].status === 'fulfilled' ? settled[0].value : [];
+      const google = settled[0].status === 'fulfilled' ? settled[0].value : [];
+      if (google.length) return { query: q, results: google, source: 'Google' };
+      const ddg = settled[1].status === 'fulfilled' ? settled[1].value : [];
       if (ddg.length) return { query: q, results: ddg, source: 'DuckDuckGo' };
-      const ddgJson = settled[1].status === 'fulfilled' ? settled[1].value : [];
+      const ddgJson = settled[2].status === 'fulfilled' ? settled[2].value : [];
       if (ddgJson.length) return { query: q, results: ddgJson, source: 'DuckDuckGo' };
-      const wiki = settled[2].status === 'fulfilled' ? settled[2].value : [];
+      const wiki = settled[3].status === 'fulfilled' ? settled[3].value : [];
       if (wiki.length) return { query: q, results: wiki, source: 'Wikipedia' };
       return null;
     }
@@ -2270,7 +2318,13 @@
 
     // Chip sumber di gelembung pesan user
     function renderWebSearchChip(ws) {
-      if (!ws || !ws.results || !ws.results.length) return '';
+      if (!ws) return '';
+      if (ws.source === 'Google Grounding') {
+        return `<div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/15 text-white text-xs">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Pencarian web: ${escapeHtml(ws.query)} · Google</span>
+        </div>`;
+      }
+      if (!ws.results || !ws.results.length) return '';
       const items = ws.results.map(r => `<li class="truncate"><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:underline">${escapeHtml(r.title)}</a></li>`).join('');
       return `<details class="w-full max-w-full text-left">
         <summary class="cursor-pointer inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/15 text-white text-xs">
@@ -2451,7 +2505,14 @@
 
       try {
         if (modelInfo.provider === 'gemini') {
-          await streamGeminiAPI(chat.messages.slice(0, -1), modelInfo.id, updateStreamChunk, state.abortController.signal);
+          const grounding = await streamGeminiAPI(chat.messages.slice(0, -1), modelInfo.id, updateStreamChunk, state.abortController.signal);
+          if (grounding && grounding.groundingChunks) {
+            const seen = new Set();
+            assistantMsg.groundingSources = grounding.groundingChunks
+              .map(c => (c.web && c.web.uri) ? { title: c.web.title || c.web.uri, url: c.web.uri } : null)
+              .filter(s => s && !seen.has(s.url) && seen.add(s.url))
+              .slice(0, 6);
+          }
         } else if (modelInfo.provider === 'openai') {
           await streamOpenAICompatibleAPI(
             'https://api.openai.com/v1/chat/completions',
@@ -2545,11 +2606,16 @@
         };
       });
 
+      // Grounding: pesan user terakhir yang minta pencarian web -> Gemini cari sendiri di Google
+      const lastUser = [...historyMessages].reverse().find(m => m.role === 'user');
+      const useGrounding = !!(lastUser && lastUser.webSearch && lastUser.webSearch.source === 'Google Grounding');
+
       const payload = {
         contents,
         generationConfig: {
           temperature: Number(state.settings.temperature ?? 0.7)
-        }
+        },
+        ...(useGrounding ? { tools: [{ google_search: {} }] } : {})
       };
 
       const sysPrompt = (state.settings.systemPrompt || '').trim();
@@ -2574,6 +2640,7 @@
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
+      let lastGroundingMetadata = null;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -2595,11 +2662,14 @@
             for (const part of parts) {
               if (part.text) onChunk(part.text);
             }
+            const gm = parsed?.candidates?.[0]?.groundingMetadata;
+            if (gm) lastGroundingMetadata = gm;
           } catch (e) {
             // Abaikan potongan JSON parsial
           }
         }
       }
+      return lastGroundingMetadata;
     }
 
     async function streamOpenAICompatibleAPI(endpoint, apiKey, modelId, historyMessages, onChunk, signal, options = {}) {
@@ -2709,6 +2779,8 @@
       document.getElementById('setting-custom-url').value = state.settings.customUrl || 'https://openrouter.ai/api/v1';
       document.getElementById('setting-custom-model').value = state.settings.customModel || 'anthropic/claude-3.7-sonnet';
       document.getElementById('setting-custom-key').value = state.settings.customKey || '';
+      document.getElementById('setting-google-search-key').value = state.settings.googleSearchKey || '';
+      document.getElementById('setting-google-search-cx').value = state.settings.googleSearchCx || '';
       document.getElementById('setting-system-prompt').value = state.settings.systemPrompt || DEFAULT_SYSTEM_PROMPT;
 
       const tempVal = Number(state.settings.temperature ?? 0.7);
@@ -2889,6 +2961,8 @@
       state.settings.customUrl = document.getElementById('setting-custom-url').value.trim() || 'https://openrouter.ai/api/v1';
       state.settings.customModel = document.getElementById('setting-custom-model').value.trim() || 'anthropic/claude-3.7-sonnet';
       state.settings.customKey = document.getElementById('setting-custom-key').value.trim();
+      state.settings.googleSearchKey = document.getElementById('setting-google-search-key').value.trim();
+      state.settings.googleSearchCx = document.getElementById('setting-google-search-cx').value.trim();
       state.settings.systemPrompt = document.getElementById('setting-system-prompt').value.trim() || DEFAULT_SYSTEM_PROMPT;
       state.settings.temperature = parseFloat(document.getElementById('setting-temperature').value) || 0.7;
 
@@ -2918,6 +2992,8 @@
         customUrl: 'https://openrouter.ai/api/v1',
         customKey: '',
         customModel: 'anthropic/claude-3.7-sonnet',
+        googleSearchKey: '',
+        googleSearchCx: '',
         temperature: 0.7,
         systemPrompt: DEFAULT_SYSTEM_PROMPT
       };
