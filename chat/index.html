@@ -393,7 +393,7 @@
         </button>
         <div class="min-w-0 leading-tight">
           <div id="header-chat-title" class="text-sm font-semibold truncate">Chat Baru</div>
-          <div id="header-model-label" class="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">Gemini 2.5 Flash</div>
+          <div id="header-model-label" class="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">Keena AI</div>
         </div>
       </div>
     </header>
@@ -414,7 +414,7 @@
             Halo! Apa yang ingin kita <span class="gemini-gradient-text">eksplorasi</span> hari ini?
           </h1>
           <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-lg mb-6 sm:mb-8">
-            Beralih secara mulus antara <strong class="text-zinc-700 dark:text-zinc-200">Gemini</strong>, <strong class="text-zinc-700 dark:text-zinc-200">ChatGPT</strong>, <strong class="text-zinc-700 dark:text-zinc-200">Grok</strong>, <strong class="text-zinc-700 dark:text-zinc-200">Upstage Solar</strong>, atau <strong class="text-zinc-700 dark:text-zinc-200">Custom API</strong> melalui menu Pengaturan.
+            Ngobrol dengan <strong class="text-zinc-700 dark:text-zinc-200">Keena AI</strong> — asisten cerdas untuk membantu coding, merangkum, brainstorming, dan menjawab pertanyaanmu.
           </p>
 
           <!-- Kartu Saran Prompt Cepat -->
@@ -475,6 +475,9 @@
 
         <!-- Kotak Input Utama -->
         <div class="relative rounded-3xl bg-white dark:bg-zinc-900 shadow-sm border border-zinc-300/90 dark:border-zinc-800 focus-within:border-indigo-500/70 dark:focus-within:border-indigo-500/60 transition-all">
+          <!-- Strip Lampiran (muncul saat ada file/gambar terlampir) -->
+          <div id="attachments-strip" class="hidden flex flex-wrap gap-2 px-4 pt-3"></div>
+          <input type="file" id="file-input" class="hidden" multiple accept="image/*,.pdf,.docx,.txt,.md,.csv,.json,.xlsx,.xls,.html,.htm,.js,.ts,.jsx,.tsx,.py,.xml,.log,.css,.sql">
           <textarea
             id="chat-input"
             rows="2"
@@ -485,10 +488,16 @@
           <!-- Toolbar Bawah di Dalam Kotak Input -->
           <div class="flex items-center justify-between gap-2 px-3.5 pb-3.5 pt-1">
             <div class="flex items-center min-w-0 flex-1 text-[11px] text-zinc-400 dark:text-zinc-500">
+              <button type="button" onclick="triggerFilePicker()" class="w-8 h-8 shrink-0 inline-flex items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-300 transition-colors cursor-pointer" title="Lampirkan file (gambar, PDF, Word, spreadsheet, teks)" aria-label="Lampirkan file">
+                <i data-lucide="paperclip" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="openCameraModal()" class="w-8 h-8 shrink-0 inline-flex items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-300 transition-colors cursor-pointer" title="Ambil foto dari kamera" aria-label="Ambil foto dari kamera">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+              </button>
               <div class="relative min-w-0 max-w-full">
                 <button id="quick-model-btn" type="button" onclick="toggleQuickModelMenu(event)" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-medium transition-colors cursor-pointer min-w-0 max-w-full text-xs" title="Ganti model" aria-haspopup="listbox">
                   <span id="input-model-dot" class="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
-                  <span id="input-model-label" class="truncate">Gemini 2.5 Flash</span>
+                  <span id="input-model-label" class="truncate">Keena AI</span>
                 </button>
                 <div id="quick-model-menu" class="hidden absolute bottom-full left-0 mb-2 w-72 max-w-[calc(100vw-2rem)] max-h-72 overflow-y-auto rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-2xl p-1.5 z-30" role="listbox"></div>
               </div>
@@ -574,8 +583,8 @@
                   <span id="current-model-icon" class="hidden"></span>
                   <div class="min-w-0">
                     <div class="s-hint">Model aktif</div>
-                    <div id="current-model-name" class="text-sm font-semibold truncate leading-tight mt-0.5">Gemini 2.5 Flash</div>
-                    <div id="current-model-provider" class="s-hint truncate">Google Gemini</div>
+                    <div id="current-model-name" class="text-sm font-semibold truncate leading-tight mt-0.5">Keena AI</div>
+                    <div id="current-model-provider" class="s-hint truncate">Keena AI</div>
                   </div>
                   <span id="modal-connection-status" class="text-[11px] font-medium text-emerald-500 shrink-0">Siap</span>
                 </div>
@@ -757,6 +766,23 @@
     </div>
   </div>
 
+  <!-- Modal Kamera: ambil foto langsung dari kamera perangkat -->
+  <div id="camera-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
+    <div class="w-full max-w-lg rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-3">
+        <h3 class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Ambil Foto</h3>
+        <button type="button" onclick="closeCameraModal()" class="w-8 h-8 flex items-center justify-center rounded-full text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer" aria-label="Tutup kamera">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <video id="camera-video" autoplay playsinline class="w-full aspect-[4/3] object-cover bg-zinc-950"></video>
+      <div class="flex items-center justify-center gap-3 px-4 py-4">
+        <button type="button" onclick="closeCameraModal()" class="px-4 py-2 rounded-xl text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer">Batal</button>
+        <button type="button" onclick="capturePhoto()" class="px-5 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer">Ambil Foto</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container (Pengganti alert() yang modern) -->
   <div id="toast-container" class="fixed bottom-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
@@ -770,9 +796,14 @@
      */
     const DEFAULT_SYSTEM_PROMPT = "Anda adalah asisten AI yang cerdas, akurat, ramah, dan sangat membantu. Gunakan format Markdown yang rapi serta blok kode dengan sintaks yang jelas. Jawablah dalam bahasa Indonesia yang natural kecuali pengguna meminta bahasa lain.";
 
+    // Nama tampilan publik untuk asisten di halaman chat — model asli yang
+    // dipakai di belakang layar sengaja tidak ditampilkan.
+    const DISPLAY_MODEL_NAME = 'Keena AI';
+
     const MODEL_CATALOG = [
       {
         id: 'gemini-2.5-flash',
+        vision: true,
         name: 'Gemini 2.5 Flash',
         provider: 'gemini',
         providerLabel: 'Google Gemini',
@@ -781,6 +812,7 @@
       },
       {
         id: 'gemini-2.5-pro',
+        vision: true,
         name: 'Gemini 2.5 Pro',
         provider: 'gemini',
         providerLabel: 'Google Gemini',
@@ -789,6 +821,7 @@
       },
       {
         id: 'gpt-4o',
+        vision: true,
         name: 'GPT-4o',
         provider: 'openai',
         providerLabel: 'OpenAI ChatGPT',
@@ -797,6 +830,7 @@
       },
       {
         id: 'gpt-4o-mini',
+        vision: true,
         name: 'GPT-4o Mini',
         provider: 'openai',
         providerLabel: 'OpenAI ChatGPT',
@@ -805,6 +839,7 @@
       },
       {
         id: 'o3-mini',
+        vision: false,
         name: 'o3-mini (Reasoning)',
         provider: 'openai',
         providerLabel: 'OpenAI ChatGPT',
@@ -813,6 +848,7 @@
       },
       {
         id: 'grok-3',
+        vision: true,
         name: 'Grok 3',
         provider: 'xai',
         providerLabel: 'xAI Grok',
@@ -821,6 +857,7 @@
       },
       {
         id: 'grok-3-mini',
+        vision: true,
         name: 'Grok 3 Mini',
         provider: 'xai',
         providerLabel: 'xAI Grok',
@@ -829,6 +866,7 @@
       },
       {
         id: 'grok-2-latest',
+        vision: true,
         name: 'Grok 2 Latest',
         provider: 'xai',
         providerLabel: 'xAI Grok',
@@ -837,6 +875,7 @@
       },
       {
         id: 'solar-pro4',
+        vision: true,
         name: 'Solar Pro 4',
         provider: 'upstage',
         providerLabel: 'Upstage Solar',
@@ -845,6 +884,7 @@
       },
       {
         id: 'solar-mini4',
+        vision: false,
         name: 'Solar Mini 4',
         provider: 'upstage',
         providerLabel: 'Upstage Solar',
@@ -853,6 +893,7 @@
       },
       {
         id: 'syn-pro',
+        vision: false,
         name: 'Syn Pro',
         provider: 'upstage',
         providerLabel: 'Upstage Solar',
@@ -861,6 +902,7 @@
       },
       {
         id: 'custom-model',
+        vision: true,
         name: 'Custom / OpenRouter',
         provider: 'custom',
         providerLabel: 'Custom Endpoint',
@@ -903,7 +945,8 @@
       renameDraft: '',
       editing: null,
       deleteConfirmTimer: null,
-      desktopSidebarCollapsed: false
+      desktopSidebarCollapsed: false,
+      pendingAttachments: []
     };
 
     /**
@@ -1092,16 +1135,34 @@
     }
 
     function saveConversationsToStorage() {
-      try {
-        localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(state.conversations));
+      const writeActiveId = () => {
         if (state.activeChatId) {
           localStorage.setItem(STORAGE_KEYS.ACTIVE_ID, state.activeChatId);
         } else {
           localStorage.removeItem(STORAGE_KEYS.ACTIVE_ID);
         }
+      };
+      try {
+        localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(state.conversations));
+        writeActiveId();
       } catch (e) {
-        console.error('Gagal menyimpan percakapan:', e);
-        showToast('Penyimpanan browser penuh — chat terbaru mungkin tidak tersimpan. Ekspor atau hapus chat lama.', 'error');
+        // Penyimpanan penuh (biasanya karena gambar) — coba lagi tanpa data gambar,
+        // nama & teks lampiran tetap tersimpan.
+        try {
+          const stripped = state.conversations.map(c => ({
+            ...c,
+            messages: c.messages.map(m => ({
+              ...m,
+              attachments: (m.attachments || []).map(a => a.kind === 'image' ? { ...a, dataUrl: '' } : a)
+            }))
+          }));
+          localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(stripped));
+          writeActiveId();
+          showToast('Penyimpanan browser penuh — gambar lama tidak tersimpan, teks tetap aman.', 'error');
+        } catch (e2) {
+          console.error('Gagal menyimpan percakapan:', e2);
+          showToast('Penyimpanan browser penuh — chat terbaru mungkin tidak tersimpan. Ekspor atau hapus chat lama.', 'error');
+        }
       }
     }
 
@@ -1180,7 +1241,7 @@
      */
     function getActiveModelInfo() {
       const found = MODEL_CATALOG.find(m => m.id === state.selectedModelId) || MODEL_CATALOG[0];
-      let displayName = found.name;
+      const displayName = DISPLAY_MODEL_NAME;
       let isConfigured = true;
 
       if (found.provider === 'gemini') {
@@ -1192,14 +1253,13 @@
       } else if (found.provider === 'upstage') {
         isConfigured = Boolean(state.settings.upstageKey && state.settings.upstageKey.trim());
       } else if (found.provider === 'custom') {
-        const customModelName = (state.settings.customModel || '').trim();
-        displayName = customModelName ? `Custom (${customModelName})` : 'Custom / OpenRouter';
         isConfigured = Boolean(state.settings.customUrl && state.settings.customUrl.trim());
       }
 
       return {
         ...found,
         displayName,
+        providerLabel: DISPLAY_MODEL_NAME,
         isConfigured
       };
     }
@@ -1286,6 +1346,7 @@
             }">
             <span class="w-1.5 h-1.5 rounded-full shrink-0 ${dot}"></span>
             <span class="flex-1 truncate">${escapeHtml(label)}</span>
+            ${model.vision === false ? '<span class="text-[10px] text-zinc-400 shrink-0">teks saja</span>' : ''}
           </button>`;
       }).join('') + `
         <button type="button" onclick="closeQuickModelMenu(); openSettingsModal();"
@@ -1373,7 +1434,7 @@
             <button type="button" role="radio" aria-checked="${isSelected}" onclick="selectModelInSettings('${model.id}')" class="model-row">
               <span class="model-radio"></span>
               <span class="min-w-0 flex-1">
-                <span class="block text-[13px] font-medium truncate">${escapeHtml(labelName)}</span>
+                <span class="block text-[13px] font-medium truncate">${escapeHtml(labelName)}${model.vision === false ? ' <span class="text-[10px] font-normal text-zinc-400">(teks saja)</span>' : ''}</span>
                 <span class="block s-hint truncate">${escapeHtml(model.description)}</span>
               </span>
             </button>`;
@@ -1395,7 +1456,11 @@
       localStorage.setItem(STORAGE_KEYS.SELECTED_MODEL, modelId);
       updateModelSelectorUI();
       const info = getActiveModelInfo();
-      showToast(`Model beralih ke ${info.displayName}`, 'info');
+      if (info.vision === false && state.pendingAttachments.some(a => a.kind === 'image')) {
+        showToast('Model ini tidak bisa membaca gambar — lampiran gambar tidak akan terkirim.', 'error');
+      } else {
+        showToast(`Model beralih ke ${info.displayName}`, 'info');
+      }
     }
 
     /**
@@ -1638,7 +1703,8 @@
           return `
             <div class="flex justify-end animate-fade-in">
               <div class="group max-w-[88%] sm:max-w-[78%] flex flex-col items-end">
-                <div class="px-4 py-3 rounded-2xl rounded-br-sm bg-indigo-600 text-white text-sm sm:text-[15px] leading-relaxed shadow-sm whitespace-pre-wrap break-words">${escapeHtml(msg.content)}</div>
+                ${renderMessageAttachments(msg.attachments)}
+                ${msg.content && msg.content.trim() ? `<div class="px-4 py-3 rounded-2xl rounded-br-sm bg-indigo-600 text-white text-sm sm:text-[15px] leading-relaxed shadow-sm whitespace-pre-wrap break-words">${escapeHtml(msg.content)}</div>` : ''}
                 <div class="mt-1 flex items-center gap-1 opacity-0 group-hover:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
                   <button type="button" onclick="startEditMessage('${chat.id}', ${idx})" class="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 text-[11px] flex items-center gap-1 cursor-pointer" title="Edit pesan & kirim ulang">
                     <i data-lucide="pencil" class="w-3 h-3"></i>
@@ -1726,12 +1792,20 @@
       const input = document.getElementById('chat-input');
       if (!input) return;
       const text = input.value.trim();
-      if (!text || state.isStreaming) return;
+      const attachments = state.pendingAttachments.slice();
+      if ((!text && attachments.length === 0) || state.isStreaming) return;
+
+      // Model tanpa dukungan gambar tidak bisa menerima lampiran gambar
+      const modelInfo = getActiveModelInfo();
+      if (attachments.some(a => a.kind === 'image') && modelInfo.vision === false) {
+        showToast('Model ini tidak bisa membaca gambar. Pilih Gemini, GPT-4o, atau Grok untuk mengirim gambar.', 'error');
+        return;
+      }
 
       // Buat sesi percakapan baru jika belum ada
       let chat = getActiveConversation();
       if (!chat) {
-        const title = makeAutoTitle(text);
+        const title = makeAutoTitle(text || (attachments[0] ? attachments[0].name : 'Lampiran'));
         chat = {
           id: 'chat_' + Date.now(),
           title,
@@ -1744,15 +1818,18 @@
 
       const nowTime = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
-      // Tambahkan pesan user
+      // Tambahkan pesan user (beserta lampirannya)
       chat.messages.push({
         role: 'user',
         content: text,
-        timestamp: nowTime
+        timestamp: nowTime,
+        ...(attachments.length ? { attachments } : {})
       });
 
-      // Reset input textarea
+      // Reset input textarea & lampiran
       input.value = '';
+      state.pendingAttachments = [];
+      renderAttachmentsStrip();
       autoResizeTextarea(input);
       updateSendButtonState();
 
@@ -1761,6 +1838,280 @@
       renderMessages();
 
       await generateAssistantReply(chat);
+    }
+
+    /**
+     * 12b. LAMPIRAN: upload file, tempel gambar, kamera
+     * Gambar dikirim ke model yang mendukung vision; dokumen teks
+     * (PDF/Word/spreadsheet/teks) dibaca di browser lalu isinya
+     * disertakan sebagai teks. API Key tidak pernah ikut terkirim
+     * ke mana pun selain penyedia AI yang dipilih.
+     */
+    const MAX_ATTACHMENTS = 5;
+    const MAX_FILE_BYTES = 10 * 1024 * 1024;
+    const MAX_TEXT_CHARS = 80000;
+    const MAX_IMAGE_DIM = 1280;
+    const TEXT_EXTS = ['txt', 'md', 'csv', 'json', 'html', 'htm', 'js', 'ts', 'jsx', 'tsx', 'py', 'xml', 'log', 'css', 'sql'];
+
+    const CDN_LIBS = {
+      pdfjs: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+      pdfjsWorker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
+      mammoth: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js',
+      xlsx: 'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js'
+    };
+    const loadedLibs = {};
+
+    function loadScriptOnce(key, src) {
+      if (loadedLibs[key]) return loadedLibs[key];
+      loadedLibs[key] = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error('gagal memuat pustaka ' + key + ' (periksa koneksi internet)'));
+        document.head.appendChild(s);
+      });
+      return loadedLibs[key];
+    }
+
+    function newAttachmentId() {
+      return 'att_' + Date.now() + Math.random().toString(36).slice(2, 8);
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = () => reject(new Error('gagal membaca file'));
+        r.readAsDataURL(file);
+      });
+    }
+
+    // Gambar diperkecil dulu supaya hemat token & tidak memenuhi localStorage
+    async function processImageFile(file) {
+      const dataUrl = await readFileAsDataURL(file);
+      const img = await new Promise((resolve, reject) => {
+        const im = new Image();
+        im.onload = () => resolve(im);
+        im.onerror = () => reject(new Error('file gambar rusak'));
+        im.src = dataUrl;
+      });
+      if (img.naturalWidth <= MAX_IMAGE_DIM && img.naturalHeight <= MAX_IMAGE_DIM && file.size <= 600 * 1024) {
+        return { dataUrl, mime: file.type || 'image/jpeg' };
+      }
+      const scale = Math.min(1, MAX_IMAGE_DIM / Math.max(img.naturalWidth, img.naturalHeight));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      return { dataUrl: canvas.toDataURL('image/jpeg', 0.82), mime: 'image/jpeg' };
+    }
+
+    async function extractPdfText(file) {
+      await loadScriptOnce('pdfjs', CDN_LIBS.pdfjs);
+      const pdfjsLib = window.pdfjsLib;
+      if (!pdfjsLib) throw new Error('pustaka PDF gagal dimuat');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = CDN_LIBS.pdfjsWorker;
+      const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+      const maxPages = Math.min(pdf.numPages, 50);
+      let text = '';
+      for (let p = 1; p <= maxPages; p++) {
+        const page = await pdf.getPage(p);
+        const tc = await page.getTextContent();
+        text += tc.items.map(it => it.str).join(' ') + '\n';
+        if (text.length > MAX_TEXT_CHARS) break;
+      }
+      return text;
+    }
+
+    async function extractDocxText(file) {
+      await loadScriptOnce('mammoth', CDN_LIBS.mammoth);
+      if (!window.mammoth) throw new Error('pustaka Word gagal dimuat');
+      const res = await window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
+      return res.value || '';
+    }
+
+    async function extractXlsxText(file) {
+      await loadScriptOnce('xlsx', CDN_LIBS.xlsx);
+      if (!window.XLSX) throw new Error('pustaka spreadsheet gagal dimuat');
+      const wb = window.XLSX.read(await file.arrayBuffer(), { type: 'array' });
+      let out = '';
+      wb.SheetNames.slice(0, 10).forEach(name => {
+        out += '\n[Sheet: ' + name + ']\n' + window.XLSX.utils.sheet_to_csv(wb.Sheets[name]);
+      });
+      return out;
+    }
+
+    async function processFile(file) {
+      const ext = (file.name.split('.').pop() || '').toLowerCase();
+      if (file.type.startsWith('image/')) {
+        const img = await processImageFile(file);
+        return { id: newAttachmentId(), kind: 'image', name: file.name, size: file.size, mime: img.mime, dataUrl: img.dataUrl };
+      }
+      let text = '';
+      if (ext === 'pdf') text = await extractPdfText(file);
+      else if (ext === 'docx') text = await extractDocxText(file);
+      else if (ext === 'xlsx' || ext === 'xls') text = await extractXlsxText(file);
+      else if (TEXT_EXTS.includes(ext) || file.type.startsWith('text/')) text = await file.text();
+      else throw new Error('format file belum didukung');
+      if (!text.trim()) throw new Error('tidak ada teks yang bisa dibaca dari file ini');
+      if (text.length > MAX_TEXT_CHARS) text = text.slice(0, MAX_TEXT_CHARS) + '\n[...dipotong: file terlalu panjang...]';
+      return { id: newAttachmentId(), kind: 'text', name: file.name, size: file.size, mime: file.type || 'text/plain', text };
+    }
+
+    async function addFiles(fileList) {
+      const files = Array.from(fileList || []);
+      for (const file of files) {
+        if (state.pendingAttachments.length >= MAX_ATTACHMENTS) {
+          showToast('Maksimal ' + MAX_ATTACHMENTS + ' lampiran per pesan.', 'error');
+          break;
+        }
+        if (file.size > MAX_FILE_BYTES) {
+          showToast('"' + file.name + '" terlalu besar (maks 10 MB).', 'error');
+          continue;
+        }
+        try {
+          const att = await processFile(file);
+          if (att) state.pendingAttachments.push(att);
+        } catch (e) {
+          showToast('Gagal membaca "' + file.name + '": ' + (e.message || 'format tidak didukung'), 'error');
+        }
+      }
+      renderAttachmentsStrip();
+      updateSendButtonState();
+    }
+
+    function removeAttachment(id) {
+      state.pendingAttachments = state.pendingAttachments.filter(a => a.id !== id);
+      renderAttachmentsStrip();
+      updateSendButtonState();
+    }
+
+    function renderAttachmentsStrip() {
+      const strip = document.getElementById('attachments-strip');
+      if (!strip) return;
+      if (!state.pendingAttachments.length) {
+        strip.classList.add('hidden');
+        strip.innerHTML = '';
+        return;
+      }
+      strip.classList.remove('hidden');
+      strip.innerHTML = state.pendingAttachments.map(a => {
+        const thumb = a.kind === 'image'
+          ? `<img src="${a.dataUrl}" alt="" class="w-10 h-10 rounded-lg object-cover shrink-0">`
+          : `<span class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0"><i data-lucide="file-text" class="w-4 h-4"></i></span>`;
+        return `<div class="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 max-w-[220px]">
+          ${thumb}
+          <span class="min-w-0 flex-1 text-xs truncate text-zinc-700 dark:text-zinc-200" title="${escapeHtml(a.name)}">${escapeHtml(a.name)}</span>
+          <button type="button" onclick="removeAttachment('${a.id}')" class="w-5 h-5 shrink-0 flex items-center justify-center rounded-full text-zinc-400 hover:text-rose-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 cursor-pointer" title="Hapus lampiran" aria-label="Hapus lampiran">×</button>
+        </div>`;
+      }).join('');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Lampiran di dalam gelembung pesan user
+    function renderMessageAttachments(attachments) {
+      if (!attachments || !attachments.length) return '';
+      return '<div class="flex flex-col items-end gap-2 mb-2 max-w-full">' + attachments.map(a => {
+        if (a.kind === 'image' && a.dataUrl) {
+          return `<a href="${a.dataUrl}" target="_blank" rel="noopener noreferrer" title="Buka gambar ukuran penuh"><img src="${a.dataUrl}" alt="${escapeHtml(a.name)}" class="max-h-44 max-w-full rounded-xl border border-white/20 object-contain"></a>`;
+        }
+        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/15 text-white text-xs"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span class="truncate max-w-[180px]">${escapeHtml(a.name)}</span></span>`;
+      }).join('') + '</div>';
+    }
+
+    // Teks dokumen lampiran disisipkan ke pesan yang dikirim ke API
+    function userMessageTextForApi(m) {
+      let t = m.content || '';
+      (m.attachments || []).forEach(a => {
+        if (a.kind === 'text' && a.text) {
+          t += '\n\n--- Lampiran: ' + a.name + ' ---\n' + a.text + '\n--- Akhir lampiran ---';
+        }
+      });
+      return t;
+    }
+
+    // Gambar hanya dikirim bersama pesan user TERBARU (hemat token di giliran berikutnya)
+    function messageToGeminiParts(m, includeImages) {
+      const parts = [{ text: userMessageTextForApi(m) || 'Jelaskan gambar terlampir.' }];
+      if (includeImages) {
+        (m.attachments || []).forEach(a => {
+          if (a.kind === 'image' && a.dataUrl) {
+            const b64 = a.dataUrl.split(',')[1] || '';
+            if (b64) parts.push({ inline_data: { mime_type: a.mime || 'image/jpeg', data: b64 } });
+          }
+        });
+      }
+      return parts;
+    }
+
+    function messageToOpenAIContent(m, includeImages) {
+      const text = userMessageTextForApi(m);
+      const images = includeImages ? (m.attachments || []).filter(a => a.kind === 'image' && a.dataUrl) : [];
+      if (!images.length) return text;
+      const content = [{ type: 'text', text: text || 'Jelaskan gambar terlampir.' }];
+      images.forEach(a => content.push({ type: 'image_url', image_url: { url: a.dataUrl } }));
+      return content;
+    }
+
+    function triggerFilePicker() {
+      const input = document.getElementById('file-input');
+      if (!input) return;
+      input.removeAttribute('capture');
+      input.click();
+    }
+
+    let cameraStream = null;
+
+    async function openCameraModal() {
+      const modal = document.getElementById('camera-modal');
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        const input = document.getElementById('file-input');
+        if (input) { input.setAttribute('capture', 'environment'); input.click(); }
+        return;
+      }
+      try {
+        cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+        const video = document.getElementById('camera-video');
+        video.srcObject = cameraStream;
+        await video.play();
+        if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+        if (window.lucide) lucide.createIcons();
+      } catch (e) {
+        showToast('Kamera tidak bisa dibuka — memakai pemilih file.', 'info');
+        const input = document.getElementById('file-input');
+        if (input) { input.setAttribute('capture', 'environment'); input.click(); }
+      }
+    }
+
+    function closeCameraModal() {
+      const modal = document.getElementById('camera-modal');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(t => t.stop());
+        cameraStream = null;
+      }
+    }
+
+    function capturePhoto() {
+      const video = document.getElementById('camera-video');
+      if (!video || !video.videoWidth) return;
+      const scale = Math.min(1, MAX_IMAGE_DIM / Math.max(video.videoWidth, video.videoHeight));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+      canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      state.pendingAttachments.push({
+        id: newAttachmentId(),
+        kind: 'image',
+        name: 'Foto kamera.jpg',
+        size: Math.round(dataUrl.length * 0.75),
+        mime: 'image/jpeg',
+        dataUrl
+      });
+      closeCameraModal();
+      renderAttachmentsStrip();
+      updateSendButtonState();
     }
 
     function makeAutoTitle(text) {
@@ -2020,9 +2371,9 @@
 
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelId)}:streamGenerateContent?alt=sse`;
 
-      const contents = historyMessages.map(m => ({
+      const contents = historyMessages.map((m, i) => ({
         role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
+        parts: messageToGeminiParts(m, m.role === 'user' && i === historyMessages.length - 1)
       }));
 
       const payload = {
@@ -2095,8 +2446,9 @@
       if (sysPrompt) {
         messages.push({ role: 'system', content: sysPrompt });
       }
-      historyMessages.forEach(m => {
-        messages.push({ role: m.role, content: m.content });
+      historyMessages.forEach((m, i) => {
+        const includeImages = m.role === 'user' && i === historyMessages.length - 1;
+        messages.push({ role: m.role, content: m.role === 'user' ? messageToOpenAIContent(m, includeImages) : m.content });
       });
 
       const headers = {
@@ -2233,10 +2585,7 @@
     function updateSettingsRowValues() {
       const modelEl = document.getElementById('row-value-model');
       if (modelEl) {
-        const id = settingsDraftModelId || state.selectedModelId;
-        const m = MODEL_CATALOG.find(x => x.id === id) || MODEL_CATALOG[0];
-        const custom = (state.settings.customModel || '').trim();
-        modelEl.textContent = (m.id === 'custom-model' && custom ? `Custom (${custom})` : m.name);
+        modelEl.textContent = DISPLAY_MODEL_NAME;
       }
       const keysEl = document.getElementById('row-value-keys');
       if (keysEl) {
@@ -2463,7 +2812,7 @@
       const input = document.getElementById('chat-input');
       const sendBtn = document.getElementById('send-btn');
       if (!input || !sendBtn) return;
-      sendBtn.disabled = state.isStreaming || input.value.trim().length === 0;
+      sendBtn.disabled = state.isStreaming || (input.value.trim().length === 0 && state.pendingAttachments.length === 0);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -2486,7 +2835,43 @@
             handleSendMessage();
           }
         });
+
+        // Tempel gambar/file dari clipboard (Ctrl+V) langsung ke lampiran
+        chatInput.addEventListener('paste', (e) => {
+          const items = (e.clipboardData && e.clipboardData.items) || [];
+          const files = [];
+          for (const item of items) {
+            if (item.kind === 'file') {
+              const f = item.getAsFile();
+              if (f) files.push(f);
+            }
+          }
+          if (files.length) {
+            e.preventDefault();
+            addFiles(files);
+          }
+        });
       }
+
+      // Pemilih file untuk tombol lampiran
+      const fileInput = document.getElementById('file-input');
+      if (fileInput) {
+        fileInput.addEventListener('change', () => {
+          addFiles(fileInput.files);
+          fileInput.value = '';
+        });
+      }
+
+      // Seret & letakkan file ke mana saja di halaman chat
+      document.addEventListener('dragover', (e) => { e.preventDefault(); });
+      document.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const sm = document.getElementById('settings-modal');
+        if (sm && !sm.classList.contains('hidden')) return;
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          addFiles(e.dataTransfer.files);
+        }
+      });
 
       // Event delegation untuk tombol "Salin Kode" (aman dari sanitasi DOMPurify)
       document.addEventListener('click', (e) => {
