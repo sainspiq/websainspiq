@@ -2569,6 +2569,45 @@
       const msgIndex = chat.messages.length - 1;
 
       state.abortController = new AbortController();
+
+      // TIMEOUT STREAM: tanpa ini, stream yang macet (server/jaringan diam)
+      // membuat halaman menunggu selamanya tanpa pesan apa pun ("ga respon").
+      // 30 detik tanpa token pertama, atau 60 detik tanpa token lanjutan.
+      const FIRST_TOKEN_TIMEOUT_MS = 30000;
+      const IDLE_TIMEOUT_MS = 60000;
+      let streamTimedOut = false;
+      let timeoutKind = null; // 'first' | 'idle'
+      let abortedByUser = false;
+      let gotAnyChunk = false;
+      let firstTokenTimer = null;
+      let idleTimer = null;
+      const clearStreamTimers = () => {
+        if (firstTokenTimer) { clearTimeout(firstTokenTimer); firstTokenTimer = null; }
+        if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; }
+      };
+      const armIdleTimer = () => {
+        if (idleTimer) clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          streamTimedOut = true;
+          timeoutKind = 'idle';
+          state.abortController?.abort();
+        }, IDLE_TIMEOUT_MS);
+      };
+      const noteChunkReceived = () => {
+        if (!gotAnyChunk) {
+          gotAnyChunk = true;
+          if (firstTokenTimer) { clearTimeout(firstTokenTimer); firstTokenTimer = null; }
+        }
+        armIdleTimer();
+      };
+      const onTextChunk = (txt) => { noteChunkReceived(); updateStreamChunk(txt); };
+      const onReasoningChunk = (txt) => { noteChunkReceived(); updateReasoningChunk(txt); };
+      firstTokenTimer = setTimeout(() => {
+        streamTimedOut = true;
+        timeoutKind = 'first';
+        state.abortController?.abort();
+      }, FIRST_TOKEN_TIMEOUT_MS);
+
       setStreamingState(true);
       renderMessages();
 
@@ -2629,7 +2668,7 @@
 
       try {
         if (modelInfo.provider === 'gemini') {
-          const grounding = await streamGeminiAPI(chat.messages.slice(0, -1), modelInfo.id, updateStreamChunk, state.abortController.signal);
+          const grounding = await streamGeminiAPI(chat.messages.slice(0, -1), modelInfo.id, onTextChunk, state.abortController.signal);
           if (grounding && grounding.groundingChunks) {
             const seen = new Set();
             assistantMsg.groundingSources = grounding.groundingChunks
@@ -2643,9 +2682,9 @@
             state.settings.openaiKey.trim(),
             modelInfo.id,
             chat.messages.slice(0, -1),
-            updateStreamChunk,
+            onTextChunk,
             state.abortController.signal,
-            { onReasoning: updateReasoningChunk }
+            { onReasoning: onReasoningChunk }
           );
         } else if (modelInfo.provider === 'xai') {
           await streamOpenAICompatibleAPI(
@@ -2653,9 +2692,9 @@
             state.settings.xaiKey.trim(),
             modelInfo.id,
             chat.messages.slice(0, -1),
-            updateStreamChunk,
+            onTextChunk,
             state.abortController.signal,
-            { onReasoning: updateReasoningChunk }
+            { onReasoning: onReasoningChunk }
           );
         } else if (modelInfo.provider === 'upstage') {
           await streamOpenAICompatibleAPI(
@@ -2663,10 +2702,10 @@
             (state.settings.upstageKey || '').trim(),
             modelInfo.id,
             chat.messages.slice(0, -1),
-            updateStreamChunk,
+            onTextChunk,
             state.abortController.signal,
             {
-              onReasoning: updateReasoningChunk,
+              onReasoning: onReasoningChunk,
               extraBody: (state.settings.reasoningEffort && ['solar-pro4', 'solar-mini4'].includes(modelInfo.id))
                 ? { reasoning_effort: state.settings.reasoningEffort }
                 : {}
@@ -2681,23 +2720,41 @@
             (state.settings.customKey || '').trim(),
             customModelId,
             chat.messages.slice(0, -1),
-            updateStreamChunk,
+            onTextChunk,
             state.abortController.signal,
-            { onReasoning: updateReasoningChunk }
+            { onReasoning: onReasoningChunk }
           );
         }
       } catch (err) {
-        if (err.name === 'AbortError') {
+        if (err.name === 'AbortError' && !streamTimedOut) {
           // Dihentikan oleh pengguna
+          abortedByUser = true;
         } else {
           console.error('Streaming API Error:', err);
           if (!assistantMsg.content) {
-            assistantMsg.content = `> **Terjadi Kesalahan Koneksi API**\n>\n> ${err.message || 'Gagal menghubungi penyedia AI.'}\n>\n> Pastikan **API Key** dan konfigurasi model sudah benar di menu **Pengaturan**.`;
+            assistantMsg.content = streamTimedOut
+              ? (timeoutKind === 'idle'
+                ? `> **Koneksi ke AI Terputus**\n>\n> AI berhenti mengirim jawaban di tengah jalan (tidak ada token baru selama ${IDLE_TIMEOUT_MS / 1000} detik).\n>\n> Periksa koneksi internet, lalu kirim lagi.`
+                : `> **Tidak Ada Respons dari AI**\n>\n> AI tidak mengirim jawaban dalam ${FIRST_TOKEN_TIMEOUT_MS / 1000} detik. Kemungkinan koneksi internet atau server AI sedang bermasalah.\n>\n> Periksa koneksi, lalu kirim lagi.`)
+              : `> **Terjadi Kesalahan Koneksi API**\n>\n> ${err.message || 'Gagal menghubungi penyedia AI.'}\n>\n> Pastikan **API Key** dan konfigurasi model sudah benar di menu **Pengaturan**.`;
           }
-          showToast(err.message || 'Gagal menerima respons dari API.', 'error');
+          showToast(
+            streamTimedOut
+              ? (timeoutKind === 'idle' ? 'Koneksi ke AI terputus di tengah jawaban.' : 'AI tidak merespons dalam 30 detik.')
+              : (err.message || 'Gagal menerima respons dari API.'),
+            'error'
+          );
         }
       } finally {
-        // Buang bubble AI yang kosong (mis. dihentikan sebelum token pertama)
+        clearStreamTimers();
+        // Stream selesai tapi balasan kosong (mis. prompt diblokir filter) —
+        // jangan hapus bubble diam-diam; beri penjelasan supaya tidak
+        // terlihat seperti "tidak merespons". Pengecualian: pengguna yang
+        // sengaja menekan berhenti sebelum token pertama.
+        if (!assistantMsg.content.trim() && !(assistantMsg.reasoning || '').trim() && !abortedByUser) {
+          assistantMsg.content = `> **AI Mengembalikan Jawaban Kosong**\n>\n> Server AI menyelesaikan permintaan tanpa teks jawaban (kemungkinan prompt diblokir filter keamanan).\n>\n> Coba ubah sedikit pertanyaannya lalu kirim lagi.`;
+        }
+        // Buang bubble AI yang kosong (mis. dihentikan pengguna sebelum token pertama)
         if (!assistantMsg.content.trim() && !(assistantMsg.reasoning || '').trim()) {
           const emptyIdx = chat.messages.indexOf(assistantMsg);
           if (emptyIdx > -1) chat.messages.splice(emptyIdx, 1);
