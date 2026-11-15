@@ -755,6 +755,33 @@
                   <p class="s-hint">Cara dapatkan: 1) buat mesin telusur di <a href="https://programmablesearchengine.google.com/" target="_blank" rel="noopener" class="text-indigo-500 hover:underline">programmablesearchengine.google.com</a> (pilih "Telusuri seluruh web") lalu salin ID-nya; 2) aktifkan Custom Search API di Google Cloud Console lalu buat API key.</p>
                 </div>
               </div>
+              <div class="s-card overflow-hidden">
+                <div class="p-4">
+                  <div class="s-label">Suara AI (Deepgram)</div>
+                  <p class="s-hint mt-0.5">Bacakan jawaban AI dengan suara. Ketuk tombol speaker di bawah jawaban, atau aktifkan bacakan otomatis.</p>
+                </div>
+                <div class="p-4 space-y-3">
+                  <div>
+                    <label for="setting-deepgram-key" class="s-hint block mb-1.5">Deepgram API key</label>
+                    <div class="relative">
+                      <input id="setting-deepgram-key" type="password" autocomplete="off" placeholder="Tempel API key Deepgram di sini" class="s-input pr-10 font-mono text-xs" />
+                      <button type="button" aria-label="Tampilkan atau sembunyikan key" onclick="togglePasswordVisibility('setting-deepgram-key', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="setting-deepgram-model" class="s-hint block mb-1.5">Model suara</label>
+                    <input id="setting-deepgram-model" type="text" autocomplete="off" placeholder="flux-dewi-id" class="s-input font-mono text-xs" />
+                    <p class="s-hint mt-1.5">Bahasa Indonesia (Flux): <span class="font-mono">flux-dewi-id</span> · <span class="font-mono">flux-fajar-id</span> · <span class="font-mono">flux-fitri-id</span> · <span class="font-mono">flux-rizky-id</span> · <span class="font-mono">flux-teguh-id</span>. Bahasa Inggris (Aura-2): <span class="font-mono">aura-2-thalia-en</span>. Endpoint dipilih otomatis dari nama model (Flux → /v2/speak, Aura → /v1/speak).</p>
+                  </div>
+                  <label class="flex items-start gap-2.5 cursor-pointer">
+                    <input id="setting-deepgram-autoplay" type="checkbox" class="mt-0.5 accent-indigo-600 w-4 h-4 shrink-0 cursor-pointer" />
+                    <span class="s-hint">Bacakan otomatis setiap jawaban baru</span>
+                  </label>
+                  <p class="s-hint">Suara Indonesia masih Early Access di Deepgram: angka dan tanggal dibaca apa adanya (tidak dinormalisasi). API key tersimpan di browser ini saja, seperti key model lain.</p>
+                </div>
+              </div>
             </section>
           <section class="settings-panel space-y-5 hidden pt-2" data-panel="behavior">
               <p class="s-hint mt-1">Atur gaya jawaban dan kepribadian AI.</p>
@@ -1004,6 +1031,9 @@
         customModel: 'anthropic/claude-3.7-sonnet',
         googleSearchKey: '',
         googleSearchCx: '',
+        deepgramKey: '',
+        deepgramModel: 'flux-dewi-id',
+        deepgramAutoplay: false,
         temperature: 0.7,
         systemPrompt: DEFAULT_SYSTEM_PROMPT
       },
@@ -1017,7 +1047,12 @@
       desktopSidebarCollapsed: false,
       pendingAttachments: [],
       searchNext: false,
-      isSearching: false
+      isSearching: false,
+      voicePlaying: null,
+      voiceLoading: null,
+      voiceAudio: null,
+      voiceUrl: null,
+      voiceToken: 0
     };
 
     /**
@@ -1805,6 +1840,9 @@
         const provider = msg.provider || 'gemini';
         const modelLabel = msg.modelName || 'Keena AI';
         const isStreamingThis = isLastAssistant && state.isStreaming;
+        const isVoicePlaying = state.voicePlaying && state.voicePlaying.chatId === chat.id && state.voicePlaying.idx === idx;
+        const isVoiceLoading = state.voiceLoading && state.voiceLoading.chatId === chat.id && state.voiceLoading.idx === idx;
+        const isErrorBubble = (msg.content || '').trim().startsWith('> **');
 
         return `
           <div class="flex items-start gap-3 sm:gap-4 animate-fade-in">
@@ -1835,6 +1873,11 @@
                   <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                   <span>Salin</span>
                 </button>
+                ${isErrorBubble ? '' : `
+                <button type="button" onclick="speakAssistantMessage('${chat.id}', ${idx})" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium ${isVoicePlaying ? 'text-indigo-500 bg-indigo-500/10' : 'text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10'} transition-colors cursor-pointer" title="${isVoicePlaying ? 'Berhenti membacakan' : 'Dengarkan jawaban'}">
+                  <i data-lucide="${isVoicePlaying ? 'square' : 'volume-2'}" class="w-3.5 h-3.5 ${isVoiceLoading ? 'animate-pulse' : ''}"></i>
+                  <span>${isVoicePlaying ? 'Berhenti' : (isVoiceLoading ? 'Memuat…' : 'Dengarkan')}</span>
+                </button>`}
                 ${
                   isLastAssistant
                     ? `<button type="button" onclick="regenerateLastResponse()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10 transition-colors cursor-pointer" title="Buat ulang jawaban">
@@ -2514,6 +2557,178 @@
       await generateAssistantReply(chat);
     }
 
+    /**
+     * 12e. SUARA AI (DEEPGRAM TTS): bacakan jawaban AI.
+     * Flux (flux-{voice}-{lang}, mis. flux-dewi-id) -> POST /v2/speak (batch REST).
+     * Aura/Aura-2 (aura-2-thalia-en, dst) -> POST /v1/speak. Keduanya
+     * mengembalikan audio (diminta sebagai mp3) yang langsung diputar di
+     * browser — CORS Deepgram mengizinkan origin sainspiq.com (dicek
+     * 16 Nov 2026), jadi tidak perlu proxy. Jawaban panjang dipecah per
+     * kalimat (maks ~1500 karakter per request) lalu diputar berurutan.
+     * Markdown dibersihkan dulu supaya sintaksnya tidak ikut dibacakan.
+     */
+    const DEEPGRAM_MAX_CHUNK = 1500;
+    const DEEPGRAM_FETCH_TIMEOUT_MS = 30000;
+
+    function deepgramSpeakUrl(model) {
+      const m = (model || '').trim();
+      const base = m.toLowerCase().startsWith('flux-')
+        ? 'https://api.deepgram.com/v2/speak'
+        : 'https://api.deepgram.com/v1/speak';
+      return base + '?model=' + encodeURIComponent(m) + '&encoding=mp3';
+    }
+
+    function stripMarkdownForSpeech(text) {
+      let t = (text || '');
+      t = t.replace(/```[\s\S]*?```/g, ' ');
+      t = t.replace(/`([^`]+)`/g, '$1');
+      t = t.replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1');
+      t = t.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+      t = t.replace(/^#{1,6}\s+/gm, '');
+      t = t.replace(/[*_]{1,3}([^*_]+)[*_]{1,3}/g, '$1');
+      t = t.replace(/^>\s?/gm, '');
+      t = t.replace(/^[-*+]\s+/gm, '');
+      t = t.replace(/^\d+\.\s+/gm, '');
+      t = t.replace(/<[^>]+>/g, ' ');
+      t = t.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      t = t.replace(/\s+/g, ' ').trim();
+      return t;
+    }
+
+    function chunkTextForSpeech(text, maxLen = DEEPGRAM_MAX_CHUNK) {
+      const sentences = text.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g) || [text];
+      const chunks = [];
+      let cur = '';
+      for (const s of sentences) {
+        const piece = s.trim();
+        if (!piece) continue;
+        if ((cur + ' ' + piece).trim().length <= maxLen) {
+          cur = (cur + ' ' + piece).trim();
+        } else {
+          if (cur) chunks.push(cur);
+          if (piece.length > maxLen) {
+            for (let i = 0; i < piece.length; i += maxLen) chunks.push(piece.slice(i, i + maxLen));
+            cur = '';
+          } else {
+            cur = piece;
+          }
+        }
+      }
+      if (cur) chunks.push(cur);
+      return chunks.length ? chunks : [text];
+    }
+
+    async function fetchDeepgramAudio(text) {
+      const key = (state.settings.deepgramKey || '').trim();
+      const model = (state.settings.deepgramModel || 'flux-dewi-id').trim();
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), DEEPGRAM_FETCH_TIMEOUT_MS);
+      try {
+        const res = await fetch(deepgramSpeakUrl(model), {
+          method: 'POST',
+          headers: { 'Authorization': 'Token ' + key, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text }),
+          signal: ctrl.signal
+        });
+        if (!res.ok) {
+          let detail = '';
+          try { const j = await res.json(); detail = j.err_msg || j.message || ''; } catch (e) { /* bukan JSON, abaikan */ }
+          const err = new Error(detail || ('HTTP ' + res.status));
+          err.status = res.status;
+          throw err;
+        }
+        return await res.blob();
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function stopAssistantVoice(silent) {
+      state.voiceToken++;
+      if (state.voiceAudio) {
+        try { state.voiceAudio.pause(); } catch (e) {}
+        state.voiceAudio = null;
+      }
+      if (state.voiceUrl) {
+        try { URL.revokeObjectURL(state.voiceUrl); } catch (e) {}
+        state.voiceUrl = null;
+      }
+      state.voicePlaying = null;
+      state.voiceLoading = null;
+      if (!silent) renderMessages();
+    }
+
+    async function playVoiceChunks(chatId, idx, chunks, token) {
+      for (let i = 0; i < chunks.length; i++) {
+        if (token !== state.voiceToken) return;
+        state.voiceLoading = { chatId, idx };
+        renderMessages();
+        let blob;
+        try {
+          blob = await fetchDeepgramAudio(chunks[i]);
+        } catch (e) {
+          if (token !== state.voiceToken) return;
+          state.voiceLoading = null;
+          state.voicePlaying = null;
+          renderMessages();
+          if (e.name === 'AbortError') showToast('Pembuatan suara kehabisan waktu (30 detik). Coba lagi.', 'error');
+          else if (e.status === 401 || e.status === 403) showToast('API key Deepgram ditolak. Periksa key di Pengaturan.', 'error');
+          else showToast('Gagal membuat suara: ' + (e.message || 'kesalahan jaringan'), 'error');
+          return;
+        }
+        if (token !== state.voiceToken) return;
+        state.voiceLoading = null;
+        state.voicePlaying = { chatId, idx };
+        renderMessages();
+        const url = URL.createObjectURL(blob);
+        state.voiceUrl = url;
+        const audio = new Audio(url);
+        state.voiceAudio = audio;
+        try {
+          await audio.play();
+        } catch (e) {
+          URL.revokeObjectURL(url);
+          if (token !== state.voiceToken) return;
+          state.voicePlaying = null;
+          renderMessages();
+          showToast('Browser memblokir pemutaran audio. Ketuk tombol suara sekali lagi.', 'error');
+          return;
+        }
+        await new Promise((resolve) => {
+          audio.onended = () => { URL.revokeObjectURL(url); resolve(); };
+          audio.onerror = () => { URL.revokeObjectURL(url); resolve(); };
+        });
+        if (token !== state.voiceToken) return;
+      }
+      state.voicePlaying = null;
+      state.voiceAudio = null;
+      renderMessages();
+    }
+
+    function speakAssistantMessage(chatId, idx) {
+      const chat = state.conversations.find(c => c.id === chatId);
+      const msg = chat && chat.messages[idx];
+      if (!msg || msg.role !== 'assistant') return;
+      if ((state.voicePlaying && state.voicePlaying.chatId === chatId && state.voicePlaying.idx === idx) ||
+          (state.voiceLoading && state.voiceLoading.chatId === chatId && state.voiceLoading.idx === idx)) {
+        stopAssistantVoice();
+        return;
+      }
+      const key = (state.settings.deepgramKey || '').trim();
+      if (!key) {
+        showToast('Masukkan API key Deepgram dulu di Pengaturan → Suara AI (Deepgram).', 'error');
+        return;
+      }
+      const text = stripMarkdownForSpeech(msg.content || '');
+      if (!text) {
+        showToast('Tidak ada teks yang bisa dibacakan dari jawaban ini.', 'info');
+        return;
+      }
+      stopAssistantVoice(true);
+      const token = ++state.voiceToken;
+      playVoiceChunks(chatId, idx, chunkTextForSpeech(text), token);
+    }
+
     async function regenerateLastResponse() {
       if (state.isStreaming) return;
       const chat = getActiveConversation();
@@ -2764,6 +2979,16 @@
         saveConversationsToStorage();
         renderChatHistory();
         renderMessages();
+        // Autoplay suara (Deepgram): bacakan jawaban baru otomatis bila
+        // diaktifkan — kecuali jawaban dibatalkan pengguna atau isinya
+        // bubble error (diawali "> **").
+        if (!abortedByUser && state.settings.deepgramAutoplay && (state.settings.deepgramKey || '').trim()) {
+          const spoken = (assistantMsg.content || '').trim();
+          if (spoken && !spoken.startsWith('> **')) {
+            const lastIdx = chat.messages.indexOf(assistantMsg);
+            if (lastIdx > -1) speakAssistantMessage(chat.id, lastIdx);
+          }
+        }
       }
     }
 
@@ -3022,6 +3247,9 @@
       document.getElementById('setting-custom-key').value = state.settings.customKey || '';
       document.getElementById('setting-google-search-key').value = state.settings.googleSearchKey || '';
       document.getElementById('setting-google-search-cx').value = state.settings.googleSearchCx || '';
+      document.getElementById('setting-deepgram-key').value = state.settings.deepgramKey || '';
+      document.getElementById('setting-deepgram-model').value = state.settings.deepgramModel || 'flux-dewi-id';
+      document.getElementById('setting-deepgram-autoplay').checked = !!state.settings.deepgramAutoplay;
       document.getElementById('setting-system-prompt').value = state.settings.systemPrompt || DEFAULT_SYSTEM_PROMPT;
 
       const tempVal = Number(state.settings.temperature ?? 0.7);
@@ -3205,6 +3433,9 @@
       state.settings.customKey = document.getElementById('setting-custom-key').value.trim();
       state.settings.googleSearchKey = document.getElementById('setting-google-search-key').value.trim();
       state.settings.googleSearchCx = document.getElementById('setting-google-search-cx').value.trim();
+      state.settings.deepgramKey = document.getElementById('setting-deepgram-key').value.trim();
+      state.settings.deepgramModel = document.getElementById('setting-deepgram-model').value.trim() || 'flux-dewi-id';
+      state.settings.deepgramAutoplay = document.getElementById('setting-deepgram-autoplay').checked;
       state.settings.systemPrompt = document.getElementById('setting-system-prompt').value.trim() || DEFAULT_SYSTEM_PROMPT;
       state.settings.temperature = parseFloat(document.getElementById('setting-temperature').value) || 0.7;
 
@@ -3237,6 +3468,9 @@
         customModel: 'anthropic/claude-3.7-sonnet',
         googleSearchKey: '',
         googleSearchCx: '',
+        deepgramKey: '',
+        deepgramModel: 'flux-dewi-id',
+        deepgramAutoplay: false,
         temperature: 0.7,
         systemPrompt: DEFAULT_SYSTEM_PROMPT
       };
