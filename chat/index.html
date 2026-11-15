@@ -2771,13 +2771,49 @@
      * 14. STREAMING ENGINE: GEMINI, OPENAI / GROK / CUSTOM
      */
 
+    // FALLBACK OTOMATIS GEMINI: kalau model utama sibuk (503) atau kena
+    // batas (429), pindah ke model Flash lain — jangan menyerah di model
+    // pertama. Urutan: 3.8 Flash -> 3.6 Flash -> 3.5 Flash-Lite.
+    // TIDAK dipakai: gemini-3.7-flash (didepresiasi 8 Okt 2026, request-nya
+    // di-route Google otomatis ke 3.8 Flash — sama saja sibuknya) dan
+    // gemini-3.5-flash (di-route ke 3.6 Flash).
+    const GEMINI_FALLBACKS = {
+      'gemini-3.8-flash': ['gemini-3.6-flash', 'gemini-3.5-flash-lite']
+    };
+    const GEMINI_DISPLAY_NAMES = {
+      'gemini-3.8-flash': 'Gemini 3.8 Flash',
+      'gemini-3.6-flash': 'Gemini 3.6 Flash',
+      'gemini-3.5-flash-lite': 'Gemini 3.5 Flash-Lite'
+    };
+    // Status yang boleh dicoba ulang ke model lain (aturan Google: retry
+    // 429/408/5xx; JANGAN retry 400/402/403).
+    const GEMINI_RETRYABLE_STATUS = new Set([408, 429, 500, 502, 503, 504]);
+    const GEMINI_FALLBACK_DELAYS_MS = [2000, 4000];
+    // 3.6 Flash & 3.5 Flash-Lite: temperature sudah tidak dipakai Google
+    // (diabaikan) — jangan kirim supaya tidak ditolak.
+    const GEMINI_NO_TEMPERATURE = new Set(['gemini-3.6-flash', 'gemini-3.5-flash-lite']);
+
+    const sleepWithSignal = (ms, signal) => new Promise((resolve, reject) => {
+      if (signal?.aborted) {
+        const e = new Error('Dibatalkan');
+        e.name = 'AbortError';
+        reject(e);
+        return;
+      }
+      const timer = setTimeout(resolve, ms);
+      signal?.addEventListener('abort', () => {
+        clearTimeout(timer);
+        const e = new Error('Dibatalkan');
+        e.name = 'AbortError';
+        reject(e);
+      }, { once: true });
+    });
+
     async function streamGeminiAPI(historyMessages, modelId, onChunk, signal) {
       const apiKey = (state.settings.geminiKey || '').trim();
       if (!apiKey) {
         throw new Error('Google Gemini API Key belum diatur. Silakan masukkan API Key di menu Pengaturan.');
       }
-
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelId)}:streamGenerateContent?alt=sse`;
 
       const contents = historyMessages.map((m, i) => {
         const isLatestUser = m.role === 'user' && i === historyMessages.length - 1;
@@ -2790,70 +2826,90 @@
       // Grounding: pesan user terakhir yang minta pencarian web -> Gemini cari sendiri di Google
       const lastUser = [...historyMessages].reverse().find(m => m.role === 'user');
       const useGrounding = !!(lastUser && lastUser.webSearch && lastUser.webSearch.source === 'Google Grounding');
-
-      const payload = {
-        contents,
-        generationConfig: {
-          temperature: Number(state.settings.temperature ?? 0.7),
-          // Gemini 3.8 Flash default-nya thinking medium — jawaban pertama lama
-          // keluar. Low = tercepat untuk chat (pengaturan di Pengaturan > Perilaku).
-          thinkingConfig: { thinkingLevel: (state.settings.geminiThinking || 'low') }
-        },
-        ...(useGrounding ? { tools: [{ google_search: {} }] } : {})
-      };
-
       const sysPrompt = (state.settings.systemPrompt || '').trim();
-      if (sysPrompt) {
-        payload.systemInstruction = {
-          parts: [{ text: sysPrompt }]
-        };
-      }
 
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-        body: JSON.stringify(payload),
-        signal
-      });
+      const chain = [modelId, ...(GEMINI_FALLBACKS[modelId] || [])];
 
-      if (!response.ok) {
-        const errBody = await response.json().catch(() => ({}));
-        throw new Error(errBody?.error?.message || `Gemini API Error (${response.status})`);
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-      let buffer = '';
-      let lastGroundingMetadata = null;
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-
-        const lines = buffer.split('\n');
-        buffer = lines.pop() || '';
-
-        for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed.startsWith('data:')) continue;
-          const jsonStr = trimmed.slice(5).trim();
-          if (!jsonStr || jsonStr === '[DONE]') continue;
-
-          try {
-            const parsed = JSON.parse(jsonStr);
-            const parts = parsed?.candidates?.[0]?.content?.parts || [];
-            for (const part of parts) {
-              if (part.text) onChunk(part.text);
-            }
-            const gm = parsed?.candidates?.[0]?.groundingMetadata;
-            if (gm) lastGroundingMetadata = gm;
-          } catch (e) {
-            // Abaikan potongan JSON parsial
-          }
+      for (let attempt = 0; attempt < chain.length; attempt++) {
+        const attemptModel = chain[attempt];
+        if (attempt > 0) {
+          showToast(`${GEMINI_DISPLAY_NAMES[chain[attempt - 1]] || chain[attempt - 1]} sibuk — beralih ke ${GEMINI_DISPLAY_NAMES[attemptModel] || attemptModel}…`, 'info');
+          await sleepWithSignal(GEMINI_FALLBACK_DELAYS_MS[attempt - 1] ?? 4000, signal);
+        }
+        try {
+          return await streamGeminiOnce(attemptModel);
+        } catch (err) {
+          if (err.name === 'AbortError') throw err;
+          if (attempt < chain.length - 1 && GEMINI_RETRYABLE_STATUS.has(err.status)) continue;
+          throw err;
         }
       }
-      return lastGroundingMetadata;
+
+      async function streamGeminiOnce(attemptModel) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(attemptModel)}:streamGenerateContent?alt=sse`;
+        const payload = {
+          contents,
+          generationConfig: {
+            ...(GEMINI_NO_TEMPERATURE.has(attemptModel) ? {} : { temperature: Number(state.settings.temperature ?? 0.7) }),
+            // Gemini 3.8 Flash default-nya thinking medium — jawaban pertama lama
+            // keluar. Low = tercepat untuk chat (pengaturan di Pengaturan > Perilaku).
+            // 3.6 Flash & 3.5 Flash-Lite juga mendukung low.
+            thinkingConfig: { thinkingLevel: (state.settings.geminiThinking || 'low') }
+          },
+          ...(useGrounding ? { tools: [{ google_search: {} }] } : {})
+        };
+        if (sysPrompt) {
+          payload.systemInstruction = { parts: [{ text: sysPrompt }] };
+        }
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+          body: JSON.stringify(payload),
+          signal
+        });
+
+        if (!response.ok) {
+          const errBody = await response.json().catch(() => ({}));
+          const e = new Error(errBody?.error?.message || `Gemini API Error (${response.status})`);
+          e.status = response.status;
+          throw e;
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let buffer = '';
+        let lastGroundingMetadata = null;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed.startsWith('data:')) continue;
+            const jsonStr = trimmed.slice(5).trim();
+            if (!jsonStr || jsonStr === '[DONE]') continue;
+
+            try {
+              const parsed = JSON.parse(jsonStr);
+              const parts = parsed?.candidates?.[0]?.content?.parts || [];
+              for (const part of parts) {
+                if (part.text) onChunk(part.text);
+              }
+              const gm = parsed?.candidates?.[0]?.groundingMetadata;
+              if (gm) lastGroundingMetadata = gm;
+            } catch (e) {
+              // Abaikan potongan JSON parsial
+            }
+          }
+        }
+        return lastGroundingMetadata;
+      }
     }
 
     async function streamOpenAICompatibleAPI(endpoint, apiKey, modelId, historyMessages, onChunk, signal, options = {}) {
