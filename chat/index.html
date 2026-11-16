@@ -339,6 +339,14 @@
           </span>
         </button>
 
+        <button type="button" id="studio-nav-btn" onclick="switchMainView('studio')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 text-zinc-800 dark:text-zinc-100 font-medium text-sm transition-all active:scale-[0.99] cursor-pointer">
+          <span class="flex items-center gap-2.5">
+            <i data-lucide="mic" class="w-4 h-4 stroke-[2.5] text-indigo-500"></i>
+            Studio Suara
+          </span>
+          <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500">BARU</span>
+        </button>
+
         <!-- Kotak Pencarian Riwayat Chat -->
         <div class="relative">
           <i data-lucide="search" class="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
@@ -468,8 +476,60 @@
       </div>
     </div>
 
+    <!-- Studio Suara: generator voice AI untuk dubbing / narasi -->
+    <div id="studio-container" class="flex-1 overflow-y-auto px-3 sm:px-6 pt-4 pb-6 hidden">
+      <div class="max-w-3xl mx-auto w-full">
+        <button type="button" onclick="switchMainView('chat')" class="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10 transition-colors cursor-pointer">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          Kembali ke Chat
+        </button>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Studio Suara</h1>
+        <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 mb-5">Ubah teks jadi suara — untuk dubbing, narasi, dan voice-over. Pilih suara, ketuk Generate, lalu unduh MP3-nya.</p>
+
+        <label for="studio-text" class="s-label block mb-1.5">Naskah</label>
+        <textarea id="studio-text" rows="8" placeholder="Tulis naskah di sini… contoh: Halo, selamat datang di channel SainsPIQ!" oninput="updateStudioCounter()" class="w-full px-4 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-300/90 dark:border-zinc-800 text-sm sm:text-[15px] leading-relaxed text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-indigo-500/70 resize-y min-h-[10rem]"></textarea>
+        <p id="studio-char-count" class="s-hint mt-1.5">0 karakter</p>
+
+        <div class="mt-4 flex flex-col sm:flex-row gap-3 sm:items-end">
+          <div class="sm:w-80">
+            <label for="studio-voice" class="s-label block mb-1.5">Suara</label>
+            <select id="studio-voice" class="s-input w-full !py-2.5 pr-9 text-sm cursor-pointer">
+              <option value="flux-dewi-id">Dewi — perempuan (Indonesia)</option>
+              <option value="flux-fajar-id">Fajar — laki-laki (Indonesia)</option>
+              <option value="flux-fitri-id">Fitri — perempuan (Indonesia)</option>
+              <option value="flux-rizky-id">Rizky — laki-laki (Indonesia)</option>
+              <option value="flux-teguh-id">Teguh — laki-laki (Indonesia)</option>
+              <option value="aura-2-thalia-en">Thalia — perempuan (Inggris)</option>
+            </select>
+          </div>
+          <button id="studio-generate-btn" type="button" onclick="generateStudioVoice()" class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-colors cursor-pointer">Generate Suara</button>
+        </div>
+        <p id="studio-progress" class="s-hint mt-2 hidden"></p>
+
+        <div id="studio-result" class="hidden mt-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 p-4">
+          <div class="text-sm font-semibold mb-1">Hasil terakhir</div>
+          <p id="studio-result-text" class="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-3"></p>
+          <audio id="studio-audio" controls class="w-full"></audio>
+          <a id="studio-download" href="#" download="suara-keena-ai.mp3" class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 transition-colors cursor-pointer">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            Unduh MP3
+          </a>
+        </div>
+
+        <div class="mt-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Riwayat Generate</span>
+            <button type="button" onclick="clearStudioHistory()" class="text-[11px] text-zinc-400 hover:text-rose-500 cursor-pointer">Hapus semua</button>
+          </div>
+          <div id="studio-history-list" class="space-y-2">
+            <p class="s-hint">Belum ada suara yang dibuat di sesi ini.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Area Input Bawah -->
-    <div class="px-3 sm:px-6 pt-1 sm:pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-slate-50 via-slate-50 to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent shrink-0">
+    <div id="composer-container" class="px-3 sm:px-6 pt-1 sm:pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-slate-50 via-slate-50 to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent shrink-0">
       <div class="max-w-3xl mx-auto">
 
         <!-- Tombol Hentikan Generasi (Muncul saat streaming aktif) -->
@@ -1052,7 +1112,11 @@
       voiceLoading: null,
       voiceAudio: null,
       voiceUrl: null,
-      voiceToken: 0
+      voiceToken: 0,
+      mainView: 'chat',
+      studioClips: [],
+      studioGenerating: false,
+      studioToken: 0
     };
 
     /**
@@ -1496,6 +1560,11 @@
     function updateHeaderInfo() {
       const titleEl = document.getElementById('header-chat-title');
       const modelEl = document.getElementById('header-model-label');
+      if (state.mainView === 'studio') {
+        if (titleEl) titleEl.textContent = 'Studio Suara';
+        if (modelEl) modelEl.textContent = 'Deepgram TTS · dubbing & narasi';
+        return;
+      }
       const chat = getActiveConversation();
       if (titleEl) titleEl.textContent = chat ? (chat.title || 'Percakapan Baru') : 'Chat Baru';
       if (modelEl) modelEl.textContent = getActiveModelInfo().displayName;
@@ -1587,6 +1656,7 @@
     }
 
     function createNewChat() {
+      switchMainView('chat');
       if (state.isStreaming) {
         stopGeneration();
       }
@@ -1605,6 +1675,7 @@
     }
 
     function selectConversation(chatId) {
+      switchMainView('chat');
       if (state.isStreaming) {
         stopGeneration();
       }
@@ -2727,6 +2798,196 @@
       stopAssistantVoice(true);
       const token = ++state.voiceToken;
       playVoiceChunks(chatId, idx, chunkTextForSpeech(text), token);
+    }
+
+    /**
+     * 12f. STUDIO SUARA: generator voice AI untuk dubbing / narasi.
+     * Naskah -> Deepgram TTS (modul 12e, potongan maks ~1500 karakter) ->
+     * satu file MP3 yang bisa diputar dan diunduh. Riwayat generate
+     * disimpan di memori sesi ini saja (maks 10 klip).
+     */
+    const STUDIO_VOICES = [
+      { id: 'flux-dewi-id', label: 'Dewi — perempuan (Indonesia)' },
+      { id: 'flux-fajar-id', label: 'Fajar — laki-laki (Indonesia)' },
+      { id: 'flux-fitri-id', label: 'Fitri — perempuan (Indonesia)' },
+      { id: 'flux-rizky-id', label: 'Rizky — laki-laki (Indonesia)' },
+      { id: 'flux-teguh-id', label: 'Teguh — laki-laki (Indonesia)' },
+      { id: 'aura-2-thalia-en', label: 'Thalia — perempuan (Inggris)' }
+    ];
+    const STUDIO_MAX_HISTORY = 10;
+
+    function switchMainView(view) {
+      state.mainView = view;
+      const chatScroll = document.getElementById('chat-scroll-container');
+      const composer = document.getElementById('composer-container');
+      const studio = document.getElementById('studio-container');
+      const inStudio = view === 'studio';
+      if (chatScroll) chatScroll.classList.toggle('hidden', inStudio);
+      if (composer) composer.classList.toggle('hidden', inStudio);
+      if (studio) studio.classList.toggle('hidden', !inStudio);
+      if (inStudio) {
+        const sel = document.getElementById('studio-voice');
+        if (sel && state.settings.deepgramModel) sel.value = state.settings.deepgramModel;
+        updateStudioCounter();
+      }
+      updateHeaderInfo();
+      if (window.lucide) lucide.createIcons();
+      if (window.innerWidth < 1024) toggleSidebar(false);
+    }
+
+    function updateStudioCounter() {
+      const ta = document.getElementById('studio-text');
+      const el = document.getElementById('studio-char-count');
+      if (!ta || !el) return;
+      const n = ta.value.trim().length;
+      if (n === 0) { el.textContent = '0 karakter'; return; }
+      const secs = Math.round(n / 800 * 60);
+      el.textContent = n.toLocaleString('id-ID') + ' karakter · ± ' + (secs >= 60 ? Math.floor(secs / 60) + ' mnt ' + (secs % 60) + ' dtk' : secs + ' dtk');
+    }
+
+    function setStudioProgress(msg) {
+      const el = document.getElementById('studio-progress');
+      if (!el) return;
+      if (msg) { el.textContent = msg; el.classList.remove('hidden'); }
+      else el.classList.add('hidden');
+    }
+
+    function setStudioGenerating(on) {
+      state.studioGenerating = on;
+      const btn = document.getElementById('studio-generate-btn');
+      if (btn) btn.textContent = on ? 'Batalkan' : 'Generate Suara';
+    }
+
+    async function generateStudioVoice() {
+      if (state.studioGenerating) {
+        state.studioToken++;
+        setStudioGenerating(false);
+        setStudioProgress('');
+        showToast('Pembuatan suara dibatalkan.', 'info');
+        return;
+      }
+      const ta = document.getElementById('studio-text');
+      const text = (ta ? ta.value : '').replace(/\s+/g, ' ').trim();
+      if (!text) { showToast('Tulis dulu naskahnya.', 'info'); if (ta) ta.focus(); return; }
+      const key = (state.settings.deepgramKey || '').trim();
+      if (!key) {
+        showToast('Masukkan API key Deepgram dulu di Pengaturan → Suara AI (Deepgram).', 'error');
+        openSettingsModal(); showSettingsPage('keys');
+        return;
+      }
+      const sel = document.getElementById('studio-voice');
+      const voice = sel ? sel.value : 'flux-dewi-id';
+      state.settings.deepgramModel = voice;
+      try { localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(state.settings)); } catch (e) {}
+      const chunks = chunkTextForSpeech(text);
+      const token = ++state.studioToken;
+      setStudioGenerating(true);
+      const parts = [];
+      try {
+        for (let i = 0; i < chunks.length; i++) {
+          if (token !== state.studioToken) return;
+          setStudioProgress('Membuat suara… bagian ' + (i + 1) + ' dari ' + chunks.length);
+          parts.push(await fetchDeepgramAudio(chunks[i]));
+        }
+      } catch (e) {
+        if (token !== state.studioToken) return;
+        setStudioGenerating(false);
+        setStudioProgress('');
+        if (e.name === 'AbortError') showToast('Pembuatan suara kehabisan waktu (30 detik). Coba lagi.', 'error');
+        else if (e.status === 401 || e.status === 403) showToast('API key Deepgram ditolak. Periksa key di Pengaturan.', 'error');
+        else showToast('Gagal membuat suara: ' + (e.message || 'kesalahan jaringan'), 'error');
+        return;
+      }
+      if (token !== state.studioToken) return;
+      setStudioGenerating(false);
+      setStudioProgress('');
+      const blob = new Blob(parts, { type: 'audio/mpeg' });
+      const url = URL.createObjectURL(blob);
+      const voiceLabel = (STUDIO_VOICES.find(v => v.id === voice) || {}).label || voice;
+      const stamp = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/:/g, '');
+      const fileName = 'suara-' + voice + '-' + stamp + '.mp3';
+      const clip = { id: 'clip_' + Date.now(), text, voice, voiceLabel, url, fileName, createdAt: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) };
+      state.studioClips.unshift(clip);
+      while (state.studioClips.length > STUDIO_MAX_HISTORY) {
+        const old = state.studioClips.pop();
+        try { URL.revokeObjectURL(old.url); } catch (e) {}
+      }
+      const audio = document.getElementById('studio-audio');
+      if (audio) audio.src = url;
+      const resultText = document.getElementById('studio-result-text');
+      if (resultText) resultText.textContent = voiceLabel + ' · ' + text.slice(0, 160) + (text.length > 160 ? '…' : '');
+      const dl = document.getElementById('studio-download');
+      if (dl) { dl.href = url; dl.setAttribute('download', fileName); }
+      const result = document.getElementById('studio-result');
+      if (result) result.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+      renderStudioHistory();
+      if (audio) audio.play().catch(() => {});
+      showToast('Suara selesai dibuat — ketuk Unduh MP3 untuk menyimpan.', 'success');
+    }
+
+    function renderStudioHistory() {
+      const list = document.getElementById('studio-history-list');
+      if (!list) return;
+      if (!state.studioClips.length) {
+        list.innerHTML = '<p class="s-hint">Belum ada suara yang dibuat di sesi ini.</p>';
+        return;
+      }
+      list.innerHTML = state.studioClips.map(c => `
+        <div class="flex items-center gap-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 px-3 py-2.5">
+          <button type="button" onclick="playStudioClip('${c.id}')" class="shrink-0 w-9 h-9 inline-flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white transition-colors cursor-pointer" title="Putar">
+            <i data-lucide="play" class="w-4 h-4"></i>
+          </button>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 truncate">${escapeHtml(c.text)}</p>
+            <p class="text-[11px] text-zinc-400 dark:text-zinc-500">${escapeHtml(c.voiceLabel)} · ${escapeHtml(c.createdAt)}</p>
+          </div>
+          <a href="${c.url}" download="${escapeHtml(c.fileName)}" class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-indigo-500 hover:bg-indigo-500/10 transition-colors cursor-pointer" title="Unduh MP3">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>MP3</span>
+          </a>
+          <button type="button" onclick="deleteStudioClip('${c.id}')" class="shrink-0 p-1.5 rounded-lg text-zinc-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer" title="Hapus">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>`).join('');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function playStudioClip(id) {
+      const clip = state.studioClips.find(c => c.id === id);
+      if (!clip) return;
+      const audio = document.getElementById('studio-audio');
+      const resultText = document.getElementById('studio-result-text');
+      const dl = document.getElementById('studio-download');
+      const result = document.getElementById('studio-result');
+      if (audio) { audio.src = clip.url; audio.play().catch(() => {}); }
+      if (resultText) resultText.textContent = clip.voiceLabel + ' · ' + clip.text.slice(0, 160) + (clip.text.length > 160 ? '…' : '');
+      if (dl) { dl.href = clip.url; dl.setAttribute('download', clip.fileName); }
+      if (result) result.classList.remove('hidden');
+    }
+
+    function deleteStudioClip(id) {
+      const i = state.studioClips.findIndex(c => c.id === id);
+      if (i === -1) return;
+      const audio = document.getElementById('studio-audio');
+      if (audio && audio.getAttribute('src') === state.studioClips[i].url) {
+        audio.removeAttribute('src'); audio.load();
+        const result = document.getElementById('studio-result');
+        if (result) result.classList.add('hidden');
+      }
+      try { URL.revokeObjectURL(state.studioClips[i].url); } catch (e) {}
+      state.studioClips.splice(i, 1);
+      renderStudioHistory();
+    }
+
+    function clearStudioHistory() {
+      const audio = document.getElementById('studio-audio');
+      if (audio) { audio.removeAttribute('src'); audio.load(); }
+      const result = document.getElementById('studio-result');
+      if (result) result.classList.add('hidden');
+      state.studioClips.forEach(c => { try { URL.revokeObjectURL(c.url); } catch (e) {} });
+      state.studioClips = [];
+      renderStudioHistory();
     }
 
     async function regenerateLastResponse() {
